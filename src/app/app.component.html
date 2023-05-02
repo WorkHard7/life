@@ -1,0 +1,12 @@
+<div class="p-3">
+  <app-header text='Viața creștină și predicarea'></app-header>
+  <app-parts
+    *ngFor="let part of parts"
+    [parts]="part"
+  ></app-parts>
+  <app-current-time></app-current-time>
+  <app-remaining-time></app-remaining-time>
+  <app-reset-btn-premature
+    *ngIf="!redColor"
+  ></app-reset-btn-premature>
+</div>

@@ -1,0 +1,56 @@
+<div>
+  <ul class="pt-3 list-none">
+    <div class="border-2 border-red-500 flex p-2">
+      <li>
+        <div class="flex">
+          <div class="w-9/12">
+            <fa-icon class="mr-1.5" [icon]="faGem"></fa-icon>
+            <span #elem1>{{parts.comori}}</span>
+          </div>
+          <app-start-btn
+            (click)="onClick(elem1)"
+          ></app-start-btn>
+        </div>
+      </li>
+    </div>
+
+    <div class="border-2 border-red-500 flex p-2">
+      <li>
+        <div class="flex">
+          <div class="w-11/12">
+            <span #elem2 class="mr-5"> {{parts.nestemate}}</span>
+          </div>
+          <app-start-btn
+            (click)="onClick(elem2)"
+          ></app-start-btn>
+        </div>
+      </li>
+    </div>
+
+    <div class="border-2 border-red-500 flex p-2">
+      <li>
+        <div class="flex">
+          <div class="w-9/12">
+            <span #elem3>Viața de creștin: {{parts.viata_de_crestin}} (19:52 - 20:07)</span>
+          </div>
+          <app-start-btn
+            (click)="onClick(elem3)"
+          ></app-start-btn>
+        </div>
+      </li>
+    </div>
+
+    <div class="border-2 border-red-500 flex p-2">
+      <li>
+        <div class="flex">
+          <div class="w-10/12">
+            <span #elem4 class="mr-4">{{parts.studiul_bibliei}}</span>
+          </div>
+          <app-start-btn
+            (click)="onClick(elem4)"
+          ></app-start-btn>
+        </div>
+      </li>
+    </div>
+  </ul>
+</div>
