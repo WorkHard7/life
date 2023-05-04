@@ -1,6 +1,10 @@
 <div class="pt-3 text-2xl font-bold text-center">
-  <h1 class="text-6xl">
-    Timp rămas: {{remainingTime}}
+  <h1
+    [ngClass]="{'text-6xl' : !countdownService.isTimerRunning && !redColor,
+  'text-9xl' : countdownService.isTimerRunning || redColor
+  }"
+  >
+    Timp rămas: {{formatRemainingTime(remainingTime)}}
   </h1>
   <app-reset-btn></app-reset-btn>
 </div>

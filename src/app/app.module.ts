@@ -11,6 +11,9 @@ import { RemainingTimeComponent } from './components/remaining-time/remaining-ti
 import { ResetBtnComponent } from './components/reset-btn/reset-btn.component';
 import { StartBtnComponent } from './components/start-btn/start-btn.component';
 import { ResetBtnPrematureComponent } from './components/reset-btn-premature/reset-btn-premature.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LifeAndMinistryComponent } from './pages/life-and-ministry/life-and-ministry.component';
+import { WatchtowerComponent } from './pages/watchtower/watchtower.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { ResetBtnPrematureComponent } from './components/reset-btn-premature/res
     RemainingTimeComponent,
     ResetBtnComponent,
     StartBtnComponent,
-    ResetBtnPrematureComponent
+    ResetBtnPrematureComponent,
+    HomeComponent,
+    LifeAndMinistryComponent,
+    WatchtowerComponent
   ],
   imports: [
     BrowserModule,

@@ -23,13 +23,13 @@ export class PartsComponent implements OnInit {
     })
   }
 
-  onClick($event: HTMLElement) {
+  onClick($event: HTMLElement): void {
     const text = $event.textContent;
     let endTime = new Date();
 
     switch (true) {
       case text?.includes('Comori'):
-        endTime.setHours(22, 43, 0);
+        endTime.setHours(14, 54, 0);
         this.countdownService.startCountdown(endTime);
         break;
       case text?.includes('Nestemate'):
