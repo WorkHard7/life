@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {CountdownService} from "../../services/countdown.service";
+import {Component, OnInit, Input} from '@angular/core';
+import {CountdownService} from "../../../services/countdown.service";
 
 @Component({
   selector: 'app-start-btn',
@@ -7,6 +7,8 @@ import {CountdownService} from "../../services/countdown.service";
   styleUrls: ['./start-btn.component.scss']
 })
 export class StartBtnComponent implements OnInit {
+  @Input() padding?: string;
+
   redColor: boolean = false;
 
   constructor(public countdownService: CountdownService) {

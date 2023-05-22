@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ProcessParts} from "../../model/process-parts";
-import {CountdownService} from "../../services/countdown.service";
+import {ProcessParts} from "../../../model/process-parts";
+import {CountdownService} from "../../../services/countdown.service";
 import {faGem} from "@fortawesome/free-solid-svg-icons";
 import {IconDefinition} from "@fortawesome/free-regular-svg-icons";
-import {EVENTS} from "../../mock/events";
+import {EVENTS} from "../../../mock/events";
 
 @Component({
   selector: 'app-parts',

@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {CountdownService} from "../../services/countdown.service";
+import {Component, OnInit, Input} from '@angular/core';
+import {CountdownService} from "../../../services/countdown.service";
 
 @Component({
   selector: 'app-remaining-time',
@@ -7,6 +7,8 @@ import {CountdownService} from "../../services/countdown.service";
   styleUrls: ['./remaining-time.component.scss']
 })
 export class RemainingTimeComponent implements OnInit {
+  @Input() textSize!: string;
+
   redColor: boolean = false;
 
   constructor(public countdownService: CountdownService) {

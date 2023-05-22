@@ -1,0 +1,22 @@
+.home-background {
+  background-image: linear-gradient(to right, #2C3E50, #4CA1AF, #C4E0E5);
+  animation: gradientAnimation 15s ease infinite;
+}
+
+.border-gradient {
+  border: 3px solid;
+  border-image: linear-gradient(to right, #2C3E50, #f9a26c);
+  border-image-slice: 1 0;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}

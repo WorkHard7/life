@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {CountdownService} from "../../services/countdown.service";
+import {CountdownService} from "../../../services/countdown.service";
 
 @Component({
   selector: 'app-reset-btn-premature',
