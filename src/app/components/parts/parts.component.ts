@@ -1,7 +1,9 @@
-import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ProcessParts} from "../../model/process-parts";
 import {CountdownService} from "../../services/countdown.service";
 import {faGem} from "@fortawesome/free-solid-svg-icons";
+import {IconDefinition} from "@fortawesome/free-regular-svg-icons";
+import {EVENTS} from "../../mock/events";
 
 @Component({
   selector: 'app-parts',
@@ -11,7 +13,7 @@ import {faGem} from "@fortawesome/free-solid-svg-icons";
 export class PartsComponent implements OnInit {
   @Input() parts!: ProcessParts;
 
-  faGem = faGem;
+  faGem: IconDefinition = faGem;
   redColor: boolean = false;
 
   constructor(private countdownService: CountdownService) {
@@ -23,26 +25,15 @@ export class PartsComponent implements OnInit {
     })
   }
 
-  onClick($event: HTMLElement): void {
+  setTime($event: HTMLElement): void {
     const text = $event.textContent;
     let endTime = new Date();
 
-    switch (true) {
-      case text?.includes('Comori'):
-        endTime.setHours(14, 54, 0);
-        this.countdownService.startCountdown(endTime);
-        break;
-      case text?.includes('Nestemate'):
-        endTime.setHours(22, 47, 0);
-        this.countdownService.startCountdown(endTime);
-        break;
-      case text?.includes('Viața de creștin:'):
-        endTime.setHours(22, 49, 0);
-        this.countdownService.startCountdown(endTime);
-        break;
-      case text?.includes('Studiul Bibliei'):
-        endTime.setHours(22, 54, 0);
-        this.countdownService.startCountdown(endTime);
+    const event = EVENTS.find((e: any) => text?.includes(e.name));
+
+    if (event) {
+      endTime.setHours(event.hours, event.minutes, 0);
+      this.countdownService.startCountdown(endTime);
     }
   }
 }
