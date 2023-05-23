@@ -1,1 +1,22 @@
-It works!
+<header class="flex justify-center border-gradient mt-5">
+  <p>Articol cu {{paragraph}} paragrafe selectat.</p>
+</header>
+
+<app-remaining-time
+  *ngIf=" currentParagraph <= paragraph"
+  [textSize]="'text-2xl'"
+></app-remaining-time>
+
+<div *ngIf="isLoading" class="spinner">
+  <div class="spinner-container">
+    <div class="spinner-circle"></div>
+  </div>
+</div>
+
+<h1 *ngIf="!isLoading && currentParagraph <= paragraph" class="big flex justify-center align-top">
+  {{currentParagraph}}
+</h1>
+
+<h1 *ngIf="!isLoading && currentParagraph > paragraph" class="text-6xl flex justify-center -align-center h-screen">
+    Timp expirat
+</h1>
