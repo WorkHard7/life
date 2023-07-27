@@ -3,22 +3,22 @@ import {Events} from "../model/events";
 export const EVENTS: Events[] = [
   {
     name: 'Comori',
-    hours: 13,
-    minutes: 58
+    hours: 19,
+    minutes: 16
   },
   {
     name: 'Nestemate',
-    hours: 15,
-    minutes: 30
+    hours: 19,
+    minutes: 26
   },
   {
     name: 'Viața de creștin',
-    hours: 16,
-    minutes: 30
+    hours: 20,
+    minutes: 7
   },
   {
     name: 'Studiul Bibliei',
-    hours: 18,
-    minutes: 30
+    hours: 20,
+    minutes: 37
   }
 ]
