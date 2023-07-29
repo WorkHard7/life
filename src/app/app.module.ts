@@ -21,6 +21,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
   WatchtowerParagraphComponent
 } from './components/Watchtower/watchtower-paragraph/watchtower-paragraph.component';
+import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {
     LifeAndMinistryComponent,
     WatchtowerIntroPageComponent,
     WatchtowerParagraphComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

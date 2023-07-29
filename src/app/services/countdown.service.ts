@@ -33,7 +33,9 @@ export class CountdownService {
       if (this.remainingTime === 0) {
         this.isTimerRunning = false;
         this.redColorSubject.next(true);
+
         document.body.style.backgroundColor = 'red';
+
         clearInterval(this.intervalId);
       }
     }, 1000);
@@ -42,7 +44,9 @@ export class CountdownService {
   stopCountdown(): void {
     this.isTimerRunning = false;
     this.remainingTime = 0;
+
     this.redColorSubject.next(false);
+
     clearInterval(this.intervalId);
   }
 

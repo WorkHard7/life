@@ -4,6 +4,7 @@ import {LifeAndMinistryComponent} from "./pages/life-and-ministry/life-and-minis
 import {HomeComponent} from "./pages/home/home.component";
 import {WatchtowerIntroPageComponent} from "./pages/watchtower-intro-page/watchtower-intro-page.component";
 import {WatchtowerParagraphComponent} from "./components/Watchtower/watchtower-paragraph/watchtower-paragraph.component";
+import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'watchtower/:paragraph',
     component: WatchtowerParagraphComponent
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 
