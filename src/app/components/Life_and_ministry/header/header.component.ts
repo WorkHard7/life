@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {faArrowLeft} from "@fortawesome/free-solid-svg-icons/faArrowLeft";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -6,7 +8,14 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-@Input('title') header?: string;
+  @Input('title') header?: string;
 
-constructor() {}
+  constructor(private router: Router) {
+  }
+
+  protected readonly faArrowLeft = faArrowLeft;
+
+  goHome() {
+    this.router.navigate(['']);
+  }
 }

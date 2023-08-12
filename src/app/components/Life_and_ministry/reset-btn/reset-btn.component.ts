@@ -18,7 +18,7 @@ export class ResetBtnComponent implements OnInit {
     })
   }
 
-  resetBgColor() {
-    this.countdownService.resetBgColor();
+  onBtnClick() {
+    this.countdownService.stopCountdown();
   }
 }

@@ -10,9 +10,6 @@ import {CurrentTimeComponent} from './components/Life_and_ministry/current-time/
 import {RemainingTimeComponent} from './components/Life_and_ministry/remaining-time/remaining-time.component';
 import {ResetBtnComponent} from './components/Life_and_ministry/reset-btn/reset-btn.component';
 import {StartBtnComponent} from './components/Life_and_ministry/start-btn/start-btn.component';
-import {
-  ResetBtnPrematureComponent
-} from './components/Life_and_ministry/reset-btn-premature/reset-btn-premature.component';
 import {HomeComponent} from './pages/home/home.component';
 import {LifeAndMinistryComponent} from './pages/life-and-ministry/life-and-ministry.component';
 import {WatchtowerIntroPageComponent} from './pages/watchtower-intro-page/watchtower-intro-page.component';
@@ -22,6 +19,13 @@ import {
   WatchtowerParagraphComponent
 } from './components/Watchtower/watchtower-paragraph/watchtower-paragraph.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
+import {AddCustomSpeechComponent} from "./components/Life_and_ministry/add-custom-speech/add-custom-speech.component";
+import {ResetSpeechesComponent} from './components/Life_and_ministry/reset-speeches/reset-speeches.component';
+import {
+  OpenBtnPreachingComponent
+} from "./components/Life_and_ministry/open-btn-preeching/open-btn-preaching.component";
+import {PreachingPartsComponent} from './components/Life_and_ministry/preaching-parts/preaching-parts.component';
+import { ChristianLifePartsComponent } from './components/Life_and_ministry/christian-life-parts/christian-life-parts.component';
 
 @NgModule({
   declarations: [
@@ -32,12 +36,16 @@ import {PageNotFoundComponent} from './components/page-not-found/page-not-found.
     RemainingTimeComponent,
     ResetBtnComponent,
     StartBtnComponent,
-    ResetBtnPrematureComponent,
     HomeComponent,
     LifeAndMinistryComponent,
     WatchtowerIntroPageComponent,
     WatchtowerParagraphComponent,
     PageNotFoundComponent,
+    AddCustomSpeechComponent,
+    ResetSpeechesComponent,
+    OpenBtnPreachingComponent,
+    PreachingPartsComponent,
+    ChristianLifePartsComponent,
   ],
   imports: [
     BrowserModule,

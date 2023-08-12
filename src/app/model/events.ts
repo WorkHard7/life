@@ -1,5 +1,5 @@
 export interface Events {
-  name: string,
+  title: string,
   hours: number,
   minutes: number
 }

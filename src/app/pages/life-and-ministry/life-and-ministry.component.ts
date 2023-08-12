@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {ProcessParts} from "../../model/process-parts";
 import {CountdownService} from "../../services/countdown.service";
 import {PartsService} from "../../services/parts.service";
+import {Events} from "../../model/events";
 
 @Component({
   selector: 'app-life-and-ministry',
@@ -10,7 +10,7 @@ import {PartsService} from "../../services/parts.service";
 })
 export class LifeAndMinistryComponent implements OnInit, AfterViewInit {
   title = 'Viața creștină și predicarea';
-  parts!: ProcessParts[];
+  parts!: Events[];
   redColor: boolean = false;
 
   constructor(
@@ -26,9 +26,10 @@ export class LifeAndMinistryComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.partsService.getParts().subscribe({
-      next: parts => this.parts = parts,
-      error: (err) => console.log(err)
-    })
+    this.partsService.gems.subscribe(parts => {
+      this.parts = parts;
+    });
+
+    console.log(this.parts)
   }
 }

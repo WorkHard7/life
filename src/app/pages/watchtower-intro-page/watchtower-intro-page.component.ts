@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
+import {faArrowLeft} from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 
 @Component({
   selector: 'app-watchtower-intro-page',
@@ -8,6 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./watchtower-intro-page.component.scss']
 })
 export class WatchtowerIntroPageComponent {
+  protected readonly faArrowLeft = faArrowLeft;
 
   constructor(private router: Router) {
   }
@@ -20,5 +22,9 @@ export class WatchtowerIntroPageComponent {
         icon: 'error'
       })
     });
+  }
+
+  goHome() {
+    this.router.navigate(['/']);
   }
 }

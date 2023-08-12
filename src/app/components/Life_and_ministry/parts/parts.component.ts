@@ -1,9 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ProcessParts} from "../../../model/process-parts";
+import {Component, OnInit} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
-import {faGem} from "@fortawesome/free-solid-svg-icons";
-import {IconDefinition} from "@fortawesome/free-regular-svg-icons";
-import {EVENTS} from "../../../mock/events";
+import {PartsService} from "../../../services/parts.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-parts',
@@ -11,29 +9,60 @@ import {EVENTS} from "../../../mock/events";
   styleUrls: ['./parts.component.scss']
 })
 export class PartsComponent implements OnInit {
-  @Input() parts!: ProcessParts;
-
-  faGem: IconDefinition = faGem;
+  gems!: any[];
+  isPreachingOpen: boolean = false;
+  isChristianLife: boolean = false;
+  isOpen: boolean = false;
   redColor: boolean = false;
 
-  constructor(private countdownService: CountdownService) {
+  constructor(
+    private countdownService: CountdownService,
+    private partsService: PartsService
+  ) {
   }
 
   ngOnInit(): void {
     this.countdownService.redColor$.subscribe(redColor => {
       this.redColor = redColor;
     })
+
+    this.partsService.gems.subscribe(gems => {
+      this.gems = gems;
+    });
   }
 
-  setTime($event: HTMLElement): void {
-    const text = $event.textContent;
-    let endTime = new Date();
+  setTime(hours: number, minutes: number): void {
+    this.fireLoadingAlert();
 
-    const event = EVENTS.find((e: any) => text?.includes(e.name));
+    const endTime = new Date();
 
-    if (event) {
-      endTime.setHours(event.hours, event.minutes, 0);
-      this.countdownService.startCountdown(endTime);
-    }
+    endTime.setHours(hours, minutes, 0, 0);
+    this.countdownService.startCountdown(endTime);
+  }
+
+  private fireLoadingAlert() {
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading()
+
+        setTimeout(() => {
+          Swal.close();
+        }, 1000);
+      }
+    });
+  }
+
+  openPreachingParts(isOpen: boolean) {
+    this.isPreachingOpen = isOpen;
+  }
+
+  openChristianLifeParts(isOpen: boolean) {
+    this.isChristianLife = isOpen;
+  }
+
+  openGems(isOpen: boolean) {
+    this.isOpen = isOpen;
   }
 }

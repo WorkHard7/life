@@ -1,56 +1,75 @@
 <div>
   <ul class="pt-3 list-none">
-    <div class="border-2 border-red-500 flex flex-col p-2">
+    <div style="background-color: rgba(234, 87, 83, 0.7)"
+         class="rounded-2xl text-white border-2 border-red-300 mb-0.5 flex flex-col p-2">
       <li>
-        <div class="flex">
-          <div class="w-full">
-            <fa-icon class="mr-1.5" [icon]="faGem"></fa-icon>
-            <span #elem1>{{parts.comori}}</span>
+        <div class="w-full">
+          <app-open-btn-preaching
+            (PreachingBtn)="openGems($event)"
+          >
+            <span class="flex-1">COMORI DIN CUVÂNTUL LUI DUMNEZEU</span>
+          </app-open-btn-preaching>
+
+          <div *ngIf="isOpen">
+
+            <ng-container *ngFor="let gem of gems">
+              <div *ngIf="gem.title !== 'SĂ FIM MAI EFICIENȚI ÎN PREDICARE'"
+                   class="rounded-2xl mt-3 text-white border-2 border-red-300 flex flex-col p-2">
+                <li>
+                  <div class="w-full">
+                    <app-start-btn (click)="setTime(gem.hours, gem.minutes)">
+                      <span class="flex-1">{{ gem.title }}</span>
+                    </app-start-btn>
+                  </div>
+                </li>
+              </div>
+            </ng-container>
+
+            <div>
+              <li class="flex justify-between">
+                <app-reset-speeches></app-reset-speeches>
+                <app-add-custom-speech></app-add-custom-speech>
+              </li>
+            </div>
+
           </div>
-          <app-start-btn
-            (click)="setTime(elem1)"
-          ></app-start-btn>
         </div>
       </li>
     </div>
 
-    <div class="border-2 border-red-500 flex flex-col p-2">
+    <div style="background-color: rgba(234, 87, 83, 0.7)"
+         class="rounded-2xl text-white border-red-300 mb-0.5 flex flex-col p-2">
       <li>
-        <div class="flex">
-          <div class="w-full">
-            <span #elem2 class="mr-5"> {{parts.nestemate}}</span>
+        <div class="w-full">
+          <app-open-btn-preaching
+            (PreachingBtn)="openPreachingParts($event)"
+          >
+            <span class="flex-1">SĂ FIM MAI EFICIENȚI ÎN PREDICARE</span>
+          </app-open-btn-preaching>
+
+          <div *ngIf="isPreachingOpen">
+            <app-preaching-parts></app-preaching-parts>
           </div>
-          <app-start-btn
-            (click)="setTime(elem2)"
-          ></app-start-btn>
         </div>
       </li>
     </div>
 
-    <div class="border-2 border-red-500 flex flex-col p-2">
+    <div style="background-color: rgba(234, 87, 83, 0.7)"
+         class="rounded-2xl text-white border-red-300 mb-0.5 flex flex-col p-2">
       <li>
-        <div class="flex">
-          <div class="w-full">
-            <span #elem3>Viața de creștin: {{parts.viata_de_crestin}}</span>
+        <div class="w-full">
+          <app-open-btn-preaching
+            (PreachingBtn)="openChristianLifeParts($event)"
+          >
+            <span class="flex-1">VIAȚA DE CREȘTIN</span>
+          </app-open-btn-preaching>
+
+          <div *ngIf="isChristianLife">
+            <app-christian-life-parts></app-christian-life-parts>
           </div>
-          <app-start-btn
-            (click)="setTime(elem3)"
-          ></app-start-btn>
         </div>
       </li>
     </div>
 
-    <div class="border-2 border-red-500 flex flex-col p-2">
-      <li>
-        <div class="flex">
-          <div class="w-full">
-            <span #elem4 class="mr-4">{{parts.studiul_bibliei}}</span>
-          </div>
-          <app-start-btn
-            (click)="setTime(elem4)"
-          ></app-start-btn>
-        </div>
-      </li>
-    </div>
   </ul>
 </div>

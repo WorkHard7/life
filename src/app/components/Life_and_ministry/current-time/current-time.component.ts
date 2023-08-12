@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {faClock} from "@fortawesome/free-solid-svg-icons/faClock";
 
 @Component({
   selector: 'app-current-time',
@@ -7,6 +8,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class CurrentTimeComponent implements OnInit {
   localTime: any = new Date();
+  public readonly faClock: any = faClock;
 
   constructor() {
   }

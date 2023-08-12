@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CountdownService} from "../../../services/countdown.service";
+import {faArrowLeft} from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 
 @Component({
   selector: 'app-watchtower-paragraph',
@@ -8,8 +9,7 @@ import {CountdownService} from "../../../services/countdown.service";
   styleUrls: ['./watchtower-paragraph.component.scss']
 })
 export class WatchtowerParagraphComponent implements OnInit, AfterViewInit {
-  startTime: Date = new Date();
-  endTime: Date = new Date();
+  protected readonly faArrowLeft = faArrowLeft;
 
   paragraph!: number;
   currentParagraph: number = 0;
@@ -17,7 +17,8 @@ export class WatchtowerParagraphComponent implements OnInit, AfterViewInit {
 
   constructor(
     private route: ActivatedRoute,
-    public countdownService: CountdownService
+    public countdownService: CountdownService,
+    private router: Router
   ) {
   }
 
@@ -31,23 +32,26 @@ export class WatchtowerParagraphComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.startTime.setHours(10,36,0);
-    this.endTime.setHours(11, 36, 0);
-    setTimeout(() => {
-      this.countdownService.startCountdown(this.endTime);
-    });
+    const endTime: Date = new Date();
+    endTime.setHours(15, 2, 0);
+
+    this.countdownService.startCountdown(endTime);
 
     setInterval(() => {
       const currentTime = new Date();
 
       // remained time for orator when beginning the speech
-      const remainingTime = (this.endTime.getTime() - currentTime.getTime()) / 60000;
+      const remainingTime = (endTime.getTime() - currentTime.getTime()) / 60000;
 
       // what should be paragraph duration based on number of paragraphs selected
       const paragraphDuration = 60 / this.paragraph;
 
       this.currentParagraph = Math.floor((60 - remainingTime) / paragraphDuration) + 1;
       this.isLoading = false;
-    },1000)
+    }, 1000)
+  }
+
+  selectParagraphs() {
+    this.router.navigate(['/watchtower']);
   }
 }

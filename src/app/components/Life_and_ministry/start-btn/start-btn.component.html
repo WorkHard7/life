@@ -1,9 +1,11 @@
-<div>
+<div class="flex items-center">
+  <ng-content></ng-content>
+
   <button
     [style.padding]="padding"
     [disabled]="redColor || countdownService.isTimerRunning"
     [ngClass]="{'opacity-25' :  redColor || countdownService.isTimerRunning}"
     type="submit"
-    class="px-7 py-5 bg-amber-400 rounded hover:text-white active:translate-y-1.5 hover:bg-blue-700">Start
+    class="px-5 py-4 bg-amber-500 rounded hover:text-white active:translate-y-1.5 hover:bg-blue-700">Start
   </button>
 </div>
