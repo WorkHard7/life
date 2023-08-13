@@ -12,7 +12,7 @@ body, html {
 }
 
 body {
-  background: linear-gradient(to right, #ffb88e, #eca7a6);
+  background-color: #eca7a6;
 
   &::before {
     content: "";
@@ -38,6 +38,10 @@ body {
     border-radius: 50%;
     background: rgba(237, 153, 100, 0.6);
   }
+}
+
+.red-background {
+  background-color: red !important;
 }
 
 #swal-input-hours, #swal-input-title {

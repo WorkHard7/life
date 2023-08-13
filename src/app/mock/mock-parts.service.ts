@@ -1,5 +1,4 @@
 import {Events} from "../model/events";
-
 export const GEMS: Events[] = [
   {
     title: 'Comori din Cuvântul lui Dumnezeu (19:06 - 19:16)',

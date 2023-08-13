@@ -10,9 +10,6 @@ export class CountdownService {
   intervalId!: any;
   isTimerRunning: boolean = false;
 
-  private isTimerRunningSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public isTimerRunning$: Observable<boolean> = this.isTimerRunningSubject.asObservable();
-
   private redColorSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public redColor$: Observable<boolean> = this.redColorSubject.asObservable(); //using asObservable method
   // we create a read only stream, of values that can be subscribed to, but not directly modified from outside the component.
@@ -29,11 +26,13 @@ export class CountdownService {
     this.intervalId = setInterval(() => {
       this.remainingTime--;
 
-      if (this.remainingTime === 0) {
+      console.log('this.remainingTime', this.remainingTime);
+
+      if (this.remainingTime <= 0) {
         this.isTimerRunning = false;
         this.redColorSubject.next(true);
 
-        document.body.style.backgroundColor = 'red';
+        document.body.style.setProperty('background-color', 'red', 'important');
       }
 
       this.showNegativeRemainingTime = this.formatNegativeNumber();

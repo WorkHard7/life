@@ -14,4 +14,5 @@
     Timp rămas: {{countdownService.showNegativeRemainingTime}}
   </h1>
   <app-reset-btn *ngIf="(textSize && timeIsUp())"></app-reset-btn>
+  <app-reload-page-btn *ngIf="textSize && !timeIsUp() && countdownService.isTimerRunning"></app-reload-page-btn>
 </div>

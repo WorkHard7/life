@@ -52,6 +52,7 @@ export class WatchtowerParagraphComponent implements OnInit, AfterViewInit {
   }
 
   selectParagraphs() {
+    this.countdownService.stopCountdown();
     this.router.navigate(['/watchtower']);
   }
 }

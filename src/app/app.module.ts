@@ -25,7 +25,10 @@ import {
   OpenBtnPreachingComponent
 } from "./components/Life_and_ministry/open-btn-preeching/open-btn-preaching.component";
 import {PreachingPartsComponent} from './components/Life_and_ministry/preaching-parts/preaching-parts.component';
-import { ChristianLifePartsComponent } from './components/Life_and_ministry/christian-life-parts/christian-life-parts.component';
+import {
+  ChristianLifePartsComponent
+} from './components/Life_and_ministry/christian-life-parts/christian-life-parts.component';
+import { ReloadPageBtnComponent } from './components/Watchtower/reload-page-btn/reload-page-btn.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,7 @@ import { ChristianLifePartsComponent } from './components/Life_and_ministry/chri
     OpenBtnPreachingComponent,
     PreachingPartsComponent,
     ChristianLifePartsComponent,
+    ReloadPageBtnComponent,
   ],
   imports: [
     BrowserModule,
