@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {faArrowsRotate} from "@fortawesome/free-solid-svg-icons/faArrowsRotate";
-import {CountdownService} from "../../../services/countdown.service";
 
 @Component({
   selector: 'app-reload-page-btn',
@@ -10,7 +9,7 @@ import {CountdownService} from "../../../services/countdown.service";
 export class ReloadPageBtnComponent {
   public readonly faReload = faArrowsRotate;
 
-  constructor(public countdownService: CountdownService) {
+  constructor() {
   }
 
   reloadPage() {

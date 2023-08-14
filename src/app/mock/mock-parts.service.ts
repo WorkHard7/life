@@ -6,7 +6,7 @@ export const GEMS: Events[] = [
     minutes: 16,
   },
   {
-    title: 'Nestemate din Cuvântul lui Dumnezeu (19:16 - 19:26)',
+    title: 'Nestemate spirituale (19:16 - 19:26)',
     hours: 19,
     minutes: 26,
   },

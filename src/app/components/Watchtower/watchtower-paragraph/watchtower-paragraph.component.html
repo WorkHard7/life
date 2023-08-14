@@ -13,8 +13,10 @@
     </div>
   </div>
 
-  <h1 *ngIf="!isLoading && currentParagraph <= paragraph" class="big flex justify-center align-top">
-    {{currentParagraph}}
+  <h1 *ngIf="!isLoading && currentParagraph <= paragraph"
+      [ngClass]="{'big-text' : currentParagraph >= 0 && currentParagraph <= 22}"
+      class="flex justify-center align-top">
+    {{(currentParagraph < 0 || currentParagraph > 22) ? '' : currentParagraph}}
   </h1>
 
   <app-remaining-time
