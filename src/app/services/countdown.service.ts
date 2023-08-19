@@ -19,11 +19,18 @@ export class CountdownService {
   public redColor$: Observable<boolean> = this.redColorSubject.asObservable(); //using asObservable method
   // we create a read only stream, of values that can be subscribed to, but not directly modified from outside the component.
 
+  constructor() {
+    this.customEndTime = localStorage.getItem('customEndTime') ?
+      JSON.parse(localStorage.getItem('customEndTime')!) :
+      localStorage.setItem('customEndTime', JSON.stringify(this.customEndTime));
+  }
+
   startCountdown(endTime: Date): void {
     const currentTime = new Date();
     const targetTime = new Date(endTime);
-    // targetTime.setHours(20, 17, 0);
     this.isTimerRunning = true;
+
+    if (this.intervalId) window.clearTimeout(this.intervalId);
 
     const timeDiff = targetTime.getTime() - currentTime.getTime();
     this.remainingTime = (Math.floor(timeDiff / 1000));
@@ -62,6 +69,7 @@ export class CountdownService {
   }
 
   setCustomEndTime(time: any) {
+    localStorage.setItem('customEndTime', JSON.stringify(time));
     this.customEndTime = time;
   }
 
