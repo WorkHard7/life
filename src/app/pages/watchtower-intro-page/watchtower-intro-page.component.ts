@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons/faArrowLeft";
+import {faCompass} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-watchtower-intro-page',
@@ -10,6 +11,7 @@ import {faArrowLeft} from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 })
 export class WatchtowerIntroPageComponent {
   protected readonly faArrowLeft = faArrowLeft;
+  protected readonly faCompass = faCompass;
 
   constructor(private router: Router) {
   }

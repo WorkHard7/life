@@ -11,11 +11,18 @@
     <button class="w-full bg-amber-700 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(21)">21</button>
     <button class="w-full bg-amber-800 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(22)">22</button>
 
-    <div class="flex justify-center mt-12">
+    <div class="m-7 flex justify-center flex-col">
+      <app-set-custom-time-btn-watchtower></app-set-custom-time-btn-watchtower>
+    </div>
+
+    <div class="flex justify-center">
+      <div class="flex justify-center rounded-full bg-blue-700 p-3 w-14 opacity-40">
         <fa-icon
           (click)="goHome()"
-          class="cursor-pointer text-2xl" [icon]="faArrowLeft">
+          class="cursor-pointer text-white text-2xl"
+          [icon]="faArrowLeft">
         </fa-icon>
+      </div>
     </div>
   </section>
 </div>

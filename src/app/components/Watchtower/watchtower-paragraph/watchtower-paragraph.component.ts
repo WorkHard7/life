@@ -32,9 +32,14 @@ export class WatchtowerParagraphComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const endTime: Date = new Date();
-    endTime.setHours(11, 37, 0);
+    this.updateWatchtower();
+  }
 
+  updateWatchtower() {
+    const customEndTime: any = this.countdownService.getCustomEndTime();
+    const endTime: Date = new Date();
+
+    endTime.setHours(customEndTime.hours, customEndTime.minutes, customEndTime.seconds);
     this.countdownService.startCountdown(endTime);
 
     setInterval(() => {

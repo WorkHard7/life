@@ -22,26 +22,6 @@ export class PartsService {
     this.getChristianLifePartsFromStorage(christianLifeParts);
   }
 
-  // loadPartsFromStorage(): Observable<Events[]> {
-  //   const storedData = localStorage.getItem('speeches');
-  //   const parts: Events[] = storedData ? JSON.parse(storedData) : [];
-  //
-  //   return of<Events[]>(parts)
-  //     .pipe(
-  //       catchError(err => {
-  //         throw new Error('Error occurred while fetching the data')
-  //       }));
-  // }
-  //
-  // getParts(): void {
-  //   this.loadPartsFromStorage().subscribe({
-  //     next: (parts: Events[]) => {
-  //       this.speeches.next(parts);
-  //     },
-  //     error: (err) => console.log(err),
-  //   });
-  // }
-
   addCustomSpeech(preaching: boolean = false, christianLife: boolean = false): void {
     Swal.fire({
       title: 'Adaugă o temă noua',

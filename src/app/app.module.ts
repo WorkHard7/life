@@ -28,7 +28,10 @@ import {PreachingPartsComponent} from './components/Life_and_ministry/preaching-
 import {
   ChristianLifePartsComponent
 } from './components/Life_and_ministry/christian-life-parts/christian-life-parts.component';
-import { ReloadPageBtnComponent } from './components/Watchtower/reload-page-btn/reload-page-btn.component';
+import {ReloadPageBtnComponent} from './components/Watchtower/reload-page-btn/reload-page-btn.component';
+import {
+  SetCustomTimeBtnWatchtowerComponent
+} from './components/Watchtower/set-custom-time-btn-watchtower/set-custom-time-btn-watchtower.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,7 @@ import { ReloadPageBtnComponent } from './components/Watchtower/reload-page-btn/
     PreachingPartsComponent,
     ChristianLifePartsComponent,
     ReloadPageBtnComponent,
+    SetCustomTimeBtnWatchtowerComponent,
   ],
   imports: [
     BrowserModule,

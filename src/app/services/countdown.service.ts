@@ -9,6 +9,11 @@ export class CountdownService {
   showNegativeRemainingTime: string = '00:00';
   intervalId!: any;
   isTimerRunning: boolean = false;
+  private customEndTime: Object = {
+    hours: 11,
+    minutes: 38,
+    seconds: 0
+  };
 
   private redColorSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public redColor$: Observable<boolean> = this.redColorSubject.asObservable(); //using asObservable method
@@ -54,6 +59,14 @@ export class CountdownService {
   resetBgColor(): void {
     document.body.style.backgroundColor = '';
     this.redColorSubject.next(false);
+  }
+
+  setCustomEndTime(time: any) {
+    this.customEndTime = time;
+  }
+
+  getCustomEndTime() {
+    return this.customEndTime;
   }
 
   formatNegativeNumber(): string {
