@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import Swal from "sweetalert2";
 import {CountdownService} from "../../../services/countdown.service";
+import {faClockRotateLeft} from "@fortawesome/free-solid-svg-icons/faClockRotateLeft";
 
 @Component({
   selector: 'app-set-custom-time-btn-watchtower',
@@ -9,6 +10,7 @@ import {CountdownService} from "../../../services/countdown.service";
 })
 export class SetCustomTimeBtnWatchtowerComponent {
   @Output() newEndTime: EventEmitter<Object> = new EventEmitter<Object>();
+  faClockRotateLeft = faClockRotateLeft;
   endTime: any = {};
 
   constructor(private countdownService: CountdownService) {

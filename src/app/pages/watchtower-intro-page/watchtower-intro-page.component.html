@@ -1,8 +1,11 @@
 <div class="flex justify-center -align-center h-screen pt-5">
   <section>
+    <div class="popup-box" *ngIf="showPopup">You are an awesome person!</div>
+
     <h1 class="text-2xl -bold border-2 border-gradient p-2">
-      Selectați numărul de paragrafe:
+      <button (dblclick)="onDoubleClick()" (mouseup)="onMouseUp()" class="cursor-pointer">Selectați numărul de paragrafe:</button>
     </h1>
+
     <button class="w-full bg-amber-200 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(16)">16</button>
     <button class="w-full bg-amber-300 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(17)">17</button>
     <button class="w-full bg-amber-400 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(18)">18</button>
@@ -15,12 +18,21 @@
       <app-set-custom-time-btn-watchtower></app-set-custom-time-btn-watchtower>
     </div>
 
-    <div class="flex justify-center">
+    <div class="flex justify-evenly">
       <div class="flex justify-center rounded-full bg-blue-700 p-3 w-14 opacity-40">
         <fa-icon
           (click)="goHome()"
+          title="Back"
           class="cursor-pointer text-white text-2xl"
           [icon]="faArrowLeft">
+        </fa-icon>
+      </div>
+      <div class="flex justify-center rounded-full bg-blue-700 p-3 w-14 opacity-40">
+        <fa-icon
+          (click)="reloadPage()"
+          title="Refresh"
+          class="cursor-pointer text-white text-2xl"
+          [icon]="faRefresh">
         </fa-icon>
       </div>
     </div>

@@ -3,3 +3,17 @@
   border-image: linear-gradient(to right, #2C3E50, #f9a26c);
   border-image-slice: 1 0;
 }
+
+.popup-box {
+  position: absolute;
+  top: 9%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f48181;
+  padding: 5px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(225, 32, 32, 0.6);
+  z-index: 10;
+  color: #ffffff;
+  opacity: .8;
+}

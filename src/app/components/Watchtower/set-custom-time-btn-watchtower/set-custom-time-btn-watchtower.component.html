@@ -1,7 +1,11 @@
 <div class="flex flex-col">
-  <span class="text-center text-blue-700">Current end time: {{endTime.hours}} : {{endTime.minutes}}</span>
+  <span class="text-center text-blue-700">
+    <fa-icon [icon]="faClockRotateLeft"></fa-icon>
+    Current end time: {{endTime.hours}} : {{endTime.minutes}}
+  </span>
   <button
     (click)="changeTime()"
+    title="Change end time for watchtower"
     class="border-2 border-blue-400 border-opacity-40 hover:bg-rose-300 outline-0 px-11 py-5 rounded-2xl text-3xl">
     Change time
   </button>

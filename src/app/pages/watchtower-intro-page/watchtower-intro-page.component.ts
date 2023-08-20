@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons/faArrowLeft";
-import {faCompass} from '@fortawesome/free-solid-svg-icons';
+import {faRefresh} from "@fortawesome/free-solid-svg-icons/faRefresh";
 
 @Component({
   selector: 'app-watchtower-intro-page',
@@ -11,7 +11,10 @@ import {faCompass} from '@fortawesome/free-solid-svg-icons';
 })
 export class WatchtowerIntroPageComponent {
   protected readonly faArrowLeft = faArrowLeft;
-  protected readonly faCompass = faCompass;
+  protected readonly faRefresh = faRefresh;
+  private pressTimeout: any;
+  private doubleClickTimeout: any;
+  public showPopup: boolean = false;
 
   constructor(private router: Router) {
   }
@@ -28,5 +31,23 @@ export class WatchtowerIntroPageComponent {
 
   goHome() {
     this.router.navigate(['/']);
+  }
+
+  reloadPage() {
+    window.location.reload();
+  }
+
+  onDoubleClick() {
+    clearTimeout(this.doubleClickTimeout); // Clear any existing timeout
+    this.doubleClickTimeout = setTimeout(() => {
+      this.showPopup = true;
+      setTimeout(() => {
+        this.showPopup = false;
+      }, 2500); // Set your desired duration (in milliseconds) for showing the popup
+    }, 500); // Set your desired duration (in milliseconds) for holding after double click
+  }
+
+  onMouseUp() {
+    clearTimeout(this.doubleClickTimeout);
   }
 }
