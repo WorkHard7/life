@@ -18,8 +18,8 @@ export class ChristianLifePartsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.partsService.christianLifeParts.subscribe(christianLifeParts => {
-      this.christianLifeParts = christianLifeParts;
+    this.partsService.christianLifeParts.subscribe(parts => {
+      this.christianLifeParts = parts;
     });
   }
 

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import Swal from "sweetalert2";
 import {CountdownService} from "../../../services/countdown.service";
-import {faClockRotateLeft} from "@fortawesome/free-solid-svg-icons/faClockRotateLeft";
+import {faClockRotateLeft} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-set-custom-time-btn-watchtower',

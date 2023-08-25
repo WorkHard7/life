@@ -1,14 +1,15 @@
 <div>
   <ul class="pt-3 list-none">
-    <div style="background-color: rgba(234, 87, 83, 0.7)"
-         class="rounded-2xl text-white border-2 border-red-300 mb-0.5 flex flex-col p-2">
+    <div
+      [ngStyle]="isOpen ? {'background-color': 'rgb(3 109 92)' } : { 'background-color': 'rgba(234, 87, 83, 0.7)'}"
+      class="rounded-2xl text-white border-2 border-red-300 mb-0.5 flex flex-col p-2">
       <li>
         <div class="w-full">
-          <app-open-btn-preaching
+          <app-open-btn
             (PreachingBtn)="openGems($event)"
           >
             <span class="flex-1">COMORI DIN CUVÂNTUL LUI DUMNEZEU</span>
-          </app-open-btn-preaching>
+          </app-open-btn>
 
           <div *ngIf="isOpen">
 
@@ -25,27 +26,21 @@
               </div>
             </ng-container>
 
-            <div>
-              <li class="flex justify-between">
-                <app-reset-speeches></app-reset-speeches>
-                <app-add-custom-speech></app-add-custom-speech>
-              </li>
-            </div>
-
           </div>
         </div>
       </li>
     </div>
 
-    <div style="background-color: rgba(234, 87, 83, 0.7)"
-         class="rounded-2xl text-white border-red-300 mb-0.5 flex flex-col p-2">
+    <div
+      [ngStyle]="isPreachingOpen ? {'background-color': 'rgb(3 109 92)' } : { 'background-color': 'rgba(234, 87, 83, 0.7)'}"
+      class="rounded-2xl text-white border-red-300 mb-0.5 flex flex-col p-2">
       <li>
         <div class="w-full">
-          <app-open-btn-preaching
+          <app-open-btn
             (PreachingBtn)="openPreachingParts($event)"
           >
             <span class="flex-1">SĂ FIM MAI EFICIENȚI ÎN PREDICARE</span>
-          </app-open-btn-preaching>
+          </app-open-btn>
 
           <div *ngIf="isPreachingOpen">
             <app-preaching-parts></app-preaching-parts>
@@ -54,15 +49,16 @@
       </li>
     </div>
 
-    <div style="background-color: rgba(234, 87, 83, 0.7)"
-         class="rounded-2xl text-white border-red-300 mb-0.5 flex flex-col p-2">
+    <div
+      [ngStyle]="isChristianLife ? {'background-color': 'rgb(3 109 92)' } : { 'background-color': 'rgba(234, 87, 83, 0.7)'}"
+      class="rounded-2xl text-white border-red-300 mb-0.5 flex flex-col p-2">
       <li>
         <div class="w-full">
-          <app-open-btn-preaching
+          <app-open-btn
             (PreachingBtn)="openChristianLifeParts($event)"
           >
             <span class="flex-1">VIAȚA DE CREȘTIN</span>
-          </app-open-btn-preaching>
+          </app-open-btn>
 
           <div *ngIf="isChristianLife">
             <app-christian-life-parts></app-christian-life-parts>

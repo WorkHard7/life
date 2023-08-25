@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {CountdownService} from "../../../services/countdown.service";
-import {faArrowLeft} from "@fortawesome/free-solid-svg-icons/faArrowLeft";
+import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-watchtower-paragraph',

@@ -1,4 +1,5 @@
 <div [ngClass]="{'big-container' : timeIsUp()}" class="pt-3 text-2xl font-bold text-center">
+
   <!--  life and ministry -->
   <h1 *ngIf="!textSize"
       [ngClass]="{'text-6xl' : !countdownService.isTimerRunning && !redColor,
@@ -7,12 +8,12 @@
   >
     Timp rămas: {{countdownService.showNegativeRemainingTime}}
   </h1>
-  <app-reset-btn *ngIf="!textSize"></app-reset-btn>
+  <app-reset-time-btn *ngIf="!textSize"></app-reset-time-btn>
 
   <!--  watchtower -->
   <h1 [ngClass]="timeIsUp() ? 'big-text' : 'small-text'" *ngIf="textSize">
     Timp rămas: {{countdownService.showNegativeRemainingTime}}
   </h1>
-  <app-reset-btn *ngIf="(textSize && timeIsUp())"></app-reset-btn>
+  <app-reset-time-btn *ngIf="(textSize && timeIsUp())"></app-reset-time-btn>
   <app-reload-page-btn *ngIf="(textSize && !timeIsUp())"></app-reload-page-btn>
 </div>

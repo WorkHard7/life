@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
-import {faArrowLeft} from "@fortawesome/free-solid-svg-icons/faArrowLeft";
-import {faRefresh} from "@fortawesome/free-solid-svg-icons/faRefresh";
+import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
+import {faRefresh} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
     selector: 'app-watchtower-intro-page',

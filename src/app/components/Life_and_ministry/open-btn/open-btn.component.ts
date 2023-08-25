@@ -2,11 +2,11 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {faAngleDown, faAngleUp} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
-  selector: 'app-open-btn-preaching',
-  templateUrl: './open-btn-preaching.component.html',
-  styleUrls: ['./open-btn-preaching.component.scss']
+  selector: 'app-open-btn',
+  templateUrl: './open-btn.component.html',
+  styleUrls: ['./open-btn.component.scss']
 })
-export class OpenBtnPreachingComponent {
+export class OpenBtnComponent {
   @Input() preaching: boolean = false;
   @Input() christianLife: boolean = false;
   @Output() PreachingBtn: EventEmitter<boolean> = new EventEmitter<boolean>();

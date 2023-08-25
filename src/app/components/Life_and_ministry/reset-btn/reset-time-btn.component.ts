@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 
 @Component({
-  selector: 'app-reset-btn',
-  templateUrl: './reset-btn.component.html',
-  styleUrls: ['./reset-btn.component.scss']
+  selector: 'app-reset-time-btn',
+  templateUrl: './reset-time-btn.component.html',
+  styleUrls: ['./reset-time-btn.component.scss']
 })
-export class ResetBtnComponent implements OnInit {
+export class ResetTimeBtnComponent implements OnInit {
   redColor: boolean = false;
 
   constructor(private countdownService: CountdownService) {

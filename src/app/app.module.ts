@@ -8,7 +8,7 @@ import {HeaderComponent} from './components/Life_and_ministry/header/header.comp
 import {PartsComponent} from './components/Life_and_ministry/parts/parts.component';
 import {CurrentTimeComponent} from './components/Life_and_ministry/current-time/current-time.component';
 import {RemainingTimeComponent} from './components/Life_and_ministry/remaining-time/remaining-time.component';
-import {ResetBtnComponent} from './components/Life_and_ministry/reset-btn/reset-btn.component';
+import {ResetTimeBtnComponent} from './components/Life_and_ministry/reset-btn/reset-time-btn.component';
 import {StartBtnComponent} from './components/Life_and_ministry/start-btn/start-btn.component';
 import {HomeComponent} from './pages/home/home.component';
 import {LifeAndMinistryComponent} from './pages/life-and-ministry/life-and-ministry.component';
@@ -18,12 +18,12 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
   WatchtowerParagraphComponent
 } from './components/Watchtower/watchtower-paragraph/watchtower-paragraph.component';
-import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
+import {PageNotFoundComponent} from './components/Page-not-found/page-not-found.component';
 import {AddCustomSpeechComponent} from "./components/Life_and_ministry/add-custom-speech/add-custom-speech.component";
 import {ResetSpeechesComponent} from './components/Life_and_ministry/reset-speeches/reset-speeches.component';
 import {
-  OpenBtnPreachingComponent
-} from "./components/Life_and_ministry/open-btn-preeching/open-btn-preaching.component";
+  OpenBtnComponent
+} from "./components/Life_and_ministry/open-btn/open-btn.component";
 import {PreachingPartsComponent} from './components/Life_and_ministry/preaching-parts/preaching-parts.component';
 import {
   ChristianLifePartsComponent
@@ -40,7 +40,7 @@ import {
     PartsComponent,
     CurrentTimeComponent,
     RemainingTimeComponent,
-    ResetBtnComponent,
+    ResetTimeBtnComponent,
     StartBtnComponent,
     HomeComponent,
     LifeAndMinistryComponent,
@@ -49,7 +49,7 @@ import {
     PageNotFoundComponent,
     AddCustomSpeechComponent,
     ResetSpeechesComponent,
-    OpenBtnPreachingComponent,
+    OpenBtnComponent,
     PreachingPartsComponent,
     ChristianLifePartsComponent,
     ReloadPageBtnComponent,

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {faClock} from "@fortawesome/free-solid-svg-icons/faClock";
+import {faClock} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-current-time',

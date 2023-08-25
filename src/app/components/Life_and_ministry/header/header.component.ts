@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {faArrowLeft} from "@fortawesome/free-solid-svg-icons/faArrowLeft";
+import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {Router} from "@angular/router";
 import {CountdownService} from "../../../services/countdown.service";
 
@@ -10,11 +10,13 @@ import {CountdownService} from "../../../services/countdown.service";
 })
 export class HeaderComponent {
   @Input('title') header?: string;
-
-  constructor(private router: Router, private countdownService: CountdownService) {
-  }
-
   protected readonly faArrowLeft = faArrowLeft;
+
+  constructor(
+    private router: Router,
+    private countdownService: CountdownService
+  ) {
+  }
 
   goHome() {
     this.countdownService.stopCountdown();

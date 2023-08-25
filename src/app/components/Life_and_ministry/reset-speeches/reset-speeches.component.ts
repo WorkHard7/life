@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {faHammer} from "@fortawesome/free-solid-svg-icons/faHammer";
+import {faHammer} from "@fortawesome/free-solid-svg-icons";
 import {PartsService} from "../../../services/parts.service";
 
 @Component({

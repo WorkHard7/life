@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {faArrowsRotate} from "@fortawesome/free-solid-svg-icons/faArrowsRotate";
+import {faArrowsRotate} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-reload-page-btn',

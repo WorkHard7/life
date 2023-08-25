@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus";
+import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 import {PartsService} from "../../../services/parts.service";
 
