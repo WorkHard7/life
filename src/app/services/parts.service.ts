@@ -141,13 +141,13 @@ export class PartsService {
             part.title !== title);
 
           this.preachingParts.next(filterPreachingParts);
-          console.log(filterPreachingParts);
+          localStorage.setItem('preaching', JSON.stringify(this.preachingParts.getValue()));
         } else if (christianLife) {
           const filterChristianLifeParts = this.christianLifeParts.getValue().filter((part: any) =>
             part.title !== title);
 
           this.christianLifeParts.next(filterChristianLifeParts);
-          console.log(filterChristianLifeParts);
+          localStorage.setItem('christianLife', JSON.stringify(this.christianLifeParts.getValue()));
         }
       }
     })
