@@ -9,7 +9,7 @@
 
             <div class="flex justify-between">
               <app-start-btn (click)="setTime(part.hours, part.minutes)"></app-start-btn>
-              <app-delete-btn (click)="deleteSpeech(part.title)"></app-delete-btn>
+              <app-delete-btn *ngIf="part.title !== 'Studiul Bibliei (20:07 - 20:37)'" (click)="deleteSpeech(part.title)"></app-delete-btn>
             </div>
           </div>
         </li>
