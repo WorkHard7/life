@@ -45,4 +45,8 @@ export class ChristianLifePartsComponent implements OnInit {
       }
     });
   }
+
+  deleteSpeech(title: string): void {
+    this.partsService.findAndDeleteSpeech(title, false, true);
+  }
 }

@@ -4,10 +4,13 @@
 
       <div class="rounded-2xl border-2 mt-3 border-red-300 flex flex-col p-2">
         <li>
-          <div class="w-full">
-            <app-start-btn (click)="setTime(part.hours, part.minutes)">
-              <span class="flex-1">{{ part.title }}</span>
-            </app-start-btn>
+          <div class="w-full flex flex-col">
+            <span>{{ part.title }}</span>
+
+            <div class="flex justify-between">
+              <app-start-btn (click)="setTime(part.hours, part.minutes)"></app-start-btn>
+              <app-delete-btn (click)="deleteSpeech(part.title)"></app-delete-btn>
+            </div>
           </div>
         </li>
       </div>

@@ -25,6 +25,10 @@ export class PreachingPartsComponent implements OnInit {
     console.log(this.preachingParts)
   }
 
+  deleteSpeech(title: string): void {
+    this.partsService.findAndDeleteSpeech(title, true);
+  }
+
   setTime(hours: number, minutes: number): void {
     this.fireLoadingAlert();
 

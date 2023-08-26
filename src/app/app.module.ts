@@ -32,6 +32,7 @@ import {ReloadPageBtnComponent} from './components/Watchtower/reload-page-btn/re
 import {
   SetCustomTimeBtnWatchtowerComponent
 } from './components/Watchtower/set-custom-time-btn-watchtower/set-custom-time-btn-watchtower.component';
+import { DeleteBtnComponent } from './components/Life_and_ministry/delete-btn/delete-btn.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import {
     ChristianLifePartsComponent,
     ReloadPageBtnComponent,
     SetCustomTimeBtnWatchtowerComponent,
+    DeleteBtnComponent,
   ],
   imports: [
     BrowserModule,

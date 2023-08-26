@@ -123,6 +123,36 @@ export class PartsService {
     });
   }
 
+  findAndDeleteSpeech(title: string, preaching: boolean = false, christianLife: boolean = false): void {
+    Swal.fire({
+      title: 'Ești sigur?',
+      text: "Ești pe cale de a șterge o temă!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Șterge',
+      cancelButtonText: 'Anulează'
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+
+        if (preaching) {
+          const filterPreachingParts = this.preachingParts.getValue().filter((part: any) =>
+            part.title !== title);
+
+          this.preachingParts.next(filterPreachingParts);
+          console.log(filterPreachingParts);
+        } else if (christianLife) {
+          const filterChristianLifeParts = this.christianLifeParts.getValue().filter((part: any) =>
+            part.title !== title);
+
+          this.christianLifeParts.next(filterChristianLifeParts);
+          console.log(filterChristianLifeParts);
+        }
+      }
+    })
+  }
+
   private resetToDefaultGems(): void {
     localStorage.setItem('gems', JSON.stringify(GEMS));
     this.gems.next(GEMS);
@@ -157,7 +187,6 @@ export class PartsService {
   }
 
   private getChristianLifePartsFromStorage(christianLifeParts: string | null) {
-    // console.log('christianLife', christianLifeParts);
     if (christianLifeParts) {
       this.christianLifeParts.next(JSON.parse(christianLifeParts));
     } else {
