@@ -1,7 +1,28 @@
 <div class="flex flex-col">
+  <div class="flex mb-4 justify-between">
+    <label class="flex">
+      <input
+        (change)="changeToMorningTime()"
+        [checked]="endTime.hours === 11 && endTime.minutes === 38"
+        type="radio" name="endTime" value="11:38" class="large-radio mr-2">
+      11:38
+    </label>
+    <label *ngIf="customTime" class="flex">
+      <input checked type="radio" name="endTime" value="11:38" class="large-radio mr-2">
+      {{endTime.hours}}:{{endTime.minutes}}
+    </label>
+
+    <label class="flex">
+      <input
+        (change)="changeToEveningTime()"
+        [checked]="endTime.hours === 19 && endTime.minutes === 38"
+        type="radio" name="endTime" value="19:38" class="large-radio mr-2">
+      19:38
+    </label>
+  </div>
   <span class="text-center text-blue-700">
     <fa-icon [icon]="faClockRotateLeft"></fa-icon>
-    Current end time: {{endTime.hours}} : {{endTime.minutes}}
+    Current end time: {{endTime.hours}}:{{endTime.minutes}}
   </span>
   <button
     (click)="changeTime()"

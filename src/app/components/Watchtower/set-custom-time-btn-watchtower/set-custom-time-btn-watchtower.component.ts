@@ -12,6 +12,7 @@ export class SetCustomTimeBtnWatchtowerComponent {
   @Output() newEndTime: EventEmitter<Object> = new EventEmitter<Object>();
   faClockRotateLeft = faClockRotateLeft;
   endTime: any = {};
+  customTime: boolean = false;
 
   constructor(private countdownService: CountdownService) {
     this.endTime = this.countdownService.getCustomEndTime();
@@ -45,6 +46,7 @@ export class SetCustomTimeBtnWatchtowerComponent {
       }
     }).then((result: any) => {
       if (result.isConfirmed) {
+        this.customTime = true;
         this.countdownService.setCustomEndTime(this.endTime);
 
         Swal.fire({
@@ -54,5 +56,73 @@ export class SetCustomTimeBtnWatchtowerComponent {
         })
       }
     })
+  }
+
+  changeToMorningTime() {
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+
+        setTimeout(() => {
+          Swal.close();
+          this.customTime = false;
+
+          this.setMorningTime();
+          this.countdownService.setCustomEndTime(this.endTime);
+
+          Swal.fire({
+            title: 'Succes',
+            text: 'Timpul a fost setat cu succes: 11:38',
+            showConfirmButton: false,
+            timer: 2000,
+            icon: 'success'
+          });
+        }, 1500);
+      }
+    });
+  }
+
+  changeToEveningTime() {
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+
+        setTimeout(() => {
+          Swal.close();
+          this.customTime = false;
+
+          this.setEveningTime();
+          this.countdownService.setCustomEndTime(this.endTime);
+
+          Swal.fire({
+            title: 'Succes',
+            text: 'Timpul pentru finalizare: 19:38',
+            showConfirmButton: false,
+            timer: 1500,
+            icon: 'success'
+          });
+        }, 1000);
+      }
+    });
+  }
+
+  private setMorningTime() {
+    this.endTime = {
+      hours: 11,
+      minutes: 38,
+      seconds: 0
+    };
+  }
+
+  private setEveningTime() {
+    this.endTime = {
+      hours: 19,
+      minutes: 38,
+      seconds: 0
+    };
   }
 }
