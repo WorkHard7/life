@@ -100,7 +100,7 @@ export class SetCustomTimeBtnWatchtowerComponent {
 
           Swal.fire({
             title: 'Succes',
-            text: 'Timpul pentru finalizare: 19:38',
+            text: 'Timpul pentru finalizare: 20:08',
             showConfirmButton: false,
             timer: 1500,
             icon: 'success'
@@ -120,8 +120,8 @@ export class SetCustomTimeBtnWatchtowerComponent {
 
   private setEveningTime() {
     this.endTime = {
-      hours: 19,
-      minutes: 38,
+      hours: 20,
+      minutes: '0' + 8,
       seconds: 0
     };
   }

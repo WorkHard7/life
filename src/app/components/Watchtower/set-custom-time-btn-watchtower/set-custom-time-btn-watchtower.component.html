@@ -15,9 +15,9 @@
     <label class="flex">
       <input
         (change)="changeToEveningTime()"
-        [checked]="endTime.hours === 19 && endTime.minutes === 38"
-        type="radio" name="endTime" value="19:38" class="large-radio mr-2">
-      19:38
+        [checked]="endTime.hours === 20 && endTime.minutes === '0' + 8"
+        type="radio" name="endTime" value="20:8" class="large-radio mr-2">
+      20:08
     </label>
   </div>
   <span class="text-center text-blue-700">
