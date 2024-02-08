@@ -11,32 +11,7 @@ body, html {
 }
 
 body {
-  background-color: #eca7a6;
-
-  &::before {
-    content: "";
-    top: -15rem;
-    left: -15rem;
-    width: 30rem;
-    height: 30rem;
-    z-index: -1;
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.35);
-  }
-
-  &::after {
-    content: "";
-    bottom: 10rem;
-    right: -15rem;
-    width: 30rem;
-    height: 30rem;
-    z-index: -1;
-    margin-bottom: -25rem;
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(237, 153, 100, 0.6);
-  }
+  background-color: rgba(0, 0, 0, 0.65);
 }
 
 .red-background {
