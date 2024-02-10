@@ -1,18 +1,18 @@
 <div class="flex flex-col">
   <div class="flex mb-4 justify-between">
-    <label class="flex">
+    <label class="flex text-white">
       <input
         (change)="changeToMorningTime()"
         [checked]="endTime.hours === 11 && endTime.minutes === 38"
         type="radio" name="endTime" value="11:38" class="large-radio mr-2">
       11:38
     </label>
-    <label *ngIf="customTime" class="flex">
+    <label *ngIf="customTime" class="flex text-white">
       <input checked type="radio" name="endTime" value="11:38" class="large-radio mr-2">
       {{endTime.hours}}:{{endTime.minutes}}
     </label>
 
-    <label class="flex">
+    <label class="flex text-white">
       <input
         (change)="changeToEveningTime()"
         [checked]="endTime.hours === 20 && endTime.minutes === '0' + 8"
@@ -20,14 +20,15 @@
       20:08
     </label>
   </div>
-  <span class="text-center text-blue-700">
+  <span class="text-center text-white">
     <fa-icon [icon]="faClockRotateLeft"></fa-icon>
     Current end time: {{endTime.hours}}:{{endTime.minutes}}
   </span>
   <button
     (click)="changeTime()"
     title="Change end time for watchtower"
-    class="border-2 border-blue-400 border-opacity-40 hover:bg-rose-300 outline-0 px-11 py-5 rounded-2xl text-3xl">
+    style="background: #345996"
+    class="border-2 text-white border-blue-400 border-opacity-40 outline-0 px-11 py-5 rounded-2xl text-3xl">
     Change time
   </button>
 </div>

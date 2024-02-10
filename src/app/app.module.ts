@@ -33,6 +33,7 @@ import {
   SetCustomTimeBtnWatchtowerComponent
 } from './components/Watchtower/set-custom-time-btn-watchtower/set-custom-time-btn-watchtower.component';
 import { DeleteBtnComponent } from './components/Life_and_ministry/delete-btn/delete-btn.component';
+import { PublicTalkComponent } from './components/Public_talk/public-talk.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { DeleteBtnComponent } from './components/Life_and_ministry/delete-btn/de
     ReloadPageBtnComponent,
     SetCustomTimeBtnWatchtowerComponent,
     DeleteBtnComponent,
+    PublicTalkComponent,
   ],
   imports: [
     BrowserModule,

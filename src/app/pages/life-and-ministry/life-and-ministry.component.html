@@ -1,12 +1,15 @@
 <div class="p-3 h-screen">
-  <app-header [title]=title></app-header>
+  <app-header
+    *ngIf="this.headerService.showHeader"
+    [title]=title
+  ></app-header>
+  <app-current-time></app-current-time>
+
   <ng-container
     *ngIf="!countdownService.isTimerRunning && !redColor"
   >
     <app-parts></app-parts>
   </ng-container>
-
-  <app-current-time></app-current-time>
 
   <ng-container *ngIf="countdownService.isTimerRunning || redColor">
     <app-remaining-time></app-remaining-time>

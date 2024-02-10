@@ -2,17 +2,19 @@
 
   <!--  life and ministry -->
   <h1 *ngIf="!textSize"
+      class="text-white"
       [ngClass]="{'text-6xl' : !countdownService.isTimerRunning && !redColor,
     'rem-time' : countdownService.isTimerRunning || redColor
   }"
   >
-    Timp rămas: {{countdownService.showNegativeRemainingTime}}
+    Timp rămas conform planificării: {{countdownService.showNegativeRemainingTime}}
   </h1>
-  <app-reset-time-btn *ngIf="!textSize"></app-reset-time-btn>
+  <app-reset-time-btn
+    *ngIf="!textSize"></app-reset-time-btn>
 
   <!--  watchtower -->
   <h1 [ngClass]="timeIsUp() ? 'big-text' : 'small-text'" *ngIf="textSize">
-    Timp rămas: {{countdownService.showNegativeRemainingTime}}
+    Timp rămas conform planificării: {{countdownService.showNegativeRemainingTime}}
   </h1>
   <app-reset-time-btn *ngIf="(textSize && timeIsUp())"></app-reset-time-btn>
   <app-reload-page-btn *ngIf="(textSize && !timeIsUp())"></app-reload-page-btn>

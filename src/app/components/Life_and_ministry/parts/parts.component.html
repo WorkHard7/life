@@ -1,24 +1,20 @@
 <div>
   <ul class="pt-3 list-none">
-    <div
-      [ngStyle]="isOpen ? {'background-color': 'rgb(107 114 128)' } : { 'background-color': 'rgb(107 114 128)'}"
-      class="rounded-2xl text-white border-2 border-red-300 mb-0.5 flex flex-col p-2">
+    <div>
       <li>
-        <div class="w-full">
-          <app-open-btn
-            (PreachingBtn)="openGems($event)"
-          >
-            <span class="flex-1">COMORI DIN CUVÂNTUL LUI DUMNEZEU</span>
+        <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #3C7F8B">
+          <app-open-btn>
+            <span class="flex-1 font-bold" style="color: #86BFCA">COMORI DIN CUVÂNTUL LUI DUMNEZEU</span>
           </app-open-btn>
 
-          <div *ngIf="isOpen">
+          <div>
 
             <ng-container *ngFor="let gem of gems">
               <div *ngIf="gem.title !== 'SĂ FIM MAI EFICIENȚI ÎN PREDICARE'"
-                   class="rounded-2xl mt-3 text-white border-2 border-red-300 flex flex-col p-2">
+                   class="rounded-2xl mt-3 text-white border-2 flex flex-col p-2" style="border-color: #86BFCA">
                 <li>
                   <div class="w-full flex">
-                    <span class="flex-1">{{ gem.title }}</span>
+                    <span class="flex-1" style="color: #86BFCA">{{ gem.title }}</span>
 
                     <app-start-btn (click)="setTime(gem.hours, gem.minutes)"></app-start-btn>
                   </div>
@@ -31,36 +27,28 @@
       </li>
     </div>
 
-    <div
-      [ngStyle]="isPreachingOpen ? {'background-color': 'rgb(107 114 128)' } : { 'background-color': 'rgb(107 114 128)'}"
-      class="rounded-2xl text-white border-red-300 mb-0.5 flex flex-col p-2">
+    <div class="mt-4">
       <li>
-        <div class="w-full">
-          <app-open-btn
-            (PreachingBtn)="openPreachingParts($event)"
-          >
-            <span class="flex-1">SĂ FIM MAI EFICIENȚI ÎN PREDICARE</span>
+        <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #D68F00">
+          <app-open-btn>
+            <span class="flex-1" style="color: #FFCD5C">SĂ FIM MAI EFICIENȚI ÎN PREDICARE</span>
           </app-open-btn>
 
-          <div *ngIf="isPreachingOpen">
+          <div>
             <app-preaching-parts></app-preaching-parts>
           </div>
         </div>
       </li>
     </div>
 
-    <div
-      [ngStyle]="isChristianLife ? {'background-color': 'rgb(107 114 128)'} : { 'background-color': 'rgb(107 114 128)'}"
-      class="rounded-2xl text-white border-red-300 mb-0.5 flex flex-col p-2">
+    <div class="mt-4">
       <li>
-        <div class="w-full">
-          <app-open-btn
-            (PreachingBtn)="openChristianLifeParts($event)"
-          >
-            <span class="flex-1">VIAȚA DE CREȘTIN</span>
+        <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #BF2F13">
+          <app-open-btn>
+            <span class="flex-1" style="color: #D27674;">VIAȚA DE CREȘTIN</span>
           </app-open-btn>
 
-          <div *ngIf="isChristianLife">
+          <div>
             <app-christian-life-parts></app-christian-life-parts>
           </div>
         </div>

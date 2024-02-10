@@ -10,9 +10,9 @@ import Swal from "sweetalert2";
 })
 export class PartsComponent implements OnInit {
   gems!: any[];
-  isPreachingOpen: boolean = false;
-  isChristianLife: boolean = false;
-  isOpen: boolean = false;
+  // isPreachingOpen: boolean = false;
+  // isChristianLife: boolean = false;
+  // isOpen: boolean = false;
   redColor: boolean = false;
 
   constructor(
@@ -54,15 +54,15 @@ export class PartsComponent implements OnInit {
     });
   }
 
-  openPreachingParts(isOpen: boolean) {
-    this.isPreachingOpen = isOpen;
-  }
+  // openPreachingParts(isOpen: boolean) {
+  //   this.isPreachingOpen = isOpen;
+  // }
 
-  openChristianLifeParts(isOpen: boolean) {
-    this.isChristianLife = isOpen;
-  }
+  // openChristianLifeParts(isOpen: boolean) {
+  //   this.isChristianLife = isOpen;
+  // }
 
-  openGems(isOpen: boolean) {
-    this.isOpen = isOpen;
-  }
+  // openGems(isOpen: boolean) {
+  //   this.isOpen = isOpen;
+  // }
 }

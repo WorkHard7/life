@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
+import {HeaderService} from "../../../services/header.service";
 
 @Component({
   selector: 'app-reset-time-btn',
@@ -9,7 +10,10 @@ import {CountdownService} from "../../../services/countdown.service";
 export class ResetTimeBtnComponent implements OnInit {
   redColor: boolean = false;
 
-  constructor(private countdownService: CountdownService) {
+  constructor(
+    private countdownService: CountdownService,
+    private headerService: HeaderService
+  ) {
   }
 
   ngOnInit(): void {
@@ -20,5 +24,11 @@ export class ResetTimeBtnComponent implements OnInit {
 
   onBtnClick() {
     this.countdownService.stopCountdown();
+
+    this.showHeader();
+  }
+
+  showHeader() {
+    this.headerService.showHeaderAgain();
   }
 }

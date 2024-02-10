@@ -2,23 +2,20 @@
   <ul class="list-none">
     <ng-container *ngFor="let part of preachingParts">
 
-      <div class="rounded-2xl border-2 mt-3 border-red-300 flex flex-col p-2">
-        <li>
-          <div class="w-full flex flex-col">
-            <span>{{ part.title }}</span>
+      <div class="rounded-2xl border-2 mt-3 flex flex-row items-center justify-between p-2"
+           style="border-color: #FFCD5C">
+        <span class="font-bold" style="color: #FFCD5C">{{ part.title }}</span>
 
-            <div class="flex justify-between">
-              <app-start-btn (click)="setTime(part.hours, part.minutes)"></app-start-btn>
-              <app-delete-btn (click)="deleteSpeech(part.title)"></app-delete-btn>
-            </div>
-          </div>
-        </li>
+        <div class="flex items-center">
+          <app-delete-btn (click)="deleteSpeech(part.title)"></app-delete-btn>
+          <app-start-btn (click)="setTime(part.hours, part.minutes)"></app-start-btn>
+        </div>
       </div>
 
     </ng-container>
 
     <div>
-      <li class="flex justify-between">
+      <li class="flex justify-end">
         <ng-container *ngIf="preachingParts.length > 0">
           <app-reset-speeches [preaching]="true"></app-reset-speeches>
         </ng-container>

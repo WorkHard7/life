@@ -1,7 +1,8 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, HostListener, OnInit} from '@angular/core';
 import {CountdownService} from "../../services/countdown.service";
 import {PartsService} from "../../services/parts.service";
 import {Events} from "../../model/events";
+import {HeaderService} from "../../services/header.service";
 
 @Component({
   selector: 'app-life-and-ministry',
@@ -13,9 +14,17 @@ export class LifeAndMinistryComponent implements OnInit, AfterViewInit {
   parts!: Events[];
   redColor: boolean = false;
 
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: Event) {
+    this.headerService.showHeaderAgain();
+
+    this.countdownService.stopCountdown();
+  }
+
   constructor(
     public countdownService: CountdownService,
-    private partsService: PartsService
+    private partsService: PartsService,
+    public headerService: HeaderService
   ) {
   }
 

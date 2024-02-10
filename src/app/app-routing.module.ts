@@ -5,6 +5,7 @@ import {HomeComponent} from "./pages/home/home.component";
 import {WatchtowerIntroPageComponent} from "./pages/watchtower-intro-page/watchtower-intro-page.component";
 import {WatchtowerParagraphComponent} from "./components/Watchtower/watchtower-paragraph/watchtower-paragraph.component";
 import {PageNotFoundComponent} from "./components/Page-not-found/page-not-found.component";
+import {PublicTalkComponent} from "./components/Public_talk/public-talk.component";
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'life_and_ministry',
     component: LifeAndMinistryComponent
+  },
+  {
+    path: 'public_talk',
+    component: PublicTalkComponent
   },
   {
     path: 'watchtower',
