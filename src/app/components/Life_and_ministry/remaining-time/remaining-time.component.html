@@ -1,4 +1,7 @@
-<div [ngClass]="{'big-container' : timeIsUp()}"
+<div [ngClass]="{
+  'big-container' : timeIsUp(),
+  'h-screen' : publicTalk
+}"
      class="pt-3 text-2xl font-bold text-center flex flex-col justify-center -align-center">
 
   <!--  life and ministry -->
