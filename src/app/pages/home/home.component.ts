@@ -11,11 +11,11 @@ import {Events} from "../../model/events";
 export class HomeComponent implements OnInit {
   title = 'ministry_app';
   parts!: Events[];
-  redColor: boolean = false;
+  redColorText: boolean = false;
 
   constructor(private countdownService: CountdownService) {
-    this.countdownService.redColor$.subscribe(redColor => {
-      this.redColor = redColor;
+    this.countdownService.redColorText$.subscribe(redColorText => {
+      this.redColorText = redColorText;
     })
   }
 

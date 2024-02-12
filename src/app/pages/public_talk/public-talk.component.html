@@ -1,0 +1,11 @@
+<ng-container
+  *ngIf="!countdownService.isTimerRunning && !redColorText"
+>
+  <app-start-btn-public-talk></app-start-btn-public-talk>
+</ng-container>
+
+<ng-container *ngIf="countdownService.isTimerRunning || redColorText">
+  <app-remaining-time
+    [publicTalk] = true
+  ></app-remaining-time>
+</ng-container>

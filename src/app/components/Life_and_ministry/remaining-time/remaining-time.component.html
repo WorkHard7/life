@@ -1,21 +1,42 @@
-<div [ngClass]="{'big-container' : timeIsUp()}" class="pt-3 text-2xl font-bold text-center">
+<div [ngClass]="{'big-container' : timeIsUp()}"
+     class="pt-3 text-2xl font-bold text-center flex flex-col justify-center -align-center h-screen">
 
   <!--  life and ministry -->
-  <h1 *ngIf="!textSize"
+  <h1 *ngIf="!textSize && !publicTalk"
       class="text-white"
-      [ngClass]="{'text-6xl' : !countdownService.isTimerRunning && !redColor,
-    'rem-time' : countdownService.isTimerRunning || redColor
+      [ngClass]="{'text-6xl' : !countdownService.isTimerRunning && !redColorText,
+    'rem-time' : countdownService.isTimerRunning || redColorText
   }"
   >
     Timp rămas conform planificării: {{countdownService.showNegativeRemainingTime}}
   </h1>
   <app-reset-time-btn
-    *ngIf="!textSize"></app-reset-time-btn>
+    *ngIf="!textSize && !publicTalk"></app-reset-time-btn>
 
   <!--  watchtower -->
-  <h1 [ngClass]="timeIsUp() ? 'big-text' : 'small-text'" *ngIf="textSize">
+  <h1
+    *ngIf="textSize"
+    [style.color]="countdownService.remainingTime <= 0 ? 'red' : 'yellow'"
+    class="text-white"
+    [ngClass]="timeIsUp() ? 'big-text' : 'small-text'"
+  >
     Timp rămas conform planificării: {{countdownService.showNegativeRemainingTime}}
   </h1>
   <app-reset-time-btn *ngIf="(textSize && timeIsUp())"></app-reset-time-btn>
   <app-reload-page-btn *ngIf="(textSize && !timeIsUp())"></app-reload-page-btn>
+
+  <!--  public talk -->
+  <h1
+    *ngIf="publicTalk"
+    [style.color]="countdownService.remainingTime <= 0 ? 'red' : 'yellow'"
+    class="text-white leading-relaxed"
+    [ngClass]="timeIsUp() ? 'big-text' : 'small-text'"
+  >
+    Timp rămas conform planificării: {{countdownService.showNegativeRemainingTime}}
+  </h1>
+  <app-reset-time-btn
+    [publicTalk]="publicTalk"
+    *ngIf="(publicTalk)"
+  >
+  </app-reset-time-btn >
 </div>

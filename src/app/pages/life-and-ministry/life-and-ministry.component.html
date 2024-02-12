@@ -6,12 +6,12 @@
   <app-current-time></app-current-time>
 
   <ng-container
-    *ngIf="!countdownService.isTimerRunning && !redColor"
+    *ngIf="!countdownService.isTimerRunning && !redColorText"
   >
     <app-parts></app-parts>
   </ng-container>
 
-  <ng-container *ngIf="countdownService.isTimerRunning || redColor">
+  <ng-container *ngIf="countdownService.isTimerRunning || redColorText">
     <app-remaining-time></app-remaining-time>
   </ng-container>
 </div>

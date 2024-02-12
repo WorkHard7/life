@@ -12,14 +12,7 @@ import {HeaderService} from "../../services/header.service";
 export class LifeAndMinistryComponent implements OnInit, AfterViewInit {
   title = 'Viața creștină și predicarea';
   parts!: Events[];
-  redColor: boolean = false;
-
-  @HostListener('window:popstate', ['$event'])
-  onPopState(event: Event) {
-    this.headerService.showHeaderAgain();
-
-    this.countdownService.stopCountdown();
-  }
+  redColorText: boolean = false;
 
   constructor(
     public countdownService: CountdownService,
@@ -28,9 +21,16 @@ export class LifeAndMinistryComponent implements OnInit, AfterViewInit {
   ) {
   }
 
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: Event) {
+    this.headerService.showHeaderAgain();
+
+    this.countdownService.stopCountdown();
+  }
+
   ngAfterViewInit() {
-    this.countdownService.redColor$.subscribe(redColor => {
-      this.redColor = redColor;
+    this.countdownService.redColorText$.subscribe(redColorText => {
+      this.redColorText = redColorText;
     })
   }
 

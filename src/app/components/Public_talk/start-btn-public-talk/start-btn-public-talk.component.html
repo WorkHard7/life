@@ -1,0 +1,18 @@
+<div class="p-3 text-center flex flex-col">
+  <div class="flex items-center justify-center mb-4">
+    <fa-icon
+      (click)="goHome()"
+      title="Back"
+      class="cursor-pointer text-white text-2xl mr-3"
+      [icon]="faArrowLeft">
+    </fa-icon>
+    <p class="text-white text-3xl">Cuvântare publică 30 minute</p>
+  </div>
+  <button
+    (click)="startTimer()"
+    style="background: #345996"
+    class="px-6 py-4 text-2xl rounded-2xl text-white">
+    <i class="fa-solid fa-person-running"></i>
+    Start
+  </button>
+</div>

@@ -15,8 +15,8 @@ export class CountdownService {
     seconds: 0
   };
 
-  private redColorSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public redColor$: Observable<boolean> = this.redColorSubject.asObservable(); //using asObservable method
+  private redColorTextSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public redColorText$: Observable<boolean> = this.redColorTextSubject.asObservable(); //using asObservable method
   // we create a read only stream, of values that can be subscribed to, but not directly modified from outside the component.
 
   constructor() {
@@ -42,9 +42,9 @@ export class CountdownService {
 
       if (this.remainingTime <= 0) {
         this.isTimerRunning = false;
-        this.redColorSubject.next(true);
+        this.redColorTextSubject.next(true);
 
-        document.body.style.setProperty('background-color', 'red', 'important');
+        // document.body.style.setProperty('background-color', 'red', 'important');
       }
 
       this.showNegativeRemainingTime = this.formatNegativeNumber();
@@ -57,7 +57,7 @@ export class CountdownService {
     this.remainingTime = 0;
     this.showNegativeRemainingTime = '00:00';
 
-    this.redColorSubject.next(false);
+    this.redColorTextSubject.next(false);
 
     this.resetBgColor();
     clearInterval(this.intervalId);
@@ -65,7 +65,7 @@ export class CountdownService {
 
   resetBgColor(): void {
     document.body.style.backgroundColor = '';
-    this.redColorSubject.next(false);
+    this.redColorTextSubject.next(false);
   }
 
   setCustomEndTime(time: any) {

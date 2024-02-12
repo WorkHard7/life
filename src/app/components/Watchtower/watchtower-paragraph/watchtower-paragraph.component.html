@@ -1,10 +1,13 @@
 <div class="h-screen">
-  <header class="flex border-gradient mt-5">
-    <fa-icon
-      (click)="returnBack()"
-      class="cursor-pointer ml-5" [icon]="faArrowLeft">
-    </fa-icon>
-    <p class="text-center flex-1">Articol cu {{paragraph}} paragrafe selectat.</p>
+  <header class="flex mt-5">
+    <p class="text-center text-2xl text-white flex-1">
+      <fa-icon
+        (click)="returnBack()"
+        class="cursor-pointer text-white mr-2"
+        [icon]="faArrowLeft">
+      </fa-icon>
+      Articol cu {{paragraph}} paragrafe selectat.
+    </p>
   </header>
 
   <div *ngIf="isLoading" class="spinner">
@@ -15,7 +18,7 @@
 
   <h1 *ngIf="!isLoading && currentParagraph <= paragraph"
       [ngClass]="{'big-text' : currentParagraph >= 0 && currentParagraph <= 22}"
-      class="flex justify-center align-top">
+      class="flex justify-center align-top text-white">
     {{(currentParagraph < 0 || currentParagraph > 22) ? '' : currentParagraph}}
   </h1>
 

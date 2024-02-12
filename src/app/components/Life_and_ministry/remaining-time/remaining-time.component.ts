@@ -8,14 +8,15 @@ import {CountdownService} from "../../../services/countdown.service";
 })
 export class RemainingTimeComponent implements OnInit {
   @Input() textSize!: string;
-  redColor: boolean = false;
+  @Input() publicTalk!: boolean;
+  redColorText: boolean = false;
 
   constructor(public countdownService: CountdownService) {
   }
 
   ngOnInit(): void {
-    this.countdownService.redColor$.subscribe(redColor => {
-      this.redColor = redColor;
+    this.countdownService.redColorText$.subscribe(redColorText => {
+      this.redColorText = redColorText;
     });
   }
 

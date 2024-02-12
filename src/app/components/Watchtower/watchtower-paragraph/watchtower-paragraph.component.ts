@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {CountdownService} from "../../../services/countdown.service";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
@@ -20,6 +20,11 @@ export class WatchtowerParagraphComponent implements OnInit, AfterViewInit {
     public countdownService: CountdownService,
     private router: Router
   ) {
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: Event) {
+    this.countdownService.stopCountdown();
   }
 
   ngOnInit(): void {

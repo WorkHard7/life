@@ -32,8 +32,9 @@ import {ReloadPageBtnComponent} from './components/Watchtower/reload-page-btn/re
 import {
   SetCustomTimeBtnWatchtowerComponent
 } from './components/Watchtower/set-custom-time-btn-watchtower/set-custom-time-btn-watchtower.component';
-import { DeleteBtnComponent } from './components/Life_and_ministry/delete-btn/delete-btn.component';
-import { PublicTalkComponent } from './components/Public_talk/public-talk.component';
+import {DeleteBtnComponent} from './components/Life_and_ministry/delete-btn/delete-btn.component';
+import {PublicTalkComponent} from "./pages/public_talk/public-talk.component";
+import {StartBtnPublicTalkComponent} from './components/Public_talk/start-btn-public-talk/start-btn-public-talk.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { PublicTalkComponent } from './components/Public_talk/public-talk.compon
     SetCustomTimeBtnWatchtowerComponent,
     DeleteBtnComponent,
     PublicTalkComponent,
+    StartBtnPublicTalkComponent,
   ],
   imports: [
     BrowserModule,

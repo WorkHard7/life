@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {HeaderService} from "../../../services/header.service";
 
@@ -8,17 +8,18 @@ import {HeaderService} from "../../../services/header.service";
   styleUrls: ['./reset-time-btn.component.scss']
 })
 export class ResetTimeBtnComponent implements OnInit {
-  redColor: boolean = false;
+  @Input() publicTalk!: boolean;
+  redColorText: boolean = false;
 
   constructor(
-    private countdownService: CountdownService,
+    public countdownService: CountdownService,
     private headerService: HeaderService
   ) {
   }
 
   ngOnInit(): void {
-    this.countdownService.redColor$.subscribe(redColor => {
-      this.redColor = redColor;
+    this.countdownService.redColorText$.subscribe(redColorText => {
+      this.redColorText = redColorText;
     })
   }
 

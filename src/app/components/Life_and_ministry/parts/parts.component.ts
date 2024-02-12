@@ -10,10 +10,7 @@ import Swal from "sweetalert2";
 })
 export class PartsComponent implements OnInit {
   gems!: any[];
-  // isPreachingOpen: boolean = false;
-  // isChristianLife: boolean = false;
-  // isOpen: boolean = false;
-  redColor: boolean = false;
+  redColorText: boolean = false;
 
   constructor(
     private countdownService: CountdownService,
@@ -22,8 +19,8 @@ export class PartsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.countdownService.redColor$.subscribe(redColor => {
-      this.redColor = redColor;
+    this.countdownService.redColorText$.subscribe(redColorText => {
+      this.redColorText = redColorText;
     })
 
     this.partsService.gems.subscribe(gems => {
@@ -53,16 +50,4 @@ export class PartsComponent implements OnInit {
       }
     });
   }
-
-  // openPreachingParts(isOpen: boolean) {
-  //   this.isPreachingOpen = isOpen;
-  // }
-
-  // openChristianLifeParts(isOpen: boolean) {
-  //   this.isChristianLife = isOpen;
-  // }
-
-  // openGems(isOpen: boolean) {
-  //   this.isOpen = isOpen;
-  // }
 }

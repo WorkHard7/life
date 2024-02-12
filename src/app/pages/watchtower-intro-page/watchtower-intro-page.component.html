@@ -1,45 +1,34 @@
 <div class="flex justify-center -align-center h-screen pt-5">
-    <section>
-        <div class="popup-box text-center" *ngIf="showPopup">
-            Jehovah loves you!
-            <span class="fa fa-heart"></span>
-        </div>
+  <section>
+    <div class="popup-box text-center" *ngIf="showPopup">
+      Jehovah loves you!
+      <span class="fa fa-heart"></span>
+    </div>
 
-        <h1 class="text-2xl -bold text-white border-2 border-gradient p-2">
-            <button (dblclick)="onDoubleClick()" (mouseup)="onMouseUp()" class="cursor-pointer">
-                Selectați numărul de paragrafe:
-            </button>
-        </h1>
+    <div class="flex justify-evenly">
+      <h1 class="text-2xl -bold text-white border-2 border-gradient p-2">
+          <fa-icon
+            (click)="goHome()"
+            title="Back"
+            class="cursor-pointer text-white text-2xl"
+            [icon]="faArrowLeft">
+          </fa-icon>
+        <button (dblclick)="onDoubleClick()" (mouseup)="onMouseUp()" class="cursor-pointer ml-4">
+          Selectați numărul de paragrafe
+        </button>
+      </h1>
+    </div>
 
-        <button class="w-full bg-amber-200 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(16)">16</button>
-        <button class="w-full bg-amber-300 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(17)">17</button>
-        <button class="w-full bg-amber-400 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(18)">18</button>
-        <button class="w-full bg-amber-500 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(19)">19</button>
-        <button class="w-full bg-amber-600 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(20)">20</button>
-        <button class="w-full bg-amber-700 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(21)">21</button>
-        <button class="w-full bg-amber-800 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(22)">22</button>
+    <button class="w-full bg-amber-200 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(16)">16</button>
+    <button class="w-full bg-amber-300 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(17)">17</button>
+    <button class="w-full bg-amber-400 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(18)">18</button>
+    <button class="w-full bg-amber-500 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(19)">19</button>
+    <button class="w-full bg-amber-600 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(20)">20</button>
+    <button class="w-full bg-amber-700 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(21)">21</button>
+    <button class="w-full bg-amber-800 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(22)">22</button>
 
-        <div class="m-5 flex justify-center flex-col">
-            <app-set-custom-time-btn-watchtower></app-set-custom-time-btn-watchtower>
-        </div>
-
-        <div class="flex justify-evenly">
-            <div class="flex justify-center rounded-full bg-blue-700 p-3 w-14 opacity-40">
-                <fa-icon
-                        (click)="goHome()"
-                        title="Back"
-                        class="cursor-pointer text-white text-2xl"
-                        [icon]="faArrowLeft">
-                </fa-icon>
-            </div>
-            <div class="flex justify-center rounded-full bg-blue-700 p-3 w-14 opacity-40">
-                <fa-icon
-                        (click)="reloadPage()"
-                        title="Refresh"
-                        class="cursor-pointer text-white text-2xl"
-                        [icon]="faRefresh">
-                </fa-icon>
-            </div>
-        </div>
-    </section>
+    <div class="m-5 flex justify-center flex-col">
+      <app-set-custom-time-btn-watchtower></app-set-custom-time-btn-watchtower>
+    </div>
+  </section>
 </div>

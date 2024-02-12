@@ -9,7 +9,7 @@ import {HeaderService} from "../../../services/header.service";
 })
 export class StartBtnComponent implements OnInit {
   @Input() padding?: string;
-  redColor: boolean = false;
+  redColorText: boolean = false;
 
   constructor(
     public countdownService: CountdownService,
@@ -18,8 +18,8 @@ export class StartBtnComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.countdownService.redColor$.subscribe(redColor => {
-      this.redColor = redColor;
+    this.countdownService.redColorText$.subscribe(redColorText => {
+      this.redColorText = redColorText;
     })
   }
 
