@@ -1,12 +1,14 @@
 <div class="p-3 text-center flex flex-col">
-  <div class="flex items-center justify-center mb-4">
-    <fa-icon
-      (click)="goHome()"
-      title="Back"
-      class="cursor-pointer text-white text-2xl mr-3"
-      [icon]="faArrowLeft">
-    </fa-icon>
-    <p class="text-white text-3xl">Cuvântare publică 30 minute</p>
+  <div class="flex items-center mb-4">
+    <div class="icon-circle flex justify-center items-center">
+      <fa-icon
+        (click)="goHome()"
+        title="Back"
+        class="cursor-pointer text-white text-2xl"
+        [icon]="faArrowLeft">
+      </fa-icon>
+    </div>
+    <p class="text-white text-3xl m-auto">Cuvântare publică 30 minute</p>
   </div>
   <button
     (click)="startTimer()"

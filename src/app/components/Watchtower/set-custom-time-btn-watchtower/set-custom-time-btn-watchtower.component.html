@@ -1,5 +1,5 @@
 <div class="flex flex-col">
-  <div class="flex mb-4 justify-between">
+  <div class="flex mb-4 justify-evenly">
     <label class="flex text-white">
       <input
         (change)="changeToMorningTime()"
@@ -24,11 +24,13 @@
     <fa-icon [icon]="faClockRotateLeft"></fa-icon>
     Current end time: {{endTime.hours}}:{{endTime.minutes}}
   </span>
-  <button
-    (click)="changeTime()"
-    title="Change end time for watchtower"
-    style="background: #345996"
-    class="border-2 text-white border-blue-400 border-opacity-40 outline-0 px-8 py-5 rounded-2xl text-3xl">
-    Change time
-  </button>
+  <div class="text-center">
+    <button
+      (click)="changeTime()"
+      title="Change end time for watchtower"
+      style="background: #345996"
+      class="border-2 text-white border-blue-400 border-opacity-40 outline-0 px-6 py-4 rounded-2xl text-2xl">
+      Change time
+    </button>
+  </div>
 </div>

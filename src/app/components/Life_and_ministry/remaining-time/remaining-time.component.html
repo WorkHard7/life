@@ -6,9 +6,11 @@
 
   <!--  life and ministry -->
   <h1 *ngIf="!textSize && !publicTalk"
-      class="text-white"
-      [ngClass]="{'text-6xl' : !countdownService.isTimerRunning && !redColorText,
-    'rem-time' : countdownService.isTimerRunning || redColorText
+      [style.color]="countdownService.remainingTime <= 0 ? 'red' : 'yellow'"
+      class="text-white mb-5"
+      [ngClass]="{
+      'text-6xl' : !countdownService.isTimerRunning && !redColorText,
+      'rem-time' : countdownService.isTimerRunning || redColorText,
   }"
   >
     Timp ajustat la program: {{countdownService.showNegativeRemainingTime}}
@@ -41,5 +43,5 @@
     [publicTalk]="publicTalk"
     *ngIf="(publicTalk)"
   >
-  </app-reset-time-btn >
+  </app-reset-time-btn>
 </div>

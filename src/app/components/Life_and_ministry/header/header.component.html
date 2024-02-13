@@ -1,9 +1,15 @@
 <div class="flex">
-  <h2 class="rounded-2xl flex-1 bg-gray-500">
-    <fa-icon
-      (click)="goHome()"
-      class="cursor-pointer mr-4 text-xl" [icon]="faArrowLeft">
-    </fa-icon>
-    <span>{{header}}</span>
+  <h2 class="rounded-2xl text-center flex-1 flex items-center bg-gray-500">
+    <div class="icon-circle flex justify-center items-center">
+      <fa-icon
+        (click)="goHome()"
+        title="Back"
+        class="cursor-pointer text-white text-xl"
+        [icon]="faArrowLeft">
+      </fa-icon>
+    </div>
+    <div class="m-auto">
+      <p>{{header}}</p>
+    </div>
   </h2>
 </div>

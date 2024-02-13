@@ -35,6 +35,7 @@ import {
 import {DeleteBtnComponent} from './components/Life_and_ministry/delete-btn/delete-btn.component';
 import {PublicTalkComponent} from "./pages/public_talk/public-talk.component";
 import {StartBtnPublicTalkComponent} from './components/Public_talk/start-btn-public-talk/start-btn-public-talk.component';
+import {IntroductionComponent} from './components/Life_and_ministry/introduction/introduction.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import {StartBtnPublicTalkComponent} from './components/Public_talk/start-btn-pu
     DeleteBtnComponent,
     PublicTalkComponent,
     StartBtnPublicTalkComponent,
+    IntroductionComponent,
   ],
   imports: [
     BrowserModule,
