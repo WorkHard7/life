@@ -36,7 +36,7 @@ export class StartFinishBtnComponent {
     this.fireLoadingAlert();
 
     const endTime = new Date();
-    endTime.setHours(19, 5, 30, 0); // 19:05:30
+    endTime.setHours(20, 40, 0, 0); // total of 3 mins -> 20:40:00
 
     this.countdownService.startCountdown(endTime);
   }

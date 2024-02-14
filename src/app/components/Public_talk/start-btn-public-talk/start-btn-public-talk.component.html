@@ -1,13 +1,14 @@
 <div class="p-3 text-center flex flex-col">
   <div class="flex items-center mb-4">
-    <div class="icon-circle flex justify-center items-center">
+    <button
+      (click)="goHome()"
+      class="icon-circle flex justify-center items-center">
       <fa-icon
-        (click)="goHome()"
         title="Back"
         class="cursor-pointer text-white text-2xl"
         [icon]="faArrowLeft">
       </fa-icon>
-    </div>
+    </button>
     <p class="text-white text-3xl m-auto">Cuvântare publică 30 minute</p>
   </div>
   <button

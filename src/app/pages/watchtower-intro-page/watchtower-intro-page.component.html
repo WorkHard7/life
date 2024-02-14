@@ -6,13 +6,14 @@
     </div>
 
     <div class="flex justify-center">
-      <h1 class="text-2xl -bold text-white border-2 border-gradient p-2">
-        <fa-icon
-          (click)="goHome()"
-          title="Back"
-          class="cursor-pointer text-white text-2xl m-auto"
-          [icon]="faArrowLeft">
-        </fa-icon>
+      <h1 class="icon-circle text-2xl -bold text-white border-2 border-gradient p-2">
+        <button (click)="goHome()">
+          <fa-icon
+            title="Back"
+            class="cursor-pointer text-white text-2xl m-auto"
+            [icon]="faArrowLeft">
+          </fa-icon>
+        </button>
         <button (dblclick)="onDoubleClick()" (mouseup)="onMouseUp()" class="cursor-pointer ml-4">
           Selectați numărul de paragrafe
         </button>

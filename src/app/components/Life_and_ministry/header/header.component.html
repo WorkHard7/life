@@ -1,13 +1,14 @@
 <div class="flex">
   <h2 class="rounded-2xl text-center flex-1 flex items-center bg-gray-500">
-    <div class="icon-circle flex justify-center items-center">
+    <button
+      (click)="goHome()"
+      class="icon-circle flex justify-center items-center">
       <fa-icon
-        (click)="goHome()"
         title="Back"
         class="cursor-pointer text-white text-xl"
         [icon]="faArrowLeft">
       </fa-icon>
-    </div>
+    </button>
     <div class="m-auto">
       <p>{{header}}</p>
     </div>
