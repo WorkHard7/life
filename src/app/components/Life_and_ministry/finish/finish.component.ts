@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 
 @Component({
-  selector: 'app-introduction',
-  templateUrl: './introduction.component.html',
-  styleUrls: ['./introduction.component.scss']
+  selector: 'app-finish',
+  templateUrl: './finish.component.html',
+  styleUrls: ['./finish.component.scss']
 })
-export class IntroductionComponent implements OnInit {
+export class FinishComponent implements OnInit {
   redColorText: boolean = false;
 
   constructor(public countdownService: CountdownService) {

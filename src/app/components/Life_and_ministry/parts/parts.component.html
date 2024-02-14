@@ -1,59 +1,62 @@
 <div>
-  <ul class="pt-3 list-none">
+  <app-introduction></app-introduction>
+
+  <ul class="mt-3 list-none">
     <div>
       <li>
         <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #3C7F8B">
-          <app-open-btn>
+          <div class="flex items-center">
             <span class="flex-1 font-bold" style="color: #86BFCA">COMORI DIN CUVÂNTUL LUI DUMNEZEU</span>
-          </app-open-btn>
+          </div>
 
           <div>
 
             <ng-container *ngFor="let gem of gems">
               <div *ngIf="gem.title !== 'SĂ FIM MAI EFICIENȚI ÎN PREDICARE'"
                    class="rounded-2xl mt-3 text-white border-2 flex flex-col p-2" style="border-color: #86BFCA">
-                <li>
-                  <div class="w-full flex">
-                    <span class="flex-1" style="color: #86BFCA">{{ gem.title }}</span>
-
-                    <app-start-btn (click)="setTime(gem.hours, gem.minutes)"></app-start-btn>
-                  </div>
-                </li>
-              </div>
-            </ng-container>
-
-          </div>
-        </div>
-      </li>
-    </div>
-
-    <div class="mt-4">
       <li>
-        <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #D68F00">
-          <app-open-btn>
-            <span class="flex-1" style="color: #FFCD5C">SĂ FIM MAI EFICIENȚI ÎN PREDICARE</span>
-          </app-open-btn>
+        <div class="w-full flex">
+          <span class="flex-1" style="color: #86BFCA">{{ gem.title }}</span>
 
-          <div>
-            <app-preaching-parts></app-preaching-parts>
-          </div>
+          <app-start-btn (click)="setTime(gem.hours, gem.minutes)"></app-start-btn>
         </div>
       </li>
     </div>
+    </ng-container>
 
-    <div class="mt-4">
-      <li>
-        <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #BF2F13">
-          <app-open-btn>
-            <span class="flex-1" style="color: #D27674;">VIAȚA DE CREȘTIN</span>
-          </app-open-btn>
+</div>
+</div>
+</li>
+</div>
 
-          <div>
-            <app-christian-life-parts></app-christian-life-parts>
-          </div>
-        </div>
-      </li>
+<div class="mt-3">
+  <li>
+    <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #D68F00">
+      <div class="flex items-center">
+        <span class="flex-1" style="color: #FFCD5C">SĂ FIM MAI EFICIENȚI ÎN PREDICARE</span>
+      </div>
+
+      <div>
+        <app-preaching-parts></app-preaching-parts>
+      </div>
     </div>
+  </li>
+</div>
 
-  </ul>
+<div class="mt-3">
+  <li>
+    <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #BF2F13">
+      <div class="flex items-center">
+        <span class="flex-1" style="color: #D27674;">VIAȚA DE CREȘTIN</span>
+      </div>
+
+      <div>
+        <app-christian-life-parts></app-christian-life-parts>
+      </div>
+    </div>
+  </li>
+</div>
+
+</ul>
+<app-finish></app-finish>
 </div>

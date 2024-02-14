@@ -8,7 +8,7 @@ import {HeaderComponent} from './components/Life_and_ministry/header/header.comp
 import {PartsComponent} from './components/Life_and_ministry/parts/parts.component';
 import {CurrentTimeComponent} from './components/Life_and_ministry/current-time/current-time.component';
 import {RemainingTimeComponent} from './components/Life_and_ministry/remaining-time/remaining-time.component';
-import {ResetTimeBtnComponent} from './components/Life_and_ministry/reset-btn/reset-time-btn.component';
+import {BackBtnComponent} from './components/Life_and_ministry/back-btn/back-btn.component';
 import {StartBtnComponent} from './components/Life_and_ministry/start-btn/start-btn.component';
 import {HomeComponent} from './pages/home/home.component';
 import {LifeAndMinistryComponent} from './pages/life-and-ministry/life-and-ministry.component';
@@ -21,9 +21,6 @@ import {
 import {PageNotFoundComponent} from './components/Page-not-found/page-not-found.component';
 import {AddCustomSpeechComponent} from "./components/Life_and_ministry/add-custom-speech/add-custom-speech.component";
 import {ResetSpeechesComponent} from './components/Life_and_ministry/reset-speeches/reset-speeches.component';
-import {
-  OpenBtnComponent
-} from "./components/Life_and_ministry/open-btn/open-btn.component";
 import {PreachingPartsComponent} from './components/Life_and_ministry/preaching-parts/preaching-parts.component';
 import {
   ChristianLifePartsComponent
@@ -36,6 +33,9 @@ import {DeleteBtnComponent} from './components/Life_and_ministry/delete-btn/dele
 import {PublicTalkComponent} from "./pages/public_talk/public-talk.component";
 import {StartBtnPublicTalkComponent} from './components/Public_talk/start-btn-public-talk/start-btn-public-talk.component';
 import {IntroductionComponent} from './components/Life_and_ministry/introduction/introduction.component';
+import {StartIntroBtnComponent} from './components/Life_and_ministry/start-intro-btn/start-intro-btn.component';
+import {FinishComponent} from './components/Life_and_ministry/finish/finish.component';
+import {StartFinishBtnComponent} from './components/Life_and_ministry/start-finish-btn/start-finish-btn.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import {IntroductionComponent} from './components/Life_and_ministry/introduction
     PartsComponent,
     CurrentTimeComponent,
     RemainingTimeComponent,
-    ResetTimeBtnComponent,
+    BackBtnComponent,
     StartBtnComponent,
     HomeComponent,
     LifeAndMinistryComponent,
@@ -53,7 +53,6 @@ import {IntroductionComponent} from './components/Life_and_ministry/introduction
     PageNotFoundComponent,
     AddCustomSpeechComponent,
     ResetSpeechesComponent,
-    OpenBtnComponent,
     PreachingPartsComponent,
     ChristianLifePartsComponent,
     ReloadPageBtnComponent,
@@ -62,6 +61,9 @@ import {IntroductionComponent} from './components/Life_and_ministry/introduction
     PublicTalkComponent,
     StartBtnPublicTalkComponent,
     IntroductionComponent,
+    StartIntroBtnComponent,
+    FinishComponent,
+    StartFinishBtnComponent,
   ],
   imports: [
     BrowserModule,

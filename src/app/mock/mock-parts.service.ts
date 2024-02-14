@@ -21,8 +21,18 @@ export const PREACHING: Events[] = []
 
 export const CHRISTIAN_LIFE: Events[] = [
   {
-    title: 'Studiul Bibliei (20:07 - 20:37)',
+    title: 'Realizări organizatorice',
+    hours: 19,
+    minutes: 5
+  },
+  {
+    title: 'Necesități locale',
+    hours: 19,
+    minutes: 6
+  },
+  {
+    title: 'Studiul Bibliei (20:06 - 20:36)',
     hours: 20,
-    minutes: 37,
+    minutes: 36,
   }
 ]

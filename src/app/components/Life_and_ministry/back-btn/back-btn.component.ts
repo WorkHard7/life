@@ -3,11 +3,11 @@ import {CountdownService} from "../../../services/countdown.service";
 import {HeaderService} from "../../../services/header.service";
 
 @Component({
-  selector: 'app-reset-time-btn',
-  templateUrl: './reset-time-btn.component.html',
-  styleUrls: ['./reset-time-btn.component.scss']
+  selector: 'app-back-btn',
+  templateUrl: './back-btn.component.html',
+  styleUrls: ['./back-btn.component.scss']
 })
-export class ResetTimeBtnComponent implements OnInit {
+export class BackBtnComponent implements OnInit {
   @Input() publicTalk!: boolean;
   redColorText: boolean = false;
 

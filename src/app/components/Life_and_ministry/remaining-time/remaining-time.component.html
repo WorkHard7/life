@@ -4,19 +4,44 @@
 }"
      class="pt-3 text-2xl font-bold text-center flex flex-col justify-center -align-center">
 
+  <!--  life and ministry introduction -->
+  <h1 *ngIf="introduction"
+      [style.color]="countdownService.remainingTime <= 0 ? 'red' : 'yellow'"
+      class="text-white mb-5"
+      [ngClass]="{
+      'text-6xl' : !countdownService.isTimerRunning && !redColorText,
+      'negative-time' : countdownService.isTimerRunning || redColorText,
+  }"
+  >
+    Timp ajustat la program: {{countdownService.showNegativeRemainingTime}}
+  </h1>
+  <app-back-btn *ngIf="introduction"></app-back-btn>
+
   <!--  life and ministry -->
   <h1 *ngIf="!textSize && !publicTalk"
       [style.color]="countdownService.remainingTime <= 0 ? 'red' : 'yellow'"
       class="text-white mb-5"
       [ngClass]="{
       'text-6xl' : !countdownService.isTimerRunning && !redColorText,
-      'rem-time' : countdownService.isTimerRunning || redColorText,
+      'negative-time' : countdownService.isTimerRunning || redColorText,
   }"
   >
     Timp ajustat la program: {{countdownService.showNegativeRemainingTime}}
   </h1>
-  <app-reset-time-btn
-    *ngIf="!textSize && !publicTalk"></app-reset-time-btn>
+  <app-back-btn *ngIf="!textSize && !publicTalk"></app-back-btn>
+
+  <!--  life and ministry finish -->
+  <h1 *ngIf="finish"
+      [style.color]="countdownService.remainingTime <= 0 ? 'red' : 'yellow'"
+      class="text-white mb-5"
+      [ngClass]="{
+      'text-6xl' : !countdownService.isTimerRunning && !redColorText,
+      'negative-time' : countdownService.isTimerRunning || redColorText,
+  }"
+  >
+    Timp ajustat la program: {{countdownService.showNegativeRemainingTime}}
+  </h1>
+  <app-back-btn *ngIf="finish"></app-back-btn>
 
   <!--  watchtower -->
   <h1
@@ -27,7 +52,7 @@
   >
     Timp ajustat la program: {{countdownService.showNegativeRemainingTime}}
   </h1>
-  <app-reset-time-btn *ngIf="(textSize && timeIsUp())"></app-reset-time-btn>
+  <app-back-btn *ngIf="(textSize && timeIsUp())"></app-back-btn>
   <app-reload-page-btn *ngIf="(textSize && !timeIsUp())"></app-reload-page-btn>
 
   <!--  public talk -->
@@ -39,9 +64,9 @@
   >
     Timp alocat: {{countdownService.showNegativeRemainingTime}}
   </h1>
-  <app-reset-time-btn
+  <app-back-btn
     [publicTalk]="publicTalk"
     *ngIf="(publicTalk)"
   >
-  </app-reset-time-btn>
+  </app-back-btn>
 </div>

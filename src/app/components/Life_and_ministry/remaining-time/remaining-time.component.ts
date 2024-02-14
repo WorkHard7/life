@@ -9,6 +9,8 @@ import {CountdownService} from "../../../services/countdown.service";
 export class RemainingTimeComponent implements OnInit {
   @Input() textSize!: string;
   @Input() publicTalk!: boolean;
+  @Input() introduction!: boolean;
+  @Input() finish!: boolean;
   redColorText: boolean = false;
 
   constructor(public countdownService: CountdownService) {

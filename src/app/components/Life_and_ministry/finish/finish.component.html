@@ -1,8 +1,8 @@
-<div>
+<div class="mt-3">
   <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: white">
     <div class="flex items-center">
-      <span class="text-white flex-1 font-bold">Cântare, rugăciune, introducere</span>
-      <app-start-intro-btn></app-start-intro-btn>
+      <span class="text-white flex-1 font-bold">Cuvinte de încheiere, anunțuri</span>
+      <app-start-finish-btn></app-start-finish-btn>
     </div>
     <div>
     </div>
@@ -11,7 +11,7 @@
 
 <ng-container *ngIf="countdownService.isTimerRunning || redColorText">
   <app-remaining-time
-    [introduction] = true
+    [finish] = true
   ></app-remaining-time>
 </ng-container>
 

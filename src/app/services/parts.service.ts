@@ -86,8 +86,19 @@ export class PartsService {
   }
 
   private updateChristianLifeParts(newSpeech: Events): void {
-    const christianLifeParts = this.christianLifeParts.getValue();
-    christianLifeParts.unshift(newSpeech);
+    let christianLifeParts = this.christianLifeParts.getValue();
+    const bibleStudy = christianLifeParts.find((part: any) => part.title === 'Studiul Bibliei (20:06 - 20:36)');
+
+    // removes "Studiul Bibliei" from the array if it exists
+    christianLifeParts = christianLifeParts.filter((part: any) => part.title !== 'Studiul Bibliei (20:06 - 20:36)');
+    // adds new part
+    christianLifeParts.push(newSpeech);
+
+    // Add "Studiul Bibliei" back to the end of the array to keep it always last
+    if (bibleStudy) {
+      christianLifeParts.push(bibleStudy);
+    }
+
     localStorage.setItem('christianLife', JSON.stringify(christianLifeParts));
 
     this.christianLifeParts.next(christianLifeParts);
