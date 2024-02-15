@@ -11,6 +11,8 @@ import Swal from "sweetalert2";
 export class PartsComponent implements OnInit {
   gems!: any[];
   redColorText: boolean = false;
+  preachingParts!: any[];
+  christianLifeParts!: any[];
 
   constructor(
     private countdownService: CountdownService,
@@ -22,6 +24,14 @@ export class PartsComponent implements OnInit {
     this.countdownService.redColorText$.subscribe(redColorText => {
       this.redColorText = redColorText;
     })
+
+    this.partsService.preachingParts.subscribe(preachingParts => {
+      this.preachingParts = preachingParts;
+    });
+
+    this.partsService.christianLifeParts.subscribe(parts => {
+      this.christianLifeParts = parts;
+    });
 
     this.partsService.gems.subscribe(gems => {
       this.gems = gems;

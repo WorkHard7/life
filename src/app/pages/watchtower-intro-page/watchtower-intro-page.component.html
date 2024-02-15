@@ -5,19 +5,24 @@
       <span class="fa fa-heart"></span>
     </div>
 
-    <div class="flex justify-center">
-      <h1 class="icon-circle text-2xl -bold text-white border-2 border-gradient p-2">
-        <button (click)="goHome()">
+    <div class="flex flex-col text-center">
+      <div class="flex items-center text-2xl -bold text-white border-2 border-gradient p-1">
+        <button
+          (click)="goHome()"
+          class="icon-circle flex justify-center items-center">
           <fa-icon
             title="Back"
-            class="cursor-pointer text-white text-2xl m-auto"
+            class="cursor-pointer text-white text-2xl"
             [icon]="faArrowLeft">
           </fa-icon>
         </button>
-        <button (dblclick)="onDoubleClick()" (mouseup)="onMouseUp()" class="cursor-pointer ml-4">
+        <p
+          style="margin: auto"
+          (dblclick)="onDoubleClick()" (mouseup)="onMouseUp()"
+          class="cursor-pointer ml-4">
           Selectați numărul de paragrafe
-        </button>
-      </h1>
+        </p>
+      </div>
     </div>
 
     <main class="justify-center flex">
