@@ -6,7 +6,7 @@
     </div>
 
     <div class="flex flex-col text-center">
-      <div class="flex items-center text-2xl -bold text-white border-2 border-gradient p-1">
+      <div class="flex items-start text-2xl -bold text-white p-1">
         <button
           (click)="goHome()"
           class="icon-circle flex justify-center items-center">
@@ -16,12 +16,14 @@
             [icon]="faArrowLeft">
           </fa-icon>
         </button>
-        <p
-          style="margin: auto"
-          (dblclick)="onDoubleClick()" (mouseup)="onMouseUp()"
-          class="cursor-pointer ml-4">
-          Selectați numărul de paragrafe
-        </p>
+        <div style="margin: auto"
+             (dblclick)="onDoubleClick()"
+             (mouseup)="onMouseUp()"
+             class="cursor-pointer ml-4"
+        >
+          <p class="text-3xl mb-14">Turnul de veghe</p>
+          <p>Selectați numărul de paragrafe</p>
+        </div>
       </div>
     </div>
 
