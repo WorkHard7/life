@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
+import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-remaining-time',
@@ -11,9 +13,14 @@ export class RemainingTimeComponent implements OnInit {
   @Input() publicTalk!: boolean;
   @Input() introduction!: boolean;
   @Input() finish!: boolean;
+
+  protected readonly faArrowLeft = faArrowLeft;
   redColorText: boolean = false;
 
-  constructor(public countdownService: CountdownService) {
+  constructor(
+    public countdownService: CountdownService,
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
@@ -24,5 +31,10 @@ export class RemainingTimeComponent implements OnInit {
 
   timeIsUp(): boolean {
     return this.countdownService.showNegativeRemainingTime.includes('-');
+  }
+
+  returnBack() {
+    this.countdownService.stopCountdown();
+    this.router.navigate(['/life_and_ministry']);
   }
 }

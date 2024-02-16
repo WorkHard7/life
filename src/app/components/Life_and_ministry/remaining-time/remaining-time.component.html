@@ -47,16 +47,11 @@
   <h1
     *ngIf="publicTalk"
     [style.color]="countdownService.remainingTime <= 0 ? 'red' : 'white'"
-    class="text-white leading-relaxed"
+    class="allocated-time text-white leading-relaxed text-3xl"
     [ngClass]="timeIsUp() ? 'big-text' : 'small-text'"
   >
     Timp alocat <p>{{countdownService.showNegativeRemainingTime}}</p>
   </h1>
-  <app-back-btn
-    [publicTalk]="publicTalk"
-    *ngIf="(publicTalk)"
-  >
-  </app-back-btn>
 
   <!--  watchtower -->
   <h1

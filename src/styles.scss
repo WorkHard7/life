@@ -18,6 +18,14 @@ body {
   background-color: red !important;
 }
 
+.icon-circle {
+  width: 50px;
+  height: 50px;
+  background-color: #042b6b;
+  border-radius: 50%;
+  padding: 12px;
+}
+
 #swal-input-hours, #swal-input-title {
   padding: 0.5rem 1px;
 }

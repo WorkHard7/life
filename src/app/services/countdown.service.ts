@@ -79,9 +79,11 @@ export class CountdownService {
     const sign = this.remainingTime < 0 ? '-' : '';
     const absRemainingTime = Math.abs(this.remainingTime);
 
+    const hours = Math.floor(absRemainingTime / 3600);
     const seconds = (absRemainingTime % 60).toString().padStart(2, '0');
-    const minutes = (Math.floor(absRemainingTime / 60) % 60).toString().padStart(2, '0');
+    const minutes = (Math.floor(absRemainingTime / 60) % 60);
+    const totalMinutes = (hours * 60) + minutes;
 
-    return `${sign}${minutes}:${seconds}`; // Store the formatted time
+    return `${sign}${totalMinutes}:${seconds}`; // Store the formatted time
   }
 }
