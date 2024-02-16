@@ -20,7 +20,7 @@
   </div>
 
   <h1 *ngIf="!isLoading && currentParagraph <= paragraph"
-      [ngClass]="{'big-text' : currentParagraph >= 0 && currentParagraph <= 22}"
+      [ngClass]="{'small-text' : currentParagraph >= 0 && currentParagraph <= 22}"
       class="flex justify-center align-top text-white">
     {{(currentParagraph < 0 || currentParagraph > 22) ? '' : currentParagraph}}
   </h1>

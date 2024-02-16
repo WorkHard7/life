@@ -57,13 +57,7 @@ export class CountdownService {
 
     this.redColorTextSubject.next(false);
 
-    this.resetBgColor();
     clearInterval(this.intervalId);
-  }
-
-  resetBgColor(): void {
-    document.body.style.backgroundColor = '';
-    this.redColorTextSubject.next(false);
   }
 
   setCustomEndTime(time: any) {

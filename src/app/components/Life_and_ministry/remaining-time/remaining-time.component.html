@@ -1,54 +1,52 @@
-<div [ngClass]="{
-  'big-container' : timeIsUp(),
-  'h-screen' : publicTalk
-}"
-     class="pt-3 text-2xl font-bold text-center flex flex-col justify-center -align-center">
+<div [ngStyle]="{
+  'padding-top' : timeIsUp() ? '8rem' : ''
+  }"
+     class="pt-3 text-2xl text-center flex flex-col justify-center -align-center">
 
   <!--  life and ministry introduction -->
   <h1 *ngIf="introduction"
-      [style.color]="countdownService.remainingTime <= 0 ? 'red' : 'yellow'"
+      [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#f2f5b8'"
       class="text-white mb-5"
       [ngClass]="{
-      'text-6xl' : !countdownService.isTimerRunning && !redColorText,
+      'text-5xl' : !countdownService.isTimerRunning && !redColorText,
       'negative-time' : countdownService.isTimerRunning || redColorText,
   }"
   >
-    Timp ajustat la program: {{countdownService.showNegativeRemainingTime}}
+    Timp ajustat la program: <p>{{countdownService.showNegativeRemainingTime}}</p>
   </h1>
   <app-back-btn *ngIf="introduction"></app-back-btn>
 
   <!--  life and ministry -->
   <h1 *ngIf="!textSize && !publicTalk"
-      [style.color]="countdownService.remainingTime <= 0 ? 'red' : 'yellow'"
+      [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#f2f5b8'"
       class="text-white mb-5"
       [ngClass]="{
-      'text-6xl' : !countdownService.isTimerRunning && !redColorText,
+      'text-5xl' : !countdownService.isTimerRunning && !redColorText,
       'negative-time' : countdownService.isTimerRunning || redColorText,
   }"
   >
-    Timp ajustat la program: {{countdownService.showNegativeRemainingTime}}
+    Timp ajustat la program: <p>{{countdownService.showNegativeRemainingTime}}</p>
   </h1>
   <app-back-btn *ngIf="!textSize && !publicTalk"></app-back-btn>
 
   <!--  life and ministry finish -->
   <h1 *ngIf="finish"
-      [style.color]="countdownService.remainingTime <= 0 ? 'red' : 'yellow'"
+      [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#f2f5b8'"
       class="text-white mb-5"
       [ngClass]="{
-      'text-6xl' : !countdownService.isTimerRunning && !redColorText,
+      'text-5xl' : !countdownService.isTimerRunning && !redColorText,
       'negative-time' : countdownService.isTimerRunning || redColorText,
   }"
   >
-    Timp ajustat la program: {{countdownService.showNegativeRemainingTime}}
+    Timp ajustat la program: <p>{{countdownService.showNegativeRemainingTime}}</p>
   </h1>
   <app-back-btn *ngIf="finish"></app-back-btn>
 
   <!--  public talk -->
   <h1
     *ngIf="publicTalk"
-    [style.color]="countdownService.remainingTime <= 0 ? 'red' : 'white'"
-    class="allocated-time text-white leading-relaxed text-3xl"
-    [ngClass]="timeIsUp() ? 'big-text' : 'small-text'"
+    [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : 'white'"
+    class="allocated-time text-white leading-relaxed text-5xl font-normal"
   >
     Timp alocat <p>{{countdownService.showNegativeRemainingTime}}</p>
   </h1>
@@ -56,11 +54,9 @@
   <!--  watchtower -->
   <h1
     *ngIf="textSize"
-    [style.color]="countdownService.remainingTime <= 0 ? 'red' : 'yellow'"
-    class="text-white leading-normal"
-    [ngClass]="timeIsUp() ? 'big-text' : 'small-text'"
+    [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#f2f5b8'"
+    class="big-padding-top text-white leading-normal font-normal text-5xl"
   >
     Timp ajustat la program <p style="font-size: 5rem">{{countdownService.showNegativeRemainingTime}}</p>
   </h1>
-  <app-reload-page-btn *ngIf="(textSize && !timeIsUp())"></app-reload-page-btn>
 </div>

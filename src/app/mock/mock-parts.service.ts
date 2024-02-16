@@ -11,7 +11,7 @@ export const GEMS: Events[] = [
     minutes: 26,
   },
   {
-    title: 'Citirea Bibliei (19:27 - 19:31)',
+    title: 'Citirea Bibliei (4 min)',
     hours: 19,
     minutes: 31,
   }

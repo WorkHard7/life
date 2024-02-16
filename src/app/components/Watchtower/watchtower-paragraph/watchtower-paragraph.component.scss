@@ -1,11 +1,7 @@
-.border-gradient {
-  border: 3px solid;
-  border-image: linear-gradient(to right, #a6b2be, #2bb708);
-  border-image-slice: 1 0;
-}
-
-.big-text {
-  font-size: 20rem;
+.small-text {
+  font-size: 2rem;
+  color: gray;
+  padding: 6rem 0 0;
 }
 
 .spinner {

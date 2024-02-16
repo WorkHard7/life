@@ -49,14 +49,15 @@ export class WatchtowerParagraphComponent implements OnInit, AfterViewInit {
 
     setInterval(() => {
       const currentTime = new Date();
+      const totalTime: number = 60;
 
       // remained time for orator when beginning the speech
       const remainingTime = (endTime.getTime() - currentTime.getTime()) / 60000;
 
       // what should be paragraph duration based on number of paragraphs selected
-      const paragraphDuration = 60 / this.paragraph;
+      const paragraphDuration = totalTime / this.paragraph;
 
-      this.currentParagraph = Math.floor((60 - remainingTime) / paragraphDuration) + 1;
+      this.currentParagraph = Math.floor((totalTime - remainingTime) / paragraphDuration) + 1;
       this.isLoading = false;
     }, 1000)
   }
