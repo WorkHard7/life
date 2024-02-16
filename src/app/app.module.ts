@@ -38,6 +38,7 @@ import {FinishComponent} from './components/Life_and_ministry/finish/finish.comp
 import {StartFinishBtnComponent} from './components/Life_and_ministry/start-finish-btn/start-finish-btn.component';
 import {EditBtnComponent} from './components/Life_and_ministry/edit-btn/edit-btn.component';
 import {WatchtowerComponent} from './pages/watchtower/watchtower.component';
+import {RemainingTimeWatchtowerComponent} from './components/Watchtower/remaining-time-watchtower/remaining-time-watchtower.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import {WatchtowerComponent} from './pages/watchtower/watchtower.component';
     StartFinishBtnComponent,
     EditBtnComponent,
     WatchtowerComponent,
+    RemainingTimeWatchtowerComponent,
   ],
   imports: [
     BrowserModule,
