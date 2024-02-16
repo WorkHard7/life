@@ -46,11 +46,11 @@
   <!--  public talk -->
   <h1
     *ngIf="publicTalk"
-    [style.color]="countdownService.remainingTime <= 0 ? 'red' : 'yellow'"
+    [style.color]="countdownService.remainingTime <= 0 ? 'red' : 'white'"
     class="text-white leading-relaxed"
     [ngClass]="timeIsUp() ? 'big-text' : 'small-text'"
   >
-    Timp alocat: {{countdownService.showNegativeRemainingTime}}
+    Timp alocat <p>{{countdownService.showNegativeRemainingTime}}</p>
   </h1>
   <app-back-btn
     [publicTalk]="publicTalk"
@@ -62,11 +62,10 @@
   <h1
     *ngIf="textSize"
     [style.color]="countdownService.remainingTime <= 0 ? 'red' : 'yellow'"
-    class="text-white"
+    class="text-white leading-normal"
     [ngClass]="timeIsUp() ? 'big-text' : 'small-text'"
   >
-    Timp ajustat la program: {{countdownService.showNegativeRemainingTime}}
+    Timp ajustat la program <p style="font-size: 5rem">{{countdownService.showNegativeRemainingTime}}</p>
   </h1>
-  <app-back-btn *ngIf="(textSize && timeIsUp())"></app-back-btn>
   <app-reload-page-btn *ngIf="(textSize && !timeIsUp())"></app-reload-page-btn>
 </div>

@@ -12,7 +12,7 @@ import {BackBtnComponent} from './components/Life_and_ministry/back-btn/back-btn
 import {StartBtnComponent} from './components/Life_and_ministry/start-btn/start-btn.component';
 import {HomeComponent} from './pages/home/home.component';
 import {LifeAndMinistryComponent} from './pages/life-and-ministry/life-and-ministry.component';
-import {WatchtowerIntroPageComponent} from './pages/watchtower-intro-page/watchtower-intro-page.component';
+import {WatchtowerIntroPageComponent} from './components/Watchtower/watchtower-intro-page/watchtower-intro-page.component';
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
@@ -36,6 +36,8 @@ import {IntroductionComponent} from './components/Life_and_ministry/introduction
 import {StartIntroBtnComponent} from './components/Life_and_ministry/start-intro-btn/start-intro-btn.component';
 import {FinishComponent} from './components/Life_and_ministry/finish/finish.component';
 import {StartFinishBtnComponent} from './components/Life_and_ministry/start-finish-btn/start-finish-btn.component';
+import {EditBtnComponent} from './components/Life_and_ministry/edit-btn/edit-btn.component';
+import {WatchtowerComponent} from './pages/watchtower/watchtower.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import {StartFinishBtnComponent} from './components/Life_and_ministry/start-fini
     StartIntroBtnComponent,
     FinishComponent,
     StartFinishBtnComponent,
+    EditBtnComponent,
+    WatchtowerComponent,
   ],
   imports: [
     BrowserModule,

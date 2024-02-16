@@ -2,10 +2,11 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {LifeAndMinistryComponent} from "./pages/life-and-ministry/life-and-ministry.component";
 import {HomeComponent} from "./pages/home/home.component";
-import {WatchtowerIntroPageComponent} from "./pages/watchtower-intro-page/watchtower-intro-page.component";
+import {WatchtowerIntroPageComponent} from "./components/Watchtower/watchtower-intro-page/watchtower-intro-page.component";
 import {WatchtowerParagraphComponent} from "./components/Watchtower/watchtower-paragraph/watchtower-paragraph.component";
 import {PageNotFoundComponent} from "./components/Page-not-found/page-not-found.component";
 import {PublicTalkComponent} from "./pages/public_talk/public-talk.component";
+import {WatchtowerComponent} from "./pages/watchtower/watchtower.component";
 
 const routes: Routes = [
   {
@@ -23,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'watchtower',
-    component: WatchtowerIntroPageComponent
+    component: WatchtowerComponent
   },
   {
     path: 'watchtower/:paragraph',

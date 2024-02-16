@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {faTrashCanArrowUp} from "@fortawesome/free-solid-svg-icons";
+import {faRepeat} from "@fortawesome/free-solid-svg-icons";
 import {PartsService} from "../../../services/parts.service";
 
 @Component({
@@ -11,7 +11,7 @@ export class ResetSpeechesComponent {
   @Input() title: string = '';
   @Input() preaching: boolean = false;
   @Input() christianLife: boolean = false;
-  protected readonly faTrashCanArrowUp = faTrashCanArrowUp;
+  protected readonly faRepeat = faRepeat;
 
   constructor(private partsService: PartsService) {
   }

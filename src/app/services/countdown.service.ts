@@ -43,8 +43,6 @@ export class CountdownService {
       if (this.remainingTime <= 0) {
         this.isTimerRunning = false;
         this.redColorTextSubject.next(true);
-
-        // document.body.style.setProperty('background-color', 'red', 'important');
       }
 
       this.showNegativeRemainingTime = this.formatNegativeNumber();
@@ -81,10 +79,9 @@ export class CountdownService {
     const sign = this.remainingTime < 0 ? '-' : '';
     const absRemainingTime = Math.abs(this.remainingTime);
 
-    const hours = (Math.floor(absRemainingTime / 3600)).toString().padStart(2, '0');
     const seconds = (absRemainingTime % 60).toString().padStart(2, '0');
     const minutes = (Math.floor(absRemainingTime / 60) % 60).toString().padStart(2, '0');
 
-    return `${sign}${hours}:${minutes}:${seconds}`; // Store the formatted time
+    return `${sign}${minutes}:${seconds}`; // Store the formatted time
   }
 }

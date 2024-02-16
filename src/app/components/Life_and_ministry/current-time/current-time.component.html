@@ -1,7 +1,8 @@
 <div class="text-center">
   <h1 class="text-white text-2xl">
     <fa-icon [icon]="faClock"></fa-icon>
-    Ora curentă: {{ localTime | date: 'HH:mm:ss'}}
+    Ora curentă: <span class="text-4xl">{{ localTime | date: 'HH:mm'}}</span>
+    <span style="font-size: 1rem">{{ localTime | date: '.ss'}}</span>
   </h1>
 </div>
 
