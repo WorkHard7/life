@@ -11,6 +11,7 @@ import {HeaderService} from "../../services/header.service";
 })
 export class LifeAndMinistryComponent implements OnInit, AfterViewInit {
   title = 'Viața creștină și predicarea';
+  selectedSpeech!: string;
   parts!: Events[];
   redColorText: boolean = false;
 
@@ -40,5 +41,9 @@ export class LifeAndMinistryComponent implements OnInit, AfterViewInit {
     });
 
     console.log(this.parts)
+  }
+
+  speechSelected(selectedSpeech: string) {
+    this.selectedSpeech = selectedSpeech;
   }
 }

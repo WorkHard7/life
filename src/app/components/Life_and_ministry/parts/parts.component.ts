@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {PartsService} from "../../../services/parts.service";
 import Swal from "sweetalert2";
@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
   styleUrls: ['./parts.component.scss']
 })
 export class PartsComponent implements OnInit {
+  @Output() selectedSpeech: EventEmitter<string> = new EventEmitter<string>();
   gems!: any[];
   redColorText: boolean = false;
   preachingParts!: any[];
@@ -38,12 +39,13 @@ export class PartsComponent implements OnInit {
     });
   }
 
-  setTime(hours: number, minutes: number): void {
+  setTime(gem: any): void {
     this.fireLoadingAlert();
+    this.speechSelected(gem['title']);
 
     const endTime = new Date();
 
-    endTime.setHours(hours, minutes, 0, 0);
+    endTime.setHours(gem['hours'], gem['minutes'], 0, 0);
     this.countdownService.startCountdown(endTime);
   }
 
@@ -59,5 +61,9 @@ export class PartsComponent implements OnInit {
         }, 1000);
       }
     });
+  }
+
+  speechSelected(selectedSpeech: string) {
+    this.selectedSpeech.emit(selectedSpeech);
   }
 }

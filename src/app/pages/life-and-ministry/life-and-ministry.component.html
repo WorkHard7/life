@@ -1,7 +1,7 @@
 <div class="p-3 h-screen">
   <app-header
-    *ngIf="this.headerService.showHeader"
     [title]=title
+    [selectedSpeech]=selectedSpeech
   ></app-header>
 
   <app-current-time></app-current-time>
@@ -9,7 +9,9 @@
   <ng-container
     *ngIf="!countdownService.isTimerRunning && !redColorText"
   >
-    <app-parts></app-parts>
+    <app-parts
+      (selectedSpeech)="speechSelected($event)"
+    ></app-parts>
   </ng-container>
 
   <ng-container *ngIf="countdownService.isTimerRunning || redColorText">

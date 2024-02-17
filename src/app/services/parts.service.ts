@@ -27,7 +27,7 @@ export class PartsService {
       title: 'Adaugă o temă noua',
       html: `
         <input id="swal-input-title" class="swal2-input" placeholder="Titlu temă">
-        <input id="swal-input-hours" class="swal2-input" placeholder="Ora finisarii" type="number" min="0">
+        <input id="swal-input-hours" class="swal2-input" placeholder="Ora finisarii" type="number" min="2">
         <input id="swal-input-minutes" class="swal2-input" placeholder="Minute" type="number" min="0" max="59">
       `,
       showCancelButton: true,

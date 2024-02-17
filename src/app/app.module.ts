@@ -33,12 +33,11 @@ import {DeleteBtnComponent} from './components/Life_and_ministry/delete-btn/dele
 import {PublicTalkComponent} from "./pages/public_talk/public-talk.component";
 import {StartBtnPublicTalkComponent} from './components/Public_talk/start-btn-public-talk/start-btn-public-talk.component';
 import {IntroductionComponent} from './components/Life_and_ministry/introduction/introduction.component';
-import {StartIntroBtnComponent} from './components/Life_and_ministry/start-intro-btn/start-intro-btn.component';
 import {FinishComponent} from './components/Life_and_ministry/finish/finish.component';
-import {StartFinishBtnComponent} from './components/Life_and_ministry/start-finish-btn/start-finish-btn.component';
 import {EditBtnComponent} from './components/Life_and_ministry/edit-btn/edit-btn.component';
 import {WatchtowerComponent} from './pages/watchtower/watchtower.component';
 import {RemainingTimeWatchtowerComponent} from './components/Watchtower/remaining-time-watchtower/remaining-time-watchtower.component';
+import {StartBtnIntroFinishComponent} from './components/Life_and_ministry/start-btn-intro-finish/start-btn-intro-finish.component';
 
 @NgModule({
   declarations: [
@@ -64,12 +63,11 @@ import {RemainingTimeWatchtowerComponent} from './components/Watchtower/remainin
     PublicTalkComponent,
     StartBtnPublicTalkComponent,
     IntroductionComponent,
-    StartIntroBtnComponent,
     FinishComponent,
-    StartFinishBtnComponent,
     EditBtnComponent,
     WatchtowerComponent,
     RemainingTimeWatchtowerComponent,
+    StartBtnIntroFinishComponent,
   ],
   imports: [
     BrowserModule,

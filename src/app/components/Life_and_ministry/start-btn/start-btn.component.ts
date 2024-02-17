@@ -9,6 +9,7 @@ import {HeaderService} from "../../../services/header.service";
 })
 export class StartBtnComponent implements OnInit {
   @Input() padding?: string;
+  @Input() title?: string;
   redColorText: boolean = false;
 
   constructor(

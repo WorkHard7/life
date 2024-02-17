@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {PartsService} from "../../../services/parts.service";
 import {CountdownService} from "../../../services/countdown.service";
 import Swal from "sweetalert2";
@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
   styleUrls: ['./christian-life-parts.component.scss']
 })
 export class ChristianLifePartsComponent implements OnInit {
+  @Output() selectedSpeech: EventEmitter<string> = new EventEmitter<string>();
   christianLifeParts!: any[];
 
   constructor(
@@ -23,12 +24,13 @@ export class ChristianLifePartsComponent implements OnInit {
     });
   }
 
-  setTime(hours: number, minutes: number): void {
+  setTime(part: any): void {
     this.fireLoadingAlert();
+    this.emitTitleName(part['title']);
 
     const endTime = new Date();
 
-    endTime.setHours(hours, minutes, 0, 0);
+    endTime.setHours(part['hours'], part['minutes'], 0, 0);
     this.countdownService.startCountdown(endTime);
   }
 
@@ -44,6 +46,10 @@ export class ChristianLifePartsComponent implements OnInit {
         }, 1000);
       }
     });
+  }
+
+  private emitTitleName(title: string) {
+    this.selectedSpeech.emit(title);
   }
 
   deleteSpeech(title: string): void {
