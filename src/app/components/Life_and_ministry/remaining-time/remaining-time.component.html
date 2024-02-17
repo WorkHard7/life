@@ -14,7 +14,6 @@
   >
     Timp ajustat la program: <p>{{countdownService.showNegativeRemainingTime}}</p>
   </h1>
-  <app-back-btn *ngIf="introduction"></app-back-btn>
 
   <!--  life and ministry -->
   <h1 *ngIf="!textSize && !publicTalk"
@@ -27,7 +26,6 @@
   >
     Timp ajustat la program: <p>{{countdownService.showNegativeRemainingTime}}</p>
   </h1>
-  <app-back-btn *ngIf="!textSize && !publicTalk"></app-back-btn>
 
   <!--  life and ministry finish -->
   <h1 *ngIf="finish"
@@ -40,7 +38,6 @@
   >
     Timp ajustat la program: <p>{{countdownService.showNegativeRemainingTime}}</p>
   </h1>
-  <app-back-btn *ngIf="finish"></app-back-btn>
 
   <!--  public talk -->
   <h1
