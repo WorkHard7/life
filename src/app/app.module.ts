@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {AppRoutingModule} from './app-routing.module';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastrModule} from "ngx-toastr";
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/Life_and_ministry/header/header.component';
@@ -13,8 +15,6 @@ import {StartBtnComponent} from './components/Life_and_ministry/start-btn/start-
 import {HomeComponent} from './pages/home/home.component';
 import {LifeAndMinistryComponent} from './pages/life-and-ministry/life-and-ministry.component';
 import {WatchtowerIntroPageComponent} from './components/Watchtower/watchtower-intro-page/watchtower-intro-page.component';
-import {ToastrModule} from "ngx-toastr";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
   WatchtowerParagraphComponent
 } from './components/Watchtower/watchtower-paragraph/watchtower-paragraph.component';

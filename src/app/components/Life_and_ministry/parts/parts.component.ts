@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {PartsService} from "../../../services/parts.service";
 import Swal from "sweetalert2";
+import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 
 @Component({
   selector: 'app-parts',
@@ -17,6 +18,7 @@ export class PartsComponent implements OnInit {
 
   constructor(
     private countdownService: CountdownService,
+    private countdownAllocatedTimeService: CountdownAllocatedTimeService,
     private partsService: PartsService
   ) {
   }
@@ -43,10 +45,14 @@ export class PartsComponent implements OnInit {
     this.fireLoadingAlert();
     this.speechSelected(gem['title']);
 
+    const currentTime = new Date();
     const endTime = new Date();
+    const endAllocatedTime = new Date(currentTime.getTime() + gem['duration'] * 60000);
 
     endTime.setHours(gem['hours'], gem['minutes'], 0, 0);
+
     this.countdownService.startCountdown(endTime);
+    this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endAllocatedTime);
   }
 
   private fireLoadingAlert() {

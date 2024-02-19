@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {PartsService} from "../../../services/parts.service";
 import {CountdownService} from "../../../services/countdown.service";
 import Swal from "sweetalert2";
+import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 
 @Component({
   selector: 'app-christian-life-parts',
@@ -14,7 +15,8 @@ export class ChristianLifePartsComponent implements OnInit {
 
   constructor(
     private partsService: PartsService,
-    private countdownService: CountdownService
+    private countdownService: CountdownService,
+    private countdownAllocatedTimeService: CountdownAllocatedTimeService,
   ) {
   }
 
@@ -24,20 +26,25 @@ export class ChristianLifePartsComponent implements OnInit {
     });
   }
 
-  setTime(part: any): void {
+  setTime(christianPart: any): void {
     this.fireLoadingAlert();
-    this.emitTitleName(part['title']);
+    this.emitTitleName(christianPart['title']);
 
+    const currentTime = new Date();
     const endTime = new Date();
+    const endAllocatedTime = new Date(currentTime.getTime() + christianPart['duration'] * 60000);
 
-    endTime.setHours(part['hours'], part['minutes'], 0, 0);
+    endTime.setHours(christianPart['hours'], christianPart['minutes'], 0, 0);
+
     this.countdownService.startCountdown(endTime);
+    this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endAllocatedTime);
   }
 
   private fireLoadingAlert() {
     Swal.fire({
       title: 'Loading...',
       allowOutsideClick: false,
+
       didOpen: () => {
         Swal.showLoading()
 

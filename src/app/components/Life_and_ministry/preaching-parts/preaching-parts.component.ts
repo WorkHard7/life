@@ -14,7 +14,7 @@ export class PreachingPartsComponent implements OnInit {
 
   constructor(
     private partsService: PartsService,
-    private countdownService: CountdownService
+    private countdownService: CountdownService,
   ) {
   }
 
@@ -30,13 +30,13 @@ export class PreachingPartsComponent implements OnInit {
     this.partsService.findAndDeleteSpeech(title, true);
   }
 
-  setTime(part: any): void {
+  setTime(preachingPart: any): void {
     this.fireLoadingAlert();
-    this.speechSelected(part['title'])
+    this.speechSelected(preachingPart['title'])
 
     const endTime = new Date();
+    endTime.setHours(preachingPart['hours'], preachingPart['minutes'], 0, 0);
 
-    endTime.setHours(part['hours'], part['minutes'], 0, 0);
     this.countdownService.startCountdown(endTime);
   }
 

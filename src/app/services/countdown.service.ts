@@ -9,6 +9,7 @@ export class CountdownService {
   showNegativeRemainingTime: string = '00:00';
   intervalId!: any;
   isTimerRunning: boolean = false;
+
   private watchtowerCustomEndTime: Object = {
     hours: 11,
     minutes: 38,
@@ -38,7 +39,7 @@ export class CountdownService {
     this.intervalId = setInterval(() => {
       this.remainingTime--;
 
-      console.log('this.remainingTime', this.remainingTime);
+      console.log('remainingTime', this.remainingTime);
 
       if (this.remainingTime <= 0) {
         this.isTimerRunning = false;

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {Router} from "@angular/router";
+import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 
 @Component({
   selector: 'app-remaining-time',
@@ -18,6 +19,7 @@ export class RemainingTimeComponent implements OnInit {
 
   constructor(
     public countdownService: CountdownService,
+    public countdownAllocatedTimeService: CountdownAllocatedTimeService,
     private router: Router
   ) {
   }
@@ -34,6 +36,8 @@ export class RemainingTimeComponent implements OnInit {
 
   returnBack() {
     this.countdownService.stopCountdown();
+    this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
+
     this.router.navigate(['/life_and_ministry']);
   }
 }

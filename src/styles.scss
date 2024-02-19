@@ -28,13 +28,27 @@ body {
 
 #swal-input-title {
   width: 90%;
+  margin: .2rem 0 auto;
 }
 
-#swal-input-minutes, #swal-input-hours, #swal-input-duration {
-  width: 35%;
-  margin: .2rem;
+#swal-input-minutes, #swal-input-hours, {
+  width: 15%;
+  margin-top: .5rem;
+  margin-bottom: .2rem;
 }
 
-#swal2-html-container {
-  padding-bottom: 1rem;
+#swal-input-duration {
+  width: 15%;
+  margin-top: .5rem;
+  margin-left: .2rem;
+  margin-bottom: 0;
+}
+
+#swal-input-hours {
+  margin-right: 0;
+  margin-left: .3rem;
+}
+
+#swal-input-minutes {
+  margin-left: 0;
 }

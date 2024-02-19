@@ -52,6 +52,8 @@ export class SetCustomTimeBtnWatchtowerComponent {
         Swal.fire({
           title: 'Succes',
           text: 'Timpul a fost setat cu succes',
+          showConfirmButton: false,
+          timer: 1500,
           icon: 'success'
         })
       }
@@ -76,7 +78,7 @@ export class SetCustomTimeBtnWatchtowerComponent {
             title: 'Succes',
             text: 'Timpul a fost setat cu succes: 11:38',
             showConfirmButton: false,
-            timer: 2000,
+            timer: 1500,
             icon: 'success'
           });
         }, 1500);
@@ -105,7 +107,7 @@ export class SetCustomTimeBtnWatchtowerComponent {
             timer: 1500,
             icon: 'success'
           });
-        }, 1000);
+        }, 1500);
       }
     });
   }

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {HeaderService} from "../../../services/header.service";
+import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 
 @Component({
   selector: 'app-back-btn',
@@ -13,6 +14,7 @@ export class BackBtnComponent implements OnInit {
 
   constructor(
     public countdownService: CountdownService,
+    public countdownAllocatedTimeService: CountdownAllocatedTimeService,
     private headerService: HeaderService
   ) {
   }
@@ -25,6 +27,7 @@ export class BackBtnComponent implements OnInit {
 
   onBtnClick() {
     this.countdownService.stopCountdown();
+    this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
 
     this.showHeader();
   }

@@ -24,13 +24,23 @@ export class PartsService {
 
   addCustomSpeech(preaching: boolean = false, christianLife: boolean = false): void {
     Swal.fire({
-      title: 'Adaugă o temă noua',
+      title: 'Adaugă o temă nouă',
       html: `
-        <input id="swal-input-title" class="swal2-input" placeholder="Titlu temei">
-        <input id="swal-input-duration" class="swal2-input" placeholder="Durata" type="number">
-        <input id="swal-input-hours" class="swal2-input" placeholder="Ora finisării" type="number" min="2">
-        <input id="swal-input-minutes" class="swal2-input" placeholder="Minute" type="number" min="0" max="59">
+        <input id="swal-input-title" class="swal2-input" placeholder="Titlul temei" type="text">
+        <label for="swal-input-duration">Durata temei</label>
+        <input id="swal-input-duration" class="swal2-input" placeholder="min." type="number">
+        <div style="display: flex; justify-content: center; align-items: baseline">
+            <label for="swal-input-hours">Ora finisării</label>
+            <input id="swal-input-hours" class="swal2-input" placeholder="ora" type="number" min="2">
+            <input id="swal-input-minutes" class="swal2-input" placeholder="min." type="number" min="0" max="59">
+        </div>
       `,
+      didOpen() {
+        const inputTitleEl = document.getElementById('swal-input-title');
+        if (inputTitleEl) {
+          inputTitleEl.focus();
+        }
+      },
       showCancelButton: true,
       confirmButtonText: 'Adaugă',
       cancelButtonText: 'Anulează',
@@ -66,7 +76,9 @@ export class PartsService {
 
         Swal.fire({
           title: `Tema a fost adaugată cu succes!`,
-          icon: 'success'
+          icon: 'success',
+          timer: 1000,
+          showConfirmButton: false
         })
       }
     })
@@ -100,15 +112,26 @@ export class PartsService {
     Swal.fire({
       title: 'Editează tema',
       html: `
-        <input id="swal-input-title" class="swal2-input .large-input" placeholder="Titlu temei"
-        value="${partToBeEdited.title}">
-        <input id="swal-input-duration" class="swal2-input" placeholder="Durata" type="number"
+        <input id="swal-input-title" class="swal2-input" placeholder="Titlul temei" autofocus
+                value="${partToBeEdited.title}">
+        <label for="swal-input-duration">Durata temei</label>
+        <input id="swal-input-duration" class="swal2-input" placeholder="min" type="number"
         value="${partToBeEdited.duration}">
-        <input id="swal-input-hours" class="swal2-input" placeholder="Ora finisării" type="number" min="2"
-        value="${partToBeEdited.hours}">
-        <input id="swal-input-minutes" class="swal2-input" placeholder="Minute" type="number" min="0" max="59"
-        value="${partToBeEdited.minutes}">
+        <div style="display: flex; justify-content: center; align-items: baseline">
+            <label for="swal-input-hours">Ora finisării</label>
+            <input id="swal-input-hours" class="swal2-input" placeholder="ora" type="number" min="2"
+                value="${partToBeEdited.hours}">
+            <input id="swal-input-minutes" class="swal2-input" placeholder="min" type="number" min="0" max="59"
+                value="${partToBeEdited.minutes}">
+        </div>
       `,
+      didOpen() {
+        const inputTitleEl = document.getElementById('swal-input-title') as HTMLInputElement;
+        if (inputTitleEl) {
+          inputTitleEl.focus();
+          inputTitleEl.select();
+        }
+      },
       showCancelButton: true,
       confirmButtonText: 'Editează',
       cancelButtonText: 'Anulează',
@@ -142,7 +165,9 @@ export class PartsService {
 
         Swal.fire({
           title: `Tema a fost editată cu succes!`,
-          icon: 'success'
+          icon: 'success',
+          timer: 1000,
+          showConfirmButton: false
         })
       }
     })
@@ -220,11 +245,12 @@ export class PartsService {
           this.resetToDefaultGems();
         }
 
-        Swal.fire(
-          'Resetat!',
-          'Toate discursurile au fost resetate.',
-          'success'
-        )
+        Swal.fire({
+          title: `Toate discursurile au fost resetate!`,
+          icon: 'success',
+          timer: 1000,
+          showConfirmButton: false
+        })
       }
     });
   }
@@ -255,6 +281,13 @@ export class PartsService {
           this.christianLifeParts.next(filterChristianLifeParts);
           localStorage.setItem('christianLife', JSON.stringify(this.christianLifeParts.getValue()));
         }
+
+        Swal.fire({
+          title: `Tema a fost ștearsă cu succes!`,
+          icon: 'success',
+          timer: 1000,
+          showConfirmButton: false
+        })
       }
     })
   }
