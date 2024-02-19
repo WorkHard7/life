@@ -7,6 +7,8 @@
         <span class="font-bold" style="color: #FFCD5C">{{ part.title }}</span>
 
         <div class="flex items-center">
+          <app-edit-btn [preachingPartToBeEdited]=part></app-edit-btn>
+
           <app-delete-btn (click)="deleteSpeech(part.title)"></app-delete-btn>
           <app-start-btn (click)="setTime(part)"></app-start-btn>
         </div>

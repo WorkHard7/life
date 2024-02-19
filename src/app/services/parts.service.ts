@@ -26,8 +26,9 @@ export class PartsService {
     Swal.fire({
       title: 'Adaugă o temă noua',
       html: `
-        <input id="swal-input-title" class="swal2-input" placeholder="Titlu temă">
-        <input id="swal-input-hours" class="swal2-input" placeholder="Ora finisarii" type="number" min="2">
+        <input id="swal-input-title" class="swal2-input" placeholder="Titlu temei">
+        <input id="swal-input-duration" class="swal2-input" placeholder="Durata" type="number">
+        <input id="swal-input-hours" class="swal2-input" placeholder="Ora finisării" type="number" min="2">
         <input id="swal-input-minutes" class="swal2-input" placeholder="Minute" type="number" min="0" max="59">
       `,
       showCancelButton: true,
@@ -38,12 +39,13 @@ export class PartsService {
         const title = (document.getElementById('swal-input-title') as HTMLInputElement).value;
         const hours = (document.getElementById('swal-input-hours') as HTMLInputElement).value;
         const minutes = (document.getElementById('swal-input-minutes') as HTMLInputElement).value;
+        const duration = (document.getElementById('swal-input-duration') as HTMLInputElement).value;
 
-        if (!title || !hours || !minutes) {
+        if (!title || !hours || !minutes || !duration) {
           Swal.showValidationMessage('Completează toate câmpurile');
         }
 
-        return {title: title, hours: Number(hours), minutes: Number(minutes)};
+        return {title: title, hours: hours, minutes: minutes, duration: Number(duration)};
       }
     }).then((result: any) => {
       if (result.isConfirmed) {
@@ -51,12 +53,13 @@ export class PartsService {
           title: result.value.title + ` (${result.value.hours}:${result.value.minutes})`!,
           hours: result.value.hours,
           minutes: result.value.minutes,
+          duration: result.value.duration
         };
 
         if (preaching) {
           this.updatePreachingParts(newSpeech);
         } else if (christianLife) {
-          this.updateChristianLifeParts(newSpeech);
+          this.updateChristianLifePartsAfterAddingANewPart(newSpeech);
         } else {
           this.updateSpeeches(newSpeech);
         }
@@ -67,6 +70,98 @@ export class PartsService {
         })
       }
     })
+  }
+
+  findAndEditPreachingParts(preachingPartToBeEdited: any) {
+    const parts = this.preachingParts.getValue();
+    const partToBeEdited = parts.find((part: any) => part.title === preachingPartToBeEdited.title);
+
+    if (partToBeEdited !== -1) {
+      const findIndex = parts.findIndex((part: any) => part === partToBeEdited);
+      this.editPreachingAndChristianPart(partToBeEdited, findIndex, 'preaching');
+    } else {
+      console.log('preaching part was not found!')
+    }
+  }
+
+  findAndEditChristianLifeParts(christianLifePartToBeEdited: any) {
+    const parts = this.christianLifeParts.getValue();
+    const partToBeEdited = parts.find((part: any) => part.title === christianLifePartToBeEdited.title);
+
+    if (partToBeEdited !== -1) {
+      const findIndex = parts.findIndex((part: any) => part === partToBeEdited);
+      this.editPreachingAndChristianPart(partToBeEdited, findIndex, 'christianLife');
+    } else {
+      console.log('christian life part was not found!')
+    }
+  }
+
+  private editPreachingAndChristianPart(partToBeEdited: any, findIndex: number, preachingOrChristianLife: string) {
+    Swal.fire({
+      title: 'Editează tema',
+      html: `
+        <input id="swal-input-title" class="swal2-input .large-input" placeholder="Titlu temei"
+        value="${partToBeEdited.title}">
+        <input id="swal-input-duration" class="swal2-input" placeholder="Durata" type="number"
+        value="${partToBeEdited.duration}">
+        <input id="swal-input-hours" class="swal2-input" placeholder="Ora finisării" type="number" min="2"
+        value="${partToBeEdited.hours}">
+        <input id="swal-input-minutes" class="swal2-input" placeholder="Minute" type="number" min="0" max="59"
+        value="${partToBeEdited.minutes}">
+      `,
+      showCancelButton: true,
+      confirmButtonText: 'Editează',
+      cancelButtonText: 'Anulează',
+      showLoaderOnConfirm: true,
+      preConfirm: () => {
+        const title = (document.getElementById('swal-input-title') as HTMLInputElement).value;
+        const hours = (document.getElementById('swal-input-hours') as HTMLInputElement).value;
+        const minutes = (document.getElementById('swal-input-minutes') as HTMLInputElement).value;
+        const duration = (document.getElementById('swal-input-duration') as HTMLInputElement).value;
+
+        if (!title || !hours || !minutes || !duration) {
+          Swal.showValidationMessage('Completează toate câmpurile');
+        }
+
+        return {title: title, hours: hours, minutes: minutes, duration: Number(duration)};
+      }
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        const editedPart = {
+          title: result.value.title,
+          hours: result.value.hours,
+          minutes: result.value.minutes,
+          duration: result.value.duration
+        };
+
+        if (preachingOrChristianLife === 'preaching') {
+          this.updatePreachingPartsAfterEditing(editedPart, findIndex);
+        } else if (preachingOrChristianLife === 'christianLife') {
+          this.updateChristianLifePartsAfterEditing(editedPart, findIndex);
+        }
+
+        Swal.fire({
+          title: `Tema a fost editată cu succes!`,
+          icon: 'success'
+        })
+      }
+    })
+  }
+
+  private updateChristianLifePartsAfterEditing(editedPart: any, findIndex: number) {
+    const christianLifeParts = this.christianLifeParts.getValue();
+    christianLifeParts[findIndex] = editedPart;
+
+    localStorage.setItem('christianLife', JSON.stringify(christianLifeParts));
+    this.christianLifeParts.next(christianLifeParts);
+  }
+
+  private updatePreachingPartsAfterEditing(editedPart: any, findIndex: number) {
+    const preachingParts = this.preachingParts.getValue();
+    preachingParts[findIndex] = editedPart;
+
+    localStorage.setItem('preaching', JSON.stringify(preachingParts));
+    this.preachingParts.next(preachingParts);
   }
 
   private updateSpeeches(newSpeech: Events): void {
@@ -85,7 +180,7 @@ export class PartsService {
     this.preachingParts.next(preachingParts);
   }
 
-  private updateChristianLifeParts(newSpeech: Events): void {
+  private updateChristianLifePartsAfterAddingANewPart(newSpeech: Events): void {
     let christianLifeParts = this.christianLifeParts.getValue();
     const bibleStudy = christianLifeParts.find((part: any) => part.title === 'Studiul Bibliei (20:06 - 20:36)');
 

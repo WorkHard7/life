@@ -9,7 +9,7 @@ export class CountdownService {
   showNegativeRemainingTime: string = '00:00';
   intervalId!: any;
   isTimerRunning: boolean = false;
-  private customEndTime: Object = {
+  private watchtowerCustomEndTime: Object = {
     hours: 11,
     minutes: 38,
     seconds: 0
@@ -20,9 +20,9 @@ export class CountdownService {
   // we create a read only stream, of values that can be subscribed to, but not directly modified from outside the component.
 
   constructor() {
-    this.customEndTime = localStorage.getItem('customEndTime') ?
-      JSON.parse(localStorage.getItem('customEndTime')!) :
-      localStorage.setItem('customEndTime', JSON.stringify(this.customEndTime));
+    this.watchtowerCustomEndTime = localStorage.getItem('watchtowerCustomEndTime') ?
+      JSON.parse(localStorage.getItem('watchtowerCustomEndTime')!) :
+      localStorage.setItem('watchtowerCustomEndTime', JSON.stringify(this.watchtowerCustomEndTime));
   }
 
   startCountdown(endTime: Date): void {
@@ -60,13 +60,13 @@ export class CountdownService {
     clearInterval(this.intervalId);
   }
 
-  setCustomEndTime(time: any) {
-    localStorage.setItem('customEndTime', JSON.stringify(time));
-    this.customEndTime = time;
+  setWatchtowerCustomEndTime(time: any) {
+    localStorage.setItem('watchtowerCustomEndTime', JSON.stringify(time));
+    this.watchtowerCustomEndTime = time;
   }
 
   getCustomEndTime() {
-    return this.customEndTime;
+    return this.watchtowerCustomEndTime;
   }
 
   formatNegativeNumber(): string {

@@ -47,7 +47,7 @@ export class SetCustomTimeBtnWatchtowerComponent {
     }).then((result: any) => {
       if (result.isConfirmed) {
         this.customTime = true;
-        this.countdownService.setCustomEndTime(this.endTime);
+        this.countdownService.setWatchtowerCustomEndTime(this.endTime);
 
         Swal.fire({
           title: 'Succes',
@@ -70,7 +70,7 @@ export class SetCustomTimeBtnWatchtowerComponent {
           this.customTime = false;
 
           this.setMorningTime();
-          this.countdownService.setCustomEndTime(this.endTime);
+          this.countdownService.setWatchtowerCustomEndTime(this.endTime);
 
           Swal.fire({
             title: 'Succes',
@@ -96,7 +96,7 @@ export class SetCustomTimeBtnWatchtowerComponent {
           this.customTime = false;
 
           this.setEveningTime();
-          this.countdownService.setCustomEndTime(this.endTime);
+          this.countdownService.setWatchtowerCustomEndTime(this.endTime);
 
           Swal.fire({
             title: 'Succes',

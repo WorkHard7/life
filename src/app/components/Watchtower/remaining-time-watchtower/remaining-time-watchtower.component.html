@@ -1,11 +1,12 @@
-<div [ngStyle]="{
-  'padding-top' : timeIsUp() ? '8rem' : ''
+<div
+  [ngStyle]="{
+  'padding-top' : timeIsUp() ? '9rem' : ''
   }"
      class="text-2xl text-center flex flex-col justify-center">
   <h1
     [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#f2f5b8'"
-    class="big-padding-top text-white leading-normal font-normal text-4xl"
+    class="big-padding-top text-white leading-normal font-normal text-5xl"
   >
-    Timp ajustat la program <p style="font-size: 5rem">{{countdownService.showNegativeRemainingTime}}</p>
+    Timp ajustat <p>{{countdownService.showNegativeRemainingTime}}</p>
   </h1>
 </div>

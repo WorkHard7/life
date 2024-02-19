@@ -1,34 +1,34 @@
-<div [ngStyle]="{
-  'padding-top' : timeIsUp() ? '8rem' : ''
-  }"
-     class="pt-3 text-2xl text-center flex flex-col justify-center -align-center">
+<div
+  style="padding-top: 8rem"
+  class="pt-3 text-2xl text-center flex flex-col justify-center -align-center">
 
-  <!--  life and ministry introduction -->
-  <h1 *ngIf="introduction"
-      [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#f2f5b8'"
-      class="text-white mb-5"
-      [ngClass]="{
-      'text-5xl' : !countdownService.isTimerRunning && !redColorText,
-      'negative-time' : countdownService.isTimerRunning || redColorText,
-  }"
-  >
-    Timp ajustat la program: <p>{{countdownService.showNegativeRemainingTime}}</p>
-  </h1>
+    <!--  life and ministry introduction -->
+    <h1 *ngIf="introduction"
+        [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#f2f5b8'"
+        class="text-white mb-5"
+        [ngClass]="{
+        'text-5xl' : !countdownService.isTimerRunning && !redColorText,
+        'negative-time' : countdownService.isTimerRunning || redColorText,
+    }"
+    >
+      Timp ajustat <p>{{countdownService.showNegativeRemainingTime}}</p>
+  3  </h1>
 
   <!--  life and ministry -->
-  <h1 *ngIf="!textSize && !publicTalk"
+  <h1 *ngIf="!introduction && !publicTalk"
       [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#f2f5b8'"
-      class="text-white mb-5"
+      class="text-white mb-5 flex flex-col"
       [ngClass]="{
       'text-5xl' : !countdownService.isTimerRunning && !redColorText,
       'negative-time' : countdownService.isTimerRunning || redColorText,
   }"
   >
-    Timp ajustat la program: <p>{{countdownService.showNegativeRemainingTime}}</p>
+    <div class="mb-14 text-white">Timp alocat <p>{{countdownService.showNegativeRemainingTime}}</p></div>
+    <div class="mt-14">Timp ajustat <p>{{countdownService.showNegativeRemainingTime}}</p></div>
   </h1>
 
   <!--  life and ministry finish -->
-  <h1 *ngIf="finish"
+  <h1 *ngIf="finish && !publicTalk && !introduction"
       [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#f2f5b8'"
       class="text-white mb-5"
       [ngClass]="{
@@ -36,7 +36,7 @@
       'negative-time' : countdownService.isTimerRunning || redColorText,
   }"
   >
-    Timp ajustat la program: <p>{{countdownService.showNegativeRemainingTime}}</p>
+    Timp ajustat <p>{{countdownService.showNegativeRemainingTime}}</p>
   </h1>
 
   <!--  public talk -->

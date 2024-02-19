@@ -26,10 +26,15 @@ body {
   padding: 12px;
 }
 
-#swal-input-hours, #swal-input-title {
-  padding: 0.5rem 1px;
+#swal-input-title {
+  width: 90%;
 }
 
-#swal-input-minutes {
-  margin: 1rem 0;
+#swal-input-minutes, #swal-input-hours, #swal-input-duration {
+  width: 35%;
+  margin: .2rem;
+}
+
+#swal2-html-container {
+  padding-bottom: 1rem;
 }

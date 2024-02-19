@@ -9,7 +9,6 @@ import {Router} from "@angular/router";
   styleUrls: ['./remaining-time.component.scss']
 })
 export class RemainingTimeComponent implements OnInit {
-  @Input() textSize!: string;
   @Input() publicTalk!: boolean;
   @Input() introduction!: boolean;
   @Input() finish!: boolean;
