@@ -37,8 +37,18 @@ export class PartsService {
       `,
       didOpen() {
         const inputTitleEl = document.getElementById('swal-input-title');
+        const inputMinutesEl = document.getElementById('swal-input-minutes') as HTMLInputElement;
+        const addPartBtn = document.querySelector('.swal2-confirm') as HTMLElement;
+
         if (inputTitleEl) {
           inputTitleEl.focus();
+
+          inputMinutesEl.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+              event.preventDefault(); // Prevent default form submission
+              addPartBtn.click();
+            }
+          })
         }
       },
       showCancelButton: true,
@@ -127,9 +137,19 @@ export class PartsService {
       `,
       didOpen() {
         const inputTitleEl = document.getElementById('swal-input-title') as HTMLInputElement;
+        const inputMinutesEl = document.getElementById('swal-input-minutes') as HTMLInputElement;
+        const editTimeBtn = document.querySelector('.swal2-confirm') as HTMLElement;
+
         if (inputTitleEl) {
           inputTitleEl.focus();
           inputTitleEl.select();
+
+          inputMinutesEl.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+              event.preventDefault(); // Prevent default form submission
+              editTimeBtn.click();
+            }
+          })
         }
       },
       showCancelButton: true,
