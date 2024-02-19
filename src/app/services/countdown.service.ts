@@ -61,9 +61,9 @@ export class CountdownService {
     clearInterval(this.intervalId);
   }
 
-  setWatchtowerCustomEndTime(time: any) {
-    localStorage.setItem('watchtowerCustomEndTime', JSON.stringify(time));
-    this.watchtowerCustomEndTime = time;
+  setWatchtowerCustomEndTime(watchtowerEndTime: any) {
+    localStorage.setItem('watchtowerCustomEndTime', JSON.stringify(watchtowerEndTime));
+    this.watchtowerCustomEndTime = watchtowerEndTime;
   }
 
   getCustomEndTime() {

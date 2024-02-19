@@ -29,7 +29,7 @@ export class PartsService {
         <input id="swal-input-title" class="swal2-input" placeholder="Titlul temei" type="text">
         <label for="swal-input-duration">Durata temei</label>
         <input id="swal-input-duration" class="swal2-input" placeholder="min." type="number">
-        <div style="display: flex; justify-content: center; align-items: baseline">
+        <div id="swal2-main-container">
             <label for="swal-input-hours">Ora finisării</label>
             <input id="swal-input-hours" class="swal2-input" placeholder="ora" type="number" min="2">
             <input id="swal-input-minutes" class="swal2-input" placeholder="min." type="number" min="0" max="59">
@@ -117,7 +117,7 @@ export class PartsService {
         <label for="swal-input-duration">Durata temei</label>
         <input id="swal-input-duration" class="swal2-input" placeholder="min" type="number"
         value="${partToBeEdited.duration}">
-        <div style="display: flex; justify-content: center; align-items: baseline">
+        <div id="swal2-main-container">
             <label for="swal-input-hours">Ora finisării</label>
             <input id="swal-input-hours" class="swal2-input" placeholder="ora" type="number" min="2"
                 value="${partToBeEdited.hours}">

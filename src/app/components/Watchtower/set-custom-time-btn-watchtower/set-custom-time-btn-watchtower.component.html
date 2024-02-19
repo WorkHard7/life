@@ -3,34 +3,34 @@
     <label class="flex text-white">
       <input
         (change)="changeToMorningTime()"
-        [checked]="endTime.hours === 11 && endTime.minutes === 38"
+        [checked]="watchtowerEndTime.hours === 11 && watchtowerEndTime.minutes === 38"
         type="radio" name="endTime" value="11:38" class="large-radio mr-2">
       11:38
     </label>
     <label *ngIf="customTime" class="flex text-white">
       <input checked type="radio" name="endTime" value="11:38" class="large-radio mr-2">
-      {{endTime.hours}}:{{endTime.minutes}}
+      {{watchtowerEndTime.hours}}:{{watchtowerEndTime.minutes}}
     </label>
 
     <label class="flex text-white">
       <input
         (change)="changeToEveningTime()"
-        [checked]="endTime.hours === 20 && endTime.minutes === '0' + 8"
+        [checked]="watchtowerEndTime.hours === 20 && watchtowerEndTime.minutes === '0' + 8"
         type="radio" name="endTime" value="20:8" class="large-radio mr-2">
       20:08
     </label>
   </div>
   <span class="text-center text-white">
     <fa-icon [icon]="faClockRotateLeft"></fa-icon>
-    Current end time: {{endTime.hours}}:{{endTime.minutes}}
+        Ora finisării curente: {{watchtowerEndTime.hours}}:{{watchtowerEndTime.minutes}}
   </span>
   <div class="text-center">
     <button
-      (click)="changeTime()"
-      title="Change end time for watchtower"
+      (click)="changeWatchtowerEndTime()"
+      title="Schimbă ora pentru Turnul de veghe"
       style="background: #345996"
       class="border-2 text-white border-blue-400 border-opacity-40 outline-0 px-6 py-4 rounded-2xl text-2xl">
-      Change time
+      Schimbă ora
     </button>
   </div>
 </div>

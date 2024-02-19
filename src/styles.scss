@@ -26,6 +26,12 @@ body {
   padding: 12px;
 }
 
+#swal2-main-container {
+  display: flex !important;
+  justify-content: center;
+  align-items: baseline;
+}
+
 #swal-input-title {
   width: 90%;
   margin: .2rem 0 auto;

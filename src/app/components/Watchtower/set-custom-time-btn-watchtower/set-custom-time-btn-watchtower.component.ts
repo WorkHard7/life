@@ -11,20 +11,29 @@ import {faClockRotateLeft} from "@fortawesome/free-solid-svg-icons";
 export class SetCustomTimeBtnWatchtowerComponent {
   @Output() newEndTime: EventEmitter<Object> = new EventEmitter<Object>();
   faClockRotateLeft = faClockRotateLeft;
-  endTime: any = {};
+  watchtowerEndTime: any = {};
   customTime: boolean = false;
 
   constructor(private countdownService: CountdownService) {
-    this.endTime = this.countdownService.getCustomEndTime();
+    this.watchtowerEndTime = this.countdownService.getCustomEndTime();
   }
 
-  changeTime(): void {
+  changeWatchtowerEndTime(): void {
     Swal.fire({
       title: 'Setează timpul',
       html: `
-        <input id="swal-input-hours" class="swal2-input" placeholder="Ora finisarii" type="number" min="0">
-        <input id="swal-input-minutes" class="swal2-input" placeholder="Minute" type="number" min="0" max="59">
+    <div id="swal2-main-container">
+    <label for="swal-input-hours">Ora finisării</label>
+        <input id="swal-input-hours" class="swal2-input" placeholder="ora" type="number" min="0">
+        <input id="swal-input-minutes" class="swal2-input" placeholder="min" type="number" min="0" max="59">
+    </div>
       `,
+      didOpen() {
+        const inputTitleEl = document.getElementById('swal-input-hours');
+        if (inputTitleEl) {
+          inputTitleEl.focus();
+        }
+      },
       showCancelButton: true,
       confirmButtonText: 'Setează',
       cancelButtonText: 'Anulează',
@@ -37,17 +46,17 @@ export class SetCustomTimeBtnWatchtowerComponent {
           Swal.showValidationMessage('Completează toate câmpurile');
         }
 
-        this.endTime = {
+        this.watchtowerEndTime = {
           hours: hours,
           minutes: minutes,
           seconds: 0
         };
-        console.log(this.endTime);
+        console.log('watchtowerEndTime', this.watchtowerEndTime);
       }
     }).then((result: any) => {
       if (result.isConfirmed) {
         this.customTime = true;
-        this.countdownService.setWatchtowerCustomEndTime(this.endTime);
+        this.countdownService.setWatchtowerCustomEndTime(this.watchtowerEndTime);
 
         Swal.fire({
           title: 'Succes',
@@ -72,7 +81,7 @@ export class SetCustomTimeBtnWatchtowerComponent {
           this.customTime = false;
 
           this.setMorningTime();
-          this.countdownService.setWatchtowerCustomEndTime(this.endTime);
+          this.countdownService.setWatchtowerCustomEndTime(this.watchtowerEndTime);
 
           Swal.fire({
             title: 'Succes',
@@ -98,7 +107,7 @@ export class SetCustomTimeBtnWatchtowerComponent {
           this.customTime = false;
 
           this.setEveningTime();
-          this.countdownService.setWatchtowerCustomEndTime(this.endTime);
+          this.countdownService.setWatchtowerCustomEndTime(this.watchtowerEndTime);
 
           Swal.fire({
             title: 'Succes',
@@ -113,7 +122,7 @@ export class SetCustomTimeBtnWatchtowerComponent {
   }
 
   private setMorningTime() {
-    this.endTime = {
+    this.watchtowerEndTime = {
       hours: 11,
       minutes: 38,
       seconds: 0
@@ -121,7 +130,7 @@ export class SetCustomTimeBtnWatchtowerComponent {
   }
 
   private setEveningTime() {
-    this.endTime = {
+    this.watchtowerEndTime = {
       hours: 20,
       minutes: '0' + 8,
       seconds: 0
