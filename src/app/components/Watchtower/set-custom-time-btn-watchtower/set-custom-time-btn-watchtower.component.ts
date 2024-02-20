@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import Swal from "sweetalert2";
 import {CountdownService} from "../../../services/countdown.service";
 import {faClockRotateLeft} from "@fortawesome/free-solid-svg-icons";
@@ -8,14 +8,24 @@ import {faClockRotateLeft} from "@fortawesome/free-solid-svg-icons";
   templateUrl: './set-custom-time-btn-watchtower.component.html',
   styleUrls: ['./set-custom-time-btn-watchtower.component.scss']
 })
-export class SetCustomTimeBtnWatchtowerComponent {
-  @Output() newEndTime: EventEmitter<Object> = new EventEmitter<Object>();
+export class SetCustomTimeBtnWatchtowerComponent implements OnInit {
   faClockRotateLeft = faClockRotateLeft;
   watchtowerEndTime: any = {};
-  customTime: boolean = false;
+  isCustomTime: boolean = false;
 
   constructor(private countdownService: CountdownService) {
-    this.watchtowerEndTime = this.countdownService.getCustomEndTime();
+  }
+
+  ngOnInit(): void {
+    this.watchtowerEndTime = this.countdownService.getWatchtowerCustomEndTime();
+    this.isCustomTime = this.countdownService.getCustomTimeStatus();
+
+    // in case it's undefined
+    if (this.watchtowerEndTime === undefined) {
+      this.setMorningTime();
+
+      this.countdownService.setWatchtowerCustomTimeToLocalStorage(this.watchtowerEndTime);
+    }
   }
 
   changeWatchtowerEndTime(): void {
@@ -65,14 +75,15 @@ export class SetCustomTimeBtnWatchtowerComponent {
       }
     }).then((result: any) => {
       if (result.isConfirmed) {
-        this.customTime = true;
-        this.countdownService.setWatchtowerCustomEndTime(this.watchtowerEndTime);
+        this.isCustomTime = true;
+        this.countdownService.setWatchtowerCustomTimeToLocalStorage(this.watchtowerEndTime);
+        this.countdownService.setAsCustomTimeToLocalStorage(this.isCustomTime);
 
         Swal.fire({
           title: 'Succes',
           text: 'Timpul a fost setat cu succes',
           showConfirmButton: false,
-          timer: 1500,
+          timer: 800,
           icon: 'success'
         })
       }
@@ -80,70 +91,37 @@ export class SetCustomTimeBtnWatchtowerComponent {
   }
 
   changeToMorningTime() {
-    Swal.fire({
-      title: 'Loading...',
-      allowOutsideClick: false,
-      didOpen: () => {
-        Swal.showLoading();
-
-        setTimeout(() => {
-          Swal.close();
-          this.customTime = false;
-
-          this.setMorningTime();
-          this.countdownService.setWatchtowerCustomEndTime(this.watchtowerEndTime);
-
-          Swal.fire({
-            title: 'Succes',
-            text: 'Timpul a fost setat cu succes: 11:38',
-            showConfirmButton: false,
-            timer: 1500,
-            icon: 'success'
-          });
-        }, 1500);
-      }
-    });
+    this.isCustomTime = false;
+    this.setMorningTime();
+    this.countdownService.setWatchtowerCustomTimeToLocalStorage(this.watchtowerEndTime);
+    this.countdownService.setAsCustomTimeToLocalStorage(this.isCustomTime);
   }
 
   changeToEveningTime() {
-    Swal.fire({
-      title: 'Loading...',
-      allowOutsideClick: false,
-      didOpen: () => {
-        Swal.showLoading();
-
-        setTimeout(() => {
-          Swal.close();
-          this.customTime = false;
-
-          this.setEveningTime();
-          this.countdownService.setWatchtowerCustomEndTime(this.watchtowerEndTime);
-
-          Swal.fire({
-            title: 'Succes',
-            text: 'Timpul pentru finalizare: 20:08',
-            showConfirmButton: false,
-            timer: 1500,
-            icon: 'success'
-          });
-        }, 1500);
-      }
-    });
+    this.isCustomTime = false;
+    this.setEveningTime();
+    this.countdownService.setWatchtowerCustomTimeToLocalStorage(this.watchtowerEndTime);
+    this.countdownService.setAsCustomTimeToLocalStorage(this.isCustomTime);
   }
 
   private setMorningTime() {
     this.watchtowerEndTime = {
-      hours: 11,
-      minutes: 38,
+      hours: '11',
+      minutes: '40',
       seconds: 0
     };
   }
 
   private setEveningTime() {
     this.watchtowerEndTime = {
-      hours: 20,
-      minutes: '0' + 8,
+      hours: '20',
+      minutes: '10',
       seconds: 0
     };
+  }
+
+  noMorningNoEveningSelected(): boolean {
+    return (this.watchtowerEndTime?.hours != 11 || this.watchtowerEndTime?.minutes != 40)
+      && (this.watchtowerEndTime?.hours != 20 || this.watchtowerEndTime?.minutes != 10);
   }
 }

@@ -58,3 +58,22 @@ body {
 #swal-input-minutes {
   margin-left: 0;
 }
+
+
+#duration-container {
+  margin-top: 10px;
+}
+
+.duration-button {
+  margin-right: 5px;
+  padding: 5px 15px;
+  background-color: #14532D;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.duration:hover {
+  background-color: #0d6e35;
+}

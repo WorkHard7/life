@@ -41,7 +41,7 @@ export class WatchtowerParagraphComponent implements OnInit, AfterViewInit {
   }
 
   updateWatchtower() {
-    const customEndTime: any = this.countdownService.getCustomEndTime();
+    const customEndTime: any = this.countdownService.getWatchtowerCustomEndTime();
     const endTime: Date = new Date();
 
     endTime.setHours(customEndTime.hours, customEndTime.minutes, customEndTime.seconds);

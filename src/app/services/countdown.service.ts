@@ -9,10 +9,11 @@ export class CountdownService {
   showNegativeRemainingTime: string = '00:00';
   intervalId!: any;
   isTimerRunning: boolean = false;
+  isCustomTime: boolean = false;
 
   private watchtowerCustomEndTime: Object = {
-    hours: 11,
-    minutes: 38,
+    hours: '11',
+    minutes: '40',
     seconds: 0
   };
 
@@ -21,9 +22,28 @@ export class CountdownService {
   // we create a read only stream, of values that can be subscribed to, but not directly modified from outside the component.
 
   constructor() {
-    this.watchtowerCustomEndTime = localStorage.getItem('watchtowerCustomEndTime') ?
-      JSON.parse(localStorage.getItem('watchtowerCustomEndTime')!) :
+    this.initializeCustomEndTime();
+    this.initializeCustomTimeStatus();
+  }
+
+  private initializeCustomEndTime() {
+    const storedWatchtowerEndTime = localStorage.getItem('watchtowerCustomEndTime');
+
+    if (storedWatchtowerEndTime) {
+      this.watchtowerCustomEndTime = JSON.parse(storedWatchtowerEndTime);
+    } else {
       localStorage.setItem('watchtowerCustomEndTime', JSON.stringify(this.watchtowerCustomEndTime));
+    }
+  }
+
+  private initializeCustomTimeStatus() {
+    const customTimeStatus = localStorage.getItem('isCustomTime');
+
+    if (customTimeStatus) {
+      this.isCustomTime = JSON.parse(customTimeStatus);
+    } else {
+      localStorage.setItem('isCustomTime', JSON.stringify(this.isCustomTime));
+    }
   }
 
   startCountdown(endTime: Date): void {
@@ -61,13 +81,22 @@ export class CountdownService {
     clearInterval(this.intervalId);
   }
 
-  setWatchtowerCustomEndTime(watchtowerEndTime: any) {
+  setWatchtowerCustomTimeToLocalStorage(watchtowerEndTime: any) {
     localStorage.setItem('watchtowerCustomEndTime', JSON.stringify(watchtowerEndTime));
     this.watchtowerCustomEndTime = watchtowerEndTime;
   }
 
-  getCustomEndTime() {
+  setAsCustomTimeToLocalStorage(isCustomTime: any) {
+    localStorage.setItem('isCustomTime', JSON.stringify(isCustomTime));
+    this.isCustomTime = isCustomTime;
+  }
+
+  getWatchtowerCustomEndTime() {
     return this.watchtowerCustomEndTime;
+  }
+
+  getCustomTimeStatus() {
+    return this.isCustomTime;
   }
 
   formatNegativeNumber(): string {

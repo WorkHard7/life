@@ -1,36 +1,50 @@
 <div class="flex flex-col">
-  <div class="flex mb-4 justify-evenly">
-    <label class="flex text-white">
+
+  <p
+    style="margin-top: 4rem"
+    class="text-white text-center text-2xl">Selectați ora finisării</p>
+
+  <div class="flex mt-10 justify-evenly text-xl">
+
+    <label class="center-labels">
       <input
         (change)="changeToMorningTime()"
-        [checked]="watchtowerEndTime.hours === 11 && watchtowerEndTime.minutes === 38"
-        type="radio" name="endTime" value="11:38" class="large-radio mr-2">
-      11:38
-    </label>
-    <label *ngIf="customTime" class="flex text-white">
-      <input checked type="radio" name="endTime" value="11:38" class="large-radio mr-2">
-      {{watchtowerEndTime.hours}}:{{watchtowerEndTime.minutes}}
+        [checked]="watchtowerEndTime?.hours === '11' && watchtowerEndTime?.minutes === '40'"
+        type="radio" name="endTime" value="11:40" class="large-radio mr-2">
+      11:40
     </label>
 
-    <label class="flex text-white">
+    <label *ngIf="isCustomTime && noMorningNoEveningSelected()"
+           class="center-labels">
+      <input checked type="radio" name="endTime" class="large-radio mr-2">
+      {{watchtowerEndTime?.hours}}:{{watchtowerEndTime?.minutes}}
+    </label>
+
+    <label class="center-labels">
       <input
         (change)="changeToEveningTime()"
-        [checked]="watchtowerEndTime.hours === 20 && watchtowerEndTime.minutes === '0' + 8"
-        type="radio" name="endTime" value="20:8" class="large-radio mr-2">
-      20:08
+        [checked]="(watchtowerEndTime?.hours === '20' && watchtowerEndTime?.minutes === '10')"
+        type="radio" name="endTime" value="20:10" class="large-radio mr-2">
+      20:10
     </label>
+
   </div>
-  <span class="text-center text-white">
-    <fa-icon [icon]="faClockRotateLeft"></fa-icon>
-        Ora finisării curente: {{watchtowerEndTime.hours}}:{{watchtowerEndTime.minutes}}
-  </span>
+
   <div class="text-center">
     <button
       (click)="changeWatchtowerEndTime()"
       title="Schimbă ora pentru Turnul de veghe"
       style="background: #345996"
-      class="border-2 text-white border-blue-400 border-opacity-40 outline-0 px-6 py-4 rounded-2xl text-2xl">
-      Schimbă ora
+      class="mt-6 border-2 text-white border-blue-400 border-opacity-40 outline-0 px-6 py-4 rounded-2xl text-2xl">
+      Modifică oră
     </button>
   </div>
+
+  <ng-template #selectEndTime>
+    <span
+      style="color: #dd2263"
+      class="text-center text-xl">
+      Selectează ora finisării!
+    </span>
+  </ng-template>
 </div>
