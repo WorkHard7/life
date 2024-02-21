@@ -12,7 +12,7 @@ import {CountdownAllocatedTimeService} from "../../../services/countdown-allocat
 })
 export class HeaderComponent {
   @Input('title') header?: string;
-  @Input() selectedSpeech?: string;
+  @Input() selectedSpeech?: { title: string, timing: string };
   protected readonly faArrowLeft = faArrowLeft;
 
   constructor(

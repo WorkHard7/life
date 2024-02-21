@@ -10,7 +10,7 @@
     *ngIf="!countdownService.isTimerRunning && !redColorText"
   >
     <app-parts
-      (selectedSpeech)="speechSelected($event)"
+      (selectedSpeech)="extractTimingFromTitle($event)"
     ></app-parts>
   </ng-container>
 

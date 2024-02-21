@@ -12,7 +12,10 @@ import {CountdownAllocatedTimeService} from "../../services/countdown-allocated-
 })
 export class LifeAndMinistryComponent implements OnInit, AfterViewInit {
   title = 'Viața creștină și predicarea';
-  selectedSpeech!: string;
+  selectedSpeech: any = {
+    title: '',
+    timing: ''
+  }
   parts!: Events[];
   redColorText: boolean = false;
 
@@ -46,7 +49,13 @@ export class LifeAndMinistryComponent implements OnInit, AfterViewInit {
     console.log(this.parts)
   }
 
-  speechSelected(selectedSpeech: string) {
-    this.selectedSpeech = selectedSpeech;
+  extractTimingFromTitle(selectedSpeech: string): void {
+    const timingStartIndex = selectedSpeech.indexOf("(") - 1;
+    const titleStartIndex = 0;
+    const title = selectedSpeech.substring(titleStartIndex, timingStartIndex);
+    const timing = selectedSpeech.substring(timingStartIndex);
+
+    this.selectedSpeech.title = title;
+    this.selectedSpeech.timing = timing;
   }
 }

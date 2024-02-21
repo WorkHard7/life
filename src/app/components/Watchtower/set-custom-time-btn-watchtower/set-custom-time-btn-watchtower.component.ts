@@ -76,16 +76,7 @@ export class SetCustomTimeBtnWatchtowerComponent implements OnInit {
     }).then((result: any) => {
       if (result.isConfirmed) {
         this.isCustomTime = true;
-        this.countdownService.setWatchtowerCustomTimeToLocalStorage(this.watchtowerEndTime);
-        this.countdownService.setAsCustomTimeToLocalStorage(this.isCustomTime);
-
-        Swal.fire({
-          title: 'Succes',
-          text: 'Timpul a fost setat cu succes',
-          showConfirmButton: false,
-          timer: 800,
-          icon: 'success'
-        })
+        this.updateLocalStorageKeys();
       }
     })
   }
@@ -93,13 +84,16 @@ export class SetCustomTimeBtnWatchtowerComponent implements OnInit {
   changeToMorningTime() {
     this.isCustomTime = false;
     this.setMorningTime();
-    this.countdownService.setWatchtowerCustomTimeToLocalStorage(this.watchtowerEndTime);
-    this.countdownService.setAsCustomTimeToLocalStorage(this.isCustomTime);
+    this.updateLocalStorageKeys();
   }
 
   changeToEveningTime() {
     this.isCustomTime = false;
     this.setEveningTime();
+    this.updateLocalStorageKeys();
+  }
+
+  updateLocalStorageKeys() {
     this.countdownService.setWatchtowerCustomTimeToLocalStorage(this.watchtowerEndTime);
     this.countdownService.setAsCustomTimeToLocalStorage(this.isCustomTime);
   }
