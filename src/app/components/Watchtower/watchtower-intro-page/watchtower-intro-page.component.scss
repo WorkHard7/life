@@ -11,3 +11,42 @@
   color: #ffffff;
   opacity: .8;
 }
+
+@media screen and (max-width: 500px) {
+  .arrow-left {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .main-title {
+    font-size: 1.7rem;
+  }
+  .select-par {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .main-title {
+    font-size: 1.5rem;
+  }
+  .select-par {
+    font-size: 1.2rem;
+  }
+  .main-container-par button {
+    padding: .3rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .main-container-par {
+    flex-wrap: wrap;
+  }
+
+  button {
+    padding: .3rem;
+    font-size: 1.1rem;
+  }
+}

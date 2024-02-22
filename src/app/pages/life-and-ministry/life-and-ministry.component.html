@@ -4,7 +4,7 @@
     [selectedSpeech]=selectedSpeech
   ></app-header>
 
-  <app-current-time></app-current-time>
+  <app-current-time *ngIf="headerService.showHeader"></app-current-time>
 
   <ng-container
     *ngIf="!countdownService.isTimerRunning && !redColorText"

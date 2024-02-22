@@ -8,3 +8,19 @@
   align-items: center;
   color: white;
 }
+
+@media screen and (max-width: 350px) {
+  button {
+    padding: .7rem 1.2rem;
+    font-size: 1.1rem;
+  }
+  .select-finish-time {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .inputs {
+    flex-wrap: wrap;
+  }
+}

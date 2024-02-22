@@ -10,3 +10,21 @@
 .allocated-time{
   padding-top: 10rem;
 }
+
+@media screen and (max-width: 530px) {
+  .rem-time {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .rem-time {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .rem-time {
+    font-size: 2rem;
+  }
+}

@@ -1,15 +1,10 @@
-<div class="mt-3">
-  <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: white">
-    <div class="flex items-center">
-      <span class="text-white flex-1 font-bold">{{finishTitle}}</span>
-      <app-start-btn-intro-finish
-        [finishTime]=finishTime
-        [finishTitle]="finishTitle"
-        (finishTitleEmitted)="emitFinishTitle()"
-      ></app-start-btn-intro-finish>
-    </div>
-    <div>
-    </div>
+<div class="main-container-finish w-full rounded-2xl p-2 border-2 font-bold mt-3" style="border-color: white">
+  <div class="flex items-center">
+    <span class="text-white flex-1 font-bold">{{finishPart.title}}</span>
+    <app-start-btn-intro-finish
+      [finishPart]="finishPart"
+      (finishPartEmitted)="emitFinish()"
+    ></app-start-btn-intro-finish>
   </div>
 </div>
 

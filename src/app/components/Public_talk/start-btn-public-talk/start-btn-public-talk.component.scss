@@ -1,1 +1,34 @@
+@media screen and (max-width: 500px) {
+  p {
+    font-size: 1.5rem;
+  }
+  .start-btn {
+    padding: .8rem 1.2rem;
+  }
 
+  .arrow-left {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  p {
+    font-size: 1.2rem;
+  }
+
+  .start-btn {
+    padding: .7rem 1rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  p {
+    font-size: 1rem;
+  }
+
+  .start-btn {
+    padding: .5rem .8rem;
+    font-size: 1rem;
+  }
+}

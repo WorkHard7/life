@@ -1,0 +1,13 @@
+@media screen and (max-width: 400px) {
+  .main-container-finish span {
+    font-size: .8rem;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .main-container-finish {
+    div span {
+      font-size: 1.2rem;
+    }
+  }
+}

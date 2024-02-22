@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import Swal from "sweetalert2";
 import {CountdownService} from "../../../services/countdown.service";
 import {HeaderService} from "../../../services/header.service";
+import {IntroAndFinishPart} from "../../../model/events";
 
 @Component({
   selector: 'app-start-btn-intro-finish',
@@ -9,12 +10,10 @@ import {HeaderService} from "../../../services/header.service";
   styleUrls: ['./start-btn-intro-finish.component.scss']
 })
 export class StartBtnIntroFinishComponent {
-  @Output() finishTitleEmitted: EventEmitter<string> = new EventEmitter<string>();
-  @Output() introTitleEmitted: EventEmitter<string> = new EventEmitter<string>();
-  @Input() introTitle: any;
-  @Input() finishTitle: any;
-  @Input() finishIntroTime: any;
-  @Input() finishTime: any;
+  @Output() introPartEmitted: EventEmitter<IntroAndFinishPart> = new EventEmitter<IntroAndFinishPart>();
+  @Output() finishPartEmitted: EventEmitter<IntroAndFinishPart> = new EventEmitter<IntroAndFinishPart>();
+  @Input() introPart?: IntroAndFinishPart;
+  @Input() finishPart?: IntroAndFinishPart;
 
   constructor(
     private countdownService: CountdownService,
@@ -46,12 +45,12 @@ export class StartBtnIntroFinishComponent {
   }
 
   findEndingTime(endTime: Date) {
-    if (this.finishIntroTime) {
-      endTime.setHours(this.finishIntroTime.hour, this.finishIntroTime.minutes, this.finishIntroTime.seconds); // 19:05:30
-      this.introTitleEmitted.emit(this.introTitle);
-    } else if (this.finishTime) {
-      endTime.setHours(this.finishTime.hour, this.finishTime.minutes, this.finishTime.seconds); // 20:40:00
-      this.finishTitleEmitted.emit(this.finishTitle);
+    if (this.introPart) {
+      endTime.setHours(this.introPart.endHours, this.introPart.endMinutes, this.introPart.endSeconds); // 19:05:30
+      this.introPartEmitted.emit(this.introPart);
+    } else if (this.finishPart) {
+      endTime.setHours(this.finishPart.endHours, this.finishPart.endMinutes, this.finishPart.endSeconds); // 20:40:00
+      this.finishPartEmitted.emit(this.finishPart);
     }
   }
 

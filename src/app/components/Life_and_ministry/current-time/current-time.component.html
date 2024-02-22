@@ -1,8 +1,35 @@
-<div class="text-center">
-  <h1 class="text-white text-2xl">
-    <fa-icon [icon]="faClock"></fa-icon>
-    Ora curentă: <span class="text-4xl">{{ localTime | date: 'HH:mm'}}</span>
-    <span style="font-size: 1rem">{{ localTime | date: '.ss'}}</span>
-  </h1>
-</div>
+<ng-container *ngIf="headerService.showHeader && !watchtowerStarted">
 
+  <div class="main-container-curr-time text-center m-auto">
+    <h1 class="text-white text-2xl">
+      <fa-icon [icon]="faClock"></fa-icon>
+      Ora curentă: <span class="text-4xl">{{ localTime | date: 'HH:mm'}}</span>
+      <span style="font-size: 1rem">{{ localTime | date: '.ss'}}</span>
+    </h1>
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf="!headerService.showHeader || watchtowerStarted">
+  <div class="flex mb-4">
+
+    <button
+      (click)="returnBack()"
+      class="icon-circle flex justify-center items-center">
+      <fa-icon
+        title="Back"
+        class="cursor-pointer text-white text-xl"
+        [icon]="faArrowLeft">
+      </fa-icon>
+    </button>
+
+    <div class="text-center m-auto">
+      <h1 class="text-white text-2xl">
+        <fa-icon [icon]="faClock"></fa-icon>
+        Ora curentă: <span class="text-4xl">{{ localTime | date: 'HH:mm'}}</span>
+        <span style="font-size: 1rem">{{ localTime | date: '.ss'}}</span>
+      </h1>
+    </div>
+
+  </div>
+</ng-container>

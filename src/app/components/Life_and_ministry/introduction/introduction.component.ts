@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
+import {IntroAndFinishPart} from "../../../model/events";
 
 @Component({
   selector: 'app-introduction',
@@ -7,18 +8,19 @@ import {CountdownService} from "../../../services/countdown.service";
   styleUrls: ['./introduction.component.scss']
 })
 export class IntroductionComponent implements OnInit {
-  @Output() introTitleEmitted: EventEmitter<string> = new EventEmitter<string>();
+  @Output() selectedSpeech: EventEmitter<IntroAndFinishPart> = new EventEmitter<IntroAndFinishPart>();
 
   redColorText: boolean = false;
-  introTitle = 'Cântare, rugăciune | Cuvinte introductive';
-
-  finishIntroTime: any = {
-    hour: 19,
-    minutes: 5,
-    seconds: 30
+  introPart: IntroAndFinishPart = {
+    title: 'Cântare, rugăciune | Cuvinte introductive',
+    duration: 5.30,
+    endHours: 19,
+    endMinutes: 5,
+    endSeconds: 15
   };
 
-  constructor(public countdownService: CountdownService) {
+  constructor(public countdownService: CountdownService
+  ) {
   }
 
   ngOnInit(): void {
@@ -27,7 +29,7 @@ export class IntroductionComponent implements OnInit {
     })
   }
 
-  emitIntroTitle() {
-    this.introTitleEmitted.emit(this.introTitle);
+  emitIntro() {
+    this.selectedSpeech.emit(this.introPart);
   }
 }

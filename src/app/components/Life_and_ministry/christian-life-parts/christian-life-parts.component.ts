@@ -3,6 +3,7 @@ import {PartsService} from "../../../services/parts.service";
 import {CountdownService} from "../../../services/countdown.service";
 import Swal from "sweetalert2";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
+import {IntroAndFinishPart} from "../../../model/events";
 
 @Component({
   selector: 'app-christian-life-parts',
@@ -10,7 +11,7 @@ import {CountdownAllocatedTimeService} from "../../../services/countdown-allocat
   styleUrls: ['./christian-life-parts.component.scss']
 })
 export class ChristianLifePartsComponent implements OnInit {
-  @Output() selectedSpeech: EventEmitter<string> = new EventEmitter<string>();
+  @Output() selectedSpeech: EventEmitter<IntroAndFinishPart> = new EventEmitter<IntroAndFinishPart>();
   christianLifeParts!: any[];
 
   constructor(
@@ -28,7 +29,15 @@ export class ChristianLifePartsComponent implements OnInit {
 
   setTime(christianPart: any): void {
     this.fireLoadingAlert();
-    this.emitTitleName(christianPart['title']);
+    this.emitSelectedSpeech(
+      {
+        title: christianPart['title'],
+        duration: christianPart['duration'],
+        endHours: christianPart['hours'],
+        endMinutes: christianPart['minutes'],
+        endSeconds: 0
+      }
+    );
 
     const currentTime = new Date();
     const endTime = new Date();
@@ -55,8 +64,8 @@ export class ChristianLifePartsComponent implements OnInit {
     });
   }
 
-  private emitTitleName(title: string) {
-    this.selectedSpeech.emit(title);
+  private emitSelectedSpeech(selectedSpeech: IntroAndFinishPart) {
+    this.selectedSpeech.emit(selectedSpeech);
   }
 
   deleteSpeech(title: string): void {

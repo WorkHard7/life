@@ -1,29 +1,30 @@
 <div
   style="padding-top: 8rem"
-  class="pt-3 text-2xl text-center flex flex-col justify-center -align-center">
+  class="pt-3 text-2xl text-center">
 
   <!--  life and ministry introduction -->
   <h1 *ngIf="introduction"
-      [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#f2f5b8'"
-      class="text-white mb-5"
+      [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#ffffff'"
+      class="rem-time text-white mb-5"
       [ngClass]="{
         'text-5xl' : !countdownService.isTimerRunning && !redColorText,
         'negative-time' : countdownService.isTimerRunning || redColorText,
     }"
   >
-    Timp ajustat <p>{{countdownService.showNegativeRemainingTime}}</p>
+    timp rămas <p>{{countdownService.showNegativeRemainingTime}}</p>
   </h1>
 
   <!--  life and ministry -->
   <h1 *ngIf="!introduction && !publicTalk"
-      [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#f2f5b8'"
+      [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#ffffff'"
       class="text-white mb-5 flex flex-col"
       [ngClass]="{
       'text-5xl' : !countdownService.isTimerRunning && !redColorText,
       'negative-time' : countdownService.isTimerRunning || redColorText,
   }"
   >
-    <div class="mb-14 text-white">Timp alocat
+    <div class="rem-time mb-14 text-white">
+      timp rămas
       <p>{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime}}</p>
     </div>
 <!--    <div class="mt-14">Timp ajustat-->
@@ -33,22 +34,22 @@
 
   <!--  life and ministry finish -->
   <h1 *ngIf="finish && !publicTalk && !introduction"
-      [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#f2f5b8'"
-      class="text-white mb-5"
+      [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#ffffff'"
+      class="rem-time text-white mb-5"
       [ngClass]="{
       'text-5xl' : !countdownService.isTimerRunning && !redColorText,
       'negative-time' : countdownService.isTimerRunning || redColorText,
   }"
   >
-    Timp ajustat <p>{{countdownService.showNegativeRemainingTime}}</p>
+    timp rămas <p>{{countdownService.showNegativeRemainingTime}}</p>
   </h1>
 
   <!--  public talk -->
   <h1
     *ngIf="publicTalk"
-    [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : 'white'"
-    class="allocated-time text-white leading-relaxed text-5xl font-normal"
+    [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#ffffff'"
+    class="rem-time allocated-time text-white leading-relaxed text-5xl font-normal"
   >
-    Timp alocat <p>{{countdownService.showNegativeRemainingTime}}</p>
+    timp rămas <p>{{countdownService.showNegativeRemainingTime}}</p>
   </h1>
 </div>

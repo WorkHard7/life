@@ -1,17 +1,9 @@
-<div class="h-screen">
+<div class="p-3 h-screen">
+  <app-current-time [watchtowerStarted]="true"></app-current-time>
+
   <header class="flex items-start text-2xl -bold text-white p-1 mt-5 mb-6">
-    <button
-      (click)="returnBack()"
-      class="icon-circle flex justify-center items-center">
-      <fa-icon
-        class="text-white"
-        [icon]="faArrowLeft">
-      </fa-icon>
-    </button>
     <p class="m-auto">Articol cu {{paragraph}} paragrafe</p>
   </header>
-
-  <app-current-time></app-current-time>
 
   <div *ngIf="isLoading" class="spinner">
     <div class="spinner-container">

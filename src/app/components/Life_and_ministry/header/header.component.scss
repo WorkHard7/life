@@ -5,3 +5,33 @@ h2 {
   margin-bottom: .5rem;
   color: white;
 }
+
+@media screen and (max-width: 530px) {
+  .main-container-header {
+    h2 button fa-icon {
+      font-size: 1rem;
+    }
+    h2 div {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .main-container-header {
+    h2 button fa-icon {
+      font-size: 1.5rem;
+    }
+    h2 div {
+      font-size: 1.7rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1050px) {
+  .main-container-header {
+    h2 div {
+      font-size: 1.8rem;
+    }
+  }
+}

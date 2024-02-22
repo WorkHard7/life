@@ -1,7 +1,7 @@
 <!--the header for life and ministry main page-->
 
 <ng-container *ngIf="headerService.showHeader">
-  <div class="flex">
+  <div class="main-container-header flex">
     <h2 class="rounded-2xl text-center flex-1 flex items-center bg-gray-500">
       <button
         (click)="goHome()"
@@ -22,21 +22,15 @@
 
 <!--the header for remaining time page-->
 <ng-container *ngIf="!headerService.showHeader">
+  <app-current-time></app-current-time>
+
   <div class="flex">
     <h2 class="rounded-2xl text-center flex-1 flex items-center">
-      <button
-        (click)="returnBack()"
-        class="icon-circle flex justify-center items-center">
-        <fa-icon
-          title="Back"
-          class="cursor-pointer text-white text-xl"
-          [icon]="faArrowLeft">
-        </fa-icon>
-      </button>
       <div class="m-auto">
         <p class="m-auto">{{selectedSpeech?.title}}</p>
-        <p class="m-auto">{{selectedSpeech?.timing}}</p>
+        <p class="m-auto">{{selectedSpeech?.duration}}</p>
       </div>
     </h2>
   </div>
+
 </ng-container>

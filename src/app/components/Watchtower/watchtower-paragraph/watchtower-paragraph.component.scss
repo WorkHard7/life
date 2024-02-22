@@ -1,7 +1,7 @@
 .small-text {
   font-size: 2rem;
   color: gray;
-  padding: 6rem 0 0;
+  padding: 3rem 0 0;
 }
 
 .spinner {
@@ -26,5 +26,17 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  p {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  p {
+    font-size: 1.1rem;
   }
 }

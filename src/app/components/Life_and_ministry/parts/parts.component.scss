@@ -1,0 +1,33 @@
+@media screen and (max-width: 400px) {
+  .gems-main-title,
+  .preaching-main-title,
+  .life-main-title {
+    font-size: .7rem;
+  }
+
+  .main-container-gems span {
+    font-size: .8rem;
+  }
+}
+
+@media screen and (max-width: 600px) and (min-width: 401px) {
+  .gems-main-title,
+  .preaching-main-title,
+  .life-main-title {
+    font-size: .9rem;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .main-container-gems {
+    span {
+      font-size: 1.2rem;
+    }
+  }
+
+  .gems-main-title,
+  .preaching-main-title,
+  .life-main-title {
+    font-size: 1.3rem;
+  }
+}

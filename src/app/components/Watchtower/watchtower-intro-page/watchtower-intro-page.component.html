@@ -1,4 +1,4 @@
-<div class="pt-5">
+<div class="p-3">
   <section>
     <div class="popup-box text-center" *ngIf="showPopup">
       Jehovah loves you!
@@ -12,7 +12,7 @@
           class="icon-circle flex justify-center items-center">
           <fa-icon
             title="Back"
-            class="text-white text-2xl"
+            class="arrow-left text-white text-2xl"
             [icon]="faArrowLeft">
           </fa-icon>
         </button>
@@ -21,13 +21,13 @@
              (mouseup)="onMouseUp()"
              class="cursor-pointer ml-4"
         >
-          <p class="text-3xl mb-14">Turnul de veghe</p>
-          <p>Selectați numărul de paragrafe</p>
+          <p class="main-title text-3xl mb-14">Turnul de veghe</p>
+          <p class="select-par">Selectați numărul de paragrafe</p>
         </div>
       </div>
     </div>
 
-    <main class="justify-center flex">
+    <main class="main-container-par justify-center flex">
       <button class="w-full bg-blue-200 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(16)">16</button>
       <button class="w-full bg-blue-300 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(17)">17</button>
       <button class="w-full bg-blue-400 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(18)">18</button>

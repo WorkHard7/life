@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {CountdownService} from "../../../services/countdown.service";
 import {HeaderService} from "../../../services/header.service";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
+import {IntroAndFinishPart} from "../../../model/events";
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ import {CountdownAllocatedTimeService} from "../../../services/countdown-allocat
 })
 export class HeaderComponent {
   @Input('title') header?: string;
-  @Input() selectedSpeech?: { title: string, timing: string };
+  @Input() selectedSpeech?: IntroAndFinishPart;
   protected readonly faArrowLeft = faArrowLeft;
 
   constructor(
@@ -28,13 +29,5 @@ export class HeaderComponent {
     this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
 
     this.router.navigate(['/']);
-  }
-
-  returnBack() {
-    this.countdownService.stopCountdown();
-    this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
-    this.headerService.showHeaderAgain();
-
-    this.router.navigate(['/life_and_ministry']);
   }
 }

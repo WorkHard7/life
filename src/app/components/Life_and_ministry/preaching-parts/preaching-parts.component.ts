@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {PartsService} from "../../../services/parts.service";
 import Swal from "sweetalert2";
 import {CountdownService} from "../../../services/countdown.service";
+import {IntroAndFinishPart} from "../../../model/events";
 
 @Component({
   selector: 'app-preaching-parts',
@@ -9,7 +10,7 @@ import {CountdownService} from "../../../services/countdown.service";
   styleUrls: ['./preaching-parts.component.scss']
 })
 export class PreachingPartsComponent implements OnInit {
-  @Output() selectedSpeech: EventEmitter<string> = new EventEmitter<string>();
+  @Output() selectedSpeech: EventEmitter<IntroAndFinishPart> = new EventEmitter<IntroAndFinishPart>();
   preachingParts!: any[];
 
   constructor(
@@ -32,7 +33,15 @@ export class PreachingPartsComponent implements OnInit {
 
   setTime(preachingPart: any): void {
     this.fireLoadingAlert();
-    this.speechSelected(preachingPart['title'])
+    this.speechSelected(
+      {
+        title: preachingPart['title'],
+        duration: preachingPart['duration'],
+        endHours: preachingPart['hours'],
+        endMinutes: preachingPart['minutes'],
+        endSeconds: 0
+      }
+    )
 
     const endTime = new Date();
     endTime.setHours(preachingPart['hours'], preachingPart['minutes'], 0, 0);
@@ -54,7 +63,7 @@ export class PreachingPartsComponent implements OnInit {
     });
   }
 
-  speechSelected(selectedSpeech: string) {
+  speechSelected(selectedSpeech: IntroAndFinishPart) {
     this.selectedSpeech.emit(selectedSpeech);
   }
 }

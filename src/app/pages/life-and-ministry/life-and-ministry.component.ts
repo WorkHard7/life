@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, HostListener, OnInit} from '@angular/core';
 import {CountdownService} from "../../services/countdown.service";
 import {PartsService} from "../../services/parts.service";
-import {Events} from "../../model/events";
+import {Events, IntroAndFinishPart} from "../../model/events";
 import {HeaderService} from "../../services/header.service";
 import {CountdownAllocatedTimeService} from "../../services/countdown-allocated-time.service";
 
@@ -14,7 +14,7 @@ export class LifeAndMinistryComponent implements OnInit, AfterViewInit {
   title = 'Viața creștină și predicarea';
   selectedSpeech: any = {
     title: '',
-    timing: ''
+    duration: 0
   }
   parts!: Events[];
   redColorText: boolean = false;
@@ -49,13 +49,16 @@ export class LifeAndMinistryComponent implements OnInit, AfterViewInit {
     console.log(this.parts)
   }
 
-  extractTimingFromTitle(selectedSpeech: string): void {
-    const timingStartIndex = selectedSpeech.indexOf("(") - 1;
+  extractTimingFromTitle(selectedSpeech: IntroAndFinishPart): void {
+    const timingStartIndex = selectedSpeech.title.indexOf("(") - 1;
     const titleStartIndex = 0;
-    const title = selectedSpeech.substring(titleStartIndex, timingStartIndex);
-    const timing = selectedSpeech.substring(timingStartIndex);
 
-    this.selectedSpeech.title = title;
-    this.selectedSpeech.timing = timing;
+    // in case the title does not contain (
+    if (timingStartIndex >= 0) {
+      this.selectedSpeech.title = selectedSpeech.title.substring(titleStartIndex, timingStartIndex);
+    } else {
+      this.selectedSpeech.title = selectedSpeech.title;
+    }
+    this.selectedSpeech.duration = `(${selectedSpeech.duration.toFixed()} min)`;
   }
 }
