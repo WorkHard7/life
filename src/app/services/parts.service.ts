@@ -40,13 +40,13 @@ export class PartsService {
         <label for="swal-input-duration">Durata temei</label>
         <input id="swal-input-duration" class="swal2-input" placeholder="min." type="number">
         <div id="duration-container">
+            <button id="duration-button-1" class="duration-button">1</button>
             <button id="duration-button-2" class="duration-button">2</button>
             <button id="duration-button-3" class="duration-button">3</button>
             <button id="duration-button-4" class="duration-button">4</button>
             <button id="duration-button-5" class="duration-button">5</button>
             <button id="duration-button-7" class="duration-button">7</button>
             <button id="duration-button-8" class="duration-button">8</button>
-            <button id="duration-button-10" class="duration-button">10</button>
         </div>
         <div id="swal2-main-container">
             <label for="swal-input-hours">Ora finisării</label>
@@ -56,13 +56,13 @@ export class PartsService {
       `,
       didOpen() {
         const buttonDurations = [
+          { id: 'duration-button-1', duration: 1 },
           { id: 'duration-button-2', duration: 2 },
           { id: 'duration-button-3', duration: 3 },
           { id: 'duration-button-4', duration: 4 },
           { id: 'duration-button-5', duration: 5 },
           { id: 'duration-button-7', duration: 7 },
           { id: 'duration-button-8', duration: 8 },
-          { id: 'duration-button-10', duration: 10 }
         ];
 
         buttonDurations.forEach(button => {
@@ -164,13 +164,11 @@ export class PartsService {
         <input id="swal-input-duration" class="swal2-input" placeholder="min" type="number"
         value="${partToBeEdited.duration}">
         <div id="duration-container">
-            <button id="duration-button-2" class="duration-button">2</button>
-            <button id="duration-button-3" class="duration-button">3</button>
-            <button id="duration-button-4" class="duration-button">4</button>
             <button id="duration-button-5" class="duration-button">5</button>
             <button id="duration-button-7" class="duration-button">7</button>
             <button id="duration-button-8" class="duration-button">8</button>
             <button id="duration-button-10" class="duration-button">10</button>
+            <button id="duration-button-15" class="duration-button">15</button>
         </div>
         <div id="swal2-main-container">
             <label for="swal-input-hours">Ora finisării</label>
@@ -182,13 +180,11 @@ export class PartsService {
       `,
       didOpen() {
           const buttonDurations = [
-            { id: 'duration-button-2', duration: 2 },
-            { id: 'duration-button-3', duration: 3 },
-            { id: 'duration-button-4', duration: 4 },
             { id: 'duration-button-5', duration: 5 },
             { id: 'duration-button-7', duration: 7 },
             { id: 'duration-button-8', duration: 8 },
-            { id: 'duration-button-10', duration: 10 }
+            { id: 'duration-button-10', duration: 10 },
+            { id: 'duration-button-15', duration: 15}
           ];
 
         buttonDurations.forEach(button => {
