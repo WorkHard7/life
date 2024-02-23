@@ -19,22 +19,12 @@
   }
 }
 
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 1050px) {
   .main-container {
 
     a {
       padding: 3.3rem 3.7rem;
       font-size: 1.8rem;
-    }
-  }
-}
-
-@media screen and (min-width: 1050px) {
-  .main-container {
-
-    a {
-      padding: 3.7rem 4rem;
-      font-size: 2rem;
     }
   }
 }

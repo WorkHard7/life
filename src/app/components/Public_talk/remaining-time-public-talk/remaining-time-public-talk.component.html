@@ -1,13 +1,8 @@
-<div
-  [ngStyle]="{
-  'padding-top' : timeIsUp() ? '6rem' : ''
-  }"
-  class="text-2xl text-center flex flex-col justify-center"
->
+<div class="pt-3 text-2xl text-center">
 
   <h1
     [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#ffffff'"
-    class="rem-time big-padding-top text-white font-normal text-3xl"
+    class="rem-time mt-4 text-white text-3xl font-normal"
   >
     timp rămas
     <p>

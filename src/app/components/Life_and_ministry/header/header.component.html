@@ -1,5 +1,4 @@
 <!--the header for life and ministry main page-->
-
 <ng-container *ngIf="headerService.showHeader">
   <div class="main-container-header flex">
     <h2 class="rounded-2xl text-center flex-1 flex items-center bg-gray-500">
@@ -24,9 +23,9 @@
 <ng-container *ngIf="!headerService.showHeader">
   <app-current-time></app-current-time>
 
-  <div class="flex">
+  <div class="flex pt-14 pb-10">
     <h2 class="rounded-2xl text-center flex-1 flex items-center">
-      <div class="m-auto">
+      <div class="m-auto text-3xl">
         <p class="m-auto">{{selectedSpeech?.title}}</p>
         <p class="m-auto">{{selectedSpeech?.duration}}</p>
       </div>

@@ -19,8 +19,7 @@ export class IntroductionComponent implements OnInit {
     endSeconds: 15
   };
 
-  constructor(public countdownService: CountdownService
-  ) {
+  constructor(public countdownService: CountdownService) {
   }
 
   ngOnInit(): void {
@@ -29,7 +28,7 @@ export class IntroductionComponent implements OnInit {
     })
   }
 
-  emitIntro() {
-    this.selectedSpeech.emit(this.introPart);
+  emitIntro(introPart: IntroAndFinishPart) {
+    this.selectedSpeech.emit(introPart);
   }
 }

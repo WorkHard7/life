@@ -10,9 +10,8 @@ import {CountdownAllocatedTimeService} from "../../../services/countdown-allocat
   styleUrls: ['./remaining-time.component.scss']
 })
 export class RemainingTimeComponent implements OnInit {
-  @Input() publicTalk!: boolean;
-  @Input() introduction!: boolean;
-  @Input() finish!: boolean;
+  @Input() introduction: boolean = false;
+  @Input() finish: boolean = false;
 
   protected readonly faArrowLeft = faArrowLeft;
   redColorText: boolean = false;
@@ -28,10 +27,6 @@ export class RemainingTimeComponent implements OnInit {
     this.countdownService.redColorText$.subscribe(redColorText => {
       this.redColorText = redColorText;
     });
-  }
-
-  timeIsUp(): boolean {
-    return this.countdownService.showNegativeRemainingTime.includes('-');
   }
 
   returnBack() {

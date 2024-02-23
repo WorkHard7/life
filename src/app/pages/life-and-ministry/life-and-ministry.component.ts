@@ -53,7 +53,7 @@ export class LifeAndMinistryComponent implements OnInit, AfterViewInit {
     const timingStartIndex = selectedSpeech.title.indexOf("(") - 1;
     const titleStartIndex = 0;
 
-    // in case the title does not contain (
+    // in case the title does not contain "("
     if (timingStartIndex >= 0) {
       this.selectedSpeech.title = selectedSpeech.title.substring(titleStartIndex, timingStartIndex);
     } else {

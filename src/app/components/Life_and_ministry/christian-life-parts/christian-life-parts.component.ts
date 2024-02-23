@@ -1,6 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {PartsService} from "../../../services/parts.service";
-import {CountdownService} from "../../../services/countdown.service";
 import Swal from "sweetalert2";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 import {IntroAndFinishPart} from "../../../model/events";
@@ -16,7 +15,6 @@ export class ChristianLifePartsComponent implements OnInit {
 
   constructor(
     private partsService: PartsService,
-    private countdownService: CountdownService,
     private countdownAllocatedTimeService: CountdownAllocatedTimeService,
   ) {
   }
@@ -40,12 +38,8 @@ export class ChristianLifePartsComponent implements OnInit {
     );
 
     const currentTime = new Date();
-    const endTime = new Date();
     const endAllocatedTime = new Date(currentTime.getTime() + christianPart['duration'] * 60000);
 
-    endTime.setHours(christianPart['hours'], christianPart['minutes'], 0, 0);
-
-    this.countdownService.startCountdown(endTime);
     this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endAllocatedTime);
   }
 

@@ -5,23 +5,15 @@
 </ng-container>
 
 <ng-container *ngIf="countdownService.isTimerRunning || redColorText">
-  <div class="p-3 text-center flex flex-col">
-    <div class="flex items-center mb-4">
-      <button
-        (click)="returnBack()"
-        class="icon-circle flex justify-center items-center">
-        <fa-icon
-          title="Back"
-          class="cursor-pointer text-white text-2xl"
-          [icon]="faArrowLeft">
-        </fa-icon>
-      </button>
-      <p class="main-title text-white text-3xl m-auto">Cuvântare publică</p>
-    </div>
-  </div>
-  <app-current-time></app-current-time>
+  <div class="p-3">
+    <app-current-time [publicTalk]="true"></app-current-time>
 
-  <app-remaining-time
-    [publicTalk]=true
-  ></app-remaining-time>
+    <div class="p-3 text-center flex flex-col">
+      <div class="flex items-center mb-4">
+        <p class="main-title pt-14 text-white text-3xl m-auto">Cuvântare publică</p>
+      </div>
+    </div>
+
+      <app-remaining-time-public-talk></app-remaining-time-public-talk>
+  </div>
 </ng-container>

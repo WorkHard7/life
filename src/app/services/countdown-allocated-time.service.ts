@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
@@ -6,16 +6,19 @@ import {BehaviorSubject, Observable} from "rxjs";
 })
 export class CountdownAllocatedTimeService {
   remainingAllocatedTime: number = 0;
-  showNegativeAllocatedRemainingTime: string = '00:00';
+  showNegativeAllocatedRemainingTime: { sign: string, minutes: string, seconds: string } =
+    {
+      sign: '',
+      minutes: '00',
+      seconds: '00'
+    }
   allocatedIntervalId!: any;
   isAllocatedTimerRunning: boolean = false;
 
   private redColorAllocatedTimeTextSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public redColorAllocatedText$: Observable<boolean> = this.redColorAllocatedTimeTextSubject.asObservable();
 
-  constructor() { }
-
-  startCountdownForAllocatedTime (endAllocatedTime: Date) {
+  startCountdownForAllocatedTime(endAllocatedTime: Date) {
     const currentTime = new Date();
     const targetTime = new Date(endAllocatedTime);
     this.isAllocatedTimerRunning = true;
@@ -31,26 +34,30 @@ export class CountdownAllocatedTimeService {
       console.log('remainingAllocateTime', this.remainingAllocatedTime);
 
       if (this.remainingAllocatedTime <= 0) {
-        this.isAllocatedTimerRunning = false;
         this.redColorAllocatedTimeTextSubject.next(true);
       }
 
       this.showNegativeAllocatedRemainingTime = this.formatNegativeNumberForAllocatedTime();
-      console.log(this.showNegativeAllocatedRemainingTime);
+      console.log('remainingAllocatedTime Object', this.showNegativeAllocatedRemainingTime);
     }, 1000);
   }
 
   stopCountdownForAllocatedTime(): void {
     this.isAllocatedTimerRunning = false;
     this.remainingAllocatedTime = 0;
-    this.showNegativeAllocatedRemainingTime = '00:00';
+    this.showNegativeAllocatedRemainingTime =
+      {
+        sign: '',
+        minutes: '00',
+        seconds: '00'
+      }
 
     this.redColorAllocatedTimeTextSubject.next(false);
 
     clearInterval(this.allocatedIntervalId);
   }
 
-  formatNegativeNumberForAllocatedTime(): string {
+  formatNegativeNumberForAllocatedTime(): any {
     const sign = this.remainingAllocatedTime < 0 ? '-' : '';
     const absRemainingAllocatedTime = Math.abs(this.remainingAllocatedTime);
 
@@ -59,6 +66,10 @@ export class CountdownAllocatedTimeService {
     const minutes = (Math.floor(absRemainingAllocatedTime / 60) % 60);
     const totalMinutes = (hours * 60) + minutes;
 
-    return `${sign}${totalMinutes}:${seconds}`; // Store the formatted time
+    return {
+      sign: sign,
+      minutes: totalMinutes.toString().padStart(2, '0'),
+      seconds: seconds
+    };
   }
 }

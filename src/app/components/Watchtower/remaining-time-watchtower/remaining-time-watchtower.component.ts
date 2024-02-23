@@ -25,7 +25,7 @@ export class RemainingTimeWatchtowerComponent implements OnInit {
   }
 
   timeIsUp(): boolean {
-    return this.countdownService.showNegativeRemainingTime.includes('-');
+    return this.countdownService.showNegativeRemainingTime.sign.includes('-');
   }
 
   returnBack() {

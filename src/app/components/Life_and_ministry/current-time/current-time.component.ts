@@ -13,6 +13,7 @@ import {HeaderService} from "../../../services/header.service";
 })
 export class CurrentTimeComponent implements OnInit {
   @Input() watchtowerStarted: boolean = false;
+  @Input() publicTalk: boolean = false;
   localTime: any = new Date();
   public readonly faClock: any = faClock;
   protected readonly faArrowLeft = faArrowLeft;
@@ -45,7 +46,10 @@ export class CurrentTimeComponent implements OnInit {
 
     if (this.watchtowerStarted) {
       this.router.navigate(['/watchtower']);
-    } else {
+    } else if (this.publicTalk) {
+      this.router.navigate(['/public_talk']);
+    }
+    else {
       this.router.navigate(['/life_and_ministry']);
     }
   }

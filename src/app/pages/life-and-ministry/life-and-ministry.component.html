@@ -1,4 +1,4 @@
-<div class="p-3 h-screen">
+<div class="p-3">
   <app-header
     [title]=title
     [selectedSpeech]=selectedSpeech
@@ -7,14 +7,15 @@
   <app-current-time *ngIf="headerService.showHeader"></app-current-time>
 
   <ng-container
-    *ngIf="!countdownService.isTimerRunning && !redColorText"
+    *ngIf="!countdownService.isTimerRunning && !countdownAllocatedTimeService.isAllocatedTimerRunning"
   >
     <app-parts
       (selectedSpeech)="extractTimingFromTitle($event)"
     ></app-parts>
   </ng-container>
 
-  <ng-container *ngIf="countdownService.isTimerRunning || redColorText">
+  <ng-container *ngIf="countdownService.isTimerRunning ||
+  countdownAllocatedTimeService.isAllocatedTimerRunning || redColorText">
     <app-remaining-time></app-remaining-time>
   </ng-container>
 </div>

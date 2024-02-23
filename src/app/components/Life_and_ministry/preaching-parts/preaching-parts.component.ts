@@ -3,6 +3,7 @@ import {PartsService} from "../../../services/parts.service";
 import Swal from "sweetalert2";
 import {CountdownService} from "../../../services/countdown.service";
 import {IntroAndFinishPart} from "../../../model/events";
+import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 
 @Component({
   selector: 'app-preaching-parts',
@@ -16,6 +17,7 @@ export class PreachingPartsComponent implements OnInit {
   constructor(
     private partsService: PartsService,
     private countdownService: CountdownService,
+    private countdownAllocatedTimeService: CountdownAllocatedTimeService,
   ) {
   }
 
@@ -46,7 +48,7 @@ export class PreachingPartsComponent implements OnInit {
     const endTime = new Date();
     endTime.setHours(preachingPart['hours'], preachingPart['minutes'], 0, 0);
 
-    this.countdownService.startCountdown(endTime);
+    this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endTime);
   }
 
   private fireLoadingAlert() {

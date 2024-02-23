@@ -1,4 +1,4 @@
-<ng-container *ngIf="headerService.showHeader && !watchtowerStarted">
+<ng-container *ngIf="headerService.showHeader && !watchtowerStarted && !publicTalk">
 
   <div class="main-container-curr-time text-center m-auto">
     <h1 class="text-white text-2xl">
@@ -10,7 +10,7 @@
 
 </ng-container>
 
-<ng-container *ngIf="!headerService.showHeader || watchtowerStarted">
+<ng-container *ngIf="!headerService.showHeader || watchtowerStarted || publicTalk">
   <div class="flex mb-4">
 
     <button
@@ -18,7 +18,7 @@
       class="icon-circle flex justify-center items-center">
       <fa-icon
         title="Back"
-        class="cursor-pointer text-white text-xl"
+        class="arrow-left text-white text-xl"
         [icon]="faArrowLeft">
       </fa-icon>
     </button>

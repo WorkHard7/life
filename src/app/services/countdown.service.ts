@@ -6,7 +6,12 @@ import {BehaviorSubject, Observable} from "rxjs";
 })
 export class CountdownService {
   remainingTime: number = 0;
-  showNegativeRemainingTime: string = '00:00';
+  showNegativeRemainingTime: { sign: string, minutes: string, seconds: string } =
+    {
+      sign: '',
+      minutes: '00',
+      seconds: '00'
+    }
   intervalId!: any;
   isTimerRunning: boolean = false;
   isCustomTime: boolean = false;
@@ -59,22 +64,26 @@ export class CountdownService {
     this.intervalId = setInterval(() => {
       this.remainingTime--;
 
-      console.log('remainingTime', this.remainingTime);
+      console.log('remainingTime in second', this.remainingTime);
 
       if (this.remainingTime <= 0) {
-        this.isTimerRunning = false;
         this.redColorTextSubject.next(true);
       }
 
       this.showNegativeRemainingTime = this.formatNegativeNumber();
-      console.log(this.showNegativeRemainingTime);
+      console.log('remaining time Object', this.showNegativeRemainingTime);
     }, 1000);
   }
 
   stopCountdown(): void {
     this.isTimerRunning = false;
     this.remainingTime = 0;
-    this.showNegativeRemainingTime = '00:00';
+    this.showNegativeRemainingTime =
+      {
+        sign: '',
+        minutes: '00',
+        seconds: '00'
+      }
 
     this.redColorTextSubject.next(false);
 
@@ -99,7 +108,7 @@ export class CountdownService {
     return this.isCustomTime;
   }
 
-  formatNegativeNumber(): string {
+  formatNegativeNumber(): any {
     const sign = this.remainingTime < 0 ? '-' : '';
     const absRemainingTime = Math.abs(this.remainingTime);
 
@@ -108,6 +117,10 @@ export class CountdownService {
     const minutes = (Math.floor(absRemainingTime / 60) % 60);
     const totalMinutes = (hours * 60) + minutes;
 
-    return `${sign}${totalMinutes}:${seconds}`; // Store the formatted time
+    return {
+      sign: sign,
+      minutes: totalMinutes.toString().padStart(2, '0'),
+      seconds: seconds
+    };
   }
 }

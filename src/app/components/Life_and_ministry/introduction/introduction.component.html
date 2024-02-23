@@ -3,14 +3,14 @@
     <span class="text-white flex-1 font-bold">{{introPart.title}}</span>
     <app-start-btn-intro-finish
       [introPart]=introPart
-      (introPartEmitted)="emitIntro()"
+      (introPartEmitted)="emitIntro($event)"
     ></app-start-btn-intro-finish>
   </div>
   <div>
   </div>
 </div>
 
-<ng-container *ngIf="countdownService.isTimerRunning || redColorText">
+<ng-container *ngIf="countdownService.isTimerRunning">
   <app-remaining-time
     [introduction]=true
   ></app-remaining-time>

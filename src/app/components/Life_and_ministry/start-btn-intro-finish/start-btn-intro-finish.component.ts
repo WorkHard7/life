@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import Swal from "sweetalert2";
-import {CountdownService} from "../../../services/countdown.service";
 import {HeaderService} from "../../../services/header.service";
 import {IntroAndFinishPart} from "../../../model/events";
+import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 
 @Component({
   selector: 'app-start-btn-intro-finish',
@@ -16,7 +16,7 @@ export class StartBtnIntroFinishComponent {
   @Input() finishPart?: IntroAndFinishPart;
 
   constructor(
-    private countdownService: CountdownService,
+    private CountdownAllocatedTimeService: CountdownAllocatedTimeService,
     private headerService: HeaderService
   ) {
   }
@@ -27,7 +27,7 @@ export class StartBtnIntroFinishComponent {
     const endTime = new Date();
     this.findEndingTime(endTime);
 
-    this.countdownService.startCountdown(endTime);
+    this.CountdownAllocatedTimeService.startCountdownForAllocatedTime(endTime);
   }
 
   private fireLoadingAlert() {
@@ -46,10 +46,10 @@ export class StartBtnIntroFinishComponent {
 
   findEndingTime(endTime: Date) {
     if (this.introPart) {
-      endTime.setHours(this.introPart.endHours, this.introPart.endMinutes, this.introPart.endSeconds); // 19:05:30
+      endTime.setHours(this.introPart.endHours, this.introPart.endMinutes, this.introPart.endSeconds); // 19:05:15
       this.introPartEmitted.emit(this.introPart);
     } else if (this.finishPart) {
-      endTime.setHours(this.finishPart.endHours, this.finishPart.endMinutes, this.finishPart.endSeconds); // 20:40:00
+      endTime.setHours(this.finishPart.endHours, this.finishPart.endMinutes, this.finishPart.endSeconds); // 20:42:00
       this.finishPartEmitted.emit(this.finishPart);
     }
   }

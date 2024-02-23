@@ -54,12 +54,8 @@ export class PartsComponent implements OnInit {
       });
 
     const currentTime = new Date();
-    const endTime = new Date();
     const endAllocatedTime = new Date(currentTime.getTime() + gem['duration'] * 60000);
 
-    endTime.setHours(gem['hours'], gem['minutes'], 0, 0);
-
-    this.countdownService.startCountdown(endTime);
     this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endAllocatedTime);
   }
 
