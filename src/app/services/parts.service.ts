@@ -223,8 +223,7 @@ export class PartsService {
         if (!title || !hours || !minutes || !duration) {
           Swal.showValidationMessage('Completează toate câmpurile');
         }
-
-        return {title: title, hours: hours, minutes: minutes, duration: Number(duration)};
+        return {title: title, hours: hours, minutes: minutes, duration: Number(duration + '.02')};
       }
     }).then((result: any) => {
       if (result.isConfirmed) {
