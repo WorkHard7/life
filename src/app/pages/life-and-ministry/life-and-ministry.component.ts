@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, HostListener, OnInit} from '@angular/core';
 import {CountdownService} from "../../services/countdown.service";
 import {PartsService} from "../../services/parts.service";
-import {Events, IntroAndFinishPart} from "../../model/events";
+import {Events} from "../../model/events";
 import {HeaderService} from "../../services/header.service";
 import {CountdownAllocatedTimeService} from "../../services/countdown-allocated-time.service";
 
@@ -49,7 +49,7 @@ export class LifeAndMinistryComponent implements OnInit, AfterViewInit {
     console.log(this.parts)
   }
 
-  extractTimingFromTitle(selectedSpeech: IntroAndFinishPart): void {
+  extractTimingFromTitle(selectedSpeech: Events): void {
     const timingStartIndex = selectedSpeech.title.indexOf("(") - 1;
     const titleStartIndex = 0;
 

@@ -2,7 +2,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {PartsService} from "../../../services/parts.service";
 import Swal from "sweetalert2";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
-import {IntroAndFinishPart} from "../../../model/events";
+import {Events} from "../../../model/events";
+import {CountdownService} from "../../../services/countdown.service";
 
 @Component({
   selector: 'app-christian-life-parts',
@@ -10,11 +11,12 @@ import {IntroAndFinishPart} from "../../../model/events";
   styleUrls: ['./christian-life-parts.component.scss']
 })
 export class ChristianLifePartsComponent implements OnInit {
-  @Output() selectedSpeech: EventEmitter<IntroAndFinishPart> = new EventEmitter<IntroAndFinishPart>();
+  @Output() selectedSpeech: EventEmitter<Events> = new EventEmitter<Events>();
   christianLifeParts!: any[];
 
   constructor(
     private partsService: PartsService,
+    private countdownService: CountdownService,
     private countdownAllocatedTimeService: CountdownAllocatedTimeService,
   ) {
   }
@@ -26,16 +28,10 @@ export class ChristianLifePartsComponent implements OnInit {
   }
 
   setTime(christianPart: any): void {
+    this.countdownService.compareAxisOfTime(christianPart);
+
     this.fireLoadingAlert();
-    this.emitSelectedSpeech(
-      {
-        title: christianPart['title'],
-        duration: christianPart['duration'],
-        endHours: christianPart['hours'],
-        endMinutes: christianPart['minutes'],
-        endSeconds: 0
-      }
-    );
+    this.emitSelectedSpeech(christianPart);
 
     const currentTime = new Date();
     const endAllocatedTime = new Date(currentTime.getTime() + christianPart['duration'] * 60000);
@@ -58,7 +54,7 @@ export class ChristianLifePartsComponent implements OnInit {
     });
   }
 
-  private emitSelectedSpeech(selectedSpeech: IntroAndFinishPart) {
+  private emitSelectedSpeech(selectedSpeech: Events) {
     this.selectedSpeech.emit(selectedSpeech);
   }
 

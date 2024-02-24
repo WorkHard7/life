@@ -26,6 +26,23 @@ body {
   padding: 12px;
 }
 
+.main-title-page {
+  display: flex;
+  justify-items: center;
+  font-size: 1.5rem;
+  padding: .5rem 0;
+  text-align: center;
+  margin-bottom: .5rem;
+  color: white;
+}
+
+.remaining-time-title {
+  color: white;
+  font-size: 1.875rem;
+  line-height: 3rem;
+}
+
+// swal section
 #swal2-main-container {
   display: flex !important;
   justify-content: center;

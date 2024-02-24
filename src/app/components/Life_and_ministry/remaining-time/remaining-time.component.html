@@ -1,18 +1,37 @@
 <div class="pt-3 text-2xl text-center">
 
-  <div>
-    <h1
-      [style.color]="countdownAllocatedTimeService.remainingAllocatedTime <= 0 ? '#f3b8b8' : '#ffffff'"
-      class="text-white flex flex-col leading-10 text-3xl font-normal"
+  <div class="remaining-time-title">
+    <span>timp rămas</span>
+    <p [style.color]="countdownAllocatedTimeService.remainingAllocatedTime <= 0 ? '#f3b8b8' : '#ffffff'">
+      <span>{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.sign}}</span>
+      <span
+        class="remaining-minutes"
+        style="font-size: 2.5rem">{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.minutes}}</span><span
+      style="font-size: 1rem">.{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.seconds}}</span>
+    </p>
+
+    <div *ngIf="!checkIfNegativeTime(); else nextBlock"
+         style="color: #5B876C; line-height: 1.8rem"
+         class="axesOfTime"
     >
-      timp rămas
-      <p class="rem-time">
-        <span>{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.sign}}</span>
-        <span
-          style="font-size: 2.5rem">{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.minutes}}</span><span
-        style="font-size: 1rem">.{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.seconds}}</span>
-      </p>
-    </h1>
+      <p>La începutul temei tale</p>
+      <p>aveam rezervă de</p>
+      <span class="text-4xl">
+        {{countdownService.diffTime.minutes}}.{{countdownService.diffTime.seconds}}
+      </span>
+    </div>
+
+    <ng-template #nextBlock>
+      <div
+        style="color: #f3b8b8; line-height: 1.8rem"
+        class="axesOfTime">
+        <p>La începutul temei tale</p>
+        <p>eram în întâziere cu</p>
+        <span class="text-4xl">
+           {{countdownService.diffTime.sign}}{{countdownService.diffTime.minutes}}.{{countdownService.diffTime.seconds}}
+        </span>
+      </div>
+    </ng-template>
   </div>
 
 </div>

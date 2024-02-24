@@ -3,7 +3,7 @@ import {CountdownService} from "../../../services/countdown.service";
 import {PartsService} from "../../../services/parts.service";
 import Swal from "sweetalert2";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
-import {IntroAndFinishPart} from "../../../model/events";
+import {Events} from "../../../model/events";
 
 @Component({
   selector: 'app-parts',
@@ -11,11 +11,18 @@ import {IntroAndFinishPart} from "../../../model/events";
   styleUrls: ['./parts.component.scss']
 })
 export class PartsComponent implements OnInit {
-  @Output() selectedSpeech: EventEmitter<IntroAndFinishPart> = new EventEmitter<IntroAndFinishPart>();
+  @Output() selectedSpeech: EventEmitter<Events> = new EventEmitter<Events>();
   gems!: any[];
   redColorText: boolean = false;
   preachingParts!: any[];
   christianLifeParts!: any[];
+  alternativePreachingParts: Events = {
+    title: 'Să fim mai eficienți în predicare',
+    hours: 19,
+    minutes: 47,
+    seconds: 30,
+    duration: 16.02
+  }
 
   constructor(
     private countdownService: CountdownService,
@@ -43,15 +50,10 @@ export class PartsComponent implements OnInit {
   }
 
   setTime(gem: any): void {
+    this.countdownService.compareAxisOfTime(gem);
+
     this.fireLoadingAlert();
-    this.emitSpeechSelected(
-      {
-        title: gem['title'],
-        duration: gem['duration'],
-        endHours: gem['hours'],
-        endMinutes: gem['minutes'],
-        endSeconds: 0
-      });
+    this.emitSpeechSelected(gem);
 
     const currentTime = new Date();
     const endAllocatedTime = new Date(currentTime.getTime() + gem['duration'] * 60000);
@@ -73,7 +75,7 @@ export class PartsComponent implements OnInit {
     });
   }
 
-  emitSpeechSelected(selectedSpeech: IntroAndFinishPart) {
+  emitSpeechSelected(selectedSpeech: Events) {
     this.selectedSpeech.emit(selectedSpeech);
   }
 }

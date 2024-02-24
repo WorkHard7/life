@@ -6,7 +6,8 @@
       <li>
         <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #3C7F8B">
           <div class="flex items-center">
-            <span class="gems-main-title flex-1 font-bold" style="color: #86BFCA">COMORI DIN CUVÂNTUL LUI DUMNEZEU</span>
+            <span class="gems-main-title flex-1 font-bold"
+                  style="color: #86BFCA">COMORI DIN CUVÂNTUL LUI DUMNEZEU</span>
           </div>
           <div>
 
@@ -35,7 +36,8 @@
       <div class="flex items-center">
         <span class="preaching-main-title flex-1" style="color: #FFCD5C">SĂ FIM MAI EFICIENȚI ÎN PREDICARE</span>
 
-        <app-add-custom-speech [preaching]="true"></app-add-custom-speech>
+        <app-start-btn (click)="setTime(this.alternativePreachingParts)"></app-start-btn>
+        <!--        <app-add-custom-speech [preaching]="true"></app-add-custom-speech>-->
       </div>
 
       <div>

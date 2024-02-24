@@ -109,6 +109,7 @@ export class PartsService {
           title: result.value.title + ` (${result.value.hours}:${result.value.minutes})`!,
           hours: result.value.hours,
           minutes: result.value.minutes,
+          seconds: 0,
           duration: result.value.duration
         };
 

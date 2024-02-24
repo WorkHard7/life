@@ -2,19 +2,19 @@
   [ngStyle]="{
   'padding-top' : timeIsUp() ? '6rem' : ''
   }"
-  class="text-2xl text-center flex flex-col justify-center"
+  class="text-center flex flex-col justify-center"
 >
 
-  <h1
+  <div
     [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#ffffff'"
-    class="rem-time big-padding-top text-white font-normal text-3xl"
+    class="remaining-time-title big-padding-top"
   >
-    timp rămas
+    <span>timp rămas</span>
     <p>
       <span>{{countdownService.showNegativeRemainingTime.sign}}</span>
       <span style="font-size: 2.5rem">{{countdownService.showNegativeRemainingTime.minutes}}</span><span
       style="font-size: 1rem">.{{countdownService.showNegativeRemainingTime.seconds}}</span>
     </p>
-  </h1>
+  </div>
 
 </div>

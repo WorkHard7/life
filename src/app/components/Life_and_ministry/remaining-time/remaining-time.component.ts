@@ -35,4 +35,8 @@ export class RemainingTimeComponent implements OnInit {
 
     this.router.navigate(['/life_and_ministry']);
   }
+
+  checkIfNegativeTime(): boolean {
+    return this.countdownService.diffTime.sign.includes('-');
+  }
 }

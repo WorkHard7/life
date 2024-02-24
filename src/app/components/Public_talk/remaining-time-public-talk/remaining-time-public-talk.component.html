@@ -1,15 +1,15 @@
 <div class="pt-3 text-2xl text-center">
 
-  <h1
+  <div
     [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#ffffff'"
-    class="rem-time mt-4 text-white text-3xl font-normal"
+    class="remaining-time-title mt-4"
   >
-    timp rămas
+    <span>timp rămas</span>
     <p>
       <span>{{countdownService.showNegativeRemainingTime.sign}}</span>
       <span style="font-size: 2.5rem">{{countdownService.showNegativeRemainingTime.minutes}}</span><span
       style="font-size: 1rem">.{{countdownService.showNegativeRemainingTime.seconds}}</span>
     </p>
-  </h1>
+  </div>
 
 </div>

@@ -15,6 +15,11 @@ export class CountdownService {
   intervalId!: any;
   isTimerRunning: boolean = false;
   isCustomTime: boolean = false;
+  diffTime: { sign: string, minutes: number, seconds: number } = {
+    sign: '',
+    minutes: 0,
+    seconds: 0
+  }
 
   private watchtowerCustomEndTime: Object = {
     hours: '11',
@@ -106,6 +111,44 @@ export class CountdownService {
 
   getCustomTimeStatus() {
     return this.isCustomTime;
+  }
+
+  compareAxisOfTime(part: any) {
+    const currentTime = new Date();
+    const targetTime = new Date();
+
+    // Set the target time to the finish time
+    targetTime.setHours(part.hours, part.minutes, part.seconds);
+
+    // Calculate the beginning time by subtracting the duration from the finish time
+    const beginningTime = new Date(targetTime.getTime() - (part.duration * 60000));
+
+    console.log('beginningTime in Date???', beginningTime);
+
+    // Calculate the difference between the finish time and the current time
+    const diffInMilliseconds = beginningTime.getTime() - currentTime.getTime();
+
+    // Convert the difference to minutes and seconds
+    this.millisecondsToMinutesAndSeconds(diffInMilliseconds);
+    console.log('diffTime Object:', this.diffTime);
+  }
+
+  private millisecondsToMinutesAndSeconds(milliseconds: number): void {
+    // Determine the sign based on the value of milliseconds
+    const sign = milliseconds < 0 ? '-' : '';
+    // Convert milliseconds to seconds
+    const totalSeconds = Math.abs(milliseconds) / 1000;
+    // Calculate the number of minutes
+    const minutes = Math.floor(totalSeconds / 60);
+    // Calculate the remaining seconds
+    const seconds = Math.floor(totalSeconds % 60);
+
+    this.diffTime.sign = sign;
+    this.diffTime.minutes = minutes;
+    this.diffTime.seconds = seconds;
+
+    console.log('minutes', minutes);
+    console.log('seconds', seconds);
   }
 
   formatNegativeNumber(): any {

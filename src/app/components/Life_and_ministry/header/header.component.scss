@@ -1,19 +1,18 @@
-h2 {
-  font-size: 1.5rem;
-  padding: .5rem 0;
-  text-align: center;
-  margin-bottom: .5rem;
-  color: white;
-}
-
 @media screen and (max-width: 530px) {
   .main-container-header {
     h2 button fa-icon {
       font-size: 1rem;
     }
-    h2 div {
-      font-size: 1.3rem;
-    }
+  }
+
+  .title, .duration {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 630px) and (min-width: 531px)  {
+  .title, .duration {
+    font-size: 1.7rem;
   }
 }
 
@@ -22,16 +21,15 @@ h2 {
     h2 button fa-icon {
       font-size: 1.5rem;
     }
-    h2 div {
-      font-size: 1.7rem;
-    }
+  }
+
+  .title, .duration {
+    font-size: 2.1rem;
   }
 }
 
 @media screen and (min-width: 1050px) {
-  .main-container-header {
-    h2 div {
-      font-size: 1.8rem;
-    }
+  .title, .duration {
+    font-size: 2.2rem;
   }
 }
