@@ -3,7 +3,7 @@
     <span class="text-white flex-1 font-bold">{{introPart.title}}</span>
     <app-start-btn-intro-finish
       [introPart]=introPart
-      (introPartEmitted)="emitIntro($event)"
+      (introPartEmitted)="updateSelectedSpeech($event)"
     ></app-start-btn-intro-finish>
   </div>
   <div>

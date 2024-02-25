@@ -1,5 +1,5 @@
 <div>
-  <app-introduction (selectedSpeech)="emitSpeechSelected($event)"></app-introduction>
+  <app-introduction></app-introduction>
 
   <ul class="mt-3 list-none">
     <div>
@@ -41,7 +41,7 @@
       </div>
 
       <div>
-        <app-preaching-parts (selectedSpeech)="emitSpeechSelected($event)"></app-preaching-parts>
+        <app-preaching-parts></app-preaching-parts>
       </div>
     </div>
   </li>
@@ -61,12 +61,12 @@
       </div>
       <div>
 
-        <app-christian-life-parts (selectedSpeech)="emitSpeechSelected($event)"></app-christian-life-parts>
+        <app-christian-life-parts></app-christian-life-parts>
       </div>
     </div>
   </li>
 </div>
 
 </ul>
-<app-finish (selectedSpeech)="emitSpeechSelected($event)"></app-finish>
+<app-finish></app-finish>
 </div>

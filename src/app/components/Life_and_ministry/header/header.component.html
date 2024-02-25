@@ -26,8 +26,8 @@
   <div class="flex pt-14 pb-10">
     <h2 class="main-title-page rounded-2xl flex-1">
       <div class="m-auto text-3xl">
-        <p class="title">{{selectedSpeech?.title}}</p>
-        <p class="duration">{{selectedSpeech?.duration}}</p>
+        <p class="title">{{ (selectedSpeech$ | async)?.title }}</p>
+        <p class="duration">({{ (selectedSpeech$ | async)?.duration }} min)</p>
       </div>
     </h2>
   </div>

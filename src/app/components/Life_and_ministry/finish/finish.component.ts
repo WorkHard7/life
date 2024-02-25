@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {Events} from "../../../model/events";
+import {SelectedSpeechService} from "../../../services/selected-speech.service";
 
 @Component({
   selector: 'app-finish',
@@ -8,8 +9,6 @@ import {Events} from "../../../model/events";
   styleUrls: ['./finish.component.scss']
 })
 export class FinishComponent implements OnInit {
-  @Output() selectedSpeech: EventEmitter<Events> = new EventEmitter<Events>();
-
   redColorText: boolean = false;
   finishPart: Events = {
     title: 'Cuvinte de încheiere, anunțuri',
@@ -19,7 +18,10 @@ export class FinishComponent implements OnInit {
     duration: 6
   };
 
-  constructor(public countdownService: CountdownService) {
+  constructor(
+    public countdownService: CountdownService,
+    private selectedSpeechService: SelectedSpeechService
+  ) {
   }
 
   ngOnInit(): void {
@@ -28,7 +30,8 @@ export class FinishComponent implements OnInit {
     })
   }
 
-  emitFinish() {
-    this.selectedSpeech.emit(this.finishPart);
+  updateSelectedSpeech(finishPart: Events) {
+    this.selectedSpeechService.updateSelectedSpeech(finishPart);
+
   }
 }

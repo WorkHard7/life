@@ -3,7 +3,7 @@
     <span class="text-white flex-1 font-bold">{{finishPart.title}}</span>
     <app-start-btn-intro-finish
       [finishPart]="finishPart"
-      (finishPartEmitted)="emitFinish()"
+      (finishPartEmitted)="updateSelectedSpeech($event)"
     ></app-start-btn-intro-finish>
   </div>
 </div>

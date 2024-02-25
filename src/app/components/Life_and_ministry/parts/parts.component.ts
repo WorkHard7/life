@@ -1,9 +1,10 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {PartsService} from "../../../services/parts.service";
 import Swal from "sweetalert2";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 import {Events} from "../../../model/events";
+import {SelectedSpeechService} from "../../../services/selected-speech.service";
 
 @Component({
   selector: 'app-parts',
@@ -11,7 +12,6 @@ import {Events} from "../../../model/events";
   styleUrls: ['./parts.component.scss']
 })
 export class PartsComponent implements OnInit {
-  @Output() selectedSpeech: EventEmitter<Events> = new EventEmitter<Events>();
   gems!: any[];
   redColorText: boolean = false;
   preachingParts!: any[];
@@ -27,7 +27,8 @@ export class PartsComponent implements OnInit {
   constructor(
     private countdownService: CountdownService,
     private countdownAllocatedTimeService: CountdownAllocatedTimeService,
-    private partsService: PartsService
+    private partsService: PartsService,
+    private selectedSpeechService: SelectedSpeechService
   ) {
   }
 
@@ -53,7 +54,7 @@ export class PartsComponent implements OnInit {
     this.countdownService.compareAxisOfTime(gem);
 
     this.fireLoadingAlert();
-    this.emitSpeechSelected(gem);
+    this.updateSelectedSpeech(gem);
 
     const currentTime = new Date();
     const endAllocatedTime = new Date(currentTime.getTime() + gem['duration'] * 60000);
@@ -75,7 +76,7 @@ export class PartsComponent implements OnInit {
     });
   }
 
-  emitSpeechSelected(selectedSpeech: Events) {
-    this.selectedSpeech.emit(selectedSpeech);
+  updateSelectedSpeech(selectedSpeech: Events) {
+    this.selectedSpeechService.updateSelectedSpeech(selectedSpeech);
   }
 }

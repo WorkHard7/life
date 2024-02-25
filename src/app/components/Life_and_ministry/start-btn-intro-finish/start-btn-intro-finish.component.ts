@@ -3,7 +3,6 @@ import Swal from "sweetalert2";
 import {HeaderService} from "../../../services/header.service";
 import {Events} from "../../../model/events";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
-import {CountdownService} from "../../../services/countdown.service";
 
 @Component({
   selector: 'app-start-btn-intro-finish',
@@ -17,19 +16,12 @@ export class StartBtnIntroFinishComponent {
   @Input() finishPart?: Events;
 
   constructor(
-    private countdownService: CountdownService,
     private CountdownAllocatedTimeService: CountdownAllocatedTimeService,
     private headerService: HeaderService
   ) {
   }
 
   startTimer() {
-    if (this.introPart) {
-      this.countdownService.compareAxisOfTime(this.introPart);
-    } else if (this.finishPart) {
-      this.countdownService.compareAxisOfTime(this.finishPart);
-    }
-
     this.fireLoadingAlert();
 
     const endTime = new Date();

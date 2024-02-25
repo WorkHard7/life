@@ -48,17 +48,4 @@ export class LifeAndMinistryComponent implements OnInit, AfterViewInit {
 
     console.log(this.parts)
   }
-
-  extractTimingFromTitle(selectedSpeech: Events): void {
-    const timingStartIndex = selectedSpeech.title.indexOf("(") - 1;
-    const titleStartIndex = 0;
-
-    // in case the title does not contain "("
-    if (timingStartIndex >= 0) {
-      this.selectedSpeech.title = selectedSpeech.title.substring(titleStartIndex, timingStartIndex);
-    } else {
-      this.selectedSpeech.title = selectedSpeech.title;
-    }
-    this.selectedSpeech.duration = `(${selectedSpeech.duration.toFixed()} min)`;
-  }
 }
