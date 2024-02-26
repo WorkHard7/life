@@ -3,8 +3,8 @@
   <div class="main-container-curr-time text-center m-auto">
     <h1 class="text-white text-2xl">
       <fa-icon [icon]="faClock"></fa-icon>
-      Ora curentă: <span class="text-4xl">{{ localTime | date: 'HH:mm'}}</span>
-      <span style="font-size: 1rem">{{ localTime | date: '.ss'}}</span>
+      Ora curentă: <span class="hours-minutes">{{ localTime | date: 'HH:mm'}}</span>
+      <span class="seconds">{{ localTime | date: '.ss'}}</span>
     </h1>
   </div>
 

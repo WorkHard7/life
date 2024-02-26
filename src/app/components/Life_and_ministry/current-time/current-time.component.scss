@@ -1,1 +1,39 @@
+@media screen and (max-width: 370px) {
+  .main-container-curr-time {
+    h1 {
+      font-size: 1.2rem;
+    }
 
+    .hours-minutes {
+      font-size: 1.8rem;
+    }
+
+    .seconds {
+      font-size: .8rem;
+    }
+  }
+}
+
+@media screen and (max-width: 530px) and (min-width: 371px) {
+  .main-container-curr-time {
+    h1 {
+      font-size: 1.3rem;
+    }
+
+    .hours-minutes {
+      font-size: 2rem;
+    }
+
+    .seconds {
+      font-size: .9rem;
+    }
+  }
+}
+
+.seconds {
+  font-size: 1rem;
+}
+
+.hours-minutes {
+  font-size: 2.25rem;
+}
