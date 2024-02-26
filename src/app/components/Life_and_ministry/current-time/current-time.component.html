@@ -24,7 +24,9 @@
         </fa-icon>
       </button>
 
-      <button class="start-next-speech">
+      <button
+        *ngIf="!headerService.showHeader && !watchtowerStarted && !publicTalk"
+        class="start-next-speech">
         <span>
           <span>Start</span>
           <span style="font-size: .7rem;">următoarea temă</span>
