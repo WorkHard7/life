@@ -12,10 +12,6 @@ import {CountdownAllocatedTimeService} from "../../services/countdown-allocated-
 })
 export class LifeAndMinistryComponent implements OnInit, AfterViewInit {
   title = 'Viața creștină și predicarea';
-  selectedSpeech: any = {
-    title: '',
-    duration: 0
-  }
   parts!: Events[];
   redColorText: boolean = false;
 

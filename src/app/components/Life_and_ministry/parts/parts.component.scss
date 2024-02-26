@@ -1,3 +1,29 @@
+.main-container-gems {
+  display: flex;
+  align-items: center;
+  width: auto;
+
+  span {
+    color: #86BFCA;
+    flex: 1;
+  }
+}
+
+.gems-main-title {
+  flex: 1;
+  font-weight: bold;
+}
+
+.preaching-main-title {
+  flex: 1;
+  color: #FFCD5C;
+}
+
+.life-main-title {
+  flex: 1;
+  color: #D27674;
+}
+
 @media screen and (max-width: 400px) {
   .gems-main-title,
   .preaching-main-title,

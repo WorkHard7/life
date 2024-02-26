@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PartsService} from "../../../services/parts.service";
 import Swal from "sweetalert2";
-import {CountdownService} from "../../../services/countdown.service";
 import {Events} from "../../../model/events";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
@@ -16,7 +15,6 @@ export class PreachingPartsComponent implements OnInit {
 
   constructor(
     private partsService: PartsService,
-    private countdownService: CountdownService,
     private countdownAllocatedTimeService: CountdownAllocatedTimeService,
     private selectedSpeechService: SelectedSpeechService
   ) {
@@ -35,8 +33,6 @@ export class PreachingPartsComponent implements OnInit {
   }
 
   setTime(preachingPart: any): void {
-    this.countdownService.compareAxisOfTime(preachingPart);
-
     this.fireLoadingAlert();
     this.updateSelectedSpeech(preachingPart);
 

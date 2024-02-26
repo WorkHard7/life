@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {faClock} from "@fortawesome/free-solid-svg-icons";
-import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
+import {faArrowLeft, faClock} from "@fortawesome/free-solid-svg-icons";
 import {Router} from "@angular/router";
 import {CountdownService} from "../../../services/countdown.service";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
@@ -48,8 +47,7 @@ export class CurrentTimeComponent implements OnInit {
       this.router.navigate(['/watchtower']);
     } else if (this.publicTalk) {
       this.router.navigate(['/public_talk']);
-    }
-    else {
+    } else {
       this.router.navigate(['/life_and_ministry']);
     }
   }

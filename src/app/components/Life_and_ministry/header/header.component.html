@@ -1,7 +1,7 @@
 <!--the header for life and ministry main page-->
 <ng-container *ngIf="headerService.showHeader">
   <div class="main-container-header flex">
-    <h2 class="main-title-page rounded-2xl flex-1 bg-gray-500">
+    <h2 class="main-title-page bg-gray-500">
       <button
         (click)="goHome()"
         class="icon-circle flex justify-center items-center ml-1">
@@ -23,11 +23,10 @@
 <ng-container *ngIf="!headerService.showHeader">
   <app-current-time></app-current-time>
 
-  <div class="flex pt-14 pb-10">
-    <h2 class="main-title-page rounded-2xl flex-1">
-      <div class="m-auto text-3xl">
+  <div class="flex">
+    <h2 class="main-title-page">
+      <div class="m-auto text-3xl mb-6">
         <p class="title">{{ (selectedSpeech$ | async)?.title }}</p>
-        <p class="duration">({{ (selectedSpeech$ | async)?.duration }} min)</p>
       </div>
     </h2>
   </div>

@@ -2,9 +2,8 @@
   <ul class="list-none">
     <ng-container *ngFor="let part of preachingParts">
 
-      <div class="main-container-preaching rounded-2xl border-2 mt-3 flex flex-row items-center justify-between p-2"
-           style="border-color: #FFCD5C">
-        <span class="font-bold" style="color: #FFCD5C">{{ part.title }}</span>
+      <div class="main-container-preaching mt-3 p-2">
+        <span>{{ part.title }}</span>
 
         <div class="flex items-center">
           <app-edit-btn [preachingPartToBeEdited]=part></app-edit-btn>

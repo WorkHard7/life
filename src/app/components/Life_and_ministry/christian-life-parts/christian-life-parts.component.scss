@@ -1,3 +1,20 @@
+.main-container-ch-life {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5rem;
+  margin-top: .75rem;
+  border-color: #D27674;
+  border-radius: 1rem;
+  border-width: 2px;
+
+  span {
+    color: #D27674;
+    font-weight: bold;
+  }
+}
+
 @media screen and (max-width: 400px) {
   .main-container-ch-life {
     span {

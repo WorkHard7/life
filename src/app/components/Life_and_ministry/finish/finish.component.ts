@@ -32,6 +32,5 @@ export class FinishComponent implements OnInit {
 
   updateSelectedSpeech(finishPart: Events) {
     this.selectedSpeechService.updateSelectedSpeech(finishPart);
-
   }
 }

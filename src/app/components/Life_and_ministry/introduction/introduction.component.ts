@@ -32,6 +32,5 @@ export class IntroductionComponent implements OnInit {
 
   updateSelectedSpeech(introPart: Events) {
     this.selectedSpeechService.updateSelectedSpeech(introPart);
-
   }
 }

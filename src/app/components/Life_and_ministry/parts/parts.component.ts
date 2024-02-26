@@ -51,8 +51,6 @@ export class PartsComponent implements OnInit {
   }
 
   setTime(gem: any): void {
-    this.countdownService.compareAxisOfTime(gem);
-
     this.fireLoadingAlert();
     this.updateSelectedSpeech(gem);
 

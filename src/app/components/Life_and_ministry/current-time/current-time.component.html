@@ -1,9 +1,9 @@
 <ng-container *ngIf="headerService.showHeader && !watchtowerStarted && !publicTalk">
 
-  <div class="main-container-curr-time text-center m-auto">
-    <h1 class="text-white text-2xl">
+  <div class="main-container-curr-time">
+    <h1>
       <fa-icon [icon]="faClock"></fa-icon>
-      Ora curentă: <span class="hours-minutes">{{ localTime | date: 'HH:mm'}}</span>
+      <span class="hours-minutes">{{ localTime | date: 'HH:mm'}}</span>
       <span class="seconds">{{ localTime | date: '.ss'}}</span>
     </h1>
   </div>
@@ -11,23 +11,32 @@
 </ng-container>
 
 <ng-container *ngIf="!headerService.showHeader || watchtowerStarted || publicTalk">
-  <div class="flex mb-4">
+  <div class="mb-4">
 
-    <button
-      (click)="returnBack()"
-      class="icon-circle flex justify-center items-center">
-      <fa-icon
-        title="Back"
-        class="arrow-left text-white text-xl"
-        [icon]="faArrowLeft">
-      </fa-icon>
-    </button>
+    <div class="flex justify-between items-center">
+      <button
+        (click)="returnBack()"
+        class="icon-circle flex justify-center items-center">
+        <fa-icon
+          title="Back"
+          class="arrow-left text-white text-xl"
+          [icon]="faArrowLeft">
+        </fa-icon>
+      </button>
 
-    <div class="text-center m-auto">
-      <h1 class="text-white text-2xl">
+      <button class="start-next-speech">
+        <span>
+          <span>Start</span>
+          <span style="font-size: .7rem;">următoarea temă</span>
+        </span>
+      </button>
+    </div>
+
+    <div class="main-container-curr-time">
+      <h1>
         <fa-icon [icon]="faClock"></fa-icon>
-        Ora curentă: <span class="text-4xl">{{ localTime | date: 'HH:mm'}}</span>
-        <span style="font-size: 1rem">{{ localTime | date: '.ss'}}</span>
+        <span class="hours-minutes">{{ localTime | date: 'HH:mm'}}</span>
+        <span class="seconds">{{ localTime | date: '.ss'}}</span>
       </h1>
     </div>
 

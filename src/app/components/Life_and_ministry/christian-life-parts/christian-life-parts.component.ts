@@ -3,7 +3,6 @@ import {PartsService} from "../../../services/parts.service";
 import Swal from "sweetalert2";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 import {Events} from "../../../model/events";
-import {CountdownService} from "../../../services/countdown.service";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
 
 @Component({
@@ -16,7 +15,6 @@ export class ChristianLifePartsComponent implements OnInit {
 
   constructor(
     private partsService: PartsService,
-    private countdownService: CountdownService,
     private countdownAllocatedTimeService: CountdownAllocatedTimeService,
     private selectedSpeechService: SelectedSpeechService
   ) {
@@ -29,8 +27,6 @@ export class ChristianLifePartsComponent implements OnInit {
   }
 
   setTime(christianPart: any): void {
-    this.countdownService.compareAxisOfTime(christianPart);
-
     this.fireLoadingAlert();
     this.updateSelectedSpeech(christianPart);
 

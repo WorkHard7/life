@@ -6,7 +6,7 @@
       <li>
         <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #3C7F8B">
           <div class="flex items-center">
-            <span class="gems-main-title flex-1 font-bold"
+            <span class="gems-main-title"
                   style="color: #86BFCA">COMORI DIN CUVÂNTUL LUI DUMNEZEU</span>
           </div>
           <div>
@@ -16,8 +16,8 @@
                    class="rounded-2xl mt-3 text-white border-2 flex flex-col p-2"
                    style="border-color: #86BFCA">
       <li>
-        <div class="main-container-gems w-full flex">
-          <span class="flex-1" style="color: #86BFCA">{{ gem.title }}</span>
+        <div class="main-container-gems">
+          <span>{{ gem.title }}</span>
 
           <app-start-btn (click)="setTime(gem)"></app-start-btn>
         </div>
@@ -34,7 +34,7 @@
   <li>
     <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #D68F00">
       <div class="flex items-center">
-        <span class="preaching-main-title flex-1" style="color: #FFCD5C">SĂ FIM MAI EFICIENȚI ÎN PREDICARE</span>
+        <span class="preaching-main-title">SĂ FIM MAI EFICIENȚI ÎN PREDICARE</span>
 
         <app-start-btn (click)="setTime(this.alternativePreachingParts)"></app-start-btn>
         <!--        <app-add-custom-speech [preaching]="true"></app-add-custom-speech>-->
@@ -51,7 +51,7 @@
   <li>
     <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #BF2F13">
       <div class="flex items-center">
-        <span class="life-main-title flex-1" style="color: #D27674;">VIAȚA DE CREȘTIN</span>
+        <span class="life-main-title">VIAȚA DE CREȘTIN</span>
 
         <ng-container *ngIf="christianLifeParts.length > 0">
           <app-reset-speeches [christianLife]="true"></app-reset-speeches>

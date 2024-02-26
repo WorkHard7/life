@@ -4,7 +4,6 @@ import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {Router} from "@angular/router";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
-import {map, Observable, tap} from "rxjs";
 
 @Component({
   selector: 'app-remaining-time',
@@ -41,14 +40,5 @@ export class RemainingTimeComponent implements OnInit {
 
   checkIfNegativeTime(): boolean {
     return this.countdownService.diffTime.sign.includes('-');
-  }
-
-  introOrFinishSelected(): Observable<boolean> {
-    return this.selectedSpeechService.selectedSpeech$.pipe(
-      map(selectedSpeech =>
-        selectedSpeech?.title === 'Cântare, rugăciune | Cuvinte introductive'
-        || selectedSpeech?.title === 'Cuvinte de încheiere, anunțuri'
-      )
-    );
   }
 }

@@ -1,3 +1,41 @@
+.main-container-curr-time {
+  text-align: center;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 1.7rem;
+    color: white;
+
+    fa-icon {
+      margin-right: 1.25rem;
+    }
+  }
+}
+
+.seconds {
+  font-size: 1.3rem;
+}
+
+.hours-minutes {
+  font-size: 2.25rem;
+}
+
+.start-next-speech {
+  width: 5rem;
+  height: 5rem;
+  font-size: .9rem;
+  background-color: #042B6B;
+  color: white;
+  line-height: .8rem;
+  clip-path: polygon(0% 20%, 60% 20%, 60% 11%, 100% 50%, 61% 89%, 60% 80%, 0% 80%);
+
+  span {
+    display: flex;
+    flex-direction: column;
+    margin-right: .3rem;
+  }
+}
+
 @media screen and (max-width: 370px) {
   .main-container-curr-time {
     h1 {
@@ -28,12 +66,4 @@
       font-size: .9rem;
     }
   }
-}
-
-.seconds {
-  font-size: 1rem;
-}
-
-.hours-minutes {
-  font-size: 2.25rem;
 }

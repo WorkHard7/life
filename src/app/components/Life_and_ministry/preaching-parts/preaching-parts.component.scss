@@ -1,3 +1,18 @@
+.main-container-preaching {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 1rem;
+  border-width: 2px;
+  border-color: #FFCD5C;
+
+  span {
+    font-weight: bold;
+    color: #FFCD5C
+  }
+}
+
 @media screen and (max-width: 400px) {
   .main-container-preaching {
     span {

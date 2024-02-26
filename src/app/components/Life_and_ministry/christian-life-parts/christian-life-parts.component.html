@@ -2,9 +2,8 @@
   <ul class="list-none">
     <ng-container *ngFor="let part of christianLifeParts">
 
-      <div class="main-container-ch-life rounded-2xl border-2 mt-3 flex flex-row items-center justify-between p-2"
-           style="border-color: #D27674">
-        <span class="font-bold" style="color: #D27674">{{ part.title }}</span>
+      <div class="main-container-ch-life">
+        <span>{{ part.title }}</span>
 
         <div class="flex items-center">
           <app-edit-btn [christianLifePartToBeEdited]=part></app-edit-btn>
