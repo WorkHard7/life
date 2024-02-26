@@ -18,8 +18,9 @@
         <p>La începutul temei tale</p>
         <p>aveam rezervă de</p>
         <span class="text-4xl">
-        {{countdownService.diffTime.minutes}}.{{countdownService.diffTime.seconds}}
-      </span>
+        {{countdownService.diffTime.minutes}}.</span><span
+        style="font-size: 1rem">{{countdownService.diffTime.seconds.toString().padStart(2, '0')}}
+        </span>
       </div>
 
       <ng-template #nextBlock>
@@ -29,9 +30,9 @@
           <p>La începutul temei tale</p>
           <p>eram în întâziere cu</p>
           <span class="text-4xl">
-           {{countdownService.diffTime.sign}}{{countdownService.diffTime.minutes}}.<span
-            style="font-size: 1rem">{{countdownService.diffTime.seconds.toString().padStart(2, '0')}}</span>
-        </span>
+           {{countdownService.diffTime.sign}}{{countdownService.diffTime.minutes}}.</span><span
+          style="font-size: 1rem">{{countdownService.diffTime.seconds.toString().padStart(2, '0')}}
+          </span>
         </div>
       </ng-template>
     </section>
