@@ -20,7 +20,7 @@
 
     <div
       class="mt-8"
-      [style.color]="countdownAllocatedTimeService.remainingAllocatedTime <= 0 ? '#f3b8b8' : '#ffffff'">
+      [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#ffffff'">
 
       <div style="line-height: 2rem;">
         <p>timp rămas</p>
@@ -28,10 +28,10 @@
       </div>
 
       <div style="padding-top: .3rem">
-        <span>{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.sign}}</span>
+        <span>{{countdownService.showNegativeRemainingTime.sign}}</span>
         <span
-          class="remaining-minutes">{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.minutes}}</span><span
-        style="font-size: 1.3rem">.{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.seconds}}</span>
+          class="remaining-minutes">{{countdownService.showNegativeRemainingTime.minutes}}</span><span
+        style="font-size: 1.3rem">.{{countdownService.showNegativeRemainingTime.seconds}}</span>
       </div>
 
     </div>

@@ -3,6 +3,8 @@ import Swal from "sweetalert2";
 import {HeaderService} from "../../../services/header.service";
 import {Events} from "../../../model/events";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
+import {CountdownService} from "../../../services/countdown.service";
+import {SelectedSpeechService} from "../../../services/selected-speech.service";
 
 @Component({
   selector: 'app-start-btn-intro-finish',
@@ -16,8 +18,10 @@ export class StartBtnIntroFinishComponent {
   @Input() finishPart?: Events;
 
   constructor(
-    private CountdownAllocatedTimeService: CountdownAllocatedTimeService,
-    private headerService: HeaderService
+    private countdownService: CountdownService,
+    private countdownAllocatedTimeService: CountdownAllocatedTimeService,
+    private headerService: HeaderService,
+    private selectedSpeechService: SelectedSpeechService
   ) {
   }
 
@@ -26,8 +30,6 @@ export class StartBtnIntroFinishComponent {
 
     const endTime = new Date();
     this.findEndingTime(endTime);
-
-    this.CountdownAllocatedTimeService.startCountdownForAllocatedTime(endTime);
   }
 
   private fireLoadingAlert() {
@@ -48,10 +50,23 @@ export class StartBtnIntroFinishComponent {
     if (this.introPart) {
       endTime.setHours(this.introPart.hours, this.introPart.minutes, this.introPart.minutes); // 19:05:15
       this.introPartEmitted.emit(this.introPart);
+
+      this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endTime);
+      this.countdownService.startCountdown(endTime);
     } else if (this.finishPart) {
       endTime.setHours(this.finishPart.hours, this.finishPart.minutes, this.finishPart.minutes); // 20:42:00
       this.finishPartEmitted.emit(this.finishPart);
+
+      const currentTime = new Date();
+      const endAllocatedTime = new Date(currentTime.getTime() + this.finishPart['duration'] * 60000);
+
+      this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endAllocatedTime);
+      this.countdownService.startCountdown(endTime);
     }
+  }
+
+  updateSelectedSpeech(selectedSpeech: Events) {
+    this.selectedSpeechService.updateSelectedSpeech(selectedSpeech);
   }
 
   hideHeader() {

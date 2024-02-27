@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 import {Events} from "../../../model/events";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
+import {CountdownService} from "../../../services/countdown.service";
 
 @Component({
   selector: 'app-christian-life-parts',
@@ -15,6 +16,7 @@ export class ChristianLifePartsComponent implements OnInit {
 
   constructor(
     private partsService: PartsService,
+    private countdownService: CountdownService,
     private countdownAllocatedTimeService: CountdownAllocatedTimeService,
     private selectedSpeechService: SelectedSpeechService
   ) {
@@ -30,10 +32,14 @@ export class ChristianLifePartsComponent implements OnInit {
     this.fireLoadingAlert();
     this.updateSelectedSpeech(christianPart);
 
+    const endTime = new Date();
+    endTime.setHours(christianPart['hours'], christianPart['minutes'], 0, 0);
+
     const currentTime = new Date();
     const endAllocatedTime = new Date(currentTime.getTime() + christianPart['duration'] * 60000);
 
     this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endAllocatedTime);
+    this.countdownService.startCountdown(endTime);
   }
 
   private fireLoadingAlert() {

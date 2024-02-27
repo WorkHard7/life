@@ -54,10 +54,14 @@ export class PartsComponent implements OnInit {
     this.fireLoadingAlert();
     this.updateSelectedSpeech(gem);
 
+    const endTime = new Date();
+    endTime.setHours(gem['hours'], gem['minutes'], 0, 0);
+
     const currentTime = new Date();
     const endAllocatedTime = new Date(currentTime.getTime() + gem['duration'] * 60000);
 
     this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endAllocatedTime);
+    this.countdownService.startCountdown(endTime);
   }
 
   private fireLoadingAlert() {

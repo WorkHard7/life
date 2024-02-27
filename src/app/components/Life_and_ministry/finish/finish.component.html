@@ -8,9 +8,7 @@
   </div>
 </div>
 
-<ng-container *ngIf="countdownService.isTimerRunning || redColorText">
-  <app-remaining-time
-    [finish]=true
-  ></app-remaining-time>
+<ng-container *ngIf="countdownService.isTimerRunning">
+  <app-remaining-time></app-remaining-time>
 </ng-container>
 
