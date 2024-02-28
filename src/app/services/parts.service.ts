@@ -212,7 +212,7 @@ export class PartsService {
         }
       },
       showCancelButton: true,
-      confirmButtonText: 'Editează',
+      confirmButtonText: 'Setează',
       cancelButtonText: 'Anulează',
       showLoaderOnConfirm: true,
       preConfirm: () => {
@@ -224,7 +224,7 @@ export class PartsService {
         if (!title || !hours || !minutes || !duration) {
           Swal.showValidationMessage('Completează toate câmpurile');
         }
-        return {title: title, hours: hours, minutes: minutes, duration: Number(duration + '.02')};
+        return {title: title, hours: hours, minutes: minutes, duration: Number(duration)};
       }
     }).then((result: any) => {
       if (result.isConfirmed) {
