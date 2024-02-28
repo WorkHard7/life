@@ -8,7 +8,6 @@ import {CountdownService} from "../../../services/countdown.service";
 })
 export class RemainingTimePublicTalkComponent {
 
-
   constructor(public countdownService: CountdownService) {
   }
 }

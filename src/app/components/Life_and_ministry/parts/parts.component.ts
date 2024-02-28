@@ -21,7 +21,7 @@ export class PartsComponent implements OnInit {
     hours: 19,
     minutes: 47,
     seconds: 30,
-    duration: 16.02
+    duration: 16
   }
 
   constructor(

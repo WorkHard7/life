@@ -36,7 +36,7 @@ export class StartBtnPublicTalkComponent {
     this.fireLoadingAlert();
 
     const currentTime = new Date();
-    const endTime = new Date(currentTime.getTime() + 30.02 * 60000); // Adding 30 minutes to current time
+    const endTime = new Date(currentTime.getTime() + 30 * 60000); // Adding 30 minutes to current time
 
     this.countdownService.startCountdown(endTime);
   }

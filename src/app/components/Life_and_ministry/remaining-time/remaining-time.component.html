@@ -19,6 +19,7 @@
     </div>
 
     <div
+      *ngIf="updateRemainingTimeIfNecessary()"
       class="mt-8"
       [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#ffffff'">
 

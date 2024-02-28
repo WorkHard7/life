@@ -41,4 +41,13 @@ export class RemainingTimeComponent implements OnInit {
   checkIfNegativeTime(): boolean {
     return this.countdownService.diffTime.sign.includes('-');
   }
+
+  updateRemainingTimeIfNecessary(): boolean {
+    if (this.countdownService.remainingTime > this.countdownAllocatedTimeService.remainingAllocatedTime) {
+      this.countdownService.remainingTime = this.countdownAllocatedTimeService.remainingAllocatedTime + 1;
+      console.log('countdownService remainingTime is bigger than countdownAllocatedTimeService');
+    }
+
+    return true;
+  }
 }

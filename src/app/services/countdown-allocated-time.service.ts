@@ -29,7 +29,6 @@ export class CountdownAllocatedTimeService {
     this.remainingAllocatedTime = (Math.floor(timeDiff / 1000));
 
     this.allocatedIntervalId = setInterval(() => {
-      this.remainingAllocatedTime--;
 
       console.log('remainingAllocateTime', this.remainingAllocatedTime);
 
@@ -39,6 +38,8 @@ export class CountdownAllocatedTimeService {
 
       this.showNegativeAllocatedRemainingTime = this.formatNegativeNumberForAllocatedTime();
       console.log('remainingAllocatedTime Object', this.showNegativeAllocatedRemainingTime);
+
+      this.remainingAllocatedTime--;
     }, 1000);
   }
 

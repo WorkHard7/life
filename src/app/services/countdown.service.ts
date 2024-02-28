@@ -67,7 +67,6 @@ export class CountdownService {
     this.remainingTime = (Math.floor(timeDiff / 1000));
 
     this.intervalId = setInterval(() => {
-      this.remainingTime--;
 
       console.log('remainingTime in second', this.remainingTime);
 
@@ -77,6 +76,8 @@ export class CountdownService {
 
       this.showNegativeRemainingTime = this.formatNegativeNumber();
       console.log('remaining time Object', this.showNegativeRemainingTime);
+
+      this.remainingTime--;
     }, 1000);
   }
 

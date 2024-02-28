@@ -6,21 +6,21 @@ export const GEMS: Events[] = [
     hours: 19,
     minutes: 16,
     seconds: 0,
-    duration: 10.02
+    duration: 10
   },
   {
     title: 'Nestemate spirituale (19:16 - 19:26)',
     hours: 19,
     minutes: 26,
     seconds: 0,
-    duration: 10.02
+    duration: 10
   },
   {
     title: 'Citirea Bibliei (4 min)',
     hours: 19,
     minutes: 30,
     seconds: 0,
-    duration: 4.02
+    duration: 4
   }
 ]
 
@@ -32,20 +32,20 @@ export const CHRISTIAN_LIFE: Events[] = [
     hours: 20,
     minutes: '0' + 1,
     seconds: 0,
-    duration: 10.02
+    duration: 10
   },
   {
     title: 'Tema B (20:01 - 20:06)',
     hours: 20,
     minutes: '0' + 6,
     seconds: 0,
-    duration: 5.02
+    duration: 5
   },
   {
     title: 'Studiul Bibliei (20:06 - 20:36)',
     hours: 20,
     minutes: 36,
     seconds: 0,
-    duration: 30.02
+    duration: 30
   }
 ]
