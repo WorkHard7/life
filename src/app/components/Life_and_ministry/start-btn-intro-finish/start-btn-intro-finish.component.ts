@@ -57,7 +57,6 @@ export class StartBtnIntroFinishComponent {
       endTime.setHours(this.finishPart.hours, this.finishPart.minutes, this.finishPart.minutes); // 20:42:00
       this.finishPartEmitted.emit(this.finishPart);
 
-      this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endTime);
       this.countdownService.startCountdown(endTime);
     }
   }
