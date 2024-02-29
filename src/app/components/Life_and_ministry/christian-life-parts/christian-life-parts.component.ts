@@ -60,8 +60,4 @@ export class ChristianLifePartsComponent implements OnInit {
   private updateSelectedSpeech(selectedSpeech: Events) {
     this.selectedSpeechService.updateSelectedSpeech(selectedSpeech);
   }
-
-  deleteSpeech(title: string): void {
-    this.partsService.findAndDeleteSpeech(title, false, true);
-  }
 }

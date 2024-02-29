@@ -20,8 +20,8 @@ export class PartsComponent implements OnInit {
     title: 'Să fim mai eficienți în predicare',
     hours: 19,
     minutes: 47,
-    seconds: 30,
-    duration: 16
+    seconds: 0,
+    duration: 15
   }
 
   constructor(

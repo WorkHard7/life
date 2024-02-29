@@ -13,9 +13,9 @@ export class IntroductionComponent implements OnInit {
   introPart: Events = {
     title: 'Cântare, rugăciune | Cuvinte introductive',
     hours: 19,
-    minutes: 5,
-    seconds: 15,
-    duration: 5.30
+    minutes: 6,
+    seconds: 0,
+    duration: 6
   };
 
   constructor(

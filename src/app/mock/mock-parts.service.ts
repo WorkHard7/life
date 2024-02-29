@@ -2,23 +2,23 @@ import {Events} from "../model/events";
 
 export const GEMS: Events[] = [
   {
-    title: 'Comori din Cuvântul lui Dumnezeu (19:06 - 19:16)',
+    title: 'Comori din Cuvântul lui Dumnezeu',
     hours: 19,
     minutes: 16,
-    seconds: 0,
+    seconds: 10,
     duration: 10
   },
   {
-    title: 'Nestemate spirituale (19:16 - 19:26)',
+    title: 'Nestemate spirituale',
     hours: 19,
     minutes: 26,
-    seconds: 0,
+    seconds: 30,
     duration: 10
   },
   {
     title: 'Citirea Bibliei (4 min)',
     hours: 19,
-    minutes: 30,
+    minutes: 31,
     seconds: 0,
     duration: 4
   }
@@ -28,24 +28,17 @@ export const PREACHING: Events[] = []
 
 export const CHRISTIAN_LIFE: Events[] = [
   {
-    title: 'Tema A (19:51 - 20:01)',
-    hours: 20,
-    minutes: '0' + 1,
-    seconds: 0,
-    duration: 10
-  },
-  {
-    title: 'Tema B (20:01 - 20:06)',
+    title: 'Tema A',
     hours: 20,
     minutes: '0' + 6,
     seconds: 0,
-    duration: 5
+    duration: 15
   },
   {
-    title: 'Studiul Bibliei (20:06 - 20:36)',
+    title: 'Studiul Bibliei',
     hours: 20,
     minutes: 36,
-    seconds: 0,
+    seconds: 30,
     duration: 30
   }
 ]

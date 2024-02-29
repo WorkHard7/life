@@ -7,8 +7,6 @@
 
         <div class="flex items-center">
           <app-edit-btn [christianLifePartToBeEdited]=part></app-edit-btn>
-          <app-delete-btn *ngIf="part.title !== 'Studiul Bibliei (20:06 - 20:36)'"
-                          (click)="deleteSpeech(part.title)"></app-delete-btn>
           <app-start-btn (click)="setTime(part)"></app-start-btn>
         </div>
       </div>

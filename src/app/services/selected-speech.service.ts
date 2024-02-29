@@ -17,17 +17,6 @@ export class SelectedSpeechService {
   selectedSpeech$: Observable<Events> = this.selectedSpeechSubject.asObservable();
 
   updateSelectedSpeech(selectedSpeech: Events) {
-    this.extractTimingFromTitle(selectedSpeech);
-  }
-
-  private extractTimingFromTitle(selectedSpeech: Events): void {
-    const timingStartIndex = selectedSpeech.title.indexOf("(") - 1;
-    const titleStartIndex = 0;
-
-    // in case the title does not contain "("
-    if (timingStartIndex >= 0) {
-      selectedSpeech.title = selectedSpeech.title.substring(titleStartIndex, timingStartIndex);
-    }
     selectedSpeech.duration = Number(selectedSpeech.duration.toFixed());
 
     this.selectedSpeechSubject.next(selectedSpeech);

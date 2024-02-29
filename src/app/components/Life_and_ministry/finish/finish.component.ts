@@ -13,9 +13,9 @@ export class FinishComponent implements OnInit {
   finishPart: Events = {
     title: 'Cuvinte de încheiere, anunțuri',
     hours: 20,
-    minutes: 42,
-    seconds: 0,
-    duration: 6
+    minutes: 39,
+    seconds: 30,
+    duration: 3
   };
 
   constructor(
