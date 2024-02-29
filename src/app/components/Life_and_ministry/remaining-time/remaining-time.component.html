@@ -1,7 +1,12 @@
 <div class="pt-3 text-2xl text-center">
 
   <div class="remaining-time-title">
-    <div [style.color]="countdownAllocatedTimeService.remainingAllocatedTime <= 0 ? '#f3b8b8' : '#ffffff'">
+    <div
+      [ngStyle]="{
+      'visibility': (selectedSpeechService.selectedSpeech$ | async)?.title === '' +
+       'Cuvinte de încheiere, anunțuri' ? 'hidden' : 'visible',
+       'color': countdownAllocatedTimeService.remainingAllocatedTime <= 0 ? '#f3b8b8' : '#ffffff'
+      }">
 
       <div>
         <p>timp rămas</p>
