@@ -40,6 +40,11 @@ function updateDuration(
   let bStudyDuration: string = '';
 
   switch (duration) {
+    case 2:
+      bStudyHours = '20';
+      bStudyMinutes = '34';
+      bStudyDuration = '2';
+      break;
     case 3:
       bStudyHours = '20';
       bStudyMinutes = '33';
@@ -268,8 +273,6 @@ export class PartsService {
       // in case not Studiul Bibliei was selected
       speech =
         `<input id="swal-input-title" class="swal2-input" placeholder="Titlul temei" value="Tema A">
-        <label for="swal-input-duration">Durata temei</label>
-        <input id="swal-input-duration" class="swal2-input" placeholder="min" type="number" value="15">
         <div id="duration-container">
             <button id="duration-button-5" class="duration-button">5</button>
             <button id="duration-button-7" class="duration-button">7</button>
@@ -277,6 +280,8 @@ export class PartsService {
             <button id="duration-button-10" class="duration-button">10</button>
             <button id="duration-button-15" class="duration-button">15</button>
         </div>
+        <label for="swal-input-duration">Durata temei</label>
+        <input id="swal-input-duration" class="swal2-input" placeholder="min" type="number" value="15" readonly>
         <div id="swal2-main-container">
             <label for="swal-input-hours">Ora finisării</label>
             <input id="swal-input-hours" class="swal2-input" placeholder="ora" type="number" min="2"
@@ -304,6 +309,7 @@ export class PartsService {
       title = 'Scurtarea Studiului Bibliei';
 
       buttonDurations = [
+        {id: 'duration-button-2', duration: 2},
         {id: 'duration-button-3', duration: 3},
         {id: 'duration-button-5', duration: 5},
         {id: 'duration-button-7', duration: 7},
@@ -314,18 +320,19 @@ export class PartsService {
         `<div style="width: 90%; margin: 2rem auto">
             <p>Pentru a aloca mai mult timp anunțurilor,</p>
             <p>indică cu câte minute trebuie scurtat Studiul Bibliei</p>
-        </div>
-         <div>
-            <label for="swal-input-duration-s-bible">Durata de scurtare a temei</label>
-            <input id="swal-input-duration-s-bible" class="swal2-input" placeholder="min" type="number">
-        </div>
-        <div id="duration-container-for-BStudy">
+         </div>
+         <div id="duration-container-for-BStudy">
+            <button id="duration-button-2" class="duration-button">2</button>
             <button id="duration-button-3" class="duration-button">3</button>
             <button id="duration-button-5" class="duration-button">5</button>
             <button id="duration-button-7" class="duration-button">7</button>
             <button id="duration-button-10" class="duration-button">10</button>
-        </div>
-        <div id="swal2-main-container-forBStudy">
+         </div>
+         <div>
+            <label for="swal-input-duration-s-bible">Durata de scurtare a temei</label>
+            <input id="swal-input-duration-s-bible" class="swal2-input" placeholder="min" type="number" readonly>
+         </div>
+         <div id="swal2-main-container-forBStudy">
             <label for="swal-input-hours">Ora finisării</label>
             <input id="swal-input-hours-s-bible" class="swal2-input" placeholder="ora" type="number" min="2"
                 value="20">
@@ -333,7 +340,7 @@ export class PartsService {
                 value="36">
             <input id="swal-input-seconds-s-bible" class="swal2-input" placeholder="sec" type="number" min="0" max="59"
                 value="20">
-        </div>
+         </div>
       `;
     }
 
