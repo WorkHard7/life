@@ -1,6 +1,9 @@
 <div class="main-container-finish w-full rounded-2xl p-2 border-2 font-bold mt-3" style="border-color: white">
   <div class="flex items-center">
-    <span class="text-white flex-1 font-bold">{{finishPart.title}} ({{finishPart.duration}} min)</span>
+    <span class="text-white flex-1 font-bold">
+        <span>{{finishPart.title}}</span>
+        <span class="left-space-duration">({{finishPart.duration}} min.)</span>
+      </span>
     <app-start-btn-intro-finish
       [finishPart]="finishPart"
       (finishPartEmitted)="updateSelectedSpeech($event)"

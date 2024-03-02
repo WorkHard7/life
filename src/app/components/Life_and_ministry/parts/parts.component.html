@@ -17,7 +17,10 @@
                    style="border-color: #86BFCA">
       <li>
         <div class="main-container-gems">
-          <span>{{ gem.title }} ({{ gem.duration }} min)</span>
+          <span>
+            <span>{{ gem.title }}</span>
+            <span class="left-space-duration">({{ gem.duration }} min.)</span>
+          </span>
 
           <app-start-btn (click)="setTime(gem)"></app-start-btn>
         </div>
@@ -35,7 +38,8 @@
     <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #D68F00">
       <div class="flex items-center">
         <span class="preaching-main-title">
-          SĂ FIM MAI EFICIENȚI ÎN PREDICARE ({{alternativePreachingParts.duration}} min)
+          <span>SĂ FIM MAI EFICIENȚI ÎN PREDICARE</span>
+          <span class="left-space-duration">({{alternativePreachingParts.duration}} min.)</span>
         </span>
 
         <app-start-btn (click)="setTime(this.alternativePreachingParts)"></app-start-btn>

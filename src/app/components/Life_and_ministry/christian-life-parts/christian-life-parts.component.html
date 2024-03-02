@@ -3,7 +3,10 @@
     <ng-container *ngFor="let part of christianLifeParts; let first = first; let last = last;">
 
       <div class="main-container-ch-life">
-        <span>{{ part.title }} ({{part.duration}} min)</span>
+        <span>
+          <span>{{ part.title }} </span>
+          <span class="left-space-duration">({{part.duration}} min.)</span>
+        </span>
 
         <div class="flex items-center">
           <app-edit-btn
