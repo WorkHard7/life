@@ -272,7 +272,7 @@ export class PartsService {
 
       // in case not Studiul Bibliei was selected
       speech =
-        `<input id="swal-input-title" class="swal2-input" placeholder="Titlul temei" value="Tema A">
+        `<input id="swal-input-title" class="swal2-input" placeholder="Titlul temei" value="Tema A" readonly>
         <div id="duration-container">
             <button id="duration-button-5" class="duration-button">5</button>
             <button id="duration-button-7" class="duration-button">7</button>
@@ -284,25 +284,25 @@ export class PartsService {
         <input id="swal-input-duration" class="swal2-input" placeholder="min" type="number" value="15" readonly>
         <div id="swal2-main-container">
             <label for="swal-input-hours">Ora finisării</label>
-            <input id="swal-input-hours" class="swal2-input" placeholder="ora" type="number" min="2"
-                value="20">
-            <input id="swal-input-minutes" class="swal2-input" placeholder="min" type="number" min="0" max="59"
-                value="05">
-            <input id="swal-input-seconds" class="swal2-input" placeholder="sec" type="number" min="0" max="59"
-                value="40">
+            <input id="swal-input-hours" class="swal2-input" placeholder="ora" type="number"
+                value="20" readonly>
+            <input id="swal-input-minutes" class="swal2-input" placeholder="min" type="number"
+                value="05" readonly>
+            <input id="swal-input-seconds" class="swal2-input" placeholder="sec" type="number"
+                value="40" readonly>
         </div>
         <div id="line" style="display: none;"></div>
         <div id="speech-B-container" style="display: none;">
             <label for="swal-input-speech-B-title"/>
             <input id="swal-input-speech-B-title" value="Tema B" class="swal2-input" placeholder="Titlul următoarei temei" readonly>
             <label for="swal-input-speech-B-duration">Durata temei</label>
-            <input id="swal-input-speech-B-duration" class="swal2-input" placeholder="min" type="number">
+            <input id="swal-input-speech-B-duration" class="swal2-input" placeholder="min" type="number" readonly>
         </div>
         <div id="speech-B-hours-container" style="display: none;">
             <label for="swal-input-hours-speech-B">Ora finisării</label>
-            <input id="swal-input-hours-speech-B" class="swal2-input" placeholder="ora" type="number" min="2">
-            <input id="swal-input-minutes-speech-B" class="swal2-input" placeholder="min" type="number" min="0" max="59">
-            <input id="swal-input-seconds-speech-B" class="swal2-input" value="0" placeholder="sec" type="number" min="0" max="59"}">
+            <input id="swal-input-hours-speech-B" class="swal2-input" placeholder="ora" type="number" readonly>
+            <input id="swal-input-minutes-speech-B" class="swal2-input" placeholder="min" type="number" readonly>
+            <input id="swal-input-seconds-speech-B" class="swal2-input" value="0" placeholder="sec" type="number" readonly>
         </div>
       `;
     } else if (partToBeEdited.title === 'Studiul Bibliei') {
@@ -334,12 +334,12 @@ export class PartsService {
          </div>
          <div id="swal2-main-container-forBStudy">
             <label for="swal-input-hours">Ora finisării</label>
-            <input id="swal-input-hours-s-bible" class="swal2-input" placeholder="ora" type="number" min="2"
-                value="20">
-            <input id="swal-input-minutes-s-bible" class="swal2-input" placeholder="min" type="number" min="0" max="59"
-                value="36">
-            <input id="swal-input-seconds-s-bible" class="swal2-input" placeholder="sec" type="number" min="0" max="59"
-                value="20">
+            <input id="swal-input-hours-s-bible" class="swal2-input" placeholder="ora" type="number"
+                value="20" readonly>
+            <input id="swal-input-minutes-s-bible" class="swal2-input" placeholder="min" type="number"
+                value="36" readonly>
+            <input id="swal-input-seconds-s-bible" class="swal2-input" placeholder="sec" type="number"
+                value="20" readonly>
          </div>
       `;
     }

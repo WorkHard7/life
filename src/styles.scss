@@ -158,6 +158,28 @@ body {
   margin: 3rem auto;
 }
 
+#duration-container, #duration-container-for-BStudy {
+  .duration-button:nth-child(1) {
+    padding: .5rem 1rem;
+  }
+
+  .duration-button:nth-child(2) {
+    padding: .6rem 1.1rem;
+  }
+
+  .duration-button:nth-child(3) {
+    padding: .7rem 1.2rem;
+  }
+
+  .duration-button:nth-child(4) {
+    padding: .8rem 1.3rem;
+  }
+
+  .duration-button:nth-child(5) {
+    padding: .9rem 1.4rem;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .icon-circle {
     width: 40px;
