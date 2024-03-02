@@ -17,7 +17,7 @@ export class SelectedSpeechService {
   selectedSpeech$: Observable<Events> = this.selectedSpeechSubject.asObservable();
 
   updateSelectedSpeech(selectedSpeech: Events) {
-    selectedSpeech.duration = Number(selectedSpeech.duration.toFixed());
+    selectedSpeech.duration = Number(selectedSpeech.duration);
 
     this.selectedSpeechSubject.next(selectedSpeech);
   }

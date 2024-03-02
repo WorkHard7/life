@@ -42,9 +42,31 @@ body {
   line-height: 3rem;
 }
 
+#swal2-html-container {
+  margin: 0;
+}
+
 // swal section
-#swal2-main-container {
+#swal2-main-container,
+#swal2-main-container-forBStudy {
   display: flex !important;
+  justify-content: center;
+  align-items: baseline;
+}
+
+#swal2-main-container-forBStudy {
+  margin-top: 1.5rem;
+}
+
+#speech-B-container {
+  margin-top: 3rem;
+}
+
+#duration-container-for-BStudy {
+  margin-top: 1rem;
+}
+
+#speech-B-hours-container {
   justify-content: center;
   align-items: baseline;
 }
@@ -54,31 +76,59 @@ body {
   margin: .2rem 0 auto;
 }
 
-#swal-input-minutes, #swal-input-hours, {
+#swal-input-speech-B-title {
+  width: 90%;
+  margin: .625rem 0 auto;
+}
+
+#swal-input-hours,
+#swal-input-minutes,
+#swal-input-seconds,
+#swal-input-hours-speech-B,
+#swal-input-minutes-speech-B,
+#swal-input-seconds-s-bible,
+#swal-input-hours-s-bible,
+#swal-input-minutes-s-bible,
+{
   width: 15%;
   margin-top: .5rem;
   margin-bottom: .2rem;
 }
 
-#swal-input-duration {
+#swal-input-duration,
+#swal-input-speech-B-duration,
+#swal-input-duration-s-bible {
   width: 15%;
   margin-top: .5rem;
   margin-left: .2rem;
   margin-bottom: 0;
 }
 
-#swal-input-hours {
+#swal-input-hours,
+#swal-input-hours-speech-B,
+#swal-input-hours-s-bible {
   margin-right: 0;
   margin-left: .3rem;
 }
 
-#swal-input-minutes {
+#swal-input-minutes,
+#swal-input-seconds,
+#swal-input-seconds-s-bible,
+#swal-input-minutes-s-bible,
+#swal-input-seconds-speech-B,
+#swal-input-minutes-speech-B {
   margin-left: 0;
 }
 
 
 #duration-container {
   margin-top: 10px;
+}
+
+#swal-input-minutes,
+#swal-input-minutes-speech-B,
+#swal-input-minutes-s-bible {
+  margin-right: 0;
 }
 
 .duration-button {
@@ -93,6 +143,17 @@ body {
 
 .duration:hover {
   background-color: #0d6e35;
+}
+
+.swal2-actions {
+  margin-top: 1rem;
+}
+
+#line {
+  width: 90%;
+  height: .3rem;
+  background: #b2b2b2;
+  margin: 3rem auto;
 }
 
 @media screen and (max-width: 500px) {

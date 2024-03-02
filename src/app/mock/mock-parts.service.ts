@@ -30,15 +30,15 @@ export const CHRISTIAN_LIFE: Events[] = [
   {
     title: 'Tema A',
     hours: 20,
-    minutes: '0' + 6,
-    seconds: 0,
+    minutes: '0' + 5,
+    seconds: 40,
     duration: 15
   },
   {
     title: 'Studiul Bibliei',
     hours: 20,
     minutes: 36,
-    seconds: 30,
+    seconds: 20,
     duration: 30
   }
 ]

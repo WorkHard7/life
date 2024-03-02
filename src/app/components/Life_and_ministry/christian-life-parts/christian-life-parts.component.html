@@ -1,12 +1,15 @@
 <div>
   <ul class="list-none">
-    <ng-container *ngFor="let part of christianLifeParts">
+    <ng-container *ngFor="let part of christianLifeParts; let first = first; let last = last;">
 
       <div class="main-container-ch-life">
         <span>{{ part.title }}</span>
 
         <div class="flex items-center">
-          <app-edit-btn [christianLifePartToBeEdited]=part></app-edit-btn>
+          <app-edit-btn
+            *ngIf="first || last"
+            [christianLifePartToBeEdited]=part
+          ></app-edit-btn>
           <app-start-btn (click)="setTime(part)"></app-start-btn>
         </div>
       </div>
