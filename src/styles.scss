@@ -86,6 +86,7 @@ body {
 #swal-input-seconds,
 #swal-input-hours-speech-B,
 #swal-input-minutes-speech-B,
+#swal-input-seconds-speech-B,
 #swal-input-seconds-s-bible,
 #swal-input-hours-s-bible,
 #swal-input-minutes-s-bible,
@@ -120,13 +121,13 @@ body {
   margin-left: 0;
 }
 
-
 #duration-container {
   margin-top: 10px;
 }
 
 #swal-input-minutes,
 #swal-input-minutes-speech-B,
+#swal-input-seconds-speech-B,
 #swal-input-minutes-s-bible {
   margin-right: 0;
 }
