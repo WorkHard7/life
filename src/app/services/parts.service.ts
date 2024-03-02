@@ -16,7 +16,6 @@ function updateDuration(
 
   const speechBContainer = document.getElementById('speech-B-container') as HTMLDivElement;
   const speechBHoursContainer = document.getElementById('speech-B-hours-container') as HTMLDivElement;
-  const speechBTitle = document.getElementById('swal-input-speech-B-title') as HTMLInputElement;
   const speechBHours = document.getElementById('swal-input-hours-speech-B') as HTMLInputElement;
   const speechBMinutes = document.getElementById('swal-input-minutes-speech-B') as HTMLInputElement;
   const speechBDuration = document.getElementById('swal-input-speech-B-duration') as HTMLInputElement;
@@ -95,7 +94,6 @@ function updateDuration(
     BStudyDurationInput.value = bStudyDuration;
   }
 
-
   if (partToBeEdited && partToBeEdited.title != 'Studiul Bibliei' && christianLifeParts?.getValue().length < 3) {
     if ([5, 7, 8, 10].includes(duration)) {
       speechBContainer.style.display = 'flex';
@@ -110,12 +108,6 @@ function updateDuration(
       speechBHoursContainer.style.display = 'none';
       line.style.display = 'none';
     }
-  }
-
-  if (speechBContainer) {
-    speechBTitle.focus();
-  } else if (minutesInput) {
-    minutesInput.focus();
   }
 }
 
@@ -236,25 +228,13 @@ export class PartsService {
     })
   }
 
-  findAndEditPreachingParts(preachingPartToBeEdited: any) {
-    const parts = this.preachingParts.getValue();
-    const partToBeEdited = parts.find((part: any) => part.title === preachingPartToBeEdited.title);
-
-    if (partToBeEdited !== -1) {
-      const findIndex = parts.findIndex((part: any) => part === partToBeEdited);
-      this.editPreachingAndChristianPart(partToBeEdited, findIndex, 'preaching');
-    } else {
-      console.log('preaching part was not found!')
-    }
-  }
-
   findAndEditChristianLifeParts(christianLifePartToBeEdited: any) {
     const parts = this.christianLifeParts.getValue();
     const partToBeEdited = parts.find((part: any) => part.title === christianLifePartToBeEdited.title);
 
     if (partToBeEdited !== -1) {
       const findIndex = parts.findIndex((part: any) => part === partToBeEdited);
-      this.editPreachingAndChristianPart(partToBeEdited, findIndex, 'christianLife');
+      this.editPreachingAndChristianPart(partToBeEdited, findIndex);
     } else {
       console.log('christian life part was not found!')
     }
@@ -262,11 +242,8 @@ export class PartsService {
 
   private editPreachingAndChristianPart(
     partToBeEdited: Events,
-    index: number,
-    preachingOrChristianLife: string
+    index: number
   ) {
-    console.log('partToBeEdited', partToBeEdited);
-
     let speech = '';
     let title = '';
 
@@ -288,12 +265,11 @@ export class PartsService {
         {id: 'duration-button-15', duration: 15}
       ];
 
+      // in case not Studiul Bibliei was selected
       speech =
-        `<input id="swal-input-title" class="swal2-input" placeholder="Titlul temei" autofocus
-                value="${partToBeEdited.title}">
+        `<input id="swal-input-title" class="swal2-input" placeholder="Titlul temei" value="Tema A">
         <label for="swal-input-duration">Durata temei</label>
-        <input id="swal-input-duration" class="swal2-input" placeholder="min" type="number"
-        value="${partToBeEdited.duration}">
+        <input id="swal-input-duration" class="swal2-input" placeholder="min" type="number" value="15">
         <div id="duration-container">
             <button id="duration-button-5" class="duration-button">5</button>
             <button id="duration-button-7" class="duration-button">7</button>
@@ -304,16 +280,16 @@ export class PartsService {
         <div id="swal2-main-container">
             <label for="swal-input-hours">Ora finisării</label>
             <input id="swal-input-hours" class="swal2-input" placeholder="ora" type="number" min="2"
-                value="${partToBeEdited.hours}">
+                value="20">
             <input id="swal-input-minutes" class="swal2-input" placeholder="min" type="number" min="0" max="59"
-                value="${partToBeEdited.minutes}">
+                value="05">
             <input id="swal-input-seconds" class="swal2-input" placeholder="sec" type="number" min="0" max="59"
-                value="${partToBeEdited.seconds}">
+                value="40">
         </div>
         <div id="line" style="display: none;"></div>
         <div id="speech-B-container" style="display: none;">
             <label for="swal-input-speech-B-title"/>
-            <input id="swal-input-speech-B-title" value="Tema B" class="swal2-input" placeholder="Titlul următoarei temei">
+            <input id="swal-input-speech-B-title" value="Tema B" class="swal2-input" placeholder="Titlul următoarei temei" readonly>
             <label for="swal-input-speech-B-duration">Durata temei</label>
             <input id="swal-input-speech-B-duration" class="swal2-input" placeholder="min" type="number">
         </div>
@@ -352,11 +328,11 @@ export class PartsService {
         <div id="swal2-main-container-forBStudy">
             <label for="swal-input-hours">Ora finisării</label>
             <input id="swal-input-hours-s-bible" class="swal2-input" placeholder="ora" type="number" min="2"
-                value="${partToBeEdited.hours}">
+                value="20">
             <input id="swal-input-minutes-s-bible" class="swal2-input" placeholder="min" type="number" min="0" max="59"
-                value="${partToBeEdited.minutes}">
-             <input id="swal-input-seconds-s-bible" class="swal2-input" placeholder="sec" type="number" min="0" max="59"
-                value="${partToBeEdited.seconds}">
+                value="36">
+            <input id="swal-input-seconds-s-bible" class="swal2-input" placeholder="sec" type="number" min="0" max="59"
+                value="20">
         </div>
       `;
     }
@@ -365,7 +341,6 @@ export class PartsService {
       title: title,
       html: speech,
       didOpen: () => {
-
         buttonDurations.forEach(button => {
           const durationButton = document.getElementById(button.id);
           if (durationButton) {
@@ -379,9 +354,6 @@ export class PartsService {
         const editTimeBtn = document.querySelector('.swal2-confirm') as HTMLElement;
 
         if (inputTitleEl) {
-          inputTitleEl.focus();
-          inputTitleEl.select();
-
           inputMinutesEl.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
               event.preventDefault(); // Prevent default form submission
@@ -405,10 +377,11 @@ export class PartsService {
       }
     }).then((result: any) => {
       if (result.isConfirmed) {
-        this.updatedSpeechA(result, index);
+        console.log('partToBeEdited here', partToBeEdited);
 
-        console.log('result ????', result);
-        console.log('this.christianLifeParts.getValue()', this.christianLifeParts.getValue());
+        if (partToBeEdited.title != 'Studiul Bibliei') {
+          this.updatedSpeechA(result, index);
+        }
 
         this.checkAndAddSpeechB(result);
 
@@ -461,7 +434,6 @@ export class PartsService {
         seconds: result.value.speechBStudySeconds,
         duration: result.value.speechBStudyDuration
       };
-      console.log('editedBStudy', editedBStudy);
 
       this.updateChristianLifePartsAfterEditing(editedBStudy, index);
     }
@@ -680,9 +652,27 @@ export class PartsService {
     this.preachingParts.next(PREACHING);
   }
 
-  private resetToDefaultChristianLifeParts(): void {
-    localStorage.setItem('christianLife', JSON.stringify(CHRISTIAN_LIFE));
-    this.christianLifeParts.next(CHRISTIAN_LIFE);
+  public resetToDefaultChristianLifeParts(): void {
+
+    const defaultChristianLifeParts = [
+      {
+        title: 'Tema A',
+        hours: 20,
+        minutes: '0' + 5,
+        seconds: 40,
+        duration: 15
+      },
+      {
+        title: 'Studiul Bibliei',
+        hours: 20,
+        minutes: 36,
+        seconds: 20,
+        duration: 30
+      }
+    ]
+
+    localStorage.setItem('christianLife', JSON.stringify(defaultChristianLifeParts));
+    this.christianLifeParts.next(defaultChristianLifeParts);
   }
 
   private getGemsFromStorage(gems: string | null): void {

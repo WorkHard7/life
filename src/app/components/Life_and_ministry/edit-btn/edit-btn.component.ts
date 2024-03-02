@@ -7,16 +7,19 @@ import {PartsService} from "../../../services/parts.service";
   styleUrls: ['./edit-btn.component.scss']
 })
 export class EditBtnComponent {
-  @Input() preachingPartToBeEdited!: any;
   @Input() christianLifePartToBeEdited!: any;
 
   constructor(private partsService: PartsService) {
   }
 
   onBtnClick() {
-    if (this.preachingPartToBeEdited !== undefined) {
-      this.partsService.findAndEditPreachingParts(this.preachingPartToBeEdited);
-    } else if (this.christianLifePartToBeEdited !== undefined) {
+    if (this.christianLifePartToBeEdited !== undefined) {
+
+      // reset speeches just on Set btn from SpeechA
+      if (this.christianLifePartToBeEdited.title != 'Studiul Bibliei') {
+        this.partsService.resetToDefaultChristianLifeParts();
+      }
+
       this.partsService.findAndEditChristianLifeParts(this.christianLifePartToBeEdited);
     }
   }

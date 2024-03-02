@@ -26,7 +26,7 @@ export const GEMS: Events[] = [
 
 export const PREACHING: Events[] = []
 
-export const CHRISTIAN_LIFE: Events[] = [
+export const CHRISTIAN_LIFE: ReadonlyArray<Events> = [
   {
     title: 'Tema A',
     hours: 20,
