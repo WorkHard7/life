@@ -24,23 +24,65 @@
                class="cursor-pointer ml-4"
           >
             <p class="main-title text-3xl mb-14">Turnul de veghe</p>
-            <p class="select-par">Selectați numărul de paragrafe</p>
+            <p class="select-par">Setați numărul total de paragrafe din articol</p>
           </div>
         </div>
       </div>
 
-      <main class="main-container-par justify-center flex">
-        <button class="w-full bg-blue-200 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(16)">16</button>
-        <button class="w-full bg-blue-300 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(17)">17</button>
-        <button class="w-full bg-blue-400 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(18)">18</button>
-        <button class="w-full bg-blue-500 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(19)">19</button>
-        <button class="w-full bg-blue-600 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(20)">20</button>
-        <button class="w-full bg-blue-700 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(21)">21</button>
-        <button class="w-full bg-blue-800 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(22)">22</button>
+      <main class="main-container-par">
+        <button
+          class="w-full bg-blue-200"
+          [class.selected]="selectedParagraph === 16"
+          (click)="selectParagraph(16)">
+          16
+        </button>
+        <button
+          class="w-full bg-blue-300"
+          [class.selected]="selectedParagraph === 17"
+          (click)="selectParagraph(17)">
+          17
+        </button>
+        <button
+          class="w-full bg-blue-400"
+          [class.selected]="selectedParagraph === 18"
+          (click)="selectParagraph(18)">
+          18
+        </button>
+        <button
+          class="w-full bg-blue-500"
+          [class.selected]="selectedParagraph === 19"
+          (click)="selectParagraph(19)">
+          19
+        </button>
+        <button
+          class="w-full bg-blue-600"
+          [class.selected]="selectedParagraph === 20"
+          (click)="selectParagraph(20)">
+          20
+        </button>
+        <button
+          class="w-full bg-blue-700"
+          [class.selected]="selectedParagraph === 21"
+          (click)="selectParagraph(21)">
+          21
+        </button>
+        <button
+          class="w-full bg-blue-800"
+          [class.selected]="selectedParagraph === 22"
+          (click)="selectParagraph(22)">
+          22
+        </button>
       </main>
 
       <div class="m-5 flex justify-center flex-col">
         <app-set-custom-time-btn-watchtower></app-set-custom-time-btn-watchtower>
+      </div>
+
+      <div class="text-center">
+        <app-start-btn-watchtower
+          [selectedParagraph]="selectedParagraph"
+          (click)="startW(selectedParagraph)"
+        ></app-start-btn-watchtower>
       </div>
     </section>
   </div>

@@ -1,9 +1,14 @@
 <div
   [ngStyle]="{
-  'height': publicTalk ? '55vh' : '75vh'
+  'height': publicTalk ? '55vh' : '75vh',
+  'justify-content' : watchtower ? 'end' : ''
   }"
   class="main-container">
-  <div *ngIf="!watchtower">
+  <div
+    [ngStyle]="{
+      'width': publicTalk ? '63px' : '50px'
+    }"
+    *ngIf="!watchtower">
     <button
       (click)="onBtnClick()"
       class="start-next-speech">

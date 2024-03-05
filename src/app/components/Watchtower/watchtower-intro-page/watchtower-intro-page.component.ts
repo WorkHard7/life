@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
-import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
-import {faRefresh} from "@fortawesome/free-solid-svg-icons";
+import {faArrowLeft, faRefresh} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-watchtower-intro-page',
@@ -14,11 +13,12 @@ export class WatchtowerIntroPageComponent {
   protected readonly faRefresh = faRefresh;
   private doubleClickTimeout: any;
   public showPopup: boolean = false;
+  public selectedParagraph!: number;
 
   constructor(private router: Router) {
   }
 
-  onSelectParagraph(paragraph: number) {
+  startW(paragraph: number) {
     this.router.navigateByUrl(`/watchtower/${paragraph}`).catch((err) => {
       Swal.fire({
         title: 'Error',
@@ -44,5 +44,9 @@ export class WatchtowerIntroPageComponent {
 
   onMouseUp() {
     clearTimeout(this.doubleClickTimeout);
+  }
+
+  selectParagraph(paragraph: number) {
+    this.selectedParagraph = paragraph;
   }
 }

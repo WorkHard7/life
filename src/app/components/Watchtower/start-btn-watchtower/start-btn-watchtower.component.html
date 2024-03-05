@@ -1,0 +1,11 @@
+<button
+  [ngStyle]="{
+  'opacity': !selectedParagraph ? '.4' : '1'
+  }"
+  [disabled]="!selectedParagraph"
+  class="start-btn"
+  type="submit"
+>
+  <i class="start-icon fa-solid fa-person-running"></i>
+  Start
+</button>

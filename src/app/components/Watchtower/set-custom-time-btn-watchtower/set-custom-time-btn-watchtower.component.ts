@@ -22,7 +22,7 @@ export class SetCustomTimeBtnWatchtowerComponent implements OnInit {
 
     // in case it's undefined
     if (this.watchtowerEndTime === undefined) {
-      this.setMorningTime();
+      this.setEveningTime();
 
       this.countdownService.setWatchtowerCustomTimeToLocalStorage(this.watchtowerEndTime);
     }

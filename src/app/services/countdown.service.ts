@@ -22,8 +22,8 @@ export class CountdownService {
   }
 
   private watchtowerCustomEndTime: Object = {
-    hours: '11',
-    minutes: '40',
+    hours: '20',
+    minutes: '10',
     seconds: 0
   };
 

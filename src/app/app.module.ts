@@ -40,6 +40,8 @@ import {RemainingTimeWatchtowerComponent} from './components/Watchtower/remainin
 import {StartBtnIntroFinishComponent} from './components/Life_and_ministry/start-btn-intro-finish/start-btn-intro-finish.component';
 import {RemainingTimePublicTalkComponent} from './components/Public_talk/remaining-time-public-talk/remaining-time-public-talk.component';
 import {LeftControllersComponent} from './components/Life_and_ministry/left-controllers/left-controllers.component';
+import {StartBtnWatchtowerComponent} from './components/Watchtower/start-btn-watchtower/start-btn-watchtower.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -72,11 +74,13 @@ import {LeftControllersComponent} from './components/Life_and_ministry/left-cont
     StartBtnIntroFinishComponent,
     RemainingTimePublicTalkComponent,
     LeftControllersComponent,
+    StartBtnWatchtowerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
+    FormsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule
   ],

@@ -9,6 +9,16 @@
   color: white;
 }
 
+.change-time {
+  color: white;
+  background: #4B7CD2;
+  padding: .4rem .7rem;
+  margin-top: 1.5rem;
+  border: 1px solid #89a7de;
+  font-size: 1rem;
+  border-radius: .3rem;
+}
+
 @media screen and (max-width: 350px) {
   button {
     padding: .7rem 1.2rem;

@@ -1,3 +1,24 @@
+.main-container-par {
+  display: flex;
+  justify-content: center;
+  margin-top: .75rem;
+
+  button {
+    padding: .3rem;
+    font-size: 1.8rem;
+    margin-left: .5rem;
+    border-radius: .25rem;
+  }
+
+  button:first-child {
+    margin-left: 0;
+  }
+}
+
+.selected {
+  background-color: red;
+}
+
 .popup-box {
   position: absolute;
   top: 25%;

@@ -1,11 +1,10 @@
-  <button
-    (click)="hideHeader()"
-    [style.padding]="padding"
-    [disabled]="redColorText || countdownService.isTimerRunning"
-    [ngClass]="{'opacity-25' :  redColorText || countdownService.isTimerRunning}"
-    type="submit"
-    style="background: #345996"
-    class="px-3 py-2 ml-2 rounded-2xl text-white">
-    <i class="start-icon fa-solid fa-person-running"></i>
-    Start
-  </button>
+<button
+  (click)="hideHeader()"
+  [style.padding]="padding"
+  [disabled]="redColorText || countdownService.isTimerRunning"
+  [ngClass]="{'opacity-25' :  redColorText || countdownService.isTimerRunning}"
+  type="submit"
+  class="start-btn">
+  <i class="start-icon fa-solid fa-person-running"></i>
+  Start
+</button>
