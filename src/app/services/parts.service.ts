@@ -123,6 +123,7 @@ export class PartsService {
   public gems: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   public preachingParts: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   public christianLifeParts: BehaviorSubject<any> = new BehaviorSubject<any>([]);
+  public bibleStudyDuration: BehaviorSubject<number> = new BehaviorSubject<number>(3);
 
   constructor() {
     const gems = localStorage.getItem('gems');
@@ -442,6 +443,7 @@ export class PartsService {
         duration: result.value.speechBStudyDuration
       };
 
+      this.bibleStudyDuration.next(result.value.bibleStudyShortenedBy + 3);
       this.updateChristianLifePartsAfterEditing(editedBStudy, index);
     }
   }
@@ -461,6 +463,7 @@ export class PartsService {
       speechBStudyHours?: string,
       speechBStudyMinutes?: string,
       speechBStudySeconds?: string,
+      bibleStudyShortenedBy?: number,
       speechBStudyDuration?: number
     } | null {
 
@@ -514,11 +517,11 @@ export class PartsService {
       const speechBStudyHours = (document.getElementById('swal-input-hours-s-bible') as HTMLInputElement)?.value;
       const speechBStudyMinutes = (document.getElementById('swal-input-minutes-s-bible') as HTMLInputElement)?.value;
       const speechBStudySeconds = (document.getElementById('swal-input-seconds-s-bible') as HTMLInputElement)?.value;
-      const speechBStudyDuration = (document.getElementById('swal-input-duration-s-bible') as HTMLInputElement)?.value;
+      const bibleStudyShortenedBy = (document.getElementById('swal-input-duration-s-bible') as HTMLInputElement)?.value;
 
-      const sBibleDuration = 30 - Number(speechBStudyDuration);
+      const sBibleDuration = 30 - Number(bibleStudyShortenedBy);
 
-      if (!speechBStudyHours || !speechBStudyMinutes || !speechBStudySeconds || !speechBStudyDuration) {
+      if (!speechBStudyHours || !speechBStudyMinutes || !speechBStudySeconds || !bibleStudyShortenedBy) {
         return null;
       }
 
@@ -526,6 +529,7 @@ export class PartsService {
         speechBStudyHours: speechBStudyHours,
         speechBStudyMinutes: speechBStudyMinutes,
         speechBStudySeconds: speechBStudySeconds,
+        bibleStudyShortenedBy: Number(bibleStudyShortenedBy),
         speechBStudyDuration: sBibleDuration
       };
     }

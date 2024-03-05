@@ -26,13 +26,12 @@
   font-size: .9rem;
   background-color: #042B6B;
   color: white;
-  line-height: .8rem;
-  clip-path: polygon(0% 20%, 60% 20%, 60% 11%, 100% 50%, 61% 89%, 60% 80%, 0% 80%);
+  line-height: 1.2rem;
+  border-radius: 1rem;
 
   span {
     display: flex;
     flex-direction: column;
-    margin-right: .3rem;
   }
 }
 

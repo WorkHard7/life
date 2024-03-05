@@ -1,40 +1,6 @@
-<ng-container *ngIf="headerService.showHeader && !watchtowerStarted && !publicTalk">
+<div>
 
-  <div class="main-container-curr-time">
-    <h1>
-      <fa-icon [icon]="faClock"></fa-icon>
-      <span class="hours-minutes">{{ localTime | date: 'HH:mm'}}</span>
-      <span class="seconds">{{ localTime | date: '.ss'}}</span>
-    </h1>
-  </div>
-
-</ng-container>
-
-<ng-container *ngIf="!headerService.showHeader || watchtowerStarted || publicTalk">
-  <div class="mb-4">
-
-    <div class="flex justify-between items-center">
-      <button
-        (click)="returnBack()"
-        class="icon-circle flex justify-center items-center">
-        <fa-icon
-          title="Back"
-          class="arrow-left text-white text-xl"
-          [icon]="faArrowLeft">
-        </fa-icon>
-      </button>
-
-      <button
-        (click)="startNextSpeech()"
-        *ngIf="!headerService.showHeader && !watchtowerStarted && !publicTalk"
-        class="start-next-speech"
-      >
-        <span>
-          <span>Start</span>
-          <span style="font-size: .7rem;">următoarea temă</span>
-        </span>
-      </button>
-    </div>
+  <ng-container *ngIf="headerService.showHeader && !watchtowerStarted && !publicTalk">
 
     <div class="main-container-curr-time">
       <h1>
@@ -44,5 +10,20 @@
       </h1>
     </div>
 
-  </div>
-</ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="!headerService.showHeader || watchtowerStarted || publicTalk">
+    <div class="mb-4">
+
+      <div class="main-container-curr-time">
+        <h1>
+          <fa-icon [icon]="faClock"></fa-icon>
+          <span class="hours-minutes">{{ localTime | date: 'HH:mm'}}</span>
+          <span class="seconds">{{ localTime | date: '.ss'}}</span>
+        </h1>
+      </div>
+
+    </div>
+  </ng-container>
+
+</div>

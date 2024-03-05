@@ -1,0 +1,40 @@
+.start-next-speech {
+  padding: .8rem .2rem;
+  font-size: .9rem;
+  background-color: #102753;
+  color: white;
+  line-height: 1rem;
+  border-radius: 1rem;
+  font-weight: 400;
+  border: 1px solid white;
+
+  span {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.icon-circle {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.arrow-container button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 370px) {
+  .start-next-speech {
+    padding: .6rem;
+    font-size: .7rem;
+    line-height: .8rem;
+  }
+}

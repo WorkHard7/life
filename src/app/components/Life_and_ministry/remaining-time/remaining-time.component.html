@@ -2,6 +2,7 @@
 
   <div class="remaining-time-title">
     <div
+      class="remaining-allocated-time-container"
       [ngStyle]="{
       'visibility': (selectedSpeechService.selectedSpeech$ | async)?.title === '' +
        'Cuvinte de încheiere, anunțuri' ? 'hidden' : 'visible',
@@ -13,7 +14,7 @@
         <p>din {{(selectedSpeechService.selectedSpeech$ | async)?.duration}} min.</p>
       </div>
 
-      <div style="padding-top: .3rem">
+      <div>
         <span>{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.sign}}</span>
         <span
           class="remaining-minutes"
@@ -25,7 +26,7 @@
 
     <div
       *ngIf="updateRemainingTimeIfNecessary()"
-      class="mt-8"
+      class="mt-8 remaining-time-container"
       [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#F2F5B8'">
 
       <div style="line-height: 2rem;">

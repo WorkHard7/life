@@ -10,7 +10,7 @@
     }
   }
 
-  .header {
+  .header, .title {
     font-size: 1.2rem;
   }
 }
@@ -22,7 +22,7 @@
     }
   }
 
-  .title, .duration {
+  .title {
     font-size: 1.5rem;
   }
   .header {
@@ -31,7 +31,7 @@
 }
 
 @media screen and (max-width: 630px) and (min-width: 531px)  {
-  .title, .duration {
+  .title {
     font-size: 1.7rem;
   }
 }
@@ -43,13 +43,13 @@
     }
   }
 
-  .title, .duration {
+  .title {
     font-size: 2.1rem;
   }
 }
 
 @media screen and (min-width: 1050px) {
-  .title, .duration {
+  .title {
     font-size: 2.2rem;
   }
 }

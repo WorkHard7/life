@@ -39,6 +39,7 @@ import {WatchtowerComponent} from './pages/watchtower/watchtower.component';
 import {RemainingTimeWatchtowerComponent} from './components/Watchtower/remaining-time-watchtower/remaining-time-watchtower.component';
 import {StartBtnIntroFinishComponent} from './components/Life_and_ministry/start-btn-intro-finish/start-btn-intro-finish.component';
 import {RemainingTimePublicTalkComponent} from './components/Public_talk/remaining-time-public-talk/remaining-time-public-talk.component';
+import {LeftControllersComponent} from './components/Life_and_ministry/left-controllers/left-controllers.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import {RemainingTimePublicTalkComponent} from './components/Public_talk/remaini
     RemainingTimeWatchtowerComponent,
     StartBtnIntroFinishComponent,
     RemainingTimePublicTalkComponent,
+    LeftControllersComponent,
   ],
   imports: [
     BrowserModule,

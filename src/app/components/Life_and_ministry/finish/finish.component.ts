@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {Events} from "../../../model/events";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
+import {PartsService} from "../../../services/parts.service";
 
 @Component({
   selector: 'app-finish',
@@ -10,23 +11,28 @@ import {SelectedSpeechService} from "../../../services/selected-speech.service";
 })
 export class FinishComponent implements OnInit {
   redColorText: boolean = false;
+  bibleStudyDuration: number = 3;
   finishPart: Events = {
     title: 'Cuvinte de încheiere, anunțuri',
     hours: 20,
-    minutes: 39,
-    seconds: 30,
+    minutes: 40,
+    seconds: 0,
     duration: 3
   };
 
   constructor(
     public countdownService: CountdownService,
-    private selectedSpeechService: SelectedSpeechService
+    private selectedSpeechService: SelectedSpeechService,
+    private partsService: PartsService
   ) {
   }
 
   ngOnInit(): void {
     this.countdownService.redColorText$.subscribe(redColorText => {
       this.redColorText = redColorText;
+    })
+    this.partsService.bibleStudyDuration.subscribe(duration => {
+      this.bibleStudyDuration = duration;
     })
   }
 

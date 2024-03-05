@@ -46,20 +46,6 @@ export class CurrentTimeComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  returnBack() {
-    this.countdownService.stopCountdown();
-    this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
-    this.headerService.showHeaderAgain();
-
-    if (this.watchtowerStarted) {
-      this.router.navigate(['/watchtower']);
-    } else if (this.publicTalk) {
-      this.router.navigate(['/public_talk']);
-    } else {
-      this.router.navigate(['/life_and_ministry']);
-    }
-  }
-
   startNextSpeech() {
     this.selectedSpeechService.selectedSpeech$.pipe(
       map(selectedSpeech => this.title = selectedSpeech.title)

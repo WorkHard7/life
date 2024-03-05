@@ -38,7 +38,7 @@ export const CHRISTIAN_LIFE: ReadonlyArray<Events> = [
     title: 'Studiul Bibliei',
     hours: 20,
     minutes: 36,
-    seconds: 20,
+    seconds: 30,
     duration: 30
   }
 ]

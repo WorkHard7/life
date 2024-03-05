@@ -1,18 +1,27 @@
 <div class="p-3">
-  <app-header
-    [title]=title
-  ></app-header>
+  <main class="flex">
+    <app-left-controllers
+      *ngIf="!headerService.showHeader"
+      class="left-controllers-container"
+    ></app-left-controllers>
 
-  <app-current-time *ngIf="headerService.showHeader"></app-current-time>
+    <div style="flex: 2">
+      <app-header
+        [title]=title
+      ></app-header>
 
-  <ng-container
-    *ngIf="!countdownService.isTimerRunning && !countdownAllocatedTimeService.isAllocatedTimerRunning"
-  >
-    <app-parts></app-parts>
-  </ng-container>
+      <app-current-time *ngIf="headerService.showHeader"></app-current-time>
 
-  <ng-container *ngIf="countdownService.isTimerRunning ||
-  countdownAllocatedTimeService.isAllocatedTimerRunning || redColorText">
-    <app-remaining-time></app-remaining-time>
-  </ng-container>
+      <ng-container
+        *ngIf="!countdownService.isTimerRunning && !countdownAllocatedTimeService.isAllocatedTimerRunning"
+      >
+        <app-parts></app-parts>
+      </ng-container>
+
+      <ng-container *ngIf="countdownService.isTimerRunning ||
+      countdownAllocatedTimeService.isAllocatedTimerRunning || redColorText">
+        <app-remaining-time></app-remaining-time>
+      </ng-container>
+    </div>
+  </main>
 </div>

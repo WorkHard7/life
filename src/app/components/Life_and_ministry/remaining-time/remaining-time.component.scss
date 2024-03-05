@@ -29,15 +29,22 @@
   }
 }
 
-.axesOfTime {
-  padding-top: 3.5rem;
-  font-size: 1.5rem;
-}
-
 p {
   font-size: 1.5rem;
 }
 
 .remaining-minutes {
   font-size: 2.5rem;
+}
+
+@media screen and (max-width: 370px) {
+  .remaining-allocated-time-container,
+  .remaining-time-container {
+    padding: .5rem 2rem !important;
+    margin-top: 0 !important;
+  }
+
+  .remaining-time-title p {
+    font-size: 1.2rem !important;
+  }
 }

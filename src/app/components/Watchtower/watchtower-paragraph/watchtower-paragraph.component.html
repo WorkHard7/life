@@ -1,21 +1,30 @@
 <div class="p-3 h-screen">
-  <app-current-time [watchtowerStarted]="true"></app-current-time>
+  <div class="flex">
+    <app-left-controllers
+      style="flex: 1; max-width: 15%"
+      [watchtower]="true"
+    ></app-left-controllers>
 
-  <header class="flex items-start -bold text-white pt-14 mb-6">
-    <p class="m-auto text-3xl">Articol cu {{paragraph}} paragrafe</p>
-  </header>
+    <main style="flex: 2">
+      <app-current-time [watchtowerStarted]="true"></app-current-time>
 
-  <div *ngIf="isLoading" class="spinner">
-    <div class="spinner-container">
-      <div class="spinner-circle"></div>
-    </div>
+      <header class="flex items-start -bold text-white pt-6 mb-6">
+        <p class="m-auto text-3xl">Articol cu {{paragraph}} paragrafe</p>
+      </header>
+
+      <div *ngIf="isLoading" class="spinner">
+        <div class="spinner-container">
+          <div class="spinner-circle"></div>
+        </div>
+      </div>
+
+      <h1 *ngIf="!isLoading && currentParagraph <= paragraph"
+          [ngClass]="{'small-text' : currentParagraph >= 0 && currentParagraph <= 22}"
+          class="flex justify-center align-top text-white">
+        {{(currentParagraph < 0 || currentParagraph > 22) ? '' : currentParagraph}}
+      </h1>
+
+      <app-remaining-time-watchtower></app-remaining-time-watchtower>
+    </main>
   </div>
-
-  <h1 *ngIf="!isLoading && currentParagraph <= paragraph"
-      [ngClass]="{'small-text' : currentParagraph >= 0 && currentParagraph <= 22}"
-      class="flex justify-center align-top text-white">
-    {{(currentParagraph < 0 || currentParagraph > 22) ? '' : currentParagraph}}
-  </h1>
-
-  <app-remaining-time-watchtower></app-remaining-time-watchtower>
 </div>

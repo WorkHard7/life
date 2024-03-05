@@ -1,44 +1,47 @@
 <div class="p-3">
-  <section>
-    <div class="popup-box text-center" *ngIf="showPopup">
-      Jehovah loves you!
-      <span class="fa fa-heart"></span>
-    </div>
+  <div>
 
-    <div class="flex flex-col text-center">
-      <div class="flex items-start text-2xl -bold text-white">
-        <button
-          (click)="goHome()"
-          class="icon-circle flex justify-center items-center">
-          <fa-icon
-            title="Back"
-            class="arrow-left text-white text-xl"
-            [icon]="faArrowLeft">
-          </fa-icon>
-        </button>
-        <div style="margin: auto"
-             (dblclick)="onDoubleClick()"
-             (mouseup)="onMouseUp()"
-             class="cursor-pointer ml-4"
-        >
-          <p class="main-title text-3xl mb-14">Turnul de veghe</p>
-          <p class="select-par">Selectați numărul de paragrafe</p>
+    <section>
+      <div class="popup-box text-center" *ngIf="showPopup">
+        Jehovah loves you!
+        <span class="fa fa-heart"></span>
+      </div>
+
+      <div class="flex flex-col text-center">
+        <div class="flex items-start text-2xl -bold text-white">
+          <button
+            (click)="goHome()"
+            class="icon-circle flex justify-center items-center">
+            <fa-icon
+              title="Back"
+              class="arrow-left text-white text-xl"
+              [icon]="faArrowLeft">
+            </fa-icon>
+          </button>
+          <div style="margin: auto"
+               (dblclick)="onDoubleClick()"
+               (mouseup)="onMouseUp()"
+               class="cursor-pointer ml-4"
+          >
+            <p class="main-title text-3xl mb-14">Turnul de veghe</p>
+            <p class="select-par">Selectați numărul de paragrafe</p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <main class="main-container-par justify-center flex">
-      <button class="w-full bg-blue-200 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(16)">16</button>
-      <button class="w-full bg-blue-300 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(17)">17</button>
-      <button class="w-full bg-blue-400 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(18)">18</button>
-      <button class="w-full bg-blue-500 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(19)">19</button>
-      <button class="w-full bg-blue-600 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(20)">20</button>
-      <button class="w-full bg-blue-700 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(21)">21</button>
-      <button class="w-full bg-blue-800 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(22)">22</button>
-    </main>
+      <main class="main-container-par justify-center flex">
+        <button class="w-full bg-blue-200 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(16)">16</button>
+        <button class="w-full bg-blue-300 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(17)">17</button>
+        <button class="w-full bg-blue-400 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(18)">18</button>
+        <button class="w-full bg-blue-500 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(19)">19</button>
+        <button class="w-full bg-blue-600 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(20)">20</button>
+        <button class="w-full bg-blue-700 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(21)">21</button>
+        <button class="w-full bg-blue-800 px-2 py-2 rounded mt-3 text-2xl" (click)="onSelectParagraph(22)">22</button>
+      </main>
 
-    <div class="m-5 flex justify-center flex-col">
-      <app-set-custom-time-btn-watchtower></app-set-custom-time-btn-watchtower>
-    </div>
-  </section>
+      <div class="m-5 flex justify-center flex-col">
+        <app-set-custom-time-btn-watchtower></app-set-custom-time-btn-watchtower>
+      </div>
+    </section>
+  </div>
 </div>
