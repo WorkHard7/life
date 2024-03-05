@@ -3,7 +3,6 @@
   justify-content: center;
   text-align: center;
   padding-top: .75rem;
-
 }
 
 .remaining-minutes {
@@ -18,5 +17,17 @@
 
   div {
     font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .remaining-time-title {
+    font-size: 1.3rem;
+    line-height: 1.7rem;
+    padding: .8rem 2rem;
+
+    div {
+      font-size: 1.2rem;
+    }
   }
 }

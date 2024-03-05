@@ -5,7 +5,8 @@
       class="left-controllers-container"
     ></app-left-controllers>
 
-    <div style="flex: 2">
+    <div
+      [class.main-container]="!headerService.showHeader">
       <app-header
         [title]=title
       ></app-header>

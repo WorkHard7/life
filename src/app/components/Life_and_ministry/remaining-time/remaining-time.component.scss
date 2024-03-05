@@ -37,7 +37,7 @@ p {
   font-size: 2.5rem;
 }
 
-@media screen and (max-width: 370px) {
+@media screen and (max-width: 450px) {
   .remaining-allocated-time-container,
   .remaining-time-container {
     padding: .5rem 2rem !important;
@@ -46,5 +46,9 @@ p {
 
   .remaining-time-title p {
     font-size: 1.2rem !important;
+  }
+
+  .remaining-minutes {
+    font-size: 2rem !important;
   }
 }
