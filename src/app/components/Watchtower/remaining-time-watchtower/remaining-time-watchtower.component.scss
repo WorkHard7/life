@@ -1,9 +1,49 @@
-.big-padding-top {
-  padding-top: 2rem;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding-top: 7rem;
+}
+
+.remaining-minutes {
+  margin-top: .8rem;
+}
+
+.remaining-time-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 1rem;
+  padding: .8rem 3.5rem;
+  margin: 1rem auto;
+}
+
+@media screen and (max-width: 600px) {
+  .remaining-time-title {
+    font-size: 1.5rem;
+    line-height: 1.7rem;
+    padding: .8rem 2.2rem;
+  }
 }
 
 @media screen and (max-width: 450px) {
-  .remaining-minutes span:nth-child(2)  {
+  .remaining-minutes span:nth-child(2) {
     font-size: 2rem !important;
+  }
+
+  .remaining-time-title {
+    font-size: 1.3rem;
+    line-height: 1.7rem;
+    padding: .8rem 2rem;
+  }
+}
+
+@media screen and (max-width: 365px) {
+  .remaining-time-title {
+    font-size: 1.1rem;
+    line-height: 1.3rem;
+    padding: .6rem 1.5rem;
   }
 }
