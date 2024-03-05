@@ -1,25 +1,32 @@
-<ng-container
-  *ngIf="!countdownService.isTimerRunning && !redColorText"
->
-  <app-start-btn-public-talk></app-start-btn-public-talk>
-</ng-container>
+<div>
 
-<ng-container *ngIf="countdownService.isTimerRunning || redColorText">
-  <div class="p-3 flex">
-    <app-left-controllers
-      class="flex: 1"
-      [publicTalk]="true"
-    >
-    </app-left-controllers>
+  <ng-container
+    *ngIf="!countdownService.isTimerRunning && !redColorText"
+  >
+    <app-start-btn-public-talk></app-start-btn-public-talk>
+  </ng-container>
 
-    <main style="flex: 2">
-      <div class="mb-4 text-center flex flex-col">
-        <div class="flex items-center">
-          <p class="main-title text-white text-3xl m-auto">Cuvântare publică</p>
+  <ng-container *ngIf="countdownService.isTimerRunning || redColorText">
+    <div class="p-3 flex">
+      <app-left-controllers
+        class="left-controllers-container"
+        [publicTalk]="true"
+      >
+      </app-left-controllers>
+
+      <main style="flex: 2">
+        <div class="mb-4 text-center">
+          <app-current-time></app-current-time>
+
+          <div class="flex items-center mt-12">
+            <p class="main-title">Cuvântare publică</p>
+          </div>
         </div>
-      </div>
 
-      <app-remaining-time-public-talk></app-remaining-time-public-talk>
-    </main>
-  </div>
-</ng-container>
+        <app-remaining-time-public-talk></app-remaining-time-public-talk>
+      </main>
+    </div>
+  </ng-container>
+
+
+</div>

@@ -37,4 +37,13 @@ export class LeftControllersComponent {
       this.router.navigate(['/life_and_ministry']);
     }
   }
+
+  onBtnClick() {
+    if (this.publicTalk) {
+      this.countdownService.stopCountdown();
+      this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
+
+      this.router.navigate(['/watchtower']);
+    }
+  }
 }

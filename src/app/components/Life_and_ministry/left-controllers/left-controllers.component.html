@@ -1,11 +1,15 @@
-<div class="main-container">
-  <div
-    style="width: 50px; height: 50px"
-    *ngIf="!publicTalk && !watchtower">
-    <button class="start-next-speech">
+<div
+  [ngStyle]="{
+  'height': publicTalk ? '55vh' : '75vh'
+  }"
+  class="main-container">
+  <div *ngIf="!watchtower">
+    <button
+      (click)="onBtnClick()"
+      class="start-next-speech">
           <span>
             <span>Start</span>
-            <span style="font-size: .7rem">următoarea temă</span>
+            <span style="font-size: .7rem">{{!publicTalk ? 'următoarea temă' : 'Turnul de veghe'}}</span>
           </span>
     </button>
   </div>
