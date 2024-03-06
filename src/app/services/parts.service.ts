@@ -663,27 +663,43 @@ export class PartsService {
     this.preachingParts.next(PREACHING);
   }
 
-  public resetToDefaultChristianLifeParts(): void {
+  public resetToDefaultChristianLifeParts(speechAorBs?: string): void {
+    let christianLifePartsFromStorage = JSON.parse(localStorage.getItem('christianLife') || '[]');
 
-    const defaultChristianLifeParts = [
-      {
-        title: 'Tema A',
-        hours: 20,
-        minutes: '0' + 5,
-        seconds: 40,
-        duration: 15
-      },
-      {
+    if (speechAorBs === 'A') {
+      if (christianLifePartsFromStorage.length === 3) {
+        christianLifePartsFromStorage[0] = {
+          title: 'Tema A',
+          hours: 20,
+          minutes: '0' + 5,
+          seconds: 40,
+          duration: 15
+        }
+
+        // in case SpeechB was added, will remove it
+        christianLifePartsFromStorage.splice(1, 1);
+      } else if (christianLifePartsFromStorage.length > 0) {
+        christianLifePartsFromStorage[0] = {
+          title: 'Tema A',
+          hours: 20,
+          minutes: '0' + 5,
+          seconds: 40,
+          duration: 15
+        }
+      }
+    } else if (speechAorBs === 'BS') {
+      christianLifePartsFromStorage[christianLifePartsFromStorage.length - 1] = {
         title: 'Studiul Bibliei',
         hours: 20,
         minutes: 36,
-        seconds: 20,
+        seconds: 30,
         duration: 30
       }
-    ]
+      this.bibleStudyDuration.next(3);
+    }
 
-    localStorage.setItem('christianLife', JSON.stringify(defaultChristianLifeParts));
-    this.christianLifeParts.next(defaultChristianLifeParts);
+    localStorage.setItem('christianLife', JSON.stringify(christianLifePartsFromStorage));
+    this.christianLifeParts.next(christianLifePartsFromStorage);
   }
 
   private getGemsFromStorage(gems: string | null): void {

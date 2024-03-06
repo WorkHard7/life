@@ -17,7 +17,9 @@ export class EditBtnComponent {
 
       // reset speeches just on Set btn from SpeechA
       if (this.christianLifePartToBeEdited.title != 'Studiul Bibliei') {
-        this.partsService.resetToDefaultChristianLifeParts();
+        this.partsService.resetToDefaultChristianLifeParts('A');
+      } else {
+        this.partsService.resetToDefaultChristianLifeParts('BS');
       }
 
       this.partsService.findAndEditChristianLifeParts(this.christianLifePartToBeEdited);
