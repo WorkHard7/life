@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -26,10 +25,6 @@ export class CountdownService {
     minutes: '10',
     seconds: 0
   };
-
-  private redColorTextSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public redColorText$: Observable<boolean> = this.redColorTextSubject.asObservable(); //using asObservable method
-  // we create a read only stream, of values that can be subscribed to, but not directly modified from outside the component.
 
   constructor() {
     this.initializeCustomEndTime();
@@ -70,11 +65,8 @@ export class CountdownService {
 
       console.log('remainingTime in second', this.remainingTime);
 
-      if (this.remainingTime <= 0) {
-        this.redColorTextSubject.next(true);
-      }
-
       this.showNegativeRemainingTime = this.formatNegativeNumber();
+
       console.log('remaining time Object', this.showNegativeRemainingTime);
 
       this.remainingTime--;
@@ -90,9 +82,6 @@ export class CountdownService {
         minutes: '00',
         seconds: '00'
       }
-
-    this.redColorTextSubject.next(false);
-
     clearInterval(this.intervalId);
   }
 

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {GEMS} from "../../mock/mock-parts.service";
-import {CountdownService} from "../../services/countdown.service";
 import {Events} from "../../model/events";
 
 @Component({
@@ -11,12 +10,8 @@ import {Events} from "../../model/events";
 export class HomeComponent implements OnInit {
   title = 'ministry_app';
   parts!: Events[];
-  redColorText: boolean = false;
 
-  constructor(private countdownService: CountdownService) {
-    this.countdownService.redColorText$.subscribe(redColorText => {
-      this.redColorText = redColorText;
-    })
+  constructor() {
   }
 
   ngOnInit(): void {

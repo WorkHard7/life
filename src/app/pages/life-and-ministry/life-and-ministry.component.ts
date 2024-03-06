@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {CountdownService} from "../../services/countdown.service";
 import {PartsService} from "../../services/parts.service";
 import {Events} from "../../model/events";
@@ -10,10 +10,9 @@ import {CountdownAllocatedTimeService} from "../../services/countdown-allocated-
   templateUrl: './life-and-ministry.component.html',
   styleUrls: ['./life-and-ministry.component.scss']
 })
-export class LifeAndMinistryComponent implements OnInit, AfterViewInit {
+export class LifeAndMinistryComponent implements OnInit {
   title = 'Viața creștină și predicarea';
   parts!: Events[];
-  redColorText: boolean = false;
 
   constructor(
     public countdownService: CountdownService,
@@ -29,12 +28,6 @@ export class LifeAndMinistryComponent implements OnInit, AfterViewInit {
 
     this.countdownService.stopCountdown();
     this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
-  }
-
-  ngAfterViewInit() {
-    this.countdownService.redColorText$.subscribe(redColorText => {
-      this.redColorText = redColorText;
-    })
   }
 
   ngOnInit(): void {
