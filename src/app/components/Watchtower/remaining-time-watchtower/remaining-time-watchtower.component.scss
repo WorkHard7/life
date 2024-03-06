@@ -35,10 +35,18 @@
   }
 }
 
+@media screen and (max-width: 450px) {
+  .remaining-time-title p {
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+  }
+}
+
+
 @media screen and (max-width: 400px) {
   .remaining-time-container {
     font-size: 1.1rem;
     line-height: 1.3rem;
-    padding: .4rem 1.2rem;
+    padding: .4rem 1.5rem;
   }
 }
