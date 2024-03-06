@@ -169,6 +169,10 @@ body {
   margin: 3rem auto;
 }
 
+.selected {
+  background: limegreen;
+}
+
 #duration-container, #duration-container-for-BStudy {
   .duration-button:nth-child(1) {
     padding: .5rem 1rem;
@@ -188,6 +192,10 @@ body {
 
   .duration-button:nth-child(5) {
     padding: .9rem 1.4rem;
+  }
+
+  .duration-button:nth-child(6) {
+    padding: 1rem 1.5rem;
   }
 }
 

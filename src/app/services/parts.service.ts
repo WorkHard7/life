@@ -4,6 +4,18 @@ import {BehaviorSubject} from "rxjs";
 import {Events} from "../model/events";
 import Swal from "sweetalert2";
 
+function selectsZeroButtonByDefault() {
+  // by default 0 is selected
+  const button0 = document.getElementById('duration-button-0');
+  button0?.classList.add('selected');
+
+  // input field will have also 0 by default
+  const BStudyDurationInput = document.getElementById('swal-input-duration-s-bible') as HTMLInputElement;
+  if (BStudyDurationInput) {
+    BStudyDurationInput.value = '0';
+  }
+}
+
 function updateDuration(
   duration: number,
   christianLifeParts?: BehaviorSubject<any>,
@@ -36,10 +48,15 @@ function updateDuration(
   let mainSeconds: string = '';
   let bStudyHours: string = '';
   let bStudyMinutes: string = '';
-  let bStudySeconds: string = '20';
+  let bStudySeconds: string = '30';
   let bStudyDuration: string = '';
 
   switch (duration) {
+    case 0:
+      bStudyHours = '20';
+      bStudyMinutes = '36';
+      bStudyDuration = '0';
+      break;
     case 2:
       bStudyHours = '20';
       bStudyMinutes = '34';
@@ -124,6 +141,7 @@ export class PartsService {
   public preachingParts: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   public christianLifeParts: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   public bibleStudyDuration: BehaviorSubject<number> = new BehaviorSubject<number>(3);
+  public shortenedBsDuration: number = 0;
 
   constructor() {
     const gems = localStorage.getItem('gems');
@@ -310,6 +328,7 @@ export class PartsService {
       title = 'Scurtarea Studiului Bibliei';
 
       buttonDurations = [
+        {id: 'duration-button-0', duration: 0},
         {id: 'duration-button-2', duration: 2},
         {id: 'duration-button-3', duration: 3},
         {id: 'duration-button-5', duration: 5},
@@ -323,6 +342,7 @@ export class PartsService {
             <p>indică cu câte minute trebuie scurtat Studiul Bibliei</p>
          </div>
          <div id="duration-container-for-BStudy">
+            <button id="duration-button-0" class="duration-button">0</button>
             <button id="duration-button-2" class="duration-button">2</button>
             <button id="duration-button-3" class="duration-button">3</button>
             <button id="duration-button-5" class="duration-button">5</button>
@@ -340,7 +360,7 @@ export class PartsService {
             <input id="swal-input-minutes-s-bible" class="swal2-input" placeholder="min" type="number"
                 value="36" readonly>
             <input id="swal-input-seconds-s-bible" class="swal2-input" placeholder="sec" type="number"
-                value="20" readonly>
+                value="30" readonly>
          </div>
       `;
     }
@@ -349,11 +369,27 @@ export class PartsService {
       title: title,
       html: speech,
       didOpen: () => {
+        selectsZeroButtonByDefault();
+
         buttonDurations.forEach(button => {
           const durationButton = document.getElementById(button.id);
+
           if (durationButton) {
-            durationButton.addEventListener('click', () =>
-              updateDuration(button.duration, this.christianLifeParts, partToBeEdited));
+            durationButton.addEventListener('click', () => {
+
+              buttonDurations.forEach(btn => {
+                const btnElement = document.getElementById(btn.id);
+
+                if (btnElement) {
+                  btnElement.classList.remove('selected');
+                }
+              });
+
+              durationButton.classList.add('selected');
+
+              this.shortenedBsDuration = button.duration;
+              updateDuration(button.duration, this.christianLifeParts, partToBeEdited);
+            })
           }
         });
 
