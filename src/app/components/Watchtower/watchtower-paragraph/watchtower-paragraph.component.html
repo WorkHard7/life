@@ -21,15 +21,16 @@
       </div>
 
       <div
+        class="text-center"
         [ngStyle]="{
           'opacity': isLoading ? '0' : '1'
         }"
       >
-        <h1 *ngIf="!isLoading && currentParagraph <= paragraph"
+        <div *ngIf="!isLoading && currentParagraph <= paragraph"
             [ngClass]="{'small-text' : currentParagraph >= 0 && currentParagraph <= 22}"
-            class="flex justify-center align-top text-white">
+            class="text-center text-white">
           {{(currentParagraph < 0 || currentParagraph > 22) ? '' : currentParagraph}}
-        </h1>
+        </div>
 
         <app-remaining-time-watchtower></app-remaining-time-watchtower>
       </div>

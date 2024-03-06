@@ -9,24 +9,22 @@
     align-items: center;
     border: 1px solid white;
     border-radius: 1rem;
-    padding: .8rem 3.5rem;
-    margin: 1rem auto;
+    padding: .8rem 2.2rem;
 
     > div:first-child {
       line-height: 1.6rem;
     }
-
-    + div {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      opacity: .9;
-      border: 1px solid gray;
-      border-radius: 1rem;
-      padding: .8rem 3.5rem;
-      margin: 1rem auto;
-    }
   }
+}
+
+.remaining-time-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: .9;
+  border: 1px solid gray;
+  border-radius: 1rem;
+  padding: .8rem 2.2rem;
 }
 
 p {
@@ -41,7 +39,6 @@ p {
   .remaining-allocated-time-container,
   .remaining-time-container {
     padding: .5rem 2rem !important;
-    margin-top: 0 !important;
   }
 
   .remaining-time-title p {
@@ -50,5 +47,19 @@ p {
 
   .remaining-minutes {
     font-size: 2rem !important;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .remaining-allocated-time-container,
+  .remaining-time-container {
+    padding: .4rem 1.6rem;
+  }
+}
+
+@media screen and (max-width: 325px) {
+  .remaining-allocated-time-container,
+  .remaining-time-container {
+    padding: .4rem 1.2rem !important;
   }
 }

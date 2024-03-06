@@ -1,35 +1,26 @@
 .main-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   text-align: center;
   padding-top: 7rem;
 }
 
 .remaining-minutes {
-  margin-top: 2.2rem;
+  margin-top: 1.3rem;
 }
 
 .remaining-time-title {
-  display: flex;
-  flex-direction: column;
+  line-height: 1.8rem !important;
+}
+
+.remaining-time-container {
   align-items: center;
   border: 1px solid white;
   border-radius: 1rem;
-  padding: .8rem 3.5rem;
-  margin: 1rem auto;
+  padding: .8rem 2.2rem;
 
   div {
-    line-height: 1.6rem;
     font-size: 1.5rem;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .remaining-time-title {
-    font-size: 1.5rem;
-    line-height: 1.7rem;
-    padding: .8rem 2.2rem;
   }
 }
 
@@ -38,17 +29,16 @@
     font-size: 2rem !important;
   }
 
-  .remaining-time-title {
+  .remaining-time-container {
     font-size: 1.3rem;
-    line-height: 1.7rem;
-    padding: .8rem 2rem;
+    padding: .5rem 2rem;
   }
 }
 
-@media screen and (max-width: 365px) {
-  .remaining-time-title {
+@media screen and (max-width: 400px) {
+  .remaining-time-container {
     font-size: 1.1rem;
     line-height: 1.3rem;
-    padding: .6rem 1.5rem;
+    padding: .4rem 1.2rem;
   }
 }

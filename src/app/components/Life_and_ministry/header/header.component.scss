@@ -13,6 +13,10 @@
   .header, .title {
     font-size: 1.2rem;
   }
+
+  .title {
+    line-height: 1.5rem;
+  }
 }
 
 @media screen and (max-width: 530px) and (min-width: 371px) {
@@ -24,6 +28,7 @@
 
   .title {
     font-size: 1.5rem;
+    line-height: 1.8rem;
   }
   .header {
     font-size: 1.4rem;
@@ -45,6 +50,7 @@
 
   .title {
     font-size: 2.1rem;
+    line-height: 1.8rem;
   }
 }
 

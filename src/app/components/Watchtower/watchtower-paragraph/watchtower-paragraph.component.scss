@@ -45,14 +45,15 @@
   }
 }
 
-@media screen and (max-width: 400px) {
-  p {
-    font-size: 1.4rem;
+@media screen and (max-width: 500px) {
+  .main-header p {
+    line-height: 2rem;
+    font-size: 1.7rem !important;
   }
 }
 
-@media screen and (max-width: 330px) {
-  p {
-    font-size: 1.2rem;
+@media screen and (max-width: 400px) {
+  .main-header p {
+    font-size: 1.4rem;
   }
 }

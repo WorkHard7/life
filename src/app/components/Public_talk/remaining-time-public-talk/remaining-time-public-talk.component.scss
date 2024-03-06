@@ -13,7 +13,7 @@
   line-height: 1.6rem;
   border: 1px solid white;
   border-radius: 1rem;
-  padding: .8rem 3.5rem;
+  padding: .8rem 2.2rem;
 
   div {
     font-size: 1.5rem;
@@ -24,10 +24,22 @@
   .remaining-time-title {
     font-size: 1.3rem;
     line-height: 1.7rem;
-    padding: .8rem 2rem;
+    padding: .5rem 2rem;
 
     div {
       font-size: 1.2rem;
     }
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .remaining-time-title {
+    padding: .4rem 1.6rem;;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .remaining-time-title {
+    padding: .4rem 1.2rem;;
   }
 }
