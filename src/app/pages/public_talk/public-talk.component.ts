@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, HostListener} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {CountdownService} from "../../services/countdown.service";
 import {Router} from "@angular/router";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
@@ -8,9 +8,8 @@ import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
   templateUrl: './public-talk.component.html',
   styleUrls: ['./public-talk.component.scss']
 })
-export class PublicTalkComponent implements AfterViewInit {
+export class PublicTalkComponent {
   protected readonly faArrowLeft = faArrowLeft;
-  redColorText: boolean = false;
 
   constructor(
     public countdownService: CountdownService,
@@ -21,12 +20,6 @@ export class PublicTalkComponent implements AfterViewInit {
   @HostListener('window:popstate', ['$event'])
   onPopState(event: Event) {
     this.countdownService.stopCountdown();
-  }
-
-  ngAfterViewInit() {
-    this.countdownService.redColorText$.subscribe(redColorText => {
-      this.redColorText = redColorText;
-    })
   }
 
   returnBack() {

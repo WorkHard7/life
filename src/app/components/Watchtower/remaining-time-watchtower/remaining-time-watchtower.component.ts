@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {Router} from "@angular/router";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
@@ -8,20 +8,13 @@ import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
   templateUrl: './remaining-time-watchtower.component.html',
   styleUrls: ['./remaining-time-watchtower.component.scss']
 })
-export class RemainingTimeWatchtowerComponent implements OnInit {
+export class RemainingTimeWatchtowerComponent {
   protected readonly faArrowLeft = faArrowLeft;
-  redColorText: boolean = false;
 
   constructor(
     public countdownService: CountdownService,
     private router: Router
   ) {
-  }
-
-  ngOnInit(): void {
-    this.countdownService.redColorText$.subscribe(redColorText => {
-      this.redColorText = redColorText;
-    });
   }
 
   timeIsUp(): boolean {

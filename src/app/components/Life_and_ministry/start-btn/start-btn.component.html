@@ -1,8 +1,8 @@
 <button
   (click)="hideHeader()"
   [style.padding]="padding"
-  [disabled]="redColorText || countdownService.isTimerRunning"
-  [ngClass]="{'opacity-25' :  redColorText || countdownService.isTimerRunning}"
+  [disabled]="countdownService.isTimerRunning"
+  [ngClass]="{'opacity-25' : countdownService.isTimerRunning}"
   type="submit"
   class="start-btn">
   <i class="start-icon fa-solid fa-person-running"></i>

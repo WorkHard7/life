@@ -10,7 +10,6 @@ import {PartsService} from "../../../services/parts.service";
   styleUrls: ['./finish.component.scss']
 })
 export class FinishComponent implements OnInit {
-  redColorText: boolean = false;
   bibleStudyDuration: number = 3;
   finishPart: Events = {
     title: 'Cuvinte de încheiere, anunțuri',
@@ -28,9 +27,6 @@ export class FinishComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.countdownService.redColorText$.subscribe(redColorText => {
-      this.redColorText = redColorText;
-    })
     this.partsService.bibleStudyDuration.subscribe(duration => {
       this.bibleStudyDuration = duration;
     })

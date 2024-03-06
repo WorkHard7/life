@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {HeaderService} from "../../../services/header.service";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
@@ -8,21 +8,14 @@ import {CountdownAllocatedTimeService} from "../../../services/countdown-allocat
   templateUrl: './back-btn.component.html',
   styleUrls: ['./back-btn.component.scss']
 })
-export class BackBtnComponent implements OnInit {
+export class BackBtnComponent {
   @Input() publicTalk!: boolean;
-  redColorText: boolean = false;
 
   constructor(
     public countdownService: CountdownService,
     public countdownAllocatedTimeService: CountdownAllocatedTimeService,
     private headerService: HeaderService
   ) {
-  }
-
-  ngOnInit(): void {
-    this.countdownService.redColorText$.subscribe(redColorText => {
-      this.redColorText = redColorText;
-    })
   }
 
   onBtnClick() {

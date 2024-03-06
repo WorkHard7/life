@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {Router} from "@angular/router";
@@ -11,13 +11,11 @@ import {Subscription} from "rxjs";
   templateUrl: './remaining-time.component.html',
   styleUrls: ['./remaining-time.component.scss']
 })
-export class RemainingTimeComponent implements OnInit, OnDestroy {
+export class RemainingTimeComponent implements OnDestroy {
   @Input() introduction: boolean = false;
   @Input() finish: boolean = false;
 
   protected readonly faArrowLeft = faArrowLeft;
-  redColorText: boolean = false;
-
   private selectedSpeechSubscription!: Subscription;
 
   constructor(
@@ -26,12 +24,6 @@ export class RemainingTimeComponent implements OnInit, OnDestroy {
     private router: Router,
     public selectedSpeechService: SelectedSpeechService
   ) {
-  }
-
-  ngOnInit(): void {
-    this.countdownService.redColorText$.subscribe(redColorText => {
-      this.redColorText = redColorText;
-    });
   }
 
   returnBack() {

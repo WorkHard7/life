@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {Events} from "../../../model/events";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
@@ -8,8 +8,7 @@ import {SelectedSpeechService} from "../../../services/selected-speech.service";
   templateUrl: './introduction.component.html',
   styleUrls: ['./introduction.component.scss']
 })
-export class IntroductionComponent implements OnInit {
-  redColorText: boolean = false;
+export class IntroductionComponent {
   introPart: Events = {
     title: 'Cântare, rugăciune | Cuvinte introductive',
     hours: 19,
@@ -22,12 +21,6 @@ export class IntroductionComponent implements OnInit {
     public countdownService: CountdownService,
     private selectedSpeechService: SelectedSpeechService
   ) {
-  }
-
-  ngOnInit(): void {
-    this.countdownService.redColorText$.subscribe(redColorText => {
-      this.redColorText = redColorText;
-    })
   }
 
   updateSelectedSpeech(introPart: Events) {

@@ -13,7 +13,6 @@ import {SelectedSpeechService} from "../../../services/selected-speech.service";
 })
 export class PartsComponent implements OnInit {
   gems!: any[];
-  redColorText: boolean = false;
   preachingParts!: any[];
   christianLifeParts!: any[];
   alternativePreachingParts: Events = {
@@ -33,10 +32,6 @@ export class PartsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.countdownService.redColorText$.subscribe(redColorText => {
-      this.redColorText = redColorText;
-    })
-
     this.partsService.preachingParts.subscribe(preachingParts => {
       this.preachingParts = preachingParts;
     });

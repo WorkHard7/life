@@ -1,12 +1,12 @@
 <div>
 
   <ng-container
-    *ngIf="!countdownService.isTimerRunning && !redColorText"
+    *ngIf="!countdownService.isTimerRunning"
   >
     <app-start-btn-public-talk></app-start-btn-public-talk>
   </ng-container>
 
-  <ng-container *ngIf="countdownService.isTimerRunning || redColorText">
+  <ng-container *ngIf="countdownService.isTimerRunning">
     <div class="p-3 flex">
       <app-left-controllers
         class="left-controllers-container"
