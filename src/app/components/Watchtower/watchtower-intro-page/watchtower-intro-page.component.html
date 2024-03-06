@@ -7,17 +7,7 @@
         <span class="fa fa-heart"></span>
       </div>
 
-      <div class="flex flex-col text-center">
-        <div class="flex items-start text-2xl -bold text-white">
-          <button
-            (click)="goHome()"
-            class="icon-circle flex justify-center items-center">
-            <fa-icon
-              title="Back"
-              class="arrow-left text-white text-xl"
-              [icon]="faArrowLeft">
-            </fa-icon>
-          </button>
+        <div class="text-2xl text-center text-white">
           <div style="margin: auto"
                (dblclick)="onDoubleClick()"
                (mouseup)="onMouseUp()"
@@ -26,7 +16,6 @@
             <p class="main-title text-3xl mb-14">Turnul de veghe</p>
             <p class="select-par">Setați numărul total de paragrafe din articol</p>
           </div>
-        </div>
       </div>
 
       <main class="main-container-par">
@@ -84,6 +73,19 @@
           (click)="startW(selectedParagraph)"
         ></app-start-btn-watchtower>
       </div>
+
+      <div class="mt-6">
+        <button
+          (click)="goHome()"
+          class="icon-circle flex justify-center items-center">
+          <fa-icon
+            title="Back"
+            class="arrow-left text-white text-xl"
+            [icon]="faArrowLeft">
+          </fa-icon>
+        </button>
+      </div>
+
     </section>
   </div>
 </div>

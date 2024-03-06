@@ -64,10 +64,11 @@
 @media screen and (max-width: 280px) {
   .main-container-par {
     flex-wrap: wrap;
-  }
 
-  button {
-    padding: .3rem;
-    font-size: 1.1rem;
+    button {
+      padding: .3rem;
+      font-size: 1.1rem;
+      margin-left: 0;
+    }
   }
 }
