@@ -7,11 +7,10 @@
     ></app-left-controllers>
 
     <main class="main-container">
-
       <app-current-time [watchtowerStarted]="true"></app-current-time>
 
       <header class="main-header">
-        <p class="m-auto text-3xl">Articol cu {{paragraph}} paragrafe</p>
+        <p class="m-auto text-3xl">Articol cu {{selectedParagraph}} paragrafe</p>
       </header>
 
       <div *ngIf="isLoading" class="spinner">
@@ -21,22 +20,36 @@
       </div>
 
       <div
+        *ngIf="opacity === 1; else summaryBlock"
         class="text-center"
+      >
+        <div>
+          <p class="paragraph">{{currentParagraph}}</p>
+        </div>
+
+      </div>
+
+      <!-- this block will show when 4 minutes remained -->
+      <ng-template #summaryBlock>
+        <p
+          [ngStyle]="{
+          'opacity': countdownService.remainingTime <= 240 && countdownService.remainingTime >= 0 ? '1' : '0'
+          }"
+          class="summary"
+        >
+          Recapitulare
+        </p>
+      </ng-template>
+
+      <div
         [ngStyle]="{
           'opacity': isLoading ? '0' : '1'
         }"
       >
-        <div *ngIf="!isLoading && currentParagraph <= paragraph"
-            [ngClass]="{'small-text' : currentParagraph >= 0 && currentParagraph <= 22}"
-            class="text-center text-white">
-          {{(currentParagraph < 0 || currentParagraph > 22) ? '' : currentParagraph}}
-        </div>
-
         <app-remaining-time-watchtower></app-remaining-time-watchtower>
       </div>
 
     </main>
-
   </div>
 
 </section>

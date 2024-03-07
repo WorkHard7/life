@@ -1,12 +1,7 @@
-<div
-  [ngStyle]="{
-  'padding-top' : timeIsUp() ? '6rem' : ''
-  }"
-  class="main-container"
->
+<div class="main-container">
 
   <div
-    [style.color]="countdownService.remainingTime <= 0 ? '#f3b8b8' : '#ffffff'"
+    [style.color]="countdownService.remainingTime < 0 ? '#f3b8b8' : '#F2F5B8'"
     class="remaining-time-container"
   >
 

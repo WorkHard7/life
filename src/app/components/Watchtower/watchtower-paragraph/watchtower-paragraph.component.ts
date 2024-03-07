@@ -10,10 +10,10 @@ import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 })
 export class WatchtowerParagraphComponent implements OnInit, AfterViewInit {
   protected readonly faArrowLeft = faArrowLeft;
-
-  paragraph!: number;
-  currentParagraph: number = 0;
+  selectedParagraph!: number;
+  currentParagraph!: number;
   isLoading: boolean = true;
+  opacity: number = 1;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,9 +29,9 @@ export class WatchtowerParagraphComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(param => {
-      const paragraph = param.get('paragraph');
-      if (paragraph) {
-        this.paragraph = +paragraph;
+      const selectedParagraph = param.get('paragraph');
+      if (selectedParagraph) {
+        this.selectedParagraph = +selectedParagraph;
       }
     })
   }
@@ -49,17 +49,29 @@ export class WatchtowerParagraphComponent implements OnInit, AfterViewInit {
 
     setInterval(() => {
       const currentTime = new Date();
-      const totalTime: number = 60;
+      const totalTime: number = 55; // 1 minute for introduction and 4 minutes for reviewing
 
-      // remained time for orator when beginning the speech
-      const remainingTime = (endTime.getTime() - currentTime.getTime()) / 60000;
+      // remained minutes for orator when beginning the speech
+      const remainingMinutes = (endTime.getTime() - currentTime.getTime()) / 60000;
 
-      // what should be paragraph duration based on number of paragraphs selected
-      const paragraphDuration = totalTime / this.paragraph;
+      // what should be the paragraph duration based on number of paragraphs selected
+      const paragraphDuration = totalTime / this.selectedParagraph;
 
-      this.currentParagraph = Math.floor((totalTime - remainingTime) / paragraphDuration) + 1;
+      console.log('for each paragraph we have ', paragraphDuration, ' minutes')
+
+      this.currentParagraph = Math.floor((totalTime - (remainingMinutes - 4)) / paragraphDuration) + 1;
       this.isLoading = false;
+
+      this.updateOpacity();
     }, 1000)
+  }
+
+  updateOpacity() {
+    if (!this.isLoading && this.currentParagraph > this.selectedParagraph) {
+      this.opacity = 0;
+    } else {
+      this.opacity = 1;
+    }
   }
 
   returnBack() {
