@@ -8,7 +8,14 @@ import {speechA, bibleStudy, addNewSpeech} from "../mock/speech";
 function selectsZeroButtonByDefault() {
   // by default 0 is selected
   const button0 = document.getElementById('duration-button-0');
-  button0?.classList.add('selected');
+  const button15 = document.getElementById('duration-button-15');
+
+  if (button0) {
+    button0.classList.add('selected');
+  } else {
+    button15?.classList.add('selected');
+  }
+
 
   // input field will have also 0 by default
   const BStudyDurationInput = document.getElementById('swal-input-duration-s-bible') as HTMLInputElement;
@@ -328,7 +335,7 @@ export class PartsService {
           })
         }
       },
-      showCancelButton: true,
+      showCancelButton: index !== 0,
       confirmButtonText: 'Setează',
       cancelButtonText: 'Anulează',
       showLoaderOnConfirm: true,
