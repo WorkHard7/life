@@ -49,7 +49,7 @@ export class WatchtowerParagraphComponent implements OnInit, AfterViewInit {
 
     setInterval(() => {
       const currentTime = new Date();
-      const totalTime: number = 55; // 1 minute for introduction and 4 minutes for reviewing
+      const totalTime: number = 56; // 4 minutes for summary
 
       // remained minutes for orator when beginning the speech
       const remainingMinutes = (endTime.getTime() - currentTime.getTime()) / 60000;
