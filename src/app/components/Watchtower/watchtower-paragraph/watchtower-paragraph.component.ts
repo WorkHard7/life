@@ -1,5 +1,5 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 import {CountdownService} from "../../../services/countdown.service";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 
@@ -8,17 +8,17 @@ import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
   templateUrl: './watchtower-paragraph.component.html',
   styleUrls: ['./watchtower-paragraph.component.scss']
 })
-export class WatchtowerParagraphComponent implements OnInit {
+export class WatchtowerParagraphComponent implements OnInit, OnDestroy {
   protected readonly faArrowLeft = faArrowLeft;
   selectedParagraph!: number;
   currentParagraph!: number;
   isLoading: boolean = true;
   opacity: number = 1;
+  intervalId!: any;
 
   constructor(
     private route: ActivatedRoute,
-    public countdownService: CountdownService,
-    private router: Router
+    public countdownService: CountdownService
   ) {
   }
 
@@ -47,7 +47,11 @@ export class WatchtowerParagraphComponent implements OnInit {
     endTime.setHours(customEndTime.hours, customEndTime.minutes, customEndTime.seconds);
     this.countdownService.startCountdown(endTime);
 
-    setTimeout(() => {
+    if (this.countdownService.isTimerRunning) this.calculateCurrentParagraph(endTime);
+  }
+
+  private calculateCurrentParagraph(endTime: Date) {
+    this.intervalId = setInterval(() => {
       const currentTime = new Date();
       const totalTime: number = 56; // 4 minutes for summary
 
@@ -64,8 +68,8 @@ export class WatchtowerParagraphComponent implements OnInit {
     }, 1000)
   }
 
-  returnBack() {
-    this.countdownService.stopCountdown();
-    this.router.navigate(['/watchtower']);
+  ngOnDestroy() {
+    clearInterval(this.intervalId);
   }
 }
+
