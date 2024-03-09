@@ -28,6 +28,10 @@
   font-size: 2.5rem;
 }
 
+.remaining-seconds {
+  font-size: 1.3rem
+}
+
 .remaining-time-container {
   display: flex;
   flex-direction: column;
@@ -36,6 +40,10 @@
   border: 1px solid gray;
   border-radius: 1rem;
   padding: .8rem 2.2rem;
+}
+
+.sign {
+  font-size: 2.5rem;
 }
 
 p {

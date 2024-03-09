@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import {SelectedSpeechService} from "./selected-speech.service";
+import {CountdownAllocatedTimeService} from "./countdown-allocated-time.service";
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +28,17 @@ export class CountdownService {
     seconds: 0
   };
 
-  constructor() {
+  private LifeAndMinistryLastPart = {
+    title: 'Cântare, rugăciune de încheiere',
+    hours: 20,
+    minutes: 45,
+    seconds: 0
+  }
+
+  constructor(
+    private selectedSpeechService: SelectedSpeechService,
+    private countdownAllocatedTimeService: CountdownAllocatedTimeService
+  ) {
     this.initializeCustomEndTime();
     this.initializeCustomTimeStatus();
   }
@@ -62,13 +74,12 @@ export class CountdownService {
     this.remainingTime = (Math.floor(timeDiff / 1000));
 
     this.intervalId = setInterval(() => {
-
       console.log('remainingTime in second', this.remainingTime);
 
       this.showNegativeRemainingTime = this.formatNegativeNumber();
+      this.checkFinalBlockLM();
 
       console.log('remaining time Object', this.showNegativeRemainingTime);
-
       this.remainingTime--;
     }, 1000);
   }
@@ -117,5 +128,23 @@ export class CountdownService {
       minutes: totalMinutes.toString().padStart(2, '0'),
       seconds: seconds
     };
+  }
+
+  private checkFinalBlockLM() {
+    this.selectedSpeechService.selectedSpeech$.subscribe((selectedSpeech) => {
+      if (selectedSpeech.title === 'Cuvinte de încheiere, anunțuri') {
+        if (this.showNegativeRemainingTime.sign === '-' && this.showNegativeRemainingTime.minutes >= '01') {
+          this.stopCountdown();
+
+          const endTime = new Date();
+          endTime.setHours(
+            this.LifeAndMinistryLastPart.hours,
+            this.LifeAndMinistryLastPart.minutes,
+            this.LifeAndMinistryLastPart.seconds
+          );
+          this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endTime);
+        }
+      }
+    })
   }
 }

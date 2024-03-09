@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<ng-container *ngIf="countdownService.isTimerRunning">
+<ng-container *ngIf="countdownService.isTimerRunning || countdownAllocatedTimeService.isAllocatedTimerRunning">
   <app-remaining-time></app-remaining-time>
 </ng-container>
 

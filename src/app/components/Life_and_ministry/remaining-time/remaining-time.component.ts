@@ -52,6 +52,18 @@ export class RemainingTimeComponent implements OnDestroy {
     return true;
   }
 
+  mixColors(): string {
+    if (this.timersRunOutOfTime()) {
+      return '#f3b8b8';
+    } else return '#F2F5B8';
+  }
+
+  timersRunOutOfTime(): boolean {
+    return ((this.countdownService.isTimerRunning && this.countdownService.remainingTime <= 0) ||
+      (this.countdownAllocatedTimeService.remainingAllocatedTime <= 0 &&
+        this.countdownAllocatedTimeService.isAllocatedTimerRunning));
+  }
+
   ngOnDestroy(): void {
     if (this.selectedSpeechSubscription) {
       this.selectedSpeechSubscription.unsubscribe();

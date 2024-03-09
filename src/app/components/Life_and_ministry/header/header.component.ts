@@ -16,12 +16,13 @@ import {Observable} from "rxjs";
 export class HeaderComponent implements OnInit {
   @Input('title') header?: string;
   protected readonly faArrowLeft = faArrowLeft;
+  public finalPartTitle: string = 'Cântare, rugăciune de încheiere';
   selectedSpeech$!: Observable<Events>;
 
   constructor(
     private router: Router,
-    private countdownService: CountdownService,
-    private countdownAllocatedTimeService: CountdownAllocatedTimeService,
+    public countdownService: CountdownService,
+    public countdownAllocatedTimeService: CountdownAllocatedTimeService,
     public headerService: HeaderService,
     private selectedSpeechService: SelectedSpeechService
   ) {

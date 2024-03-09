@@ -3,6 +3,7 @@ import {CountdownService} from "../../../services/countdown.service";
 import {Events} from "../../../model/events";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
 import {PartsService} from "../../../services/parts.service";
+import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 
 @Component({
   selector: 'app-finish',
@@ -21,6 +22,7 @@ export class FinishComponent implements OnInit {
 
   constructor(
     public countdownService: CountdownService,
+    public countdownAllocatedTimeService: CountdownAllocatedTimeService,
     private selectedSpeechService: SelectedSpeechService,
     private partsService: PartsService
   ) {

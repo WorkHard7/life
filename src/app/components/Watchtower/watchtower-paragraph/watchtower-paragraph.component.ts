@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {CountdownService} from "../../../services/countdown.service";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +8,7 @@ import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
   templateUrl: './watchtower-paragraph.component.html',
   styleUrls: ['./watchtower-paragraph.component.scss']
 })
-export class WatchtowerParagraphComponent implements OnInit, AfterViewInit {
+export class WatchtowerParagraphComponent implements OnInit {
   protected readonly faArrowLeft = faArrowLeft;
   selectedParagraph!: number;
   currentParagraph!: number;
@@ -47,7 +47,7 @@ export class WatchtowerParagraphComponent implements OnInit, AfterViewInit {
     endTime.setHours(customEndTime.hours, customEndTime.minutes, customEndTime.seconds);
     this.countdownService.startCountdown(endTime);
 
-    setInterval(() => {
+    setTimeout(() => {
       const currentTime = new Date();
       const totalTime: number = 56; // 4 minutes for summary
 
@@ -61,17 +61,7 @@ export class WatchtowerParagraphComponent implements OnInit, AfterViewInit {
 
       this.currentParagraph = Math.floor((totalTime - (remainingMinutes - 4)) / paragraphDuration) + 1;
       this.isLoading = false;
-
-      this.updateOpacity();
     }, 1000)
-  }
-
-  updateOpacity() {
-    if (!this.isLoading && this.currentParagraph > this.selectedParagraph) {
-      this.opacity = 0;
-    } else {
-      this.opacity = 1;
-    }
   }
 
   returnBack() {

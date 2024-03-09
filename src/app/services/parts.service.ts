@@ -335,7 +335,6 @@ export class PartsService {
           })
         }
       },
-      showCancelButton: index !== 0,
       confirmButtonText: 'Setează',
       cancelButtonText: 'Anulează',
       showLoaderOnConfirm: true,

@@ -19,8 +19,9 @@
         </div>
       </div>
 
+      <!-- will show paragraph until 4 minutes remains -->
       <div
-        *ngIf="opacity === 1; else summaryBlock"
+        *ngIf="countdownService.remainingTime > 240; else summaryBlock"
         class="text-center"
       >
         <div>
@@ -41,6 +42,7 @@
         </p>
       </ng-template>
 
+      <!-- block for remaining time -->
       <div
         [ngStyle]="{
           'opacity': isLoading ? '0' : '1'

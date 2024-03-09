@@ -1,4 +1,3 @@
-// in case not Studiul Bibliei was selected
 export const speechA =
   `<input id="swal-input-title" class="swal2-input" placeholder="Titlul temei" value="Tema A" readonly>
         <div id="duration-container">

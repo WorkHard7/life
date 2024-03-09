@@ -48,13 +48,13 @@ export class StartBtnIntroFinishComponent {
 
   findEndingTime(endTime: Date) {
     if (this.introPart) {
-      endTime.setHours(this.introPart.hours, this.introPart.minutes, this.introPart.minutes); // 19:05:15
+      endTime.setHours(this.introPart.hours, this.introPart.minutes, this.introPart.seconds); // 19:05:15
       this.introPartEmitted.emit(this.introPart);
 
       this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endTime);
       this.countdownService.startCountdown(endTime);
     } else if (this.finishPart) {
-      endTime.setHours(this.finishPart.hours, this.finishPart.minutes, this.finishPart.minutes); // 20:42:00
+      endTime.setHours(this.finishPart.hours, this.finishPart.minutes, this.finishPart.seconds); // 20:42:00
       this.finishPartEmitted.emit(this.finishPart);
 
       this.countdownService.startCountdown(endTime);
