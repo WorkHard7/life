@@ -33,10 +33,6 @@ export class RemainingTimeComponent implements OnDestroy {
     this.router.navigate(['/life_and_ministry']);
   }
 
-  checkIfNegativeTime(): boolean {
-    return this.countdownService.diffTime.sign.includes('-');
-  }
-
   updateRemainingTimeIfNecessary(): boolean {
     this.selectedSpeechSubscription = this.selectedSpeechService.selectedSpeech$.subscribe(selectedSpeech => {
       if (selectedSpeech.title === 'Cuvinte de încheiere, anunțuri') {

@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
 import {faArrowLeft, faRefresh} from "@fortawesome/free-solid-svg-icons";
+import {SelectedSpeechService} from "../../../services/selected-speech.service";
+import {CountdownService} from "../../../services/countdown.service";
 
 @Component({
   selector: 'app-watchtower-intro-page',
@@ -15,10 +17,16 @@ export class WatchtowerIntroPageComponent {
   public showPopup: boolean = false;
   public selectedParagraph!: number;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private selectedSpeechService: SelectedSpeechService,
+    private countdownService: CountdownService
+  ) {
   }
 
   startW(paragraph: number) {
+    this.selectedSpeechService.updateSelectedSpeech(this.countdownService.watchtowerCustomEndTime);
+
     this.router.navigateByUrl(`/watchtower/${paragraph}`).catch((err) => {
       Swal.fire({
         title: 'Error',

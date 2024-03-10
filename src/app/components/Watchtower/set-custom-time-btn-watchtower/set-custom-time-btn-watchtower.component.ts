@@ -67,9 +67,11 @@ export class SetCustomTimeBtnWatchtowerComponent implements OnInit {
         }
 
         this.watchtowerEndTime = {
+          title: 'Turnul de veghe',
           hours: hours,
           minutes: minutes,
-          seconds: 0
+          seconds: 0,
+          duration: 60
         };
         console.log('watchtowerEndTime', this.watchtowerEndTime);
       }

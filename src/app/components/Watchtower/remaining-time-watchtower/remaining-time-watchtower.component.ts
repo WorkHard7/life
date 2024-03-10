@@ -1,18 +1,32 @@
 import {Component} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
+import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 
 @Component({
-  selector: 'app-remaining-time-watchtower',
-  templateUrl: './remaining-time-watchtower.component.html',
-  styleUrls: ['./remaining-time-watchtower.component.scss']
+    selector: 'app-remaining-time-watchtower',
+    templateUrl: './remaining-time-watchtower.component.html',
+    styleUrls: ['./remaining-time-watchtower.component.scss']
 })
 export class RemainingTimeWatchtowerComponent {
-  constructor(
-    public countdownService: CountdownService
-  ) {
-  }
+    constructor(
+        public countdownService: CountdownService,
+        public countdownAllocatedTimeService: CountdownAllocatedTimeService
+    ) {
+    }
 
-  timeIsUp(): boolean {
-    return this.countdownService.showNegativeRemainingTime.sign.includes('-');
-  }
+    timeIsUp(): boolean {
+        return this.countdownService.showNegativeRemainingTime.sign.includes('-');
+    }
+
+    mixColors() {
+        if (this.timersRunOutOfTime()) {
+            return '#f3b8b8';
+        } else return '#F2F5B8';
+    }
+
+    timersRunOutOfTime(): boolean {
+        return ((this.countdownService.isTimerRunning && this.countdownService.remainingTime <= 0) ||
+            (this.countdownAllocatedTimeService.remainingAllocatedTime <= 0 &&
+                this.countdownAllocatedTimeService.isAllocatedTimerRunning));
+    }
 }

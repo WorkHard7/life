@@ -2,6 +2,7 @@ import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CountdownService} from "../../../services/countdown.service";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
+import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 
 @Component({
   selector: 'app-watchtower-paragraph',
@@ -18,7 +19,8 @@ export class WatchtowerParagraphComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    public countdownService: CountdownService
+    public countdownService: CountdownService,
+    public countdownAllocatedTimeService: CountdownAllocatedTimeService
   ) {
   }
 
@@ -61,7 +63,7 @@ export class WatchtowerParagraphComponent implements OnInit, OnDestroy {
       // what should be the paragraph duration based on number of paragraphs selected
       const paragraphDuration = totalTime / this.selectedParagraph;
 
-      console.log('for each paragraph we have ', paragraphDuration, ' minutes')
+      console.log('for each paragraph we have ', paragraphDuration, ' minutes');
 
       this.currentParagraph = Math.floor((totalTime - (remainingMinutes - 4)) / paragraphDuration) + 1;
       this.isLoading = false;

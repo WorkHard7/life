@@ -1,32 +1,38 @@
 import {Injectable} from '@angular/core';
 import {SelectedSpeechService} from "./selected-speech.service";
 import {CountdownAllocatedTimeService} from "./countdown-allocated-time.service";
+import {Events} from "../model/events";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountdownService {
   remainingTime: number = 0;
+  intervalId!: any;
+  isTimerRunning: boolean = false;
+  isCustomTime: boolean = false;
   showNegativeRemainingTime: { sign: string, minutes: string, seconds: string } =
     {
       sign: '',
       minutes: '00',
       seconds: '00'
     }
-  intervalId!: any;
-  isTimerRunning: boolean = false;
-  isCustomTime: boolean = false;
-  diffTime: { sign: string, minutes: number, seconds: number } = {
-    sign: '',
-    minutes: 0,
-    seconds: 0
-  }
 
-  private watchtowerCustomEndTime: Object = {
-    hours: '20',
-    minutes: '10',
-    seconds: 0
+  watchtowerCustomEndTime: Events = {
+    title: '',
+    hours: 20,
+    minutes: 10,
+    seconds: 0,
+    duration: 0
   };
+
+  private watchtowerLastPart: Events = {
+    title: 'Turnul de veghe',
+    hours: 20,
+    minutes: 15,
+    seconds: 0,
+    duration: 4
+  }
 
   private LifeAndMinistryLastPart = {
     title: 'Cântare, rugăciune de încheiere',
@@ -132,19 +138,32 @@ export class CountdownService {
 
   private checkFinalBlockLM() {
     this.selectedSpeechService.selectedSpeech$.subscribe((selectedSpeech) => {
-      if (selectedSpeech.title === 'Cuvinte de încheiere, anunțuri') {
+      if (selectedSpeech.title === 'Cuvinte de încheiere, anunțuri' || selectedSpeech.title === 'Turnul de veghe') {
         if (this.showNegativeRemainingTime.sign === '-' && this.showNegativeRemainingTime.minutes >= '01') {
           this.stopCountdown();
-
-          const endTime = new Date();
-          endTime.setHours(
-            this.LifeAndMinistryLastPart.hours,
-            this.LifeAndMinistryLastPart.minutes,
-            this.LifeAndMinistryLastPart.seconds
-          );
-          this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endTime);
+          this.setEndTime(selectedSpeech);
         }
       }
     })
+  }
+
+  private setEndTime(selectedSpeech: Events) {
+    const endTime = new Date();
+
+    if (selectedSpeech.title === 'Cuvinte de încheiere, anunțuri') {
+      endTime.setHours(
+        this.LifeAndMinistryLastPart.hours,
+        this.LifeAndMinistryLastPart.minutes,
+        this.LifeAndMinistryLastPart.seconds
+      );
+    } else {
+      endTime.setHours(
+        this.watchtowerLastPart.hours,
+        this.watchtowerLastPart.minutes,
+        this.watchtowerLastPart.seconds
+      );
+    }
+
+    this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endTime);
   }
 }
