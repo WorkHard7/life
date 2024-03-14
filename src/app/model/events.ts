@@ -1,4 +1,5 @@
-export interface Events {
+export interface AllEvents {
+  index: number,
   title: string,
   hours: any,
   minutes: any,

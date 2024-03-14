@@ -1,21 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {CountdownService} from "../../../services/countdown.service";
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PartsService} from "../../../services/parts.service";
-import Swal from "sweetalert2";
-import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
-import {Events} from "../../../model/events";
+import {AllEvents} from "../../../model/events";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
+import {Router} from "@angular/router";
+import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.component";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-parts',
   templateUrl: './parts.component.html',
   styleUrls: ['./parts.component.scss']
 })
-export class PartsComponent implements OnInit {
+export class PartsComponent extends SharedUtilsComponent implements OnInit, OnDestroy {
   gems!: any[];
-  preachingParts!: any[];
-  christianLifeParts!: any[];
-  alternativePreachingParts: Events = {
+  gemPartsSubscription!: Subscription;
+  alternativePreachingParts: AllEvents = {
+    index: 4,
     title: 'Să fim mai eficienți în predicare',
     hours: 19,
     minutes: 47,
@@ -24,56 +24,29 @@ export class PartsComponent implements OnInit {
   }
 
   constructor(
-    private countdownService: CountdownService,
-    private countdownAllocatedTimeService: CountdownAllocatedTimeService,
     private partsService: PartsService,
-    private selectedSpeechService: SelectedSpeechService
+    private selectedSpeechService: SelectedSpeechService,
+    private router: Router
   ) {
+    super();
   }
 
-  ngOnInit(): void {
-    this.partsService.preachingParts.subscribe(preachingParts => {
-      this.preachingParts = preachingParts;
-    });
-
-    this.partsService.christianLifeParts.subscribe(parts => {
-      this.christianLifeParts = parts;
-    });
-
-    this.partsService.gems.subscribe(gems => {
+  ngOnInit() {
+    this.gemPartsSubscription = this.partsService.gems.subscribe(gems => {
       this.gems = gems;
     });
   }
 
+  ngOnDestroy() {
+    this.gemPartsSubscription.unsubscribe();
+  }
+
   setTime(gem: any): void {
     this.fireLoadingAlert();
-    this.updateSelectedSpeech(gem);
-
-    const endTime = new Date();
-    endTime.setHours(gem['hours'], gem['minutes'], 0, 0);
-
-    const currentTime = new Date();
-    const endAllocatedTime = new Date(currentTime.getTime() + gem['duration'] * 60000);
-
-    this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endAllocatedTime);
-    this.countdownService.startCountdown(endTime);
+    this.router.navigate(['/life_and_ministry', gem.index]);
   }
 
-  private fireLoadingAlert() {
-    Swal.fire({
-      title: 'Loading...',
-      allowOutsideClick: false,
-      didOpen: () => {
-        Swal.showLoading()
-
-        setTimeout(() => {
-          Swal.close();
-        }, 1000);
-      }
-    });
-  }
-
-  updateSelectedSpeech(selectedSpeech: Events) {
+  updateSelectedSpeech(selectedSpeech: AllEvents) {
     this.selectedSpeechService.updateSelectedSpeech(selectedSpeech);
   }
 }

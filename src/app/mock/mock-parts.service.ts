@@ -1,7 +1,8 @@
-import {Events} from "../model/events";
+import {AllEvents} from "../model/events";
 
-export const GEMS: Events[] = [
+export const GEMS: AllEvents[] = [
   {
+    index: 1,
     title: 'Comori din Cuvântul lui Dumnezeu',
     hours: 19,
     minutes: 16,
@@ -9,6 +10,7 @@ export const GEMS: Events[] = [
     duration: 10
   },
   {
+    index: 2,
     title: 'Nestemate spirituale',
     hours: 19,
     minutes: 26,
@@ -16,6 +18,7 @@ export const GEMS: Events[] = [
     duration: 10
   },
   {
+    index: 3,
     title: 'Citirea Bibliei',
     hours: 19,
     minutes: 31,
@@ -24,10 +27,11 @@ export const GEMS: Events[] = [
   }
 ]
 
-export const PREACHING: Events[] = []
+export const PREACHING: AllEvents[] = []
 
-export const CHRISTIAN_LIFE: ReadonlyArray<Events> = [
+export const CHRISTIAN_LIFE: ReadonlyArray<AllEvents> = [
   {
+    index: 5,
     title: 'Tema A',
     hours: 20,
     minutes: '0' + 5,
@@ -35,10 +39,22 @@ export const CHRISTIAN_LIFE: ReadonlyArray<Events> = [
     duration: 15
   },
   {
+    index: 6,
     title: 'Studiul Bibliei',
     hours: 20,
     minutes: 36,
     seconds: 30,
     duration: 30
+  }
+]
+
+export const FINISH_PART: ReadonlyArray<AllEvents> = [
+  {
+    index: 7,
+    title: 'Cuvinte de încheiere, anunțuri',
+    hours: 20,
+    minutes: 40,
+    seconds: 0,
+    duration: 3
   }
 ]

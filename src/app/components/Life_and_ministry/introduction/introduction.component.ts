@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
-import {Events} from "../../../model/events";
-import {SelectedSpeechService} from "../../../services/selected-speech.service";
+import {AllEvents} from "../../../model/events";
 
 @Component({
   selector: 'app-introduction',
@@ -9,7 +8,8 @@ import {SelectedSpeechService} from "../../../services/selected-speech.service";
   styleUrls: ['./introduction.component.scss']
 })
 export class IntroductionComponent {
-  introPart: Events = {
+  introPart: AllEvents = {
+    index: 0,
     title: 'Cântare, rugăciune | Cuvinte introductive',
     hours: 19,
     minutes: 6,
@@ -17,13 +17,6 @@ export class IntroductionComponent {
     duration: 6
   };
 
-  constructor(
-    public countdownService: CountdownService,
-    private selectedSpeechService: SelectedSpeechService
-  ) {
-  }
-
-  updateSelectedSpeech(introPart: Events) {
-    this.selectedSpeechService.updateSelectedSpeech(introPart);
+  constructor(public countdownService: CountdownService) {
   }
 }

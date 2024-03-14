@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {CountdownService} from "../../../services/countdown.service";
 import {HeaderService} from "../../../services/header.service";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
-import {Events} from "../../../model/events";
+import {AllEvents} from "../../../model/events";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
 import {Observable} from "rxjs";
 
@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   @Input('title') header?: string;
   protected readonly faArrowLeft = faArrowLeft;
   public finalPartTitle: string = 'Cântare, rugăciune de încheiere';
-  selectedSpeech$!: Observable<Events>;
+  selectedSpeech$!: Observable<AllEvents>;
 
   constructor(
     private router: Router,

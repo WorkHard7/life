@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {CHRISTIAN_LIFE, GEMS, PREACHING} from "../mock/mock-parts.service";
+import {CHRISTIAN_LIFE, FINISH_PART, GEMS, PREACHING} from "../mock/mock-parts.service";
 import {BehaviorSubject} from "rxjs";
-import {Events} from "../model/events";
+import {AllEvents} from "../model/events";
 import Swal from "sweetalert2";
-import {speechA, bibleStudy, addNewSpeech} from "../mock/speech";
+import {addNewSpeech, bibleStudy, speechA} from "../mock/speech";
 
 function selectsZeroButtonByDefault() {
   // by default 0 is selected
@@ -27,7 +27,7 @@ function selectsZeroButtonByDefault() {
 function updateDuration(
   duration: number,
   christianLifeParts?: BehaviorSubject<any>,
-  partToBeEdited?: Events
+  partToBeEdited?: AllEvents
 ) {
   const durationInput = document.getElementById('swal-input-duration') as HTMLInputElement;
   if (durationInput) {
@@ -148,17 +148,21 @@ export class PartsService {
   public gems: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   public preachingParts: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   public christianLifeParts: BehaviorSubject<any> = new BehaviorSubject<any>([]);
+  public finishPart: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   public bibleStudyDuration: BehaviorSubject<number> = new BehaviorSubject<number>(3);
+  public newIndexFinishPart: BehaviorSubject<number> = new BehaviorSubject<number>(7);
   public shortenedBsDuration: number = 0;
 
   constructor() {
     const gems = localStorage.getItem('gems');
     const preachingParts = localStorage.getItem('preaching');
     const christianLifeParts = localStorage.getItem('christianLife');
+    const finishPart = localStorage.getItem('finishPart');
 
     this.getGemsFromStorage(gems);
     this.getPreachingPartsFromStorage(preachingParts);
     this.getChristianLifePartsFromStorage(christianLifeParts);
+    this.getFinishPartFromLocalStorage(finishPart);
   }
 
   addCustomSpeech(preaching: boolean = false, christianLife: boolean = false): void {
@@ -217,6 +221,7 @@ export class PartsService {
     }).then((result: any) => {
       if (result.isConfirmed) {
         const newSpeech = {
+          index: 0,
           title: result.value.title,
           hours: result.value.hours,
           minutes: result.value.minutes,
@@ -255,7 +260,7 @@ export class PartsService {
   }
 
   private editPreachingAndChristianPart(
-    partToBeEdited: Events,
+    partToBeEdited: AllEvents,
     index: number
   ) {
     let speech = '';
@@ -371,6 +376,7 @@ export class PartsService {
 
   updatedSpeechA(result: any, index: number) {
     const editedSpeechA = {
+      index: 5,
       title: result.value.title,
       hours: result.value.hours,
       minutes: result.value.minutes,
@@ -386,6 +392,7 @@ export class PartsService {
     // also if there are 2 speeches and Studiul Bibliei was selected, do not add a new speech
     if (this.christianLifeParts.getValue().length < 3 && result.value.speechBHours?.length > 1) {
       const newBSpeech = {
+        index: 6,
         title: result.value.speechBTitle,
         hours: result.value.speechBHours,
         minutes: result.value.speechBMinutes,
@@ -393,13 +400,19 @@ export class PartsService {
         duration: result.value.speechBDuration
       }
 
+      this.updateBSIndex(7);
+      this.updateFinishPartIndex(8);
       this.updateChristianLifePartsAfterAddingANewPart(newBSpeech);
+
+      // Update the index of the finish part directly
+      this.newIndexFinishPart.next(8);
     }
   }
 
-  editBibleStudyPart(partToBeEdited: Events, result: any, index: number) {
+  editBibleStudyPart(partToBeEdited: AllEvents, result: any, index: number) {
     if (partToBeEdited.title == 'Studiul Bibliei') {
       const editedBStudy = {
+        index: this.christianLifeParts.getValue().length > 2 ? 7 : 6, // if speechB present, change index to 7
         title: partToBeEdited.title,
         hours: result.value.speechBStudyHours,
         minutes: result.value.speechBStudyMinutes,
@@ -412,7 +425,7 @@ export class PartsService {
     }
   }
 
-  validateInputs(partToBeEdited: Events):
+  validateInputs(partToBeEdited: AllEvents):
     {
       title?: string,
       hours?: string,
@@ -515,7 +528,7 @@ export class PartsService {
     this.preachingParts.next(preachingParts);
   }
 
-  private updateSpeeches(newSpeech: Events): void {
+  private updateSpeeches(newSpeech: AllEvents): void {
     const parts = this.gems.getValue();
     parts.push(newSpeech);
     localStorage.setItem('gems', JSON.stringify(parts));
@@ -523,7 +536,7 @@ export class PartsService {
     this.gems.next(parts);
   }
 
-  private updatePreachingParts(newSpeech: Events): void {
+  private updatePreachingParts(newSpeech: any): void {
     const preachingParts = this.preachingParts.getValue();
     preachingParts.push(newSpeech);
     localStorage.setItem('preaching', JSON.stringify(preachingParts));
@@ -531,7 +544,7 @@ export class PartsService {
     this.preachingParts.next(preachingParts);
   }
 
-  private updateChristianLifePartsAfterAddingANewPart(newSpeech: Events): void {
+  private updateChristianLifePartsAfterAddingANewPart(newSpeech: AllEvents): void {
     let christianLifeParts = this.christianLifeParts.getValue();
     const bibleStudy = christianLifeParts.find((part: any) => part.title === 'Studiul Bibliei');
 
@@ -633,6 +646,7 @@ export class PartsService {
     if (speechAorBs === 'A') {
       if (christianLifePartsFromStorage.length === 3) {
         christianLifePartsFromStorage[0] = {
+          index: 5,
           title: 'Tema A',
           hours: 20,
           minutes: '0' + 5,
@@ -644,6 +658,7 @@ export class PartsService {
         christianLifePartsFromStorage.splice(1, 1);
       } else if (christianLifePartsFromStorage.length > 0) {
         christianLifePartsFromStorage[0] = {
+          index: 5,
           title: 'Tema A',
           hours: 20,
           minutes: '0' + 5,
@@ -653,6 +668,7 @@ export class PartsService {
       }
     } else if (speechAorBs === 'BS') {
       christianLifePartsFromStorage[christianLifePartsFromStorage.length - 1] = {
+        index: this.christianLifeParts.getValue().length > 2 ? 7 : 6, // if speechB present, change index to 7
         title: 'Studiul Bibliei',
         hours: 20,
         minutes: 36,
@@ -664,6 +680,26 @@ export class PartsService {
 
     localStorage.setItem('christianLife', JSON.stringify(christianLifePartsFromStorage));
     this.christianLifeParts.next(christianLifePartsFromStorage);
+
+    this.updateBSIndex(this.christianLifeParts.getValue().length > 2 ? 7 : 6);
+    this.updateFinishPartIndex(this.christianLifeParts.getValue().length > 2 ? 8 : 7);
+  }
+
+  updateFinishPartIndex(newIndex: number) {
+    let finishPart = this.finishPart.getValue();
+    finishPart[0].index = newIndex;
+
+    localStorage.setItem('finishPart', JSON.stringify(finishPart));
+    this.finishPart.next(finishPart);
+  }
+
+  updateBSIndex(newIndex: number) {
+    let christianLifeParts = this.christianLifeParts.getValue();
+    const bibleStudy = christianLifeParts.find((part: any) => part.title === 'Studiul Bibliei');
+    bibleStudy.index = newIndex;
+
+    localStorage.setItem('christianLife', JSON.stringify(christianLifeParts));
+    this.christianLifeParts.next(christianLifeParts);
   }
 
   private getGemsFromStorage(gems: string | null): void {
@@ -690,6 +726,15 @@ export class PartsService {
     } else {
       this.christianLifeParts.next(CHRISTIAN_LIFE);
       localStorage.setItem('christianLife', JSON.stringify(CHRISTIAN_LIFE));
+    }
+  }
+
+  private getFinishPartFromLocalStorage(finishPart: string | null) {
+    if (finishPart) {
+      this.finishPart.next(JSON.parse(finishPart));
+    } else {
+      this.finishPart.next(FINISH_PART);
+      localStorage.setItem('finishPart', JSON.stringify(FINISH_PART));
     }
   }
 }

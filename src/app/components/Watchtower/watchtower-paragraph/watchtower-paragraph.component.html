@@ -1,10 +1,9 @@
 <section class="p-3 h-screen">
 
   <div class="flex">
-    <app-left-controllers
+    <app-left-controllers-watchtower
       class="left-controllers-container"
-      [watchtower]="true"
-    ></app-left-controllers>
+    ></app-left-controllers-watchtower>
 
     <main class="main-container">
       <app-current-time [watchtowerStarted]="true"></app-current-time>
@@ -33,7 +32,7 @@
         *ngIf="countdownService.remainingTime > 240; else summaryBlock"
         class="text-center"
       >
-        <div>
+        <div *ngIf="currentParagraph >= 0">
           <p class="paragraph">{{currentParagraph}}</p>
         </div>
 

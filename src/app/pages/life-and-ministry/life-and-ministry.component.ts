@@ -1,18 +1,20 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {CountdownService} from "../../services/countdown.service";
 import {PartsService} from "../../services/parts.service";
-import {Events} from "../../model/events";
+import {AllEvents} from "../../model/events";
 import {HeaderService} from "../../services/header.service";
 import {CountdownAllocatedTimeService} from "../../services/countdown-allocated-time.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-life-and-ministry',
   templateUrl: './life-and-ministry.component.html',
   styleUrls: ['./life-and-ministry.component.scss']
 })
-export class LifeAndMinistryComponent implements OnInit {
+export class LifeAndMinistryComponent implements OnInit, OnDestroy {
   title = 'Viața creștină și predicarea';
-  parts!: Events[];
+  partsServiceSubscription!: Subscription;
+  parts!: AllEvents[];
 
   constructor(
     public countdownService: CountdownService,
@@ -23,7 +25,7 @@ export class LifeAndMinistryComponent implements OnInit {
   }
 
   @HostListener('window:popstate', ['$event'])
-  onPopState(event: Event) {
+  onPopState(event: AllEvents) {
     this.headerService.showHeaderAgain();
 
     this.countdownService.stopCountdown();
@@ -31,10 +33,14 @@ export class LifeAndMinistryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.partsService.gems.subscribe(parts => {
+    this.partsServiceSubscription = this.partsService.gems.subscribe(parts => {
       this.parts = parts;
     });
 
     console.log(this.parts)
+  }
+
+  ngOnDestroy() {
+    this.partsServiceSubscription.unsubscribe();
   }
 }

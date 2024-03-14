@@ -1,63 +1,37 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PartsService} from "../../../services/parts.service";
-import Swal from "sweetalert2";
-import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
-import {Events} from "../../../model/events";
-import {SelectedSpeechService} from "../../../services/selected-speech.service";
-import {CountdownService} from "../../../services/countdown.service";
+import {Router} from "@angular/router";
+import {Subscription} from "rxjs";
+import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.component";
 
 @Component({
   selector: 'app-christian-life-parts',
   templateUrl: './christian-life-parts.component.html',
   styleUrls: ['./christian-life-parts.component.scss']
 })
-export class ChristianLifePartsComponent implements OnInit {
+export class ChristianLifePartsComponent extends SharedUtilsComponent implements OnInit, OnDestroy {
   christianLifeParts!: any[];
+  christianLifePartsSubscription!: Subscription;
 
   constructor(
     private partsService: PartsService,
-    private countdownService: CountdownService,
-    private countdownAllocatedTimeService: CountdownAllocatedTimeService,
-    private selectedSpeechService: SelectedSpeechService
+    private router: Router
   ) {
+    super();
   }
 
   ngOnInit(): void {
-    this.partsService.christianLifeParts.subscribe(parts => {
+    this.christianLifePartsSubscription = this.partsService.christianLifeParts.subscribe(parts => {
       this.christianLifeParts = parts;
     });
   }
 
+  ngOnDestroy() {
+    this.christianLifePartsSubscription.unsubscribe();
+  }
+
   setTime(christianPart: any): void {
     this.fireLoadingAlert();
-    this.updateSelectedSpeech(christianPart);
-
-    const endTime = new Date();
-    endTime.setHours(christianPart['hours'], christianPart['minutes'], 0, 0);
-
-    const currentTime = new Date();
-    const endAllocatedTime = new Date(currentTime.getTime() + christianPart['duration'] * 60000);
-
-    this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endAllocatedTime);
-    this.countdownService.startCountdown(endTime);
-  }
-
-  private fireLoadingAlert() {
-    Swal.fire({
-      title: 'Loading...',
-      allowOutsideClick: false,
-
-      didOpen: () => {
-        Swal.showLoading()
-
-        setTimeout(() => {
-          Swal.close();
-        }, 1000);
-      }
-    });
-  }
-
-  private updateSelectedSpeech(selectedSpeech: Events) {
-    this.selectedSpeechService.updateSelectedSpeech(selectedSpeech);
+    this.router.navigate(['/life_and_ministry', christianPart.index]);
   }
 }

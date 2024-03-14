@@ -1,33 +1,40 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PartsService} from "../../../services/parts.service";
-import Swal from "sweetalert2";
-import {Events} from "../../../model/events";
+import {AllEvents} from "../../../model/events";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
 import {CountdownService} from "../../../services/countdown.service";
+import {Router} from "@angular/router";
+import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.component";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-preaching-parts',
   templateUrl: './preaching-parts.component.html',
   styleUrls: ['./preaching-parts.component.scss']
 })
-export class PreachingPartsComponent implements OnInit {
+export class PreachingPartsComponent extends SharedUtilsComponent implements OnInit, OnDestroy {
   preachingParts!: any[];
+  preachingPartsSubscription!: Subscription;
 
   constructor(
     private partsService: PartsService,
     private countdownService: CountdownService,
     private countdownAllocatedTimeService: CountdownAllocatedTimeService,
-    private selectedSpeechService: SelectedSpeechService
+    private selectedSpeechService: SelectedSpeechService,
+    private router: Router
   ) {
+    super();
   }
 
   ngOnInit(): void {
-    this.partsService.preachingParts.subscribe(preachingParts => {
+    this.preachingPartsSubscription = this.partsService.preachingParts.subscribe(preachingParts => {
       this.preachingParts = preachingParts;
     });
+  }
 
-    console.log(this.preachingParts)
+  ngOnDestroy() {
+    this.preachingPartsSubscription.unsubscribe()
   }
 
   deleteSpeech(title: string): void {
@@ -36,33 +43,10 @@ export class PreachingPartsComponent implements OnInit {
 
   setTime(preachingPart: any): void {
     this.fireLoadingAlert();
-    this.updateSelectedSpeech(preachingPart);
-
-    const endTime = new Date();
-    endTime.setHours(preachingPart['hours'], preachingPart['minutes'], 0, 0);
-
-    const endTimePreaching = new Date();
-    endTime.setHours(preachingPart['hours'], preachingPart['minutes'], 0, 0);
-
-    this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endTimePreaching);
-    this.countdownService.startCountdown(endTime);
+    this.router.navigate(['/life_and_ministry', preachingPart.index]);
   }
 
-  private fireLoadingAlert() {
-    Swal.fire({
-      title: 'Loading...',
-      allowOutsideClick: false,
-      didOpen: () => {
-        Swal.showLoading()
-
-        setTimeout(() => {
-          Swal.close();
-        }, 1000);
-      }
-    });
-  }
-
-  updateSelectedSpeech(selectedSpeech: Events) {
+  updateSelectedSpeech(selectedSpeech: AllEvents) {
     this.selectedSpeechService.updateSelectedSpeech(selectedSpeech);
   }
 }

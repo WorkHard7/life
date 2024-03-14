@@ -9,9 +9,6 @@ import {faArrowsRotate} from "@fortawesome/free-solid-svg-icons";
 export class ReloadPageBtnComponent {
   public readonly faReload = faArrowsRotate;
 
-  constructor() {
-  }
-
   reloadPage() {
     window.location.reload();
   }

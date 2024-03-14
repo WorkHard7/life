@@ -4,6 +4,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
+import {FormsModule} from "@angular/forms";
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/Life_and_ministry/header/header.component';
@@ -30,6 +31,7 @@ import {
   SetCustomTimeBtnWatchtowerComponent
 } from './components/Watchtower/set-custom-time-btn-watchtower/set-custom-time-btn-watchtower.component';
 import {DeleteBtnComponent} from './components/Life_and_ministry/delete-btn/delete-btn.component';
+import {LeftControllersPublicTalk} from "./components/Public_talk/left-controllers_public_talk/left-controllers-public-talk";
 import {PublicTalkComponent} from "./pages/public_talk/public-talk.component";
 import {StartBtnPublicTalkComponent} from './components/Public_talk/start-btn-public-talk/start-btn-public-talk.component';
 import {IntroductionComponent} from './components/Life_and_ministry/introduction/introduction.component';
@@ -41,7 +43,8 @@ import {StartBtnIntroFinishComponent} from './components/Life_and_ministry/start
 import {RemainingTimePublicTalkComponent} from './components/Public_talk/remaining-time-public-talk/remaining-time-public-talk.component';
 import {LeftControllersComponent} from './components/Life_and_ministry/left-controllers/left-controllers.component';
 import {StartBtnWatchtowerComponent} from './components/Watchtower/start-btn-watchtower/start-btn-watchtower.component';
-import {FormsModule} from "@angular/forms";
+import {LeftControllersWatchtowerComponent} from './components/Watchtower/left-controllers-watchtower/left-controllers-watchtower.component';
+import {SharedUtilsComponent} from "./utils/shared-utils/shared-utils.component";
 
 @NgModule({
   declarations: [
@@ -74,7 +77,10 @@ import {FormsModule} from "@angular/forms";
     StartBtnIntroFinishComponent,
     RemainingTimePublicTalkComponent,
     LeftControllersComponent,
+    LeftControllersPublicTalk,
     StartBtnWatchtowerComponent,
+    LeftControllersWatchtowerComponent,
+    SharedUtilsComponent,
   ],
   imports: [
     BrowserModule,

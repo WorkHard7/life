@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {CountdownService} from "../../../services/countdown.service";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-watchtower-paragraph',
@@ -11,6 +12,7 @@ import {CountdownAllocatedTimeService} from "../../../services/countdown-allocat
 })
 export class WatchtowerParagraphComponent implements OnInit, OnDestroy {
   protected readonly faArrowLeft = faArrowLeft;
+  routeParamSubscription!: Subscription;
   selectedParagraph!: number;
   currentParagraph!: number;
   isLoading: boolean = true;
@@ -30,7 +32,7 @@ export class WatchtowerParagraphComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(param => {
+    this.routeParamSubscription = this.route.paramMap.subscribe(param => {
       const selectedParagraph = param.get('paragraph');
       if (selectedParagraph) {
         this.selectedParagraph = +selectedParagraph;
@@ -40,6 +42,11 @@ export class WatchtowerParagraphComponent implements OnInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.updateWatchtower();
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.intervalId);
+    this.routeParamSubscription.unsubscribe();
   }
 
   updateWatchtower() {
@@ -68,10 +75,6 @@ export class WatchtowerParagraphComponent implements OnInit, OnDestroy {
       this.currentParagraph = Math.floor((totalTime - (remainingMinutes - 4)) / paragraphDuration) + 1;
       this.isLoading = false;
     }, 1000)
-  }
-
-  ngOnDestroy() {
-    clearInterval(this.intervalId);
   }
 }
 

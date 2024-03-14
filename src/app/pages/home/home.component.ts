@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {GEMS} from "../../mock/mock-parts.service";
-import {Events} from "../../model/events";
+import {AllEvents} from "../../model/events";
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,7 @@ import {Events} from "../../model/events";
 })
 export class HomeComponent implements OnInit {
   title = 'ministry_app';
-  parts!: Events[];
+  parts!: AllEvents[];
 
   constructor() {
   }

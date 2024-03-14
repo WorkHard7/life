@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy} from '@angular/core';
+import {AfterViewChecked, Component, Input, OnDestroy} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {Router} from "@angular/router";
@@ -11,7 +11,7 @@ import {Subscription} from "rxjs";
   templateUrl: './remaining-time.component.html',
   styleUrls: ['./remaining-time.component.scss']
 })
-export class RemainingTimeComponent implements OnDestroy {
+export class RemainingTimeComponent implements OnDestroy, AfterViewChecked {
   @Input() introduction: boolean = false;
   @Input() finish: boolean = false;
 
@@ -26,6 +26,14 @@ export class RemainingTimeComponent implements OnDestroy {
   ) {
   }
 
+  ngAfterViewChecked() {
+    this.updateRemainingTimeIfNecessary();
+  }
+
+  ngOnDestroy(): void {
+    this.selectedSpeechSubscription.unsubscribe();
+  }
+
   returnBack() {
     this.countdownService.stopCountdown();
     this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
@@ -33,19 +41,23 @@ export class RemainingTimeComponent implements OnDestroy {
     this.router.navigate(['/life_and_ministry']);
   }
 
-  updateRemainingTimeIfNecessary(): boolean {
+  updateRemainingTimeIfNecessary() {
+    let shouldExit = false;
+
     this.selectedSpeechSubscription = this.selectedSpeechService.selectedSpeech$.subscribe(selectedSpeech => {
       if (selectedSpeech.title === 'Cuvinte de încheiere, anunțuri') {
-        return;
-      }
-
-      if (this.countdownService.remainingTime > this.countdownAllocatedTimeService.remainingAllocatedTime) {
-        this.countdownService.remainingTime = this.countdownAllocatedTimeService.remainingAllocatedTime + 1;
-        console.log('countdownService remainingTime is bigger than countdownAllocatedTimeService');
+        shouldExit = true;
       }
     })
 
-    return true;
+    if (shouldExit) {
+      return;
+    }
+
+    if (this.countdownService.remainingTime > this.countdownAllocatedTimeService.remainingAllocatedTime) {
+      this.countdownService.remainingTime = this.countdownAllocatedTimeService.remainingAllocatedTime + 1;
+      console.log('countdownService remainingTime is bigger than countdownAllocatedTimeService');
+    }
   }
 
   mixColors(): string {
@@ -58,11 +70,5 @@ export class RemainingTimeComponent implements OnDestroy {
     return ((this.countdownService.isTimerRunning && this.countdownService.remainingTime <= 0) ||
       (this.countdownAllocatedTimeService.remainingAllocatedTime <= 0 &&
         this.countdownAllocatedTimeService.isAllocatedTimerRunning));
-  }
-
-  ngOnDestroy(): void {
-    if (this.selectedSpeechSubscription) {
-      this.selectedSpeechSubscription.unsubscribe();
-    }
   }
 }

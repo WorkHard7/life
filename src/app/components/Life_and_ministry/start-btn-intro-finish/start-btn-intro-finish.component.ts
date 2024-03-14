@@ -1,28 +1,25 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import Swal from "sweetalert2";
+import {Component, Input} from '@angular/core';
 import {HeaderService} from "../../../services/header.service";
-import {Events} from "../../../model/events";
-import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
-import {CountdownService} from "../../../services/countdown.service";
+import {AllEvents} from "../../../model/events";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
+import {Router} from "@angular/router";
+import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.component";
 
 @Component({
   selector: 'app-start-btn-intro-finish',
   templateUrl: './start-btn-intro-finish.component.html',
   styleUrls: ['./start-btn-intro-finish.component.scss']
 })
-export class StartBtnIntroFinishComponent {
-  @Output() introPartEmitted: EventEmitter<Events> = new EventEmitter<Events>();
-  @Output() finishPartEmitted: EventEmitter<Events> = new EventEmitter<Events>();
-  @Input() introPart?: Events;
-  @Input() finishPart?: Events;
+export class StartBtnIntroFinishComponent extends SharedUtilsComponent {
+  @Input() introPart?: AllEvents;
+  @Input() finishPart?: AllEvents;
 
   constructor(
-    private countdownService: CountdownService,
-    private countdownAllocatedTimeService: CountdownAllocatedTimeService,
     private headerService: HeaderService,
-    private selectedSpeechService: SelectedSpeechService
+    private selectedSpeechService: SelectedSpeechService,
+    private router: Router
   ) {
+    super();
   }
 
   startTimer() {
@@ -32,37 +29,24 @@ export class StartBtnIntroFinishComponent {
     this.findEndingTime(endTime);
   }
 
-  private fireLoadingAlert() {
-    Swal.fire({
-      title: 'Loading...',
-      allowOutsideClick: false,
-      didOpen: () => {
-        Swal.showLoading()
-
-        setTimeout(() => {
-          Swal.close();
-        }, 1000);
-      }
-    });
-  }
-
   findEndingTime(endTime: Date) {
     if (this.introPart) {
-      endTime.setHours(this.introPart.hours, this.introPart.minutes, this.introPart.seconds); // 19:05:15
-      this.introPartEmitted.emit(this.introPart);
-
-      this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endTime);
-      this.countdownService.startCountdown(endTime);
+      this.router.navigate(['/life_and_ministry', this.introPart.index]);
     } else if (this.finishPart) {
-      endTime.setHours(this.finishPart.hours, this.finishPart.minutes, this.finishPart.seconds); // 20:42:00
-      this.finishPartEmitted.emit(this.finishPart);
-
-      this.countdownService.startCountdown(endTime);
+      this.router.navigate(['/life_and_ministry', this.getFinishIndexFromStorage()]);
     }
   }
 
-  updateSelectedSpeech(selectedSpeech: Events) {
+  updateSelectedSpeech(selectedSpeech: AllEvents) {
     this.selectedSpeechService.updateSelectedSpeech(selectedSpeech);
+  }
+
+  getFinishIndexFromStorage(): number | undefined {
+    const finishPartFromStorage = JSON.parse(localStorage.getItem('finishPart') || '[]');
+
+    if (finishPartFromStorage) {
+      return finishPartFromStorage[0].index;
+    } else return undefined;
   }
 
   hideHeader() {

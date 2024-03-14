@@ -1,18 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
-import {Events} from "../../../model/events";
-import {SelectedSpeechService} from "../../../services/selected-speech.service";
+import {AllEvents} from "../../../model/events";
 import {PartsService} from "../../../services/parts.service";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-finish',
   templateUrl: './finish.component.html',
   styleUrls: ['./finish.component.scss']
 })
-export class FinishComponent implements OnInit {
+export class FinishComponent implements OnInit, OnDestroy {
   bibleStudyDuration: number = 3;
-  finishPart: Events = {
+  newIndexFinishPart: number = 7;
+  bibleStudyDurationSubscription!: Subscription;
+  newIndexFinishPartSubscription!: Subscription;
+  finishPart: AllEvents = {
+    index: this.newIndexFinishPart,
     title: 'Cuvinte de încheiere, anunțuri',
     hours: 20,
     minutes: 40,
@@ -23,18 +27,22 @@ export class FinishComponent implements OnInit {
   constructor(
     public countdownService: CountdownService,
     public countdownAllocatedTimeService: CountdownAllocatedTimeService,
-    private selectedSpeechService: SelectedSpeechService,
     private partsService: PartsService
   ) {
   }
 
   ngOnInit(): void {
-    this.partsService.bibleStudyDuration.subscribe(duration => {
+    this.bibleStudyDurationSubscription = this.partsService.bibleStudyDuration.subscribe(duration => {
       this.bibleStudyDuration = duration;
+    })
+
+    this.newIndexFinishPartSubscription = this.partsService.newIndexFinishPart.subscribe((newIndexFinishPart) => {
+      this.newIndexFinishPart = newIndexFinishPart;
     })
   }
 
-  updateSelectedSpeech(finishPart: Events) {
-    this.selectedSpeechService.updateSelectedSpeech(finishPart);
+  ngOnDestroy() {
+    this.bibleStudyDurationSubscription.unsubscribe();
+    this.newIndexFinishPartSubscription.unsubscribe();
   }
 }

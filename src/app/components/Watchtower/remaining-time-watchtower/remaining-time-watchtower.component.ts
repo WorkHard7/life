@@ -1,32 +1,47 @@
 import {Component} from '@angular/core';
+import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {CountdownService} from "../../../services/countdown.service";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
+import {HeaderService} from "../../../services/header.service";
+import {Router} from "@angular/router";
 
 @Component({
-    selector: 'app-remaining-time-watchtower',
-    templateUrl: './remaining-time-watchtower.component.html',
-    styleUrls: ['./remaining-time-watchtower.component.scss']
+  selector: 'app-remaining-time-watchtower',
+  templateUrl: './remaining-time-watchtower.component.html',
+  styleUrls: ['./remaining-time-watchtower.component.scss']
 })
 export class RemainingTimeWatchtowerComponent {
-    constructor(
-        public countdownService: CountdownService,
-        public countdownAllocatedTimeService: CountdownAllocatedTimeService
-    ) {
-    }
+  protected readonly faArrowLeft = faArrowLeft;
 
-    timeIsUp(): boolean {
-        return this.countdownService.showNegativeRemainingTime.sign.includes('-');
-    }
+  constructor(
+    public countdownService: CountdownService,
+    public countdownAllocatedTimeService: CountdownAllocatedTimeService,
+    private headerService: HeaderService,
+    private router: Router
+  ) {
+  }
 
-    mixColors() {
-        if (this.timersRunOutOfTime()) {
-            return '#f3b8b8';
-        } else return '#F2F5B8';
-    }
+  timeIsUp(): boolean {
+    return this.countdownService.showNegativeRemainingTime.sign.includes('-');
+  }
 
-    timersRunOutOfTime(): boolean {
-        return ((this.countdownService.isTimerRunning && this.countdownService.remainingTime <= 0) ||
-            (this.countdownAllocatedTimeService.remainingAllocatedTime <= 0 &&
-                this.countdownAllocatedTimeService.isAllocatedTimerRunning));
-    }
+  mixColors() {
+    if (this.timersRunOutOfTime()) {
+      return '#f3b8b8';
+    } else return '#F2F5B8';
+  }
+
+  timersRunOutOfTime(): boolean {
+    return ((this.countdownService.isTimerRunning && this.countdownService.remainingTime <= 0) ||
+      (this.countdownAllocatedTimeService.remainingAllocatedTime <= 0 &&
+        this.countdownAllocatedTimeService.isAllocatedTimerRunning));
+  }
+
+  returnBack() {
+    this.countdownService.stopCountdown();
+    this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
+    this.headerService.showHeaderAgain();
+
+    this.router.navigate(['/watchtower']);
+  }
 }

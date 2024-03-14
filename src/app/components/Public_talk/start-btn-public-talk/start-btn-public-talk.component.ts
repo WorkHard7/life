@@ -1,35 +1,22 @@
 import {Component} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
-import Swal from "sweetalert2";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {Router} from "@angular/router";
+import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.component";
 
 @Component({
   selector: 'app-start-btn-public-talk',
   templateUrl: './start-btn-public-talk.component.html',
   styleUrls: ['./start-btn-public-talk.component.scss']
 })
-export class StartBtnPublicTalkComponent {
+export class StartBtnPublicTalkComponent extends SharedUtilsComponent {
   protected readonly faArrowLeft = faArrowLeft;
 
   constructor(
     private countdownService: CountdownService,
     private router: Router
   ) {
-  }
-
-  private fireLoadingAlert() {
-    Swal.fire({
-      title: 'Loading...',
-      allowOutsideClick: false,
-      didOpen: () => {
-        Swal.showLoading()
-
-        setTimeout(() => {
-          Swal.close();
-        }, 1000);
-      }
-    });
+    super();
   }
 
   startTimer() {

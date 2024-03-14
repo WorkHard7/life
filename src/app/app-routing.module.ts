@@ -18,6 +18,10 @@ const routes: Routes = [
     component: LifeAndMinistryComponent
   },
   {
+    path: 'life_and_ministry/:index',
+    component: LifeAndMinistryComponent
+  },
+  {
     path: 'public_talk',
     component: PublicTalkComponent
   },

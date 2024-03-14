@@ -1,15 +1,14 @@
 <div class="main-container">
 
-  <div>
+  <div style="width: 63px">
+
     <button
-      [disabled]="hideNextSpeechButton()"
-      [style.opacity]="hideNextSpeechButton() ? '0' : '1'"
       (click)="startNextSpeech()"
       class="start-next-speech">
-          <span>
-            <span>Start</span>
-            <span style="font-size: .7rem">următoarea temă</span>
-          </span>
+      <span>
+        <span>Start</span>
+        <span style="font-size: .7rem">{{'Turnul de veghe'}}</span>
+      </span>
     </button>
   </div>
 
@@ -23,6 +22,7 @@
         [icon]="faArrowLeft">
       </fa-icon>
     </button>
+
   </div>
 
 </div>

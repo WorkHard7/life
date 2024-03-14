@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {SelectedSpeechService} from "./selected-speech.service";
 import {CountdownAllocatedTimeService} from "./countdown-allocated-time.service";
-import {Events} from "../model/events";
+import {AllEvents} from "../model/events";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,8 @@ export class CountdownService {
       seconds: '00'
     }
 
-  watchtowerCustomEndTime: Events = {
+  watchtowerCustomEndTime: AllEvents = {
+    index: 1,
     title: '',
     hours: 20,
     minutes: 10,
@@ -26,7 +27,8 @@ export class CountdownService {
     duration: 0
   };
 
-  private watchtowerLastPart: Events = {
+  private watchtowerLastPart: AllEvents = {
+    index: 2,
     title: 'Turnul de veghe',
     hours: 20,
     minutes: 15,
@@ -147,7 +149,7 @@ export class CountdownService {
     })
   }
 
-  private setEndTime(selectedSpeech: Events) {
+  private setEndTime(selectedSpeech: AllEvents) {
     const endTime = new Date();
 
     if (selectedSpeech.title === 'Cuvinte de încheiere, anunțuri') {
