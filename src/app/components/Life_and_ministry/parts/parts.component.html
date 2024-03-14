@@ -2,73 +2,67 @@
   <app-introduction></app-introduction>
 
   <ul class="mt-3 list-none">
-    <div>
+    <li>
+      <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #3C7F8B">
+        <div class="flex items-center">
+          <span class="gems-main-title">
+            COMORI DIN CUVÂNTUL LUI DUMNEZEU
+          </span>
+        </div>
+
+        <ng-container *ngFor="let gem of gems">
+          <ul
+            *ngIf="gem.title !== 'SĂ FIM MAI EFICIENȚI ÎN PREDICARE'" class="gems-container mt-3">
+              <li>
+                <div class="main-container-gems">
+                  <span>
+                    <span>{{ gem.title }}</span>
+                    <span class="left-space-duration">({{ gem.duration }} min.)</span>
+                  </span>
+                  <app-start-btn (click)="setTime(gem)"></app-start-btn>
+                </div>
+              </li>
+          </ul>
+        </ng-container>
+
+      </div>
+    </li>
+
+    <ul class="mt-3">
       <li>
-        <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #3C7F8B">
+        <div class="preaching-container">
+
           <div class="flex items-center">
-            <span class="gems-main-title"
-                  style="color: #86BFCA">COMORI DIN CUVÂNTUL LUI DUMNEZEU</span>
+            <span class="preaching-main-title">
+              <span>SĂ FIM MAI EFICIENȚI ÎN PREDICARE</span>
+              <span class="left-space-duration">({{alternativePreachingParts.duration}} min.)</span>
+            </span>
+            <app-start-btn (click)="setTime(this.alternativePreachingParts)"></app-start-btn>
           </div>
+
           <div>
-
-            <ng-container *ngFor="let gem of gems">
-              <div *ngIf="gem.title !== 'SĂ FIM MAI EFICIENȚI ÎN PREDICARE'"
-                   class="rounded-2xl mt-3 text-white border-2 flex flex-col p-2"
-                   style="border-color: #86BFCA">
-                <li>
-                  <div class="main-container-gems">
-                    <span>
-                      <span>{{ gem.title }}</span>
-                      <span class="left-space-duration">({{ gem.duration }} min.)</span>
-                    </span>
-
-                    <app-start-btn (click)="setTime(gem)"></app-start-btn>
-                  </div>
-                </li>
-              </div>
-            </ng-container>
-
+            <app-preaching-parts></app-preaching-parts>
           </div>
         </div>
       </li>
-    </div>
+    </ul>
 
-  <div class="mt-3">
-    <li>
-      <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #D68F00">
-        <div class="flex items-center">
-          <span class="preaching-main-title">
-            <span>SĂ FIM MAI EFICIENȚI ÎN PREDICARE</span>
-            <span class="left-space-duration">({{alternativePreachingParts.duration}} min.)</span>
-          </span>
+    <ul class="mt-3">
+      <li>
+        <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #BF2F13">
 
-          <app-start-btn (click)="setTime(this.alternativePreachingParts)"></app-start-btn>
+          <div class="flex items-center">
+            <span class="life-main-title">VIAȚA DE CREȘTIN</span>
+          </div>
+
+          <div>
+            <app-christian-life-parts></app-christian-life-parts>
+          </div>
 
         </div>
-
-        <div>
-          <app-preaching-parts></app-preaching-parts>
-        </div>
-      </div>
-    </li>
-  </div>
-
-  <div class="mt-3">
-    <li>
-      <div class="w-full rounded-2xl p-2 border-2 font-bold" style="border-color: #BF2F13">
-
-        <div class="flex items-center">
-          <span class="life-main-title">VIAȚA DE CREȘTIN</span>
-        </div>
-
-        <div>
-          <app-christian-life-parts></app-christian-life-parts>
-        </div>
-
-      </div>
-    </li>
-  </div>
+      </li>
+    </ul>
 
   </ul>
-  <app-finish></app-finish>
+    <app-finish></app-finish>
 </div>
