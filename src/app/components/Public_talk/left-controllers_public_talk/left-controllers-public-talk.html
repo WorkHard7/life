@@ -1,13 +1,11 @@
 <div class="main-container">
 
-  <div style="width: 63px">
-
+  <div class="next-speech-container" style="width: 63px">
     <button
       (click)="startNextSpeech()"
-      class="start-next-speech">
+      class="next-speech-btn">
       <span>
-        <span>Start</span>
-        <span style="font-size: .7rem">{{'Turnul de veghe'}}</span>
+        <span style="font-size: .9rem">{{'Turnul de veghe'}}</span>
       </span>
     </button>
   </div>
@@ -17,12 +15,12 @@
       (click)="returnBack()"
       class="icon-circle">
       <fa-icon
+        style="stroke-width: 15;stroke: #000;"
         title="Back"
         class="arrow-left text-white text-xl"
         [icon]="faArrowLeft">
       </fa-icon>
     </button>
-
   </div>
 
 </div>

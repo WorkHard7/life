@@ -2,20 +2,23 @@
   <div>
 
     <section>
+      <div class="justify-center">
+        <app-set-custom-time-btn-watchtower></app-set-custom-time-btn-watchtower>
+      </div>
+
       <div class="popup-box text-center" *ngIf="showPopup">
         Jehovah loves you!
         <span class="fa fa-heart"></span>
       </div>
 
-        <div class="text-2xl text-center text-white">
-          <div style="margin: auto"
-               (dblclick)="onDoubleClick()"
-               (mouseup)="onMouseUp()"
-               class="cursor-pointer ml-4"
-          >
-            <p class="main-title text-3xl mb-14">Turnul de veghe</p>
-            <p class="select-par">Setați numărul total de paragrafe din articol</p>
-          </div>
+      <div class="set-num-par">
+        <div style="margin: auto"
+             (dblclick)="onDoubleClick()"
+             (mouseup)="onMouseUp()"
+             class="cursor-pointer ml-4"
+        >
+          <p class="select-par">Setați numărul total de paragrafe din articol</p>
+        </div>
       </div>
 
       <main class="main-container-par">
@@ -63,10 +66,6 @@
         </button>
       </main>
 
-      <div class="m-5 flex justify-center flex-col">
-        <app-set-custom-time-btn-watchtower></app-set-custom-time-btn-watchtower>
-      </div>
-
       <div class="text-center">
         <app-start-btn-watchtower
           [selectedParagraph]="selectedParagraph"
@@ -79,6 +78,7 @@
           (click)="goHome()"
           class="icon-circle flex justify-center items-center">
           <fa-icon
+            style="stroke-width: 15;stroke: #000;"
             title="Back"
             class="arrow-left text-white text-xl"
             [icon]="faArrowLeft">

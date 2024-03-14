@@ -1,11 +1,11 @@
 <div class="main-container">
 
-  <div>
+  <div class="next-speech-container">
     <button
       [disabled]="hideNextSpeechButton()"
       [style.opacity]="hideNextSpeechButton() ? '0' : '1'"
       (click)="startNextSpeech()"
-      class="start-next-speech">
+      class="next-speech-btn">
           <span>
             <span>Start</span>
             <span style="font-size: .7rem">următoarea temă</span>
@@ -18,6 +18,7 @@
       (click)="returnBack()"
       class="icon-circle">
       <fa-icon
+        style="stroke-width: 15;stroke: #000;"
         title="Back"
         class="arrow-left text-white text-xl"
         [icon]="faArrowLeft">
