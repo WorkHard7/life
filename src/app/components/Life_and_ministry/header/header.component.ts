@@ -2,11 +2,13 @@ import {Component, Input, OnInit} from '@angular/core';
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {Router} from "@angular/router";
 import {CountdownService} from "../../../services/countdown.service";
-import {HeaderService} from "../../../services/header.service";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 import {AllEvents} from "../../../model/events";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
 import {Observable} from "rxjs";
+import {selectHeader} from "../../../store/selectors/showHeader.selector";
+import {Store} from "@ngrx/store";
+import {AppState} from "../../../store/app.state";
 
 @Component({
   selector: 'app-header',
@@ -18,14 +20,16 @@ export class HeaderComponent implements OnInit {
   protected readonly faArrowLeft = faArrowLeft;
   public finalPartTitle: string = 'Cântare, rugăciune de încheiere';
   selectedSpeech$!: Observable<AllEvents>;
+  showHeader$!: Observable<boolean>;
 
   constructor(
+    private store: Store<AppState>,
     private router: Router,
     public countdownService: CountdownService,
     public countdownAllocatedTimeService: CountdownAllocatedTimeService,
-    public headerService: HeaderService,
     private selectedSpeechService: SelectedSpeechService
   ) {
+    this.showHeader$ = this.store.select(selectHeader);
   }
 
   ngOnInit(): void {

@@ -1,6 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
-import {HeaderService} from "../../../services/header.service";
+import {Store} from "@ngrx/store";
+import {AppState} from "../../../store/app.state";
+import {hideHeader} from "../../../store/actions/showHeader.actions";
 
 @Component({
   selector: 'app-start-btn',
@@ -12,12 +14,12 @@ export class StartBtnComponent {
   @Input() title?: string;
 
   constructor(
-    public countdownService: CountdownService,
-    private headerService: HeaderService
+    private store: Store<AppState>,
+    public countdownService: CountdownService
   ) {
   }
 
   hideHeader() {
-    this.headerService.hideHeader();
+    this.store.dispatch(hideHeader());
   }
 }

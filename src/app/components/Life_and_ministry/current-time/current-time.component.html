@@ -1,6 +1,6 @@
 <div>
 
-  <ng-container *ngIf="headerService.showHeader && !watchtowerStarted && !publicTalk">
+  <ng-container *ngIf="(showHeader$ | async) && !watchtowerStarted && !publicTalk">
     <div class="main-container-curr-time">
       <h1>
         <fa-icon [icon]="faClock"></fa-icon>
@@ -10,7 +10,7 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="!headerService.showHeader || watchtowerStarted || publicTalk">
+  <ng-container *ngIf="!(showHeader$ | async) || watchtowerStarted || publicTalk">
     <div class="mb-4">
       <div class="main-container-curr-time">
         <h1>

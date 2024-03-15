@@ -2,9 +2,12 @@ import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {CountdownService} from "../../services/countdown.service";
 import {PartsService} from "../../services/parts.service";
 import {AllEvents} from "../../model/events";
-import {HeaderService} from "../../services/header.service";
 import {CountdownAllocatedTimeService} from "../../services/countdown-allocated-time.service";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
+import {selectHeader} from "../../store/selectors/showHeader.selector";
+import {Store} from "@ngrx/store";
+import {AppState} from "../../store/app.state";
+import {showHeader} from "../../store/actions/showHeader.actions";
 
 @Component({
   selector: 'app-life-and-ministry',
@@ -15,18 +18,20 @@ export class LifeAndMinistryComponent implements OnInit, OnDestroy {
   title = 'Viața creștină și predicarea';
   partsServiceSubscription!: Subscription;
   parts!: AllEvents[];
+  showHeader$!: Observable<boolean>;
 
   constructor(
+    private store: Store<AppState>,
     public countdownService: CountdownService,
     public countdownAllocatedTimeService: CountdownAllocatedTimeService,
-    private partsService: PartsService,
-    public headerService: HeaderService
+    private partsService: PartsService
   ) {
+    this.showHeader$ = this.store.select(selectHeader);
   }
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event: AllEvents) {
-    this.headerService.showHeaderAgain();
+    this.store.dispatch(showHeader());
 
     this.countdownService.stopCountdown();
     this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();

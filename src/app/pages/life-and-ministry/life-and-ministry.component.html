@@ -1,18 +1,18 @@
 <div class="p-3">
   <main class="flex">
     <app-left-controllers
-      *ngIf="!headerService.showHeader"
+      *ngIf="!(showHeader$ | async)"
       class="left-controllers-container"
     ></app-left-controllers>
 
     <div
       style="flex: 2"
-      [class.main-container]="!headerService.showHeader">
+      [class.main-container]="!(showHeader$ | async)">
       <app-header
         [title]=title
       ></app-header>
 
-      <app-current-time *ngIf="headerService.showHeader"></app-current-time>
+      <app-current-time *ngIf="(showHeader$ | async)"></app-current-time>
 
       <ng-container
         *ngIf="!countdownService.isTimerRunning && !countdownAllocatedTimeService.isAllocatedTimerRunning"

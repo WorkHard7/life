@@ -1,8 +1,10 @@
 import {Component, Input} from '@angular/core';
-import {HeaderService} from "../../../services/header.service";
 import {AllEvents} from "../../../model/events";
 import {Router} from "@angular/router";
 import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.component";
+import {Store} from "@ngrx/store";
+import {AppState} from "../../../store/app.state";
+import {hideHeader} from "../../../store/actions/showHeader.actions";
 
 @Component({
   selector: 'app-start-btn-intro-finish',
@@ -14,7 +16,7 @@ export class StartBtnIntroFinishComponent extends SharedUtilsComponent {
   @Input() finishPart?: AllEvents;
 
   constructor(
-    private headerService: HeaderService,
+    private store: Store<AppState>,
     private router: Router
   ) {
     super();
@@ -42,6 +44,6 @@ export class StartBtnIntroFinishComponent extends SharedUtilsComponent {
   }
 
   hideHeader() {
-    this.headerService.hideHeader();
+    this.store.dispatch(hideHeader());
   }
 }

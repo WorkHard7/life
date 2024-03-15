@@ -5,24 +5,6 @@ import {AllEvents} from "../model/events";
 import Swal from "sweetalert2";
 import {addNewSpeech, bibleStudy, speechA} from "../mock/speech";
 
-function selectsZeroButtonByDefault() {
-  // by default 0 is selected
-  const button0 = document.getElementById('duration-button-0');
-  const button15 = document.getElementById('duration-button-15');
-
-  if (button0) {
-    button0.classList.add('bs-selected');
-  } else {
-    button15?.classList.add('selected');
-  }
-
-  // input field will have also 0 by default
-  const BStudyDurationInput = document.getElementById('swal-input-duration-s-bible') as HTMLInputElement;
-  if (BStudyDurationInput) {
-    BStudyDurationInput.value = '0';
-  }
-}
-
 function updateDuration(
   duration: number,
   christianLifeParts?: BehaviorSubject<any>,
@@ -309,7 +291,7 @@ export class PartsService {
       title: title,
       html: speech,
       didOpen: () => {
-        selectsZeroButtonByDefault();
+        PartsService.selectsZeroButtonByDefault();
         this.assignGreenForSpeechASelection(buttonDurations, partToBeEdited);
         this.assignGreenForBSSelection(bibleSButtonDurations, partToBeEdited);
 
@@ -347,7 +329,6 @@ export class PartsService {
         }
 
         this.checkAndAddSpeechB(result);
-
         this.editBibleStudyPart(partToBeEdited, result, index);
 
         Swal.fire({
@@ -358,6 +339,24 @@ export class PartsService {
         })
       }
     })
+  }
+
+  private static selectsZeroButtonByDefault() {
+    // by default 0 is selected
+    const button0 = document.getElementById('duration-button-0');
+    const button15 = document.getElementById('duration-button-15');
+
+    if (button0) {
+      button0.classList.add('bs-selected');
+    } else {
+      button15?.classList.add('selected');
+    }
+
+    // input field will have also 0 by default
+    const BStudyDurationInput = document.getElementById('swal-input-duration-s-bible') as HTMLInputElement;
+    if (BStudyDurationInput) {
+      BStudyDurationInput.value = '0';
+    }
   }
 
   private assignGreenForSpeechASelection(

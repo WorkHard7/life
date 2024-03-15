@@ -1,14 +1,16 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
-import {HeaderService} from "../../../services/header.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
 import {AllEvents} from "../../../model/events";
-import {AllPartsService} from "../../../services/all-parts.service";
+import {AllPartsService} from "../../../mock/all-parts.service";
 import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.component";
 import {Subscription} from "rxjs";
+import {AppState} from "../../../store/app.state";
+import {showHeader} from "../../../store/actions/showHeader.actions";
+import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'app-left-controllers',
@@ -21,9 +23,9 @@ export class LeftControllersComponent extends SharedUtilsComponent implements On
   index: number = 0;
 
   constructor(
+    private store: Store<AppState>,
     private countdownService: CountdownService,
     private countdownAllocatedTimeService: CountdownAllocatedTimeService,
-    public headerService: HeaderService,
     private router: Router,
     private route: ActivatedRoute,
     private selectedSpeechService: SelectedSpeechService,
@@ -127,7 +129,7 @@ export class LeftControllersComponent extends SharedUtilsComponent implements On
   returnBack() {
     this.countdownService.stopCountdown();
     this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
-    this.headerService.showHeaderAgain();
+    this.store.dispatch(showHeader());
 
     this.router.navigate(['/life_and_ministry']);
   }

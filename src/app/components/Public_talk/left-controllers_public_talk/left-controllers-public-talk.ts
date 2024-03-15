@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 import {Router} from "@angular/router";
-import {HeaderService} from "../../../services/header.service";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
@@ -16,8 +15,7 @@ export class LeftControllersPublicTalk {
   constructor(
     private countdownService: CountdownService,
     private countdownAllocatedTimeService: CountdownAllocatedTimeService,
-    private router: Router,
-    private headerService: HeaderService
+    private router: Router
   ) {
   }
 
@@ -31,8 +29,6 @@ export class LeftControllersPublicTalk {
   returnBack() {
     this.countdownService.stopCountdown();
     this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
-    this.headerService.showHeaderAgain();
-
 
     this.router.navigate(['/public_talk']);
   }

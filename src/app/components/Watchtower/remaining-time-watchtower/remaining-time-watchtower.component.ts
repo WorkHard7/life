@@ -2,8 +2,6 @@ import {Component} from '@angular/core';
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {CountdownService} from "../../../services/countdown.service";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
-import {HeaderService} from "../../../services/header.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-remaining-time-watchtower',
@@ -16,8 +14,6 @@ export class RemainingTimeWatchtowerComponent {
   constructor(
     public countdownService: CountdownService,
     public countdownAllocatedTimeService: CountdownAllocatedTimeService,
-    private headerService: HeaderService,
-    private router: Router
   ) {
   }
 
@@ -35,13 +31,5 @@ export class RemainingTimeWatchtowerComponent {
     return ((this.countdownService.isTimerRunning && this.countdownService.remainingTime <= 0) ||
       (this.countdownAllocatedTimeService.remainingAllocatedTime <= 0 &&
         this.countdownAllocatedTimeService.isAllocatedTimerRunning));
-  }
-
-  returnBack() {
-    this.countdownService.stopCountdown();
-    this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
-    this.headerService.showHeaderAgain();
-
-    this.router.navigate(['/watchtower']);
   }
 }
