@@ -1,11 +1,11 @@
 export const speechA =
   `<input id="swal-input-title" class="swal2-input" placeholder="Titlul temei" value="Tema A" readonly>
         <div id="duration-container">
-            <button id="duration-button-5" class="duration-button">5</button>
-            <button id="duration-button-7" class="duration-button">7</button>
-            <button id="duration-button-8" class="duration-button">8</button>
-            <button id="duration-button-10" class="duration-button">10</button>
-            <button id="duration-button-15" class="duration-button">15</button>
+            <button id="duration-button-5" class="duration-button duration-button-speechA">5</button>
+            <button id="duration-button-7" class="duration-button duration-button-speechA">7</button>
+            <button id="duration-button-8" class="duration-button duration-button-speechA">8</button>
+            <button id="duration-button-10" class="duration-button duration-button-speechA">10</button>
+            <button id="duration-button-15" class="duration-button duration-button-speechA">15</button>
         </div>
         <label for="swal-input-duration">Durata temei</label>
         <input id="swal-input-duration" class="swal2-input" placeholder="min" type="number" value="15" readonly>
@@ -39,19 +39,19 @@ export const bibleStudy =
             <p>indică cu câte minute trebuie scurtat Studiul Bibliei</p>
          </div>
          <div id="duration-container-for-BStudy">
-            <button id="duration-button-0" class="duration-button">0</button>
-            <button id="duration-button-2" class="duration-button">2</button>
-            <button id="duration-button-3" class="duration-button">3</button>
-            <button id="duration-button-5" class="duration-button">5</button>
-            <button id="duration-button-7" class="duration-button">7</button>
-            <button id="duration-button-10" class="duration-button">10</button>
+            <button id="duration-button-0" class="duration-button duration">0</button>
+            <button id="duration-button-2" class="duration-button duration">2</button>
+            <button id="duration-button-3" class="duration-button duration">3</button>
+            <button id="duration-button-5" class="duration-button duration">5</button>
+            <button id="duration-button-7" class="duration-button duration">7</button>
+            <button id="duration-button-10" class="duration-button duration">10</button>
          </div>
          <div>
             <label for="swal-input-duration-s-bible">Durata de scurtare a temei</label>
             <input id="swal-input-duration-s-bible" class="swal2-input" placeholder="min" type="number" readonly>
          </div>
          <div id="swal2-main-container-forBStudy">
-            <label for="swal-input-hours">Ora finisării</label>
+            <label for="swal-input-hours-s-bible">Ora finisării</label>
             <input id="swal-input-hours-s-bible" class="swal2-input" placeholder="ora" type="number"
                 value="20" readonly>
             <input id="swal-input-minutes-s-bible" class="swal2-input" placeholder="min" type="number"

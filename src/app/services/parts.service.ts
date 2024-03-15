@@ -11,11 +11,10 @@ function selectsZeroButtonByDefault() {
   const button15 = document.getElementById('duration-button-15');
 
   if (button0) {
-    button0.classList.add('selected');
+    button0.classList.add('bs-selected');
   } else {
     button15?.classList.add('selected');
   }
-
 
   // input field will have also 0 by default
   const BStudyDurationInput = document.getElementById('swal-input-duration-s-bible') as HTMLInputElement;
@@ -273,6 +272,13 @@ export class PartsService {
       }
     ];
 
+    let bibleSButtonDurations = [
+      {
+        id: '',
+        duration: 0
+      }
+    ];
+
     if (index === 0) {
       title = 'Editează temele';
       buttonDurations = [
@@ -287,7 +293,7 @@ export class PartsService {
     } else if (partToBeEdited.title === 'Studiul Bibliei') {
       title = 'Scurtarea Studiului Bibliei';
 
-      buttonDurations = [
+      bibleSButtonDurations = [
         {id: 'duration-button-0', duration: 0},
         {id: 'duration-button-2', duration: 2},
         {id: 'duration-button-3', duration: 3},
@@ -304,28 +310,8 @@ export class PartsService {
       html: speech,
       didOpen: () => {
         selectsZeroButtonByDefault();
-
-        buttonDurations.forEach(button => {
-          const durationButton = document.getElementById(button.id);
-
-          if (durationButton) {
-            durationButton.addEventListener('click', () => {
-
-              buttonDurations.forEach(btn => {
-                const btnElement = document.getElementById(btn.id);
-
-                if (btnElement) {
-                  btnElement.classList.remove('selected');
-                }
-              });
-
-              durationButton.classList.add('selected');
-
-              this.shortenedBsDuration = button.duration;
-              updateDuration(button.duration, this.christianLifeParts, partToBeEdited);
-            })
-          }
-        });
+        this.assignGreenForSpeechASelection(buttonDurations, partToBeEdited);
+        this.assignGreenForBSSelection(bibleSButtonDurations, partToBeEdited);
 
         const inputTitleEl = document.getElementById('swal-input-title') as HTMLInputElement;
         const inputMinutesEl = document.getElementById('swal-input-minutes') as HTMLInputElement;
@@ -372,6 +358,60 @@ export class PartsService {
         })
       }
     })
+  }
+
+  private assignGreenForSpeechASelection(
+    buttonDurations: { id: string, duration: number }[],
+    partToBeEdited: AllEvents
+  ) {
+    buttonDurations.forEach(button => {
+      const durationButtonElement = document.getElementById(button.id);
+
+      if (durationButtonElement) {
+        durationButtonElement.addEventListener('click', () => {
+
+          buttonDurations.forEach(btn => {
+            const btnElement = document.getElementById(btn.id);
+
+            if (btnElement) {
+              btnElement.classList.remove('selected');
+            }
+          });
+
+          durationButtonElement.classList.add('selected');
+
+          this.shortenedBsDuration = button.duration;
+          updateDuration(button.duration, this.christianLifeParts, partToBeEdited);
+        })
+      }
+    });
+  }
+
+  private assignGreenForBSSelection(
+    bibleSButtonDurations: { duration: number; id: string }[],
+    partToBeEdited: AllEvents
+  ) {
+    bibleSButtonDurations.forEach(button => {
+      const bibleSDurationsButtonsElement = document.getElementById(button.id);
+
+      if (bibleSDurationsButtonsElement) {
+        bibleSDurationsButtonsElement.addEventListener('click', () => {
+
+          bibleSButtonDurations.forEach(btn => {
+            const btnElement = document.getElementById(btn.id);
+
+            if (btnElement) {
+              btnElement.classList.remove('bs-selected');
+            }
+          });
+
+          bibleSDurationsButtonsElement.classList.add('bs-selected');
+
+          this.shortenedBsDuration = button.duration;
+          updateDuration(button.duration, this.christianLifeParts, partToBeEdited);
+        })
+      }
+    });
   }
 
   updatedSpeechA(result: any, index: number) {

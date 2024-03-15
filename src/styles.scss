@@ -138,18 +138,22 @@ body {
   margin-right: 0;
 }
 
+.duration {
+  background-color: #85001B;
+  color: #ffffff;
+}
+
 .duration-button {
   margin-right: 5px;
   padding: 5px 15px;
-  background-color: #85001B;
-  color: #ffffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.duration:hover {
-  background-color: #CC0106;
+.duration-button-speechA {
+  background-color: #14532D;
+  color: #ffffff;
 }
 
 .swal2-actions {
@@ -164,7 +168,11 @@ body {
 }
 
 .selected {
-  background: #CC0106;
+  background: limegreen;
+}
+
+.bs-selected {
+  background: #CC0106 !important;
 }
 
 #duration-container, #duration-container-for-BStudy {
