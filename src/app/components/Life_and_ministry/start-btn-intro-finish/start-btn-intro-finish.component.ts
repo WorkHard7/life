@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {HeaderService} from "../../../services/header.service";
 import {AllEvents} from "../../../model/events";
-import {SelectedSpeechService} from "../../../services/selected-speech.service";
 import {Router} from "@angular/router";
 import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.component";
 
@@ -16,7 +15,6 @@ export class StartBtnIntroFinishComponent extends SharedUtilsComponent {
 
   constructor(
     private headerService: HeaderService,
-    private selectedSpeechService: SelectedSpeechService,
     private router: Router
   ) {
     super();
@@ -24,21 +22,15 @@ export class StartBtnIntroFinishComponent extends SharedUtilsComponent {
 
   startTimer() {
     this.fireLoadingAlert();
-
-    const endTime = new Date();
-    this.findEndingTime(endTime);
+    this.navigateToRouteBasedOnParts();
   }
 
-  findEndingTime(endTime: Date) {
+  navigateToRouteBasedOnParts() {
     if (this.introPart) {
       this.router.navigate(['/life_and_ministry', this.introPart.index]);
     } else if (this.finishPart) {
       this.router.navigate(['/life_and_ministry', this.getFinishIndexFromStorage()]);
     }
-  }
-
-  updateSelectedSpeech(selectedSpeech: AllEvents) {
-    this.selectedSpeechService.updateSelectedSpeech(selectedSpeech);
   }
 
   getFinishIndexFromStorage(): number | undefined {

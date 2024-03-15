@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PartsService} from "../../../services/parts.service";
 import {AllEvents} from "../../../model/events";
-import {SelectedSpeechService} from "../../../services/selected-speech.service";
 import {Router} from "@angular/router";
 import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.component";
 import {Subscription} from "rxjs";
@@ -25,7 +24,6 @@ export class PartsComponent extends SharedUtilsComponent implements OnInit, OnDe
 
   constructor(
     private partsService: PartsService,
-    private selectedSpeechService: SelectedSpeechService,
     private router: Router
   ) {
     super();
@@ -44,9 +42,5 @@ export class PartsComponent extends SharedUtilsComponent implements OnInit, OnDe
   setTime(gem: any): void {
     this.fireLoadingAlert();
     this.router.navigate(['/life_and_ministry', gem.index]);
-  }
-
-  updateSelectedSpeech(selectedSpeech: AllEvents) {
-    this.selectedSpeechService.updateSelectedSpeech(selectedSpeech);
   }
 }

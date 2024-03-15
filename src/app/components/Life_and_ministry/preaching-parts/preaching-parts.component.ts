@@ -1,8 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PartsService} from "../../../services/parts.service";
-import {AllEvents} from "../../../model/events";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
-import {SelectedSpeechService} from "../../../services/selected-speech.service";
 import {CountdownService} from "../../../services/countdown.service";
 import {Router} from "@angular/router";
 import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.component";
@@ -21,7 +19,6 @@ export class PreachingPartsComponent extends SharedUtilsComponent implements OnI
     private partsService: PartsService,
     private countdownService: CountdownService,
     private countdownAllocatedTimeService: CountdownAllocatedTimeService,
-    private selectedSpeechService: SelectedSpeechService,
     private router: Router
   ) {
     super();
@@ -44,9 +41,5 @@ export class PreachingPartsComponent extends SharedUtilsComponent implements OnI
   setTime(preachingPart: any): void {
     this.fireLoadingAlert();
     this.router.navigate(['/life_and_ministry', preachingPart.index]);
-  }
-
-  updateSelectedSpeech(selectedSpeech: AllEvents) {
-    this.selectedSpeechService.updateSelectedSpeech(selectedSpeech);
   }
 }
