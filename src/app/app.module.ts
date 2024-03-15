@@ -1,4 +1,4 @@
-import {isDevMode, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {AppRoutingModule} from './app-routing.module';
@@ -44,8 +44,6 @@ import {LeftControllersComponent} from './components/Life_and_ministry/left-cont
 import {StartBtnWatchtowerComponent} from './components/Watchtower/start-btn-watchtower/start-btn-watchtower.component';
 import {LeftControllersWatchtowerComponent} from './components/Watchtower/left-controllers-watchtower/left-controllers-watchtower.component';
 import {SharedUtilsComponent} from "./utils/shared-utils/shared-utils.component";
-import {StoreModule} from "@ngrx/store";
-import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 
 @NgModule({
   declarations: [
