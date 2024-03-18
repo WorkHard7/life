@@ -9,12 +9,12 @@
       <app-current-time [watchtowerStarted]="true"></app-current-time>
 
       <header class="main-header">
-        <p *ngIf="countdownService.isTimerRunning"
+        <p *ngIf="(isTimeRunning$ | async)"
            class="m-auto text-3xl"
         >
           Articol cu {{selectedParagraph}} paragrafe
         </p>
-        <p *ngIf="countdownAllocatedTimeService.isAllocatedTimerRunning"
+        <p *ngIf="(isAllocatedTimeRunning$ | async)"
            class="m-auto text-3xl finalPart"
         >
           Cântare, rugăciune de încheiere

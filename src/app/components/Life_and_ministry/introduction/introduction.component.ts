@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
-import {CountdownService} from "../../../services/countdown.service";
 import {AllEvents} from "../../../model/events";
+import {Observable} from "rxjs";
+import {Store} from "@ngrx/store";
+import {AppState} from "../../../store/app.state";
+import {selectIsTimeRunning} from "../../../store/selectors/isTimeRunning.selector";
 
 @Component({
   selector: 'app-introduction',
@@ -8,6 +11,7 @@ import {AllEvents} from "../../../model/events";
   styleUrls: ['./introduction.component.scss']
 })
 export class IntroductionComponent {
+  isTimeRunning$!: Observable<boolean>;
   introPart: AllEvents = {
     index: 0,
     title: 'Cântare, rugăciune | Cuvinte introductive',
@@ -17,6 +21,7 @@ export class IntroductionComponent {
     duration: 6
   };
 
-  constructor(public countdownService: CountdownService) {
+  constructor(private store: Store<AppState>) {
+    this.isTimeRunning$ = this.store.select(selectIsTimeRunning);
   }
 }

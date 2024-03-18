@@ -4,7 +4,11 @@ import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {Router} from "@angular/router";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
-import {Subscription} from "rxjs";
+import {combineLatest, map, Observable, Subscription} from "rxjs";
+import {AppState} from "../../../store/app.state";
+import {selectIsTimeRunning} from "../../../store/selectors/isTimeRunning.selector";
+import {Store} from "@ngrx/store";
+import {selectIsAllocatedTimeRunning} from "../../../store/selectors/isAllocatedTimeRunning.selector";
 
 @Component({
   selector: 'app-remaining-time',
@@ -17,13 +21,18 @@ export class RemainingTimeComponent implements OnDestroy, AfterViewChecked {
 
   protected readonly faArrowLeft = faArrowLeft;
   private selectedSpeechSubscription!: Subscription;
+  isTimeRunning$!: Observable<boolean>;
+  isAllocatedTimeRunning$!: Observable<boolean>;
 
   constructor(
+    private store: Store<AppState>,
     public countdownService: CountdownService,
     public countdownAllocatedTimeService: CountdownAllocatedTimeService,
     private router: Router,
     public selectedSpeechService: SelectedSpeechService
   ) {
+    this.isTimeRunning$ = this.store.select(selectIsTimeRunning);
+    this.isAllocatedTimeRunning$ = this.store.select(selectIsAllocatedTimeRunning);
   }
 
   ngAfterViewChecked() {
@@ -66,9 +75,14 @@ export class RemainingTimeComponent implements OnDestroy, AfterViewChecked {
     } else return '#F2F5B8';
   }
 
-  timersRunOutOfTime(): boolean {
-    return ((this.countdownService.isTimerRunning && this.countdownService.remainingTime <= 0) ||
-      (this.countdownAllocatedTimeService.remainingAllocatedTime <= 0 &&
-        this.countdownAllocatedTimeService.isAllocatedTimerRunning));
+  timersRunOutOfTime(): Observable<boolean> {
+    return combineLatest([this.isTimeRunning$, this.isAllocatedTimeRunning$]).pipe(
+      map(([isTimeRunning, isAllocatedTimeRunning]) => {
+        return (
+          (isTimeRunning && this.countdownService.remainingTime <= 0) ||
+          (this.countdownAllocatedTimeService.remainingAllocatedTime <= 0 && isAllocatedTimeRunning)
+        );
+      })
+    );
   }
 }

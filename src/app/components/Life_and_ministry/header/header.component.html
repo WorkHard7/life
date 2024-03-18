@@ -27,8 +27,8 @@
   <div class="flex">
     <h2 class="main-title-page">
       <div class="m-auto text-3xl">
-        <p *ngIf="countdownService.isTimerRunning" class="title">{{ (selectedSpeech$ | async)?.title }}</p>
-        <p *ngIf="countdownAllocatedTimeService.isAllocatedTimerRunning && !countdownService.isTimerRunning"
+        <p *ngIf="(isTimeRunning$ | async)" class="title">{{ (selectedSpeech$ | async)?.title }}</p>
+        <p *ngIf="(isAllocatedTimeRunning$ | async) && !(isTimeRunning$ | async)"
            class="title finalPart">{{ finalPartTitle }}</p>
       </div>
     </h2>

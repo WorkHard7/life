@@ -15,13 +15,12 @@
       <app-current-time *ngIf="(showHeader$ | async)"></app-current-time>
 
       <ng-container
-        *ngIf="!countdownService.isTimerRunning && !countdownAllocatedTimeService.isAllocatedTimerRunning"
+        *ngIf="!(isTimeRunning$ | async) && !(isAllocatedTimeRunning$ | async)"
       >
         <app-parts></app-parts>
       </ng-container>
 
-      <ng-container *ngIf="countdownService.isTimerRunning ||
-        countdownAllocatedTimeService.isAllocatedTimerRunning">
+      <ng-container *ngIf="(isTimeRunning$ | async) || (isAllocatedTimeRunning$ | async)">
         <app-remaining-time></app-remaining-time>
       </ng-container>
     </div>

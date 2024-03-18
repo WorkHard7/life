@@ -2,8 +2,11 @@ import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CountdownService} from "../../../services/countdown.service";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
-import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
+import {Store} from "@ngrx/store";
+import {AppState} from "../../../store/app.state";
+import {selectIsTimeRunning} from "../../../store/selectors/isTimeRunning.selector";
+import {selectIsAllocatedTimeRunning} from "../../../store/selectors/isAllocatedTimeRunning.selector";
 
 @Component({
   selector: 'app-watchtower-paragraph',
@@ -18,12 +21,16 @@ export class WatchtowerParagraphComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
   opacity: number = 1;
   intervalId!: any;
+  isTimeRunning$!: Observable<boolean>;
+  isAllocatedTimeRunning$!: Observable<boolean>;
 
   constructor(
+    private store: Store<AppState>,
     private route: ActivatedRoute,
-    public countdownService: CountdownService,
-    public countdownAllocatedTimeService: CountdownAllocatedTimeService
+    public countdownService: CountdownService
   ) {
+    this.isTimeRunning$ = this.store.select(selectIsTimeRunning);
+    this.isAllocatedTimeRunning$ = this.store.select(selectIsAllocatedTimeRunning);
   }
 
   @HostListener('window:popstate', ['$event'])
@@ -56,7 +63,11 @@ export class WatchtowerParagraphComponent implements OnInit, OnDestroy {
     endTime.setHours(customEndTime.hours, customEndTime.minutes, customEndTime.seconds);
     this.countdownService.startCountdown(endTime);
 
-    if (this.countdownService.isTimerRunning) this.calculateCurrentParagraph(endTime);
+    this.isTimeRunning$.subscribe(isTimeRunning => {
+      if (isTimeRunning) {
+        this.calculateCurrentParagraph(endTime);
+      }
+    })
   }
 
   private calculateCurrentParagraph(endTime: Date) {

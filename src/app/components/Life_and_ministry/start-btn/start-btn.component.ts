@@ -1,8 +1,9 @@
 import {Component, Input} from '@angular/core';
-import {CountdownService} from "../../../services/countdown.service";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../store/app.state";
 import {hideHeader} from "../../../store/actions/showHeader.actions";
+import {Observable} from "rxjs";
+import {selectIsTimeRunning} from "../../../store/selectors/isTimeRunning.selector";
 
 @Component({
   selector: 'app-start-btn',
@@ -12,11 +13,10 @@ import {hideHeader} from "../../../store/actions/showHeader.actions";
 export class StartBtnComponent {
   @Input() padding?: string;
   @Input() title?: string;
+  isTimeRunning$!: Observable<boolean>;
 
-  constructor(
-    private store: Store<AppState>,
-    public countdownService: CountdownService
-  ) {
+  constructor(private store: Store<AppState>) {
+    this.isTimeRunning$ = this.store.select(selectIsTimeRunning);
   }
 
   hideHeader() {

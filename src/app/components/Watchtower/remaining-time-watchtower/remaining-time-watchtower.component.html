@@ -13,7 +13,7 @@
     </div>
 
     <p
-      *ngIf="countdownService.isTimerRunning; else allocatedTimeBlock"
+      *ngIf="(isTimeRunning$ | async); else allocatedTimeBlock"
       class="remaining-minutes">
       <span class="sign">{{countdownService.showNegativeRemainingTime.sign}}</span>
       <span class="minutes">{{countdownService.showNegativeRemainingTime.minutes}}</span><span

@@ -1,9 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CountdownService} from "../../../services/countdown.service";
 import {AllEvents} from "../../../model/events";
 import {PartsService} from "../../../services/parts.service";
-import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
+import {Store} from "@ngrx/store";
+import {AppState} from "../../../store/app.state";
+import {selectIsTimeRunning} from "../../../store/selectors/isTimeRunning.selector";
+import {selectIsAllocatedTimeRunning} from "../../../store/selectors/isAllocatedTimeRunning.selector";
 
 @Component({
   selector: 'app-finish',
@@ -15,6 +17,8 @@ export class FinishComponent implements OnInit, OnDestroy {
   newIndexFinishPart: number = 7;
   bibleStudyDurationSubscription!: Subscription;
   newIndexFinishPartSubscription!: Subscription;
+  isTimeRunning$!: Observable<boolean>;
+  isAllocatedTimeRunning$!: Observable<boolean>;
   finishPart: AllEvents = {
     index: this.newIndexFinishPart,
     title: 'Cuvinte de încheiere, anunțuri',
@@ -25,10 +29,11 @@ export class FinishComponent implements OnInit, OnDestroy {
   };
 
   constructor(
-    public countdownService: CountdownService,
-    public countdownAllocatedTimeService: CountdownAllocatedTimeService,
+    private store: Store<AppState>,
     private partsService: PartsService
   ) {
+    this.isTimeRunning$ = this.store.select(selectIsTimeRunning);
+    this.isAllocatedTimeRunning$ = this.store.select(selectIsAllocatedTimeRunning);
   }
 
   ngOnInit(): void {

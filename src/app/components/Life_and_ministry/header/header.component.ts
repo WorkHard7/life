@@ -9,6 +9,8 @@ import {Observable} from "rxjs";
 import {selectHeader} from "../../../store/selectors/showHeader.selector";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../store/app.state";
+import {selectIsTimeRunning} from "../../../store/selectors/isTimeRunning.selector";
+import {selectIsAllocatedTimeRunning} from "../../../store/selectors/isAllocatedTimeRunning.selector";
 
 @Component({
   selector: 'app-header',
@@ -21,6 +23,8 @@ export class HeaderComponent implements OnInit {
   public finalPartTitle: string = 'Cântare, rugăciune de încheiere';
   selectedSpeech$!: Observable<AllEvents>;
   showHeader$!: Observable<boolean>;
+  isTimeRunning$!: Observable<boolean>;
+  isAllocatedTimeRunning$!: Observable<boolean>;
 
   constructor(
     private store: Store<AppState>,
@@ -30,6 +34,8 @@ export class HeaderComponent implements OnInit {
     private selectedSpeechService: SelectedSpeechService
   ) {
     this.showHeader$ = this.store.select(selectHeader);
+    this.isTimeRunning$ = this.store.select(selectIsTimeRunning);
+    this.isAllocatedTimeRunning$ = this.store.select(selectIsAllocatedTimeRunning);
   }
 
   ngOnInit(): void {

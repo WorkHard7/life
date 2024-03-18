@@ -49,7 +49,7 @@
       <!--   in case   'Cuvinte de încheiere, anunțuri' was selected -->
       <ng-template #nextBlock>
         <div
-          *ngIf="countdownService.isTimerRunning; else finalBlock"
+          *ngIf="(isTimeRunning$ | async); else finalBlock"
           style="margin-top: 1.3rem">
           <span class="sign">{{countdownService.showNegativeRemainingTime.sign}}</span>
           <span
@@ -61,7 +61,7 @@
       <!--      finalBlock for 'Cântare, rugăciune de încheiere' -->
       <ng-template #finalBlock>
         <div
-          *ngIf="countdownAllocatedTimeService.isAllocatedTimerRunning"
+          *ngIf="(isAllocatedTimeRunning$ | async)"
           style="margin-top: 1.3rem">
           <span class="sign">{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.sign}}</span>
           <span

@@ -8,6 +8,8 @@ import {selectHeader} from "../../store/selectors/showHeader.selector";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../store/app.state";
 import {showHeader} from "../../store/actions/showHeader.actions";
+import {selectIsTimeRunning} from "../../store/selectors/isTimeRunning.selector";
+import {selectIsAllocatedTimeRunning} from "../../store/selectors/isAllocatedTimeRunning.selector";
 
 @Component({
   selector: 'app-life-and-ministry',
@@ -19,6 +21,8 @@ export class LifeAndMinistryComponent implements OnInit, OnDestroy {
   partsServiceSubscription!: Subscription;
   parts!: AllEvents[];
   showHeader$!: Observable<boolean>;
+  isTimeRunning$!: Observable<boolean>;
+  isAllocatedTimeRunning$!: Observable<boolean>;
 
   constructor(
     private store: Store<AppState>,
@@ -27,6 +31,8 @@ export class LifeAndMinistryComponent implements OnInit, OnDestroy {
     private partsService: PartsService
   ) {
     this.showHeader$ = this.store.select(selectHeader);
+    this.isTimeRunning$ = this.store.select(selectIsTimeRunning);
+    this.isAllocatedTimeRunning$ = this.store.select(selectIsAllocatedTimeRunning);
   }
 
   @HostListener('window:popstate', ['$event'])

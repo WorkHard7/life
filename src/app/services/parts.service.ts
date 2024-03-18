@@ -3,7 +3,7 @@ import {CHRISTIAN_LIFE, FINISH_PART, GEMS, PREACHING} from "../mock/mock-parts.s
 import {BehaviorSubject} from "rxjs";
 import {AllEvents} from "../model/events";
 import Swal from "sweetalert2";
-import {addNewSpeech, bibleStudy, speechA} from "../mock/speech";
+import {bibleStudy, speechA} from "../mock/speech";
 
 function updateDuration(
   duration: number,
@@ -144,88 +144,6 @@ export class PartsService {
     this.getPreachingPartsFromStorage(preachingParts);
     this.getChristianLifePartsFromStorage(christianLifeParts);
     this.getFinishPartFromLocalStorage(finishPart);
-  }
-
-  addCustomSpeech(preaching: boolean = false, christianLife: boolean = false): void {
-    Swal.fire({
-      title: 'Adaugă o temă nouă',
-      html: addNewSpeech,
-      didOpen() {
-        const buttonDurations = [
-          {id: 'duration-button-1', duration: 1},
-          {id: 'duration-button-2', duration: 2},
-          {id: 'duration-button-3', duration: 3},
-          {id: 'duration-button-4', duration: 4},
-          {id: 'duration-button-5', duration: 5},
-          {id: 'duration-button-7', duration: 7},
-          {id: 'duration-button-8', duration: 8},
-        ];
-
-        buttonDurations.forEach(button => {
-          const durationButton = document.getElementById(button.id);
-          if (durationButton) {
-            durationButton.addEventListener('click', () => updateDuration(button.duration));
-          }
-        });
-
-        const inputTitleEl = document.getElementById('swal-input-title');
-        const inputMinutesEl = document.getElementById('swal-input-minutes') as HTMLInputElement;
-        const addPartBtn = document.querySelector('.swal2-confirm') as HTMLElement;
-
-        if (inputTitleEl) {
-          inputTitleEl.focus();
-
-          inputMinutesEl.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
-              event.preventDefault(); // Prevent default form submission
-              addPartBtn.click();
-            }
-          })
-        }
-      },
-      showCancelButton: true,
-      confirmButtonText: 'Adaugă',
-      cancelButtonText: 'Anulează',
-      showLoaderOnConfirm: true,
-      preConfirm: () => {
-        const title = (document.getElementById('swal-input-title') as HTMLInputElement).value;
-        const hours = (document.getElementById('swal-input-hours') as HTMLInputElement).value;
-        const minutes = (document.getElementById('swal-input-minutes') as HTMLInputElement).value;
-        const duration = (document.getElementById('swal-input-duration') as HTMLInputElement).value;
-
-        if (!title || !hours || !minutes || !duration) {
-          Swal.showValidationMessage('Completează toate câmpurile');
-        }
-
-        return {title: title, hours: hours, minutes: minutes, duration: Number(duration)};
-      }
-    }).then((result: any) => {
-      if (result.isConfirmed) {
-        const newSpeech = {
-          index: 0,
-          title: result.value.title,
-          hours: result.value.hours,
-          minutes: result.value.minutes,
-          seconds: 0,
-          duration: result.value.duration
-        };
-
-        if (preaching) {
-          this.updatePreachingParts(newSpeech);
-        } else if (christianLife) {
-          this.updateChristianLifePartsAfterAddingANewPart(newSpeech);
-        } else {
-          this.updateSpeeches(newSpeech);
-        }
-
-        Swal.fire({
-          title: `Tema a fost adaugată cu succes!`,
-          icon: 'success',
-          timer: 1000,
-          showConfirmButton: false
-        })
-      }
-    })
   }
 
   findAndEditChristianLifeParts(christianLifePartToBeEdited: any) {
@@ -557,30 +475,6 @@ export class PartsService {
 
     localStorage.setItem('christianLife', JSON.stringify(christianLifeParts));
     this.christianLifeParts.next(christianLifeParts);
-  }
-
-  private updatePreachingPartsAfterEditing(editedPart: any, index: number) {
-    const preachingParts = this.preachingParts.getValue();
-    preachingParts[index] = editedPart;
-
-    localStorage.setItem('preaching', JSON.stringify(preachingParts));
-    this.preachingParts.next(preachingParts);
-  }
-
-  private updateSpeeches(newSpeech: AllEvents): void {
-    const parts = this.gems.getValue();
-    parts.push(newSpeech);
-    localStorage.setItem('gems', JSON.stringify(parts));
-
-    this.gems.next(parts);
-  }
-
-  private updatePreachingParts(newSpeech: any): void {
-    const preachingParts = this.preachingParts.getValue();
-    preachingParts.push(newSpeech);
-    localStorage.setItem('preaching', JSON.stringify(preachingParts));
-
-    this.preachingParts.next(preachingParts);
   }
 
   private updateChristianLifePartsAfterAddingANewPart(newSpeech: AllEvents): void {

@@ -5,6 +5,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
 import {FormsModule} from "@angular/forms";
+import {StoreModule} from "@ngrx/store";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/Life_and_ministry/header/header.component';
@@ -17,13 +19,9 @@ import {LifeAndMinistryComponent} from './pages/life-and-ministry/life-and-minis
 import {WatchtowerIntroPageComponent} from './components/Watchtower/watchtower-intro-page/watchtower-intro-page.component';
 import {WatchtowerParagraphComponent} from './components/Watchtower/watchtower-paragraph/watchtower-paragraph.component';
 import {PageNotFoundComponent} from './components/Page-not-found/page-not-found.component';
-import {AddCustomSpeechComponent} from "./components/Life_and_ministry/add-custom-speech/add-custom-speech.component";
-import {ResetSpeechesComponent} from './components/Life_and_ministry/reset-speeches/reset-speeches.component';
 import {PreachingPartsComponent} from './components/Life_and_ministry/preaching-parts/preaching-parts.component';
 import {ChristianLifePartsComponent} from './components/Life_and_ministry/christian-life-parts/christian-life-parts.component';
-import {ReloadPageBtnComponent} from './components/Watchtower/reload-page-btn/reload-page-btn.component';
 import {SetCustomTimeBtnWatchtowerComponent} from './components/Watchtower/set-custom-time-btn-watchtower/set-custom-time-btn-watchtower.component';
-import {DeleteBtnComponent} from './components/Life_and_ministry/delete-btn/delete-btn.component';
 import {LeftControllersPublicTalk} from "./components/Public_talk/left-controllers_public_talk/left-controllers-public-talk";
 import {PublicTalkComponent} from "./pages/public_talk/public-talk.component";
 import {StartBtnPublicTalkComponent} from './components/Public_talk/start-btn-public-talk/start-btn-public-talk.component';
@@ -38,9 +36,10 @@ import {LeftControllersComponent} from './components/Life_and_ministry/left-cont
 import {StartBtnWatchtowerComponent} from './components/Watchtower/start-btn-watchtower/start-btn-watchtower.component';
 import {LeftControllersWatchtowerComponent} from './components/Watchtower/left-controllers-watchtower/left-controllers-watchtower.component';
 import {SharedUtilsComponent} from "./utils/shared-utils/shared-utils.component";
-import {StoreModule} from "@ngrx/store";
+
 import {showHeaderReducer} from "./store/reducers/showHeader.reducer";
-import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {isTimeRunningReducer} from "./store/reducers/isTimeRunning.reducer";
+import {isAllocatedTimeRunningReducer} from "./store/reducers/isAllocatedTimeRunning.reducer";
 
 @NgModule({
   declarations: [
@@ -55,13 +54,9 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
     WatchtowerIntroPageComponent,
     WatchtowerParagraphComponent,
     PageNotFoundComponent,
-    AddCustomSpeechComponent,
-    ResetSpeechesComponent,
     PreachingPartsComponent,
     ChristianLifePartsComponent,
-    ReloadPageBtnComponent,
     SetCustomTimeBtnWatchtowerComponent,
-    DeleteBtnComponent,
     PublicTalkComponent,
     StartBtnPublicTalkComponent,
     IntroductionComponent,
@@ -84,7 +79,11 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    StoreModule.forRoot({showHeader: showHeaderReducer}),
+    StoreModule.forRoot({
+      showHeader: showHeaderReducer,
+      isTimeRunning: isTimeRunningReducer,
+      isAllocatedTimeRunning: isAllocatedTimeRunningReducer
+    }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: !isDevMode(),

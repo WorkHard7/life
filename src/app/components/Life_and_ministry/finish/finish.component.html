@@ -11,7 +11,7 @@
 </div>
 
 <ng-container
-  *ngIf="countdownService.isTimerRunning || countdownAllocatedTimeService.isAllocatedTimerRunning">
+  *ngIf="(isTimeRunning$ | async) || (isAllocatedTimeRunning$ | async)">
   <app-remaining-time></app-remaining-time>
 </ng-container>
 

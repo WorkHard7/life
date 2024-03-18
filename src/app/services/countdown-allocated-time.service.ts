@@ -1,5 +1,8 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
+import {Store} from "@ngrx/store";
+import {AppState} from "../store/app.state";
+import {startAllocatedTime, stopAllocatedTime} from "../store/actions/isAllocatedTimeRunning.actions";
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +16,17 @@ export class CountdownAllocatedTimeService {
       seconds: '00'
     }
   allocatedIntervalId!: any;
-  isAllocatedTimerRunning: boolean = false;
 
   private redColorAllocatedTimeTextSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public redColorAllocatedText$: Observable<boolean> = this.redColorAllocatedTimeTextSubject.asObservable();
 
+  constructor(private store: Store<AppState>) {
+  }
+
   startCountdownForAllocatedTime(endAllocatedTime: Date) {
     const currentTime = new Date();
     const targetTime = new Date(endAllocatedTime);
-    this.isAllocatedTimerRunning = true;
+    this.store.dispatch(startAllocatedTime());
 
     if (this.allocatedIntervalId) window.clearTimeout(this.allocatedIntervalId);
 
@@ -44,7 +49,7 @@ export class CountdownAllocatedTimeService {
   }
 
   stopCountdownForAllocatedTime(): void {
-    this.isAllocatedTimerRunning = false;
+    this.store.dispatch(stopAllocatedTime());
     this.remainingAllocatedTime = 0;
     this.showNegativeAllocatedRemainingTime =
       {

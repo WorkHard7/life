@@ -1,16 +1,16 @@
 import {createReducer, on} from "@ngrx/store";
 import {hideHeader, showHeader} from "../actions/showHeader.actions";
 
-export interface ShowHeaderState {
+export interface HeaderState {
   showHeader: boolean;
 }
 
-export const initialShowHeaderState: ShowHeaderState = {
+export const initialHeaderState: HeaderState = {
   showHeader: true
 }
 
 export const showHeaderReducer = createReducer(
-  initialShowHeaderState,
+  initialHeaderState,
   on(showHeader, state => ({...state, showHeader: true})),
   on(hideHeader, state => ({...state, showHeader: false}))
 );

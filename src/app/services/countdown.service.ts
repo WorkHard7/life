@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {SelectedSpeechService} from "./selected-speech.service";
 import {CountdownAllocatedTimeService} from "./countdown-allocated-time.service";
 import {AllEvents} from "../model/events";
+import {Store} from "@ngrx/store";
+import {AppState} from "../store/app.state";
+import {startTime, stopTime} from "../store/actions/isTimeRunning.actions";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +12,6 @@ import {AllEvents} from "../model/events";
 export class CountdownService {
   remainingTime: number = 0;
   intervalId!: any;
-  isTimerRunning: boolean = false;
   isCustomTime: boolean = false;
   showNegativeRemainingTime: { sign: string, minutes: string, seconds: string } =
     {
@@ -44,6 +46,7 @@ export class CountdownService {
   }
 
   constructor(
+    private store: Store<AppState>,
     private selectedSpeechService: SelectedSpeechService,
     private countdownAllocatedTimeService: CountdownAllocatedTimeService
   ) {
@@ -74,7 +77,7 @@ export class CountdownService {
   startCountdown(endTime: Date): void {
     const currentTime = new Date();
     const targetTime = new Date(endTime);
-    this.isTimerRunning = true;
+    this.store.dispatch(startTime());
 
     if (this.intervalId) window.clearTimeout(this.intervalId);
 
@@ -93,7 +96,7 @@ export class CountdownService {
   }
 
   stopCountdown(): void {
-    this.isTimerRunning = false;
+    this.store.dispatch(stopTime());
     this.remainingTime = 0;
     this.showNegativeRemainingTime =
       {

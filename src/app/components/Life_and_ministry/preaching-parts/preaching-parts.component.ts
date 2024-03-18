@@ -1,7 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PartsService} from "../../../services/parts.service";
-import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
-import {CountdownService} from "../../../services/countdown.service";
 import {Router} from "@angular/router";
 import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.component";
 import {Subscription} from "rxjs";
@@ -17,8 +15,6 @@ export class PreachingPartsComponent extends SharedUtilsComponent implements OnI
 
   constructor(
     private partsService: PartsService,
-    private countdownService: CountdownService,
-    private countdownAllocatedTimeService: CountdownAllocatedTimeService,
     private router: Router
   ) {
     super();
@@ -32,10 +28,6 @@ export class PreachingPartsComponent extends SharedUtilsComponent implements OnI
 
   ngOnDestroy() {
     this.preachingPartsSubscription.unsubscribe()
-  }
-
-  deleteSpeech(title: string): void {
-    this.partsService.findAndDeleteSpeech(title, true);
   }
 
   setTime(preachingPart: any): void {

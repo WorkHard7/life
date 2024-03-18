@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<ng-container *ngIf="countdownService.isTimerRunning">
+<ng-container *ngIf="(isTimeRunning$ | async)">
   <app-remaining-time></app-remaining-time>
 </ng-container>
 
