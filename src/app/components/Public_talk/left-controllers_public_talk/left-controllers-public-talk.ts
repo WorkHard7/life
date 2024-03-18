@@ -7,7 +7,7 @@ import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 @Component({
   selector: 'app-left-controllers-public-talk',
   templateUrl: './left-controllers-public-talk.html',
-  styleUrls: ['./left-controllers-public-talk.scss']
+  styleUrls: ['../../Life_and_ministry/left-controllers/left-controllers.component.scss']
 })
 export class LeftControllersPublicTalk {
   protected readonly faArrowLeft = faArrowLeft;
