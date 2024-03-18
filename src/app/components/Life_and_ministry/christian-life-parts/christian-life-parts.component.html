@@ -5,18 +5,17 @@
       <div class="main-container-ch-life">
         <span>
           <span>{{ part.title }} </span>
-          <span class="left-space-duration">({{part.duration}} min.)</span>
+          <span class="left-space-duration">({{ part.duration }} min.)</span>
         </span>
 
         <div class="flex items-center">
           <app-edit-btn
             *ngIf="first || last"
-            [christianLifePartToBeEdited]=part
+            [christianLifePartToBeEdited]="part"
           ></app-edit-btn>
           <app-start-btn (click)="setTime(part)"></app-start-btn>
         </div>
       </div>
-
     </ng-container>
   </ul>
 </div>

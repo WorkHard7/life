@@ -1,35 +1,50 @@
 <div class="main-container">
-
   <div class="remaining-time-title">
     <div
       class="remaining-allocated-time-container"
       [ngStyle]="{
-      'visibility': (selectedSpeechService.selectedSpeech$ | async)?.title === '' +
-       'Cuvinte de încheiere, anunțuri' ? 'hidden' : 'visible',
-       'color': countdownAllocatedTimeService.remainingAllocatedTime <= 0 ? '#f3b8b8' : '#ffffff'
-      }">
-
+        visibility:
+          (selectedSpeechService.selectedSpeech$ | async)?.title ===
+          '' + 'Cuvinte de încheiere, anunțuri'
+            ? 'hidden'
+            : 'visible',
+        color:
+          countdownAllocatedTimeService.remainingAllocatedTime <= 0
+            ? '#f3b8b8'
+            : '#ffffff'
+      }"
+    >
       <div>
         <p>timp rămas</p>
-        <p>din {{(selectedSpeechService.selectedSpeech$ | async)?.duration}} min.</p>
+        <p>
+          din
+          {{ (selectedSpeechService.selectedSpeech$ | async)?.duration }} min.
+        </p>
       </div>
 
       <div style="margin-top: 1.3rem">
-        <span class="sign">{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.sign}}</span>
-        <span
-          class="remaining-minutes">{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.minutes}}</span><span
-        class="remaining-seconds">.{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.seconds}}</span>
+        <span class="sign">{{
+          countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.sign
+        }}</span>
+        <span class="remaining-minutes">{{
+          countdownAllocatedTimeService.showNegativeAllocatedRemainingTime
+            .minutes
+        }}</span
+        ><span class="remaining-seconds"
+          >.{{
+            countdownAllocatedTimeService.showNegativeAllocatedRemainingTime
+              .seconds
+          }}</span
+        >
       </div>
-
     </div>
 
     <div
       [ngStyle]="{
-      'color': mixColors()
+        color: mixColors()
       }"
       class="mt-8 remaining-time-container"
     >
-
       <div style="line-height: 1.6rem">
         <p>timp rămas</p>
         <p>din program</p>
@@ -37,40 +52,61 @@
 
       <!--   in case   'Cuvinte de încheiere, anunțuri' was selected go nextBlock-->
       <div
-        *ngIf="(this.selectedSpeechService.selectedSpeech$ | async)?.title !==
-          'Cuvinte de încheiere, anunțuri'; else nextBlock"
-        style="margin-top: 1.3rem">
-        <span class="sign">{{countdownService.showNegativeRemainingTime.sign}}</span>
-        <span
-          class="remaining-minutes">{{countdownService.showNegativeRemainingTime.minutes}}</span><span
-        class="remaining-seconds">.{{countdownService.showNegativeRemainingTime.seconds}}</span>
+        *ngIf="
+          (this.selectedSpeechService.selectedSpeech$ | async)?.title !==
+            'Cuvinte de încheiere, anunțuri';
+          else nextBlock
+        "
+        style="margin-top: 1.3rem"
+      >
+        <span class="sign">{{
+          countdownService.showNegativeRemainingTime.sign
+        }}</span>
+        <span class="remaining-minutes">{{
+          countdownService.showNegativeRemainingTime.minutes
+        }}</span
+        ><span class="remaining-seconds"
+          >.{{ countdownService.showNegativeRemainingTime.seconds }}</span
+        >
       </div>
 
       <!--   in case   'Cuvinte de încheiere, anunțuri' was selected -->
       <ng-template #nextBlock>
         <div
-          *ngIf="(isTimeRunning$ | async); else finalBlock"
-          style="margin-top: 1.3rem">
-          <span class="sign">{{countdownService.showNegativeRemainingTime.sign}}</span>
-          <span
-            class="remaining-minutes">{{countdownService.showNegativeRemainingTime.minutes}}</span><span
-          class="remaining-seconds">.{{countdownService.showNegativeRemainingTime.seconds}}</span>
+          *ngIf="isTimeRunning$ | async; else finalBlock"
+          style="margin-top: 1.3rem"
+        >
+          <span class="sign">{{
+            countdownService.showNegativeRemainingTime.sign
+          }}</span>
+          <span class="remaining-minutes">{{
+            countdownService.showNegativeRemainingTime.minutes
+          }}</span
+          ><span class="remaining-seconds"
+            >.{{ countdownService.showNegativeRemainingTime.seconds }}</span
+          >
         </div>
       </ng-template>
 
       <!--      finalBlock for 'Cântare, rugăciune de încheiere' -->
       <ng-template #finalBlock>
-        <div
-          *ngIf="(isAllocatedTimeRunning$ | async)"
-          style="margin-top: 1.3rem">
-          <span class="sign">{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.sign}}</span>
-          <span
-            class="remaining-minutes">{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.minutes}}</span><span
-          class="remaining-seconds">.{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.seconds}}</span>
+        <div *ngIf="isAllocatedTimeRunning$ | async" style="margin-top: 1.3rem">
+          <span class="sign">{{
+            countdownAllocatedTimeService.showNegativeAllocatedRemainingTime
+              .sign
+          }}</span>
+          <span class="remaining-minutes">{{
+            countdownAllocatedTimeService.showNegativeAllocatedRemainingTime
+              .minutes
+          }}</span
+          ><span class="remaining-seconds"
+            >.{{
+              countdownAllocatedTimeService.showNegativeAllocatedRemainingTime
+                .seconds
+            }}</span
+          >
         </div>
       </ng-template>
-
     </div>
   </div>
-
 </div>

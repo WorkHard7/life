@@ -1,29 +1,27 @@
 <div class="main-container">
-
   <div class="next-speech-container">
     <button
       [disabled]="hideNextSpeechButton()"
       [style.opacity]="hideNextSpeechButton() ? '0' : '1'"
       (click)="startNextSpeech()"
-      class="next-speech-btn">
-          <span>
-            <span>Start</span>
-            <span style="font-size: .7rem">următoarea temă</span>
-          </span>
+      class="next-speech-btn"
+    >
+      <span>
+        <span>Start</span>
+        <span style="font-size: 0.7rem">următoarea temă</span>
+      </span>
     </button>
   </div>
 
   <div class="arrow-container">
-    <button
-      (click)="returnBack()"
-      class="icon-circle">
+    <button (click)="returnBack()" class="icon-circle">
       <fa-icon
-        style="stroke-width: 15;stroke: #000;"
+        style="stroke-width: 15; stroke: #000"
         title="Back"
         class="arrow-left text-white text-xl"
-        [icon]="faArrowLeft">
+        [icon]="faArrowLeft"
+      >
       </fa-icon>
     </button>
   </div>
-
 </div>

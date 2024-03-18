@@ -1,18 +1,16 @@
 <div class="main-container-intro w-full rounded-2xl p-2">
   <div class="flex items-center">
     <span class="text-white flex-1 font-bold">
-      <span>{{introPart.title}}</span>
-        <span class="left-space-duration">({{introPart.duration}} min.)</span>
-      </span>
+      <span>{{ introPart.title }}</span>
+      <span class="left-space-duration">({{ introPart.duration }} min.)</span>
+    </span>
     <app-start-btn-intro-finish
-      [introPart]=introPart
+      [introPart]="introPart"
     ></app-start-btn-intro-finish>
   </div>
-  <div>
-  </div>
+  <div></div>
 </div>
 
-<ng-container *ngIf="(isTimeRunning$ | async)">
-  <app-remaining-time></app-remaining-time>
+<ng-container *ngIf="isTimeRunning$ | async">
+  <app-remaining-time />
 </ng-container>
-
