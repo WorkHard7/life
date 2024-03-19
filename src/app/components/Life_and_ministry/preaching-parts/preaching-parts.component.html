@@ -1,13 +1,18 @@
 <div>
   <ul class="list-none">
     <ng-container *ngFor="let part of preachingParts">
-      <div class="main-container-preaching mt-3 p-2">
-        <span>{{ part.title }}</span>
+
+      <div class="main-container-preaching">
+        <span>
+          <span class="preaching-main-title">SĂ FIM MAI EFICIENȚI ÎN PREDICARE</span>
+          <span class="left-space-duration">({{ part.duration }} min.)</span>
+        </span>
 
         <div class="flex items-center">
-          <app-start-btn (click)="setTime(part)" />
+          <app-start-btn (click)="navigateToPreachingPart(part)"/>
         </div>
       </div>
+
     </ng-container>
   </ul>
 </div>

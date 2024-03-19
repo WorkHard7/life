@@ -1,26 +1,24 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AllEvents} from "../../../model/events";
+import {Component, OnInit, Signal} from '@angular/core';
 import {PartsService} from "../../../services/parts.service";
-import {Observable, Subscription} from "rxjs";
+import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../store/app.state";
 import {selectIsTimeRunning} from "../../../store/selectors/isTimeRunning.selector";
 import {selectIsAllocatedTimeRunning} from "../../../store/selectors/isAllocatedTimeRunning.selector";
+import {AllEvents} from "../../../model/events";
 
 @Component({
   selector: 'app-finish',
   templateUrl: './finish.component.html',
   styleUrls: ['./finish.component.scss']
 })
-export class FinishComponent implements OnInit, OnDestroy {
-  bibleStudyDuration: number = 3;
-  newIndexFinishPart: number = 7;
-  bibleStudyDurationSubscription!: Subscription;
-  newIndexFinishPartSubscription!: Subscription;
+export class FinishComponent implements OnInit {
+  bibleStudyDurationSig!: Signal<number>;
+  newIndexFinishPartSig!: Signal<number>;
   isTimeRunning$!: Observable<boolean>;
   isAllocatedTimeRunning$!: Observable<boolean>;
   finishPart: AllEvents = {
-    index: this.newIndexFinishPart,
+    index: this.newIndexFinishPartSig,
     title: 'Cuvinte de încheiere, anunțuri',
     hours: 20,
     minutes: 40,
@@ -37,17 +35,7 @@ export class FinishComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.bibleStudyDurationSubscription = this.partsService.bibleStudyDuration.subscribe(duration => {
-      this.bibleStudyDuration = duration;
-    })
-
-    this.newIndexFinishPartSubscription = this.partsService.newIndexFinishPart.subscribe((newIndexFinishPart) => {
-      this.newIndexFinishPart = newIndexFinishPart;
-    })
-  }
-
-  ngOnDestroy() {
-    this.bibleStudyDurationSubscription.unsubscribe();
-    this.newIndexFinishPartSubscription.unsubscribe();
+    this.bibleStudyDurationSig = this.partsService.bibleStudyDurationSig;
+    this.newIndexFinishPartSig = this.partsService.newIndexFinishPartSig;
   }
 }

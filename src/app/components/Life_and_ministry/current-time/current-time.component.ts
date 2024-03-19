@@ -15,7 +15,6 @@ import {selectHeader} from "../../../store/selectors/showHeader.selector";
 })
 export class CurrentTimeComponent implements OnInit {
   @Input() watchtowerStarted: boolean = false;
-  @Input() publicTalk: boolean = false;
   localTime: any = new Date();
   title: string = '';
   showHeader$!: Observable<boolean>;

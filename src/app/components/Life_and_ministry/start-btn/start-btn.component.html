@@ -1,6 +1,5 @@
 <button
   (click)="hideHeader()"
-  [style.padding]="padding"
   [disabled]="(isTimeRunning$ | async)"
   [ngClass]="{'opacity-25' : (isTimeRunning$ | async)}"
   type="submit"

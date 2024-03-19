@@ -3,10 +3,10 @@
   <div class="flex">
     <app-left-controllers-watchtower
       class="left-controllers-container"
-    ></app-left-controllers-watchtower>
+    />
 
     <main class="main-container">
-      <app-current-time [watchtowerStarted]="true"></app-current-time>
+      <app-current-time [watchtowerStarted]="true" />
 
       <header class="main-header">
         <p *ngIf="(isTimeRunning$ | async)"

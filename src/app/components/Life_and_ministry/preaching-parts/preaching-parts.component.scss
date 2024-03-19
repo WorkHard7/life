@@ -3,9 +3,6 @@
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  border-radius: 1rem;
-  border-width: 2px;
-  border-color: #FFCD5C;
 
   span {
     font-weight: bold;
@@ -15,16 +12,20 @@
 
 @media screen and (max-width: 400px) {
   .main-container-preaching {
-    span {
-      font-size: .8rem;
+    span, .preaching-main-title {
+      font-size: .7rem;
     }
   }
 }
 
+@media screen and (max-width: 600px) and (min-width: 401px) {
+  .preaching-main-title {
+    font-size: .9rem;
+  }
+}
+
 @media screen and (min-width: 950px) {
-  .main-container-preaching {
-    span {
-      font-size: 1.2rem;
-    }
+  .preaching-main-title {
+    font-size: 1.3rem;
   }
 }

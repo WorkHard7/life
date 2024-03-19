@@ -1,5 +1,5 @@
 <div>
-  <app-introduction />
+  <app-introduction/>
 
   <ul class="mt-3 list-none">
     <li>
@@ -13,7 +13,7 @@
           </span>
         </div>
 
-        <ng-container *ngFor="let gem of gems">
+        <ng-container *ngFor="let gem of gemPartsSig()">
           <ul
             *ngIf="gem.title !== 'SĂ FIM MAI EFICIENȚI ÎN PREDICARE'"
             class="gems-container mt-3"
@@ -23,10 +23,10 @@
                 <span>
                   <span>{{ gem.title }}</span>
                   <span class="left-space-duration"
-                    >({{ gem.duration }} min.)</span
+                  >({{ gem.duration }} min.)</span
                   >
                 </span>
-                <app-start-btn (click)="setTime(gem)"></app-start-btn>
+                <app-start-btn (click)="navigateToGemsPart(gem)" />
               </div>
             </li>
           </ul>
@@ -37,21 +37,7 @@
     <ul class="mt-3">
       <li>
         <div class="preaching-container">
-          <div class="flex items-center">
-            <span class="preaching-main-title">
-              <span>SĂ FIM MAI EFICIENȚI ÎN PREDICARE</span>
-              <span class="left-space-duration"
-                >({{ alternativePreachingParts.duration }} min.)</span
-              >
-            </span>
-            <app-start-btn
-              (click)="setTime(this.alternativePreachingParts)"
-            ></app-start-btn>
-          </div>
-
-          <div>
-            <app-preaching-parts />
-          </div>
+          <app-preaching-parts/>
         </div>
       </li>
     </ul>
@@ -67,11 +53,11 @@
           </div>
 
           <div>
-            <app-christian-life-parts />
+            <app-christian-life-parts/>
           </div>
         </div>
       </li>
     </ul>
   </ul>
-  <app-finish />
+  <app-finish/>
 </div>

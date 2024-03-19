@@ -3,25 +3,25 @@
     <app-left-controllers
       *ngIf="!(showHeader$ | async)"
       class="left-controllers-container"
-    ></app-left-controllers>
+    />
 
     <div
       style="flex: 2"
       [class.main-container]="!(showHeader$ | async)">
       <app-header
         [title]=title
-      ></app-header>
+      />
 
-      <app-current-time *ngIf="(showHeader$ | async)"></app-current-time>
+      <app-current-time *ngIf="(showHeader$ | async)"/>
 
       <ng-container
         *ngIf="!(isTimeRunning$ | async) && !(isAllocatedTimeRunning$ | async)"
       >
-        <app-parts></app-parts>
+        <app-parts/>
       </ng-container>
 
       <ng-container *ngIf="(isTimeRunning$ | async) || (isAllocatedTimeRunning$ | async)">
-        <app-remaining-time></app-remaining-time>
+        <app-remaining-time/>
       </ng-container>
     </div>
   </main>

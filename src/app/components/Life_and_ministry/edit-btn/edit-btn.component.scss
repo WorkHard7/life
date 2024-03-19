@@ -1,3 +1,10 @@
+button {
+  color: white;
+  padding: .5rem .75rem;
+  border-radius: 1rem;
+  background-color: #53507a;
+}
+
 @media screen and (max-width: 500px) {
   button {
     padding: 0.5rem 0.6rem;

@@ -1,26 +1,27 @@
-import {AfterViewChecked, Component, Input, OnDestroy} from '@angular/core';
+import {AfterViewChecked, Component, Input, WritableSignal} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {Router} from "@angular/router";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
-import {combineLatest, map, Observable, Subscription} from "rxjs";
+import {combineLatest, map, Observable} from "rxjs";
 import {AppState} from "../../../store/app.state";
 import {selectIsTimeRunning} from "../../../store/selectors/isTimeRunning.selector";
 import {Store} from "@ngrx/store";
 import {selectIsAllocatedTimeRunning} from "../../../store/selectors/isAllocatedTimeRunning.selector";
+import {AllEvents} from "../../../model/events";
 
 @Component({
   selector: 'app-remaining-time',
   templateUrl: './remaining-time.component.html',
   styleUrls: ['./remaining-time.component.scss']
 })
-export class RemainingTimeComponent implements OnDestroy, AfterViewChecked {
+export class RemainingTimeComponent implements AfterViewChecked {
   @Input() introduction: boolean = false;
   @Input() finish: boolean = false;
 
   protected readonly faArrowLeft = faArrowLeft;
-  private selectedSpeechSubscription!: Subscription;
+  public selectedSpeechSig!: WritableSignal<AllEvents>;
   isTimeRunning$!: Observable<boolean>;
   isAllocatedTimeRunning$!: Observable<boolean>;
 
@@ -39,10 +40,6 @@ export class RemainingTimeComponent implements OnDestroy, AfterViewChecked {
     this.updateRemainingTimeIfNecessary();
   }
 
-  ngOnDestroy(): void {
-    this.selectedSpeechSubscription.unsubscribe();
-  }
-
   returnBack() {
     this.countdownService.stopCountdown();
     this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
@@ -53,11 +50,11 @@ export class RemainingTimeComponent implements OnDestroy, AfterViewChecked {
   updateRemainingTimeIfNecessary() {
     let shouldExit = false;
 
-    this.selectedSpeechSubscription = this.selectedSpeechService.selectedSpeech$.subscribe(selectedSpeech => {
-      if (selectedSpeech.title === 'Cuvinte de încheiere, anunțuri') {
-        shouldExit = true;
-      }
-    })
+    this.selectedSpeechSig = this.selectedSpeechService.selectedSpeechSig;
+
+    if (this.selectedSpeechSig().title === 'Cuvinte de încheiere, anunțuri') {
+      shouldExit = true;
+    }
 
     if (shouldExit) {
       return;

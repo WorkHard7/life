@@ -1,5 +1,7 @@
+import {Signal} from "@angular/core";
+
 export interface AllEvents {
-  index: number,
+  index: number | Signal<any>,
   title: string,
   hours: any,
   minutes: any,

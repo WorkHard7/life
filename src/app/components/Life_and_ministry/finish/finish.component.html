@@ -2,16 +2,16 @@
   <div class="flex items-center">
     <span class="text-white flex-1 font-bold">
       <span>{{finishPart.title}}</span>
-      <span class="left-space-duration">({{bibleStudyDuration}} min.)</span>
+      <span class="left-space-duration">({{bibleStudyDurationSig()}} min.)</span>
     </span>
     <app-start-btn-intro-finish
       [finishPart]="finishPart"
-    ></app-start-btn-intro-finish>
+    />
   </div>
 </div>
 
 <ng-container
   *ngIf="(isTimeRunning$ | async) || (isAllocatedTimeRunning$ | async)">
-  <app-remaining-time></app-remaining-time>
+  <app-remaining-time />
 </ng-container>
 

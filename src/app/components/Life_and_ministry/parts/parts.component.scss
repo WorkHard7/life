@@ -32,11 +32,6 @@
   color: #86BFCA;
 }
 
-.preaching-main-title {
-  flex: 1;
-  color: #FFCD5C;
-}
-
 .life-main-title {
   flex: 1;
   color: #D27674;
@@ -44,7 +39,6 @@
 
 @media screen and (max-width: 400px) {
   .gems-main-title,
-  .preaching-main-title,
   .life-main-title {
     font-size: .7rem;
   }
@@ -56,7 +50,6 @@
 
 @media screen and (max-width: 600px) and (min-width: 401px) {
   .gems-main-title,
-  .preaching-main-title,
   .life-main-title {
     font-size: .9rem;
   }
@@ -70,7 +63,6 @@
   }
 
   .gems-main-title,
-  .preaching-main-title,
   .life-main-title {
     font-size: 1.3rem;
   }

@@ -6,5 +6,5 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./start-btn-watchtower.component.scss']
 })
 export class StartBtnWatchtowerComponent {
-  @Input() selectedParagraph!: number;
+  @Input({ required: true }) selectedParagraph!: number;
 }

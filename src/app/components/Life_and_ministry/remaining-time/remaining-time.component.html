@@ -4,7 +4,7 @@
       class="remaining-allocated-time-container"
       [ngStyle]="{
         visibility:
-          (selectedSpeechService.selectedSpeech$ | async)?.title ===
+          (selectedSpeechService.selectedSpeechSig().title) ===
           '' + 'Cuvinte de încheiere, anunțuri'
             ? 'hidden'
             : 'visible',
@@ -18,24 +18,24 @@
         <p>timp rămas</p>
         <p>
           din
-          {{ (selectedSpeechService.selectedSpeech$ | async)?.duration }} min.
+          {{ (selectedSpeechService.selectedSpeechSig().duration) }} min.
         </p>
       </div>
 
       <div style="margin-top: 1.3rem">
         <span class="sign">{{
-          countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.sign
-        }}</span>
+            countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.sign
+          }}</span>
         <span class="remaining-minutes">{{
-          countdownAllocatedTimeService.showNegativeAllocatedRemainingTime
-            .minutes
-        }}</span
-        ><span class="remaining-seconds"
-          >.{{
             countdownAllocatedTimeService.showNegativeAllocatedRemainingTime
-              .seconds
+              .minutes
           }}</span
-        >
+        ><span class="remaining-seconds"
+      >.{{
+          countdownAllocatedTimeService.showNegativeAllocatedRemainingTime
+            .seconds
+        }}</span
+      >
       </div>
     </div>
 
@@ -53,21 +53,21 @@
       <!--   in case   'Cuvinte de încheiere, anunțuri' was selected go nextBlock-->
       <div
         *ngIf="
-          (this.selectedSpeechService.selectedSpeech$ | async)?.title !==
+          (selectedSpeechService.selectedSpeechSig().title) !==
             'Cuvinte de încheiere, anunțuri';
           else nextBlock
         "
         style="margin-top: 1.3rem"
       >
         <span class="sign">{{
-          countdownService.showNegativeRemainingTime.sign
-        }}</span>
+            countdownService.showNegativeRemainingTime.sign
+          }}</span>
         <span class="remaining-minutes">{{
-          countdownService.showNegativeRemainingTime.minutes
-        }}</span
+            countdownService.showNegativeRemainingTime.minutes
+          }}</span
         ><span class="remaining-seconds"
-          >.{{ countdownService.showNegativeRemainingTime.seconds }}</span
-        >
+      >.{{ countdownService.showNegativeRemainingTime.seconds }}</span
+      >
       </div>
 
       <!--   in case   'Cuvinte de încheiere, anunțuri' was selected -->
@@ -77,14 +77,14 @@
           style="margin-top: 1.3rem"
         >
           <span class="sign">{{
-            countdownService.showNegativeRemainingTime.sign
-          }}</span>
+              countdownService.showNegativeRemainingTime.sign
+            }}</span>
           <span class="remaining-minutes">{{
-            countdownService.showNegativeRemainingTime.minutes
-          }}</span
+              countdownService.showNegativeRemainingTime.minutes
+            }}</span
           ><span class="remaining-seconds"
-            >.{{ countdownService.showNegativeRemainingTime.seconds }}</span
-          >
+        >.{{ countdownService.showNegativeRemainingTime.seconds }}</span
+        >
         </div>
       </ng-template>
 
@@ -92,19 +92,19 @@
       <ng-template #finalBlock>
         <div *ngIf="isAllocatedTimeRunning$ | async" style="margin-top: 1.3rem">
           <span class="sign">{{
-            countdownAllocatedTimeService.showNegativeAllocatedRemainingTime
-              .sign
-          }}</span>
-          <span class="remaining-minutes">{{
-            countdownAllocatedTimeService.showNegativeAllocatedRemainingTime
-              .minutes
-          }}</span
-          ><span class="remaining-seconds"
-            >.{{
               countdownAllocatedTimeService.showNegativeAllocatedRemainingTime
-                .seconds
+                .sign
+            }}</span>
+          <span class="remaining-minutes">{{
+              countdownAllocatedTimeService.showNegativeAllocatedRemainingTime
+                .minutes
             }}</span
-          >
+          ><span class="remaining-seconds"
+        >.{{
+            countdownAllocatedTimeService.showNegativeAllocatedRemainingTime
+              .seconds
+          }}</span
+        >
         </div>
       </ng-template>
     </div>

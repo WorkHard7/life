@@ -1,6 +1,6 @@
 <div>
   <ng-container
-    *ngIf="(showHeader$ | async) && !watchtowerStarted && !publicTalk"
+    *ngIf="(showHeader$ | async) && !watchtowerStarted"
   >
     <div class="main-container-curr-time">
       <h1>
@@ -12,7 +12,7 @@
   </ng-container>
 
   <ng-container
-    *ngIf="!(showHeader$ | async) || watchtowerStarted || publicTalk"
+    *ngIf="!(showHeader$ | async) || watchtowerStarted"
   >
     <div class="mb-4">
       <div class="main-container-curr-time">

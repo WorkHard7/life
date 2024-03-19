@@ -7,7 +7,7 @@ import {PartsService} from "../../../services/parts.service";
   styleUrls: ['./edit-btn.component.scss']
 })
 export class EditBtnComponent {
-  @Input() christianLifePartToBeEdited!: any;
+  @Input({ required: true }) christianLifePartToBeEdited: any;
 
   constructor(private partsService: PartsService) {
   }
@@ -18,7 +18,7 @@ export class EditBtnComponent {
       // reset speeches just on Set btn from SpeechA
       if (this.christianLifePartToBeEdited.title != 'Studiul Bibliei') {
         this.partsService.resetToDefaultChristianLifeParts('A');
-        this.partsService.newIndexFinishPart.next(7);
+        this.partsService.newIndexFinishPartSig.set(7);
       } else {
         this.partsService.resetToDefaultChristianLifeParts('BS');
       }

@@ -1,13 +1,11 @@
-import {Injectable} from '@angular/core';
-import {CHRISTIAN_LIFE, FINISH_PART, GEMS, PREACHING} from "../mock/mock-parts.service";
-import {BehaviorSubject} from "rxjs";
+import {Injectable, signal, WritableSignal} from '@angular/core';
+import {CHRISTIAN_LIFE, FINISH_PART, GEMS} from "../mock/mock-parts.service";
 import {AllEvents} from "../model/events";
 import Swal from "sweetalert2";
 import {bibleStudy, speechA} from "../mock/speech";
 
 function updateDuration(
   duration: number,
-  christianLifeParts?: BehaviorSubject<any>,
   partToBeEdited?: AllEvents
 ) {
   const durationInput = document.getElementById('swal-input-duration') as HTMLInputElement;
@@ -105,7 +103,7 @@ function updateDuration(
     BStudyDurationInput.value = bStudyDuration;
   }
 
-  if (partToBeEdited && partToBeEdited.title != 'Studiul Bibliei' && christianLifeParts?.getValue().length < 3) {
+  if (partToBeEdited && partToBeEdited.title != 'Studiul Bibliei') {
     if ([5, 7, 8, 10].includes(duration)) {
       speechBContainer.style.display = 'flex';
       speechBHoursContainer.style.display = 'flex';
@@ -126,28 +124,25 @@ function updateDuration(
   providedIn: 'root'
 })
 export class PartsService {
-  public gems: BehaviorSubject<any> = new BehaviorSubject<any>([]);
-  public preachingParts: BehaviorSubject<any> = new BehaviorSubject<any>([]);
-  public christianLifeParts: BehaviorSubject<any> = new BehaviorSubject<any>([]);
-  public finishPart: BehaviorSubject<any> = new BehaviorSubject<any>([]);
-  public bibleStudyDuration: BehaviorSubject<number> = new BehaviorSubject<number>(3);
-  public newIndexFinishPart: BehaviorSubject<number> = new BehaviorSubject<number>(7);
+  public gemsSig: WritableSignal<any> = signal<any>([]);
+  public christianLifePartsSig: WritableSignal<any> = signal<any>([]);
+  public newIndexFinishPartSig: WritableSignal<number> = signal<number>(7);
+  public finishPartSig: WritableSignal<any> = signal<any>([]);
+  public bibleStudyDurationSig: WritableSignal<number> = signal<number>(3);
   public shortenedBsDuration: number = 0;
 
   constructor() {
     const gems = localStorage.getItem('gems');
-    const preachingParts = localStorage.getItem('preaching');
     const christianLifeParts = localStorage.getItem('christianLife');
     const finishPart = localStorage.getItem('finishPart');
 
     this.getGemsFromStorage(gems);
-    this.getPreachingPartsFromStorage(preachingParts);
     this.getChristianLifePartsFromStorage(christianLifeParts);
     this.getFinishPartFromLocalStorage(finishPart);
   }
 
   findAndEditChristianLifeParts(christianLifePartToBeEdited: any) {
-    const parts = this.christianLifeParts.getValue();
+    const parts = this.christianLifePartsSig();
     const partToBeEdited = parts.find((part: any) => part.title === christianLifePartToBeEdited.title);
 
     if (partToBeEdited !== -1) {
@@ -254,7 +249,7 @@ export class PartsService {
           icon: 'success',
           timer: 1000,
           showConfirmButton: false
-        })
+        });
       }
     })
   }
@@ -298,7 +293,7 @@ export class PartsService {
           durationButtonElement.classList.add('selected');
 
           this.shortenedBsDuration = button.duration;
-          updateDuration(button.duration, this.christianLifeParts, partToBeEdited);
+          updateDuration(button.duration, partToBeEdited);
         })
       }
     });
@@ -325,7 +320,7 @@ export class PartsService {
           bibleSDurationsButtonsElement.classList.add('bs-selected');
 
           this.shortenedBsDuration = button.duration;
-          updateDuration(button.duration, this.christianLifeParts, partToBeEdited);
+          updateDuration(button.duration, partToBeEdited);
         })
       }
     });
@@ -347,7 +342,7 @@ export class PartsService {
   private checkAndAddSpeechB(result: any) {
     // if the christianLifeParts has already 3 speeches..do not add the 4th using speech A
     // also if there are 2 speeches and Studiul Bibliei was selected, do not add a new speech
-    if (this.christianLifeParts.getValue().length < 3 && result.value.speechBHours?.length > 1) {
+    if (this.christianLifePartsSig().length < 3 && result.value.speechBHours?.length > 1) {
       const newBSpeech = {
         index: 6,
         title: result.value.speechBTitle,
@@ -362,14 +357,14 @@ export class PartsService {
       this.updateChristianLifePartsAfterAddingANewPart(newBSpeech);
 
       // Update the index of the finish part directly
-      this.newIndexFinishPart.next(8);
+      this.newIndexFinishPartSig.set(8);
     }
   }
 
   editBibleStudyPart(partToBeEdited: AllEvents, result: any, index: number) {
     if (partToBeEdited.title == 'Studiul Bibliei') {
       const editedBStudy = {
-        index: this.christianLifeParts.getValue().length > 2 ? 7 : 6, // if speechB present, change index to 7
+        index: this.christianLifePartsSig().length > 2 ? 7 : 6, // if speechB present, change index to 7
         title: partToBeEdited.title,
         hours: result.value.speechBStudyHours,
         minutes: result.value.speechBStudyMinutes,
@@ -377,7 +372,7 @@ export class PartsService {
         duration: result.value.speechBStudyDuration
       };
 
-      this.bibleStudyDuration.next(result.value.bibleStudyShortenedBy + 3);
+      this.bibleStudyDurationSig.set(result.value.bibleStudyShortenedBy + 3);
       this.updateChristianLifePartsAfterEditing(editedBStudy, index);
     }
   }
@@ -470,15 +465,15 @@ export class PartsService {
   }
 
   private updateChristianLifePartsAfterEditing(editedPart: any, index: number) {
-    const christianLifeParts = this.christianLifeParts.getValue();
+    const christianLifeParts = this.christianLifePartsSig();
     christianLifeParts[index] = editedPart;
 
     localStorage.setItem('christianLife', JSON.stringify(christianLifeParts));
-    this.christianLifeParts.next(christianLifeParts);
+    this.christianLifePartsSig.set(christianLifeParts);
   }
 
   private updateChristianLifePartsAfterAddingANewPart(newSpeech: AllEvents): void {
-    let christianLifeParts = this.christianLifeParts.getValue();
+    let christianLifeParts = this.christianLifePartsSig();
     const bibleStudy = christianLifeParts.find((part: any) => part.title === 'Studiul Bibliei');
 
     // removes "Studiul Bibliei" from the array if it exists
@@ -492,85 +487,7 @@ export class PartsService {
     }
 
     localStorage.setItem('christianLife', JSON.stringify(christianLifeParts));
-    this.christianLifeParts.next(christianLifeParts);
-  }
-
-  resetSpeeches(title: string, preaching: boolean = false, christianLife: boolean = false): void {
-    Swal.fire({
-      title: 'Ești sigur?',
-      text: "Nu vei putea reveni la starea inițială!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Resetează',
-      cancelButtonText: 'Anulează'
-    }).then((result) => {
-      if (result.isConfirmed) {
-
-        if (preaching) {
-          this.resetToDefaultPreachingParts();
-        } else if (christianLife) {
-          this.resetToDefaultChristianLifeParts();
-        } else {
-          this.resetToDefaultGems();
-        }
-
-        Swal.fire({
-          title: `Toate discursurile au fost resetate!`,
-          icon: 'success',
-          timer: 1000,
-          showConfirmButton: false
-        })
-      }
-    });
-  }
-
-  findAndDeleteSpeech(title: string, preaching: boolean = false, christianLife: boolean = false): void {
-    Swal.fire({
-      title: 'Ești sigur?',
-      text: "Ești pe cale de a șterge o temă!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Șterge',
-      cancelButtonText: 'Anulează'
-    }).then((result: any) => {
-      if (result.isConfirmed) {
-
-        if (preaching) {
-          const filterPreachingParts = this.preachingParts.getValue().filter((part: any) =>
-            part.title !== title);
-
-          this.preachingParts.next(filterPreachingParts);
-          localStorage.setItem('preaching', JSON.stringify(this.preachingParts.getValue()));
-        } else if (christianLife) {
-          const filterChristianLifeParts = this.christianLifeParts.getValue().filter((part: any) =>
-            part.title !== title);
-
-          this.christianLifeParts.next(filterChristianLifeParts);
-          localStorage.setItem('christianLife', JSON.stringify(this.christianLifeParts.getValue()));
-        }
-
-        Swal.fire({
-          title: `Tema a fost ștearsă cu succes!`,
-          icon: 'success',
-          timer: 1000,
-          showConfirmButton: false
-        })
-      }
-    })
-  }
-
-  private resetToDefaultGems(): void {
-    localStorage.setItem('gems', JSON.stringify(GEMS));
-    this.gems.next(GEMS);
-  }
-
-  private resetToDefaultPreachingParts(): void {
-    localStorage.setItem('preaching', JSON.stringify(PREACHING));
-    this.preachingParts.next(PREACHING);
+    this.christianLifePartsSig.set(christianLifeParts);
   }
 
   public resetToDefaultChristianLifeParts(speechAorBs?: string): void {
@@ -601,72 +518,63 @@ export class PartsService {
       }
     } else if (speechAorBs === 'BS') {
       christianLifePartsFromStorage[christianLifePartsFromStorage.length - 1] = {
-        index: this.christianLifeParts.getValue().length > 2 ? 7 : 6, // if speechB present, change index to 7
+        index: this.christianLifePartsSig().length > 2 ? 7 : 6, // if speechB present, change index to 7
         title: 'Studiul Bibliei',
         hours: 20,
         minutes: 36,
         seconds: 30,
         duration: 30
       }
-      this.bibleStudyDuration.next(3);
+      this.bibleStudyDurationSig.set(3);
     }
 
     localStorage.setItem('christianLife', JSON.stringify(christianLifePartsFromStorage));
-    this.christianLifeParts.next(christianLifePartsFromStorage);
+    this.christianLifePartsSig.set(christianLifePartsFromStorage);
 
-    this.updateBSIndex(this.christianLifeParts.getValue().length > 2 ? 7 : 6);
-    this.updateFinishPartIndex(this.christianLifeParts.getValue().length > 2 ? 8 : 7);
+    this.updateBSIndex(this.christianLifePartsSig().length > 2 ? 7 : 6);
+    this.updateFinishPartIndex(this.christianLifePartsSig().length > 2 ? 8 : 7);
   }
 
   updateFinishPartIndex(newIndex: number) {
-    let finishPart = this.finishPart.getValue();
+    let finishPart = this.finishPartSig();
     finishPart[0].index = newIndex;
 
-    localStorage.setItem('finishPart', JSON.stringify(finishPart));
-    this.finishPart.next(finishPart);
+    this.finishPartSig.set(finishPart);
+    localStorage.setItem('finishPart', JSON.stringify(this.finishPartSig()));
   }
 
   updateBSIndex(newIndex: number) {
-    let christianLifeParts = this.christianLifeParts.getValue();
+    let christianLifeParts = this.christianLifePartsSig();
     const bibleStudy = christianLifeParts.find((part: any) => part.title === 'Studiul Bibliei');
     bibleStudy.index = newIndex;
 
     localStorage.setItem('christianLife', JSON.stringify(christianLifeParts));
-    this.christianLifeParts.next(christianLifeParts);
+    this.christianLifePartsSig.set(christianLifeParts);
   }
 
   private getGemsFromStorage(gems: string | null): void {
     if (gems) {
-      this.gems.next(JSON.parse(gems));
+      this.gemsSig.set(JSON.parse(gems));
     } else {
-      this.gems.next(GEMS);
+      this.gemsSig.set(GEMS);
       localStorage.setItem('gems', JSON.stringify(GEMS));
-    }
-  }
-
-  private getPreachingPartsFromStorage(preachingParts: string | null) {
-    if (preachingParts) {
-      this.preachingParts.next(JSON.parse(preachingParts));
-    } else {
-      this.preachingParts.next(PREACHING);
-      localStorage.setItem('preaching', JSON.stringify(PREACHING));
     }
   }
 
   private getChristianLifePartsFromStorage(christianLifeParts: string | null) {
     if (christianLifeParts) {
-      this.christianLifeParts.next(JSON.parse(christianLifeParts));
+      this.christianLifePartsSig.set(JSON.parse(christianLifeParts));
     } else {
-      this.christianLifeParts.next(CHRISTIAN_LIFE);
+      this.christianLifePartsSig.set(CHRISTIAN_LIFE);
       localStorage.setItem('christianLife', JSON.stringify(CHRISTIAN_LIFE));
     }
   }
 
   private getFinishPartFromLocalStorage(finishPart: string | null) {
     if (finishPart) {
-      this.finishPart.next(JSON.parse(finishPart));
+      this.finishPartSig.set(JSON.parse(finishPart));
     } else {
-      this.finishPart.next(FINISH_PART);
+      this.finishPartSig.set(FINISH_PART);
       localStorage.setItem('finishPart', JSON.stringify(FINISH_PART));
     }
   }

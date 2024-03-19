@@ -1,36 +1,30 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {PartsService} from "../../../services/parts.service";
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.component";
-import {Subscription} from "rxjs";
+import {AllEvents} from "../../../model/events";
 
 @Component({
   selector: 'app-preaching-parts',
   templateUrl: './preaching-parts.component.html',
   styleUrls: ['./preaching-parts.component.scss']
 })
-export class PreachingPartsComponent extends SharedUtilsComponent implements OnInit, OnDestroy {
-  preachingParts!: any[];
-  preachingPartsSubscription!: Subscription;
+export class PreachingPartsComponent extends SharedUtilsComponent {
+  preachingParts: AllEvents[] = [
+    {
+      index: 4,
+      title: 'Să fim mai eficienți în predicare',
+      hours: 19,
+      minutes: 47,
+      seconds: 0,
+      duration: 15
+    }
+  ]
 
-  constructor(
-    private partsService: PartsService,
-    private router: Router
-  ) {
+  constructor(private router: Router) {
     super();
   }
 
-  ngOnInit(): void {
-    this.preachingPartsSubscription = this.partsService.preachingParts.subscribe(preachingParts => {
-      this.preachingParts = preachingParts;
-    });
-  }
-
-  ngOnDestroy() {
-    this.preachingPartsSubscription.unsubscribe()
-  }
-
-  setTime(preachingPart: any): void {
+  navigateToPreachingPart(preachingPart: any): void {
     this.fireLoadingAlert();
     this.router.navigate(['/life_and_ministry', preachingPart.index]);
   }

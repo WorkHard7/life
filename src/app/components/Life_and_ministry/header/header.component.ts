@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, WritableSignal} from '@angular/core';
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {Router} from "@angular/router";
 import {CountdownService} from "../../../services/countdown.service";
@@ -18,10 +18,10 @@ import {selectIsAllocatedTimeRunning} from "../../../store/selectors/isAllocated
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Input('title') header?: string;
+  @Input({ required: true, alias: 'title' }) header?: string;
   protected readonly faArrowLeft = faArrowLeft;
   public finalPartTitle: string = 'Cântare, rugăciune de încheiere';
-  selectedSpeech$!: Observable<AllEvents>;
+  selectedSpeechSig!: WritableSignal<AllEvents>;
   showHeader$!: Observable<boolean>;
   isTimeRunning$!: Observable<boolean>;
   isAllocatedTimeRunning$!: Observable<boolean>;
@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.selectedSpeech$ = this.selectedSpeechService.selectedSpeech$;
+    this.selectedSpeechSig = this.selectedSpeechService.selectedSpeechSig;
   }
 
   goHome() {

@@ -1,12 +1,11 @@
-import {Injectable} from '@angular/core';
+import {Injectable, signal, WritableSignal} from '@angular/core';
 import {AllEvents} from "../model/events";
-import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SelectedSpeechService {
-  selectedSpeechSubject: BehaviorSubject<AllEvents> = new BehaviorSubject<AllEvents>(
+  selectedSpeechSig: WritableSignal<AllEvents> = signal<AllEvents>(
     {
       index: 0,
       title: '',
@@ -15,11 +14,10 @@ export class SelectedSpeechService {
       seconds: 0,
       duration: 0
     });
-  selectedSpeech$: Observable<AllEvents> = this.selectedSpeechSubject.asObservable();
 
   updateSelectedSpeech(selectedSpeech: AllEvents) {
     selectedSpeech.duration = Number(selectedSpeech.duration);
 
-    this.selectedSpeechSubject.next(selectedSpeech);
+    this.selectedSpeechSig.set(selectedSpeech);
   }
 }

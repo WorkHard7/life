@@ -142,14 +142,15 @@ export class CountdownService {
   }
 
   private checkFinalBlockLM() {
-    this.selectedSpeechService.selectedSpeech$.subscribe((selectedSpeech) => {
-      if (selectedSpeech.title === 'Cuvinte de încheiere, anunțuri' || selectedSpeech.title === 'Turnul de veghe') {
-        if (this.showNegativeRemainingTime.sign === '-' && this.showNegativeRemainingTime.minutes >= '01') {
-          this.stopCountdown();
-          this.setEndTime(selectedSpeech);
-        }
+    const selectedSpeechTitle = this.selectedSpeechService.selectedSpeechSig().title;
+
+    if (selectedSpeechTitle === 'Cuvinte de încheiere, anunțuri' ||
+      selectedSpeechTitle === 'Turnul de veghe') {
+      if (this.showNegativeRemainingTime.sign === '-' && this.showNegativeRemainingTime.minutes >= '01') {
+        this.stopCountdown();
+        this.setEndTime(this.selectedSpeechService.selectedSpeechSig());
       }
-    })
+    }
   }
 
   private setEndTime(selectedSpeech: AllEvents) {
