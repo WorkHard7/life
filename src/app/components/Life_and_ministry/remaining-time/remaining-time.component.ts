@@ -21,7 +21,7 @@ export class RemainingTimeComponent implements AfterViewChecked {
   @Input() finish: boolean = false;
 
   protected readonly faArrowLeft = faArrowLeft;
-  public selectedSpeechSig!: WritableSignal<AllEvents>;
+  protected selectedSpeechSig!: WritableSignal<AllEvents>;
   isTimeRunning$!: Observable<boolean>;
   isAllocatedTimeRunning$!: Observable<boolean>;
 
@@ -40,14 +40,7 @@ export class RemainingTimeComponent implements AfterViewChecked {
     this.updateRemainingTimeIfNecessary();
   }
 
-  returnBack() {
-    this.countdownService.stopCountdown();
-    this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
-
-    this.router.navigate(['/life_and_ministry']);
-  }
-
-  updateRemainingTimeIfNecessary() {
+  private updateRemainingTimeIfNecessary() {
     let shouldExit = false;
 
     this.selectedSpeechSig = this.selectedSpeechService.selectedSpeechSig;
@@ -66,13 +59,13 @@ export class RemainingTimeComponent implements AfterViewChecked {
     }
   }
 
-  mixColors(): string {
+  protected mixColors(): string {
     if (this.timersRunOutOfTime()) {
       return '#f3b8b8';
     } else return '#F2F5B8';
   }
 
-  timersRunOutOfTime(): Observable<boolean> {
+  private timersRunOutOfTime(): Observable<boolean> {
     return combineLatest([this.isTimeRunning$, this.isAllocatedTimeRunning$]).pipe(
       map(([isTimeRunning, isAllocatedTimeRunning]) => {
         return (

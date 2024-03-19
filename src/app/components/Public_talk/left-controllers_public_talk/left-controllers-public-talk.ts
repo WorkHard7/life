@@ -19,14 +19,14 @@ export class LeftControllersPublicTalk {
   ) {
   }
 
-  startNextSpeech() {
+  protected startNextSpeech() {
     this.countdownService.stopCountdown();
     this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
 
     this.router.navigate(['/watchtower']);
   }
 
-  returnBack() {
+  protected returnBack() {
     this.countdownService.stopCountdown();
     this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
 

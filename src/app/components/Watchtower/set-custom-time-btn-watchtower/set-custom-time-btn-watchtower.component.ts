@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import Swal from "sweetalert2";
 import {CountdownService} from "../../../services/countdown.service";
-import {faClockRotateLeft} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-set-custom-time-btn-watchtower',
@@ -9,9 +8,8 @@ import {faClockRotateLeft} from "@fortawesome/free-solid-svg-icons";
   styleUrls: ['./set-custom-time-btn-watchtower.component.scss']
 })
 export class SetCustomTimeBtnWatchtowerComponent implements OnInit {
-  faClockRotateLeft = faClockRotateLeft;
-  watchtowerEndTime: any = {};
-  isCustomTime: boolean = false;
+  protected watchtowerEndTime: any = {};
+  protected isCustomTime: boolean = false;
 
   constructor(private countdownService: CountdownService) {
   }
@@ -28,7 +26,7 @@ export class SetCustomTimeBtnWatchtowerComponent implements OnInit {
     }
   }
 
-  changeWatchtowerEndTime(): void {
+  protected changeWatchtowerEndTime(): void {
     Swal.fire({
       title: 'Setează timpul',
       html: `
@@ -83,19 +81,19 @@ export class SetCustomTimeBtnWatchtowerComponent implements OnInit {
     })
   }
 
-  changeToMorningTime() {
+  protected changeToMorningTime() {
     this.isCustomTime = false;
     this.setMorningTime();
     this.updateLocalStorageKeys();
   }
 
-  changeToEveningTime() {
+  protected changeToEveningTime() {
     this.isCustomTime = false;
     this.setEveningTime();
     this.updateLocalStorageKeys();
   }
 
-  updateLocalStorageKeys() {
+  private updateLocalStorageKeys() {
     this.countdownService.setWatchtowerCustomTimeToLocalStorage(this.watchtowerEndTime);
     this.countdownService.setAsCustomTimeToLocalStorage(this.isCustomTime);
   }
@@ -116,7 +114,7 @@ export class SetCustomTimeBtnWatchtowerComponent implements OnInit {
     };
   }
 
-  noMorningNoEveningSelected(): boolean {
+  protected noMorningNoEveningSelected(): boolean {
     return (this.watchtowerEndTime?.hours != 11 || this.watchtowerEndTime?.minutes != 40)
       && (this.watchtowerEndTime?.hours != 20 || this.watchtowerEndTime?.minutes != 10);
   }

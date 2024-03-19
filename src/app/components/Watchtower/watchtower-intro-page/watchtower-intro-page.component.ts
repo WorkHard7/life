@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
-import {faArrowLeft, faRefresh} from "@fortawesome/free-solid-svg-icons";
+import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
 import {CountdownService} from "../../../services/countdown.service";
 
@@ -12,10 +12,9 @@ import {CountdownService} from "../../../services/countdown.service";
 })
 export class WatchtowerIntroPageComponent {
   protected readonly faArrowLeft = faArrowLeft;
-  protected readonly faRefresh = faRefresh;
   private doubleClickTimeout: any;
-  public showPopup: boolean = false;
-  public selectedParagraph!: number;
+  protected showPopup: boolean = false;
+  protected selectedParagraph!: number;
 
   constructor(
     private router: Router,
@@ -24,7 +23,7 @@ export class WatchtowerIntroPageComponent {
   ) {
   }
 
-  startW(paragraph: number) {
+  protected startW(paragraph: number) {
     this.selectedSpeechService.updateSelectedSpeech(this.countdownService.watchtowerCustomEndTime);
 
     this.router.navigateByUrl(`/watchtower/${paragraph}`).catch((err) => {
@@ -36,11 +35,11 @@ export class WatchtowerIntroPageComponent {
     });
   }
 
-  goHome() {
+  protected goHome() {
     this.router.navigate(['/']);
   }
 
-  onDoubleClick() {
+  protected onDoubleClick() {
     clearTimeout(this.doubleClickTimeout); // Clear any existing timeout
     this.doubleClickTimeout = setTimeout(() => {
       this.showPopup = true;
@@ -50,11 +49,11 @@ export class WatchtowerIntroPageComponent {
     }, 500); // Set your desired duration (in milliseconds) for holding after double click
   }
 
-  onMouseUp() {
+  protected onMouseUp() {
     clearTimeout(this.doubleClickTimeout);
   }
 
-  selectParagraph(paragraph: number) {
+  protected selectParagraph(paragraph: number) {
     this.selectedParagraph = paragraph;
   }
 }

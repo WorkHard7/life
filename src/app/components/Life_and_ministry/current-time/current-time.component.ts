@@ -16,9 +16,8 @@ import {selectHeader} from "../../../store/selectors/showHeader.selector";
 export class CurrentTimeComponent implements OnInit {
   @Input() watchtowerStarted: boolean = false;
   localTime: any = new Date();
-  title: string = '';
   showHeader$!: Observable<boolean>;
-  public readonly faClock: any = faClock;
+  protected readonly faClock: any = faClock;
   protected readonly faArrowLeft = faArrowLeft;
 
   constructor(
@@ -34,16 +33,9 @@ export class CurrentTimeComponent implements OnInit {
     this.updateLocalTime();
   }
 
-  updateLocalTime() {
+  private updateLocalTime() {
     setInterval(() => {
       this.localTime = new Date();
     }, 1000)
-  }
-
-  goHome() {
-    this.countdownService.stopCountdown();
-    this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
-
-    this.router.navigate(['/']);
   }
 }

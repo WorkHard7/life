@@ -24,7 +24,7 @@ export class PreachingPartsComponent extends SharedUtilsComponent {
     super();
   }
 
-  navigateToPreachingPart(preachingPart: any): void {
+  protected navigateToPreachingPart(preachingPart: any): void {
     this.fireLoadingAlert();
     this.router.navigate(['/life_and_ministry', preachingPart.index]);
   }

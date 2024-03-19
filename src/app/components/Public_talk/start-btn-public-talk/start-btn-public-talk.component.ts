@@ -19,7 +19,7 @@ export class StartBtnPublicTalkComponent extends SharedUtilsComponent {
     super();
   }
 
-  startTimer() {
+  protected startTimer() {
     this.fireLoadingAlert();
 
     const currentTime = new Date();
@@ -28,7 +28,7 @@ export class StartBtnPublicTalkComponent extends SharedUtilsComponent {
     this.countdownService.startCountdown(endTime);
   }
 
-  goHome() {
+  protected goHome() {
     this.router.navigate(['/']);
   }
 }

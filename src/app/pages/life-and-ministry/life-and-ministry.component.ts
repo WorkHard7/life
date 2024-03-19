@@ -16,10 +16,10 @@ import {selectIsAllocatedTimeRunning} from "../../store/selectors/isAllocatedTim
   styleUrls: ['./life-and-ministry.component.scss']
 })
 export class LifeAndMinistryComponent {
-  title: string = 'Viața creștină și predicarea';
-  showHeader$!: Observable<boolean>;
-  isTimeRunning$!: Observable<boolean>;
-  isAllocatedTimeRunning$!: Observable<boolean>;
+  protected title: string = 'Viața creștină și predicarea';
+  protected showHeader$!: Observable<boolean>;
+  protected isTimeRunning$!: Observable<boolean>;
+  protected isAllocatedTimeRunning$!: Observable<boolean>;
 
   constructor(
     private store: Store<AppState>,

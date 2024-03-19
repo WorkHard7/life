@@ -22,7 +22,7 @@ export class PartsComponent extends SharedUtilsComponent implements OnInit {
     this.gemPartsSig = this.partsService.gemsSig;
   }
 
-  navigateToGemsPart(gem: any): void {
+  protected navigateToGemsPart(gem: any): void {
     this.fireLoadingAlert();
     this.router.navigate(['/life_and_ministry', gem.index]);
   }

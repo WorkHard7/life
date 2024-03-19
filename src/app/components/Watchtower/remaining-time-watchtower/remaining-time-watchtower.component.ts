@@ -27,17 +27,13 @@ export class RemainingTimeWatchtowerComponent {
     this.isAllocatedTimeRunning$ = this.store.select(selectIsAllocatedTimeRunning);
   }
 
-  timeIsUp(): boolean {
-    return this.countdownService.showNegativeRemainingTime.sign.includes('-');
-  }
-
-  mixColors() {
+  protected mixColors() {
     if (this.timersRunOutOfTime()) {
       return '#f3b8b8';
     } else return '#F2F5B8';
   }
 
-  timersRunOutOfTime(): Observable<boolean> {
+  private timersRunOutOfTime(): Observable<boolean> {
     return combineLatest([this.isTimeRunning$, this.isAllocatedTimeRunning$]).pipe(
       map(([isTimeRunning, isAllocatedTimeRunning]) => {
           return (

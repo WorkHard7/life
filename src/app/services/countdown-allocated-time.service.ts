@@ -14,7 +14,7 @@ export class CountdownAllocatedTimeService {
       minutes: '00',
       seconds: '00'
     }
-  allocatedIntervalId!: any;
+  private allocatedIntervalId!: any;
 
   constructor(private store: Store<AppState>) {
   }
@@ -53,7 +53,7 @@ export class CountdownAllocatedTimeService {
     clearInterval(this.allocatedIntervalId);
   }
 
-  formatNegativeNumberForAllocatedTime(): any {
+  private formatNegativeNumberForAllocatedTime(): any {
     const sign = this.remainingAllocatedTime < 0 ? '-' : '';
     const absRemainingAllocatedTime = Math.abs(this.remainingAllocatedTime);
 

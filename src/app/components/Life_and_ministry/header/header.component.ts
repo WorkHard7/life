@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
     this.selectedSpeechSig = this.selectedSpeechService.selectedSpeechSig;
   }
 
-  goHome() {
+  protected goHome() {
     this.countdownService.stopCountdown();
     this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
 

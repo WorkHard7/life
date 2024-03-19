@@ -12,7 +12,7 @@ export class EditBtnComponent {
   constructor(private partsService: PartsService) {
   }
 
-  onBtnClick() {
+  protected onBtnClick() {
     if (this.christianLifePartToBeEdited !== undefined) {
 
       // reset speeches just on Set btn from SpeechA

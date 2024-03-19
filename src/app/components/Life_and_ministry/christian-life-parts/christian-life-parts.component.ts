@@ -9,7 +9,7 @@ import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.com
   styleUrls: ['./christian-life-parts.component.scss']
 })
 export class ChristianLifePartsComponent extends SharedUtilsComponent implements OnInit {
-  christianLifePartsSig!: WritableSignal<any>;
+  protected christianLifePartsSig!: WritableSignal<any>;
 
   constructor(
     private partsService: PartsService,
@@ -22,7 +22,7 @@ export class ChristianLifePartsComponent extends SharedUtilsComponent implements
     this.christianLifePartsSig = this.partsService.christianLifePartsSig;
   }
 
-  navigateToChristianPart(christianPart: any): void {
+  protected navigateToChristianPart(christianPart: any): void {
     this.fireLoadingAlert();
     this.router.navigate(['/life_and_ministry', christianPart.index]);
   }

@@ -22,12 +22,12 @@ export class StartBtnIntroFinishComponent extends SharedUtilsComponent {
     super();
   }
 
-  startTimer() {
+  protected startTimer() {
     this.fireLoadingAlert();
     this.navigateToRouteBasedOnParts();
   }
 
-  navigateToRouteBasedOnParts() {
+  private navigateToRouteBasedOnParts() {
     if (this.introPart) {
       this.router.navigate(['/life_and_ministry', this.introPart.index]);
     } else if (this.finishPart) {
@@ -35,15 +35,15 @@ export class StartBtnIntroFinishComponent extends SharedUtilsComponent {
     }
   }
 
-  getFinishIndexFromStorage(): number | undefined {
+  private getFinishIndexFromStorage(): number | undefined {
     const finishPartFromStorage = JSON.parse(localStorage.getItem('finishPart') || '[]');
 
     if (finishPartFromStorage) {
-      return finishPartFromStorage[0].index;
+      return finishPartFromStorage.index;
     } else return undefined;
   }
 
-  hideHeader() {
+  protected hideHeader() {
     this.store.dispatch(hideHeader());
   }
 }

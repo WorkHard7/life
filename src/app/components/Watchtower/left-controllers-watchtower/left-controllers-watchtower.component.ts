@@ -20,7 +20,7 @@ export class LeftControllersWatchtowerComponent {
     this.faArrowLeft = faArrowLeft;
   }
 
-  returnBack() {
+  protected returnBack() {
     this.countdownService.stopCountdown();
     this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
 

@@ -27,8 +27,6 @@ export const GEMS: AllEvents[] = [
   }
 ]
 
-export const PREACHING: AllEvents[] = []
-
 export const CHRISTIAN_LIFE: ReadonlyArray<AllEvents> = [
   {
     index: 5,
@@ -48,13 +46,11 @@ export const CHRISTIAN_LIFE: ReadonlyArray<AllEvents> = [
   }
 ]
 
-export const FINISH_PART: ReadonlyArray<AllEvents> = [
-  {
-    index: 7,
-    title: 'Cuvinte de încheiere, anunțuri',
-    hours: 20,
-    minutes: 40,
-    seconds: 0,
-    duration: 3
-  }
-]
+export const FINISH_PART: AllEvents = {
+  index: 7,
+  title: 'Cuvinte de încheiere, anunțuri',
+  hours: 20,
+  minutes: 40,
+  seconds: 0,
+  duration: 3
+}

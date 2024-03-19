@@ -46,7 +46,7 @@ export class LeftControllersComponent extends SharedUtilsComponent implements On
     this.routeParamSubscription.unsubscribe();
   }
 
-  startNextSpeech() {
+  protected startNextSpeech() {
     this.fireLoadingAlert();
     this.countdownService.stopCountdown();
     this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
@@ -102,8 +102,7 @@ export class LeftControllersComponent extends SharedUtilsComponent implements On
       const lifePartsFromStorage = JSON.parse(localStorage.getItem('christianLife') || '[]');
 
       if (this.checkTheLifeLengthAndIndex(lifePartsFromStorage)) {
-        const finisPartFromStorage = JSON.parse(localStorage.getItem('finishPart') || '[]');
-        return finisPartFromStorage[0];
+        return JSON.parse(localStorage.getItem('finishPart') || '[]');
       } else if (lifePartsFromStorage.length === 3 && index === 7) {
         return lifePartsFromStorage[position];
       } else if (lifePartsFromStorage.length > 0) {
@@ -117,16 +116,16 @@ export class LeftControllersComponent extends SharedUtilsComponent implements On
     }
   }
 
-  checkTheLifeLengthAndIndex(lifePartsFromStorage: any): boolean {
+  private checkTheLifeLengthAndIndex(lifePartsFromStorage: any): boolean {
     return (lifePartsFromStorage.length === 2 && this.index === 7) ||
       (lifePartsFromStorage.length === 3 && this.index === 8);
   }
 
-  updateSelectedSpeech(selectedSpeech: AllEvents) {
+  private updateSelectedSpeech(selectedSpeech: AllEvents) {
     this.selectedSpeechService.updateSelectedSpeech(selectedSpeech);
   }
 
-  returnBack() {
+  protected returnBack() {
     this.countdownService.stopCountdown();
     this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
     this.store.dispatch(showHeader());
@@ -134,7 +133,7 @@ export class LeftControllersComponent extends SharedUtilsComponent implements On
     this.router.navigate(['/life_and_ministry']);
   }
 
-  hideNextSpeechButton(): boolean {
+  protected hideNextSpeechButton(): boolean {
     const lifePartsFromStorage = JSON.parse(localStorage.getItem('christianLife') || '[]');
 
     return this.checkTheLifeLengthAndIndex(lifePartsFromStorage);

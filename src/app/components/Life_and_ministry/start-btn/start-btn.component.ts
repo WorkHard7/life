@@ -17,7 +17,7 @@ export class StartBtnComponent {
     this.isTimeRunning$ = this.store.select(selectIsTimeRunning);
   }
 
-  hideHeader() {
+  protected hideHeader() {
     this.store.dispatch(hideHeader());
   }
 }

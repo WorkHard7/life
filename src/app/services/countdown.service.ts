@@ -11,8 +11,8 @@ import {startTime, stopTime} from "../store/actions/isTimeRunning.actions";
 })
 export class CountdownService {
   remainingTime: number = 0;
-  intervalId!: any;
-  isCustomTime: boolean = false;
+  private intervalId!: any;
+  private isCustomTime: boolean = false;
   showNegativeRemainingTime: { sign: string, minutes: string, seconds: string } =
     {
       sign: '',
@@ -29,7 +29,7 @@ export class CountdownService {
     duration: 0
   };
 
-  private watchtowerLastPart: AllEvents = {
+  private readonly watchtowerLastPart: AllEvents = {
     index: 2,
     title: 'Turnul de veghe',
     hours: 20,
@@ -38,7 +38,7 @@ export class CountdownService {
     duration: 4
   }
 
-  private LifeAndMinistryLastPart = {
+  private readonly lifeAndMinistryLastPart = {
     title: 'Cântare, rugăciune de încheiere',
     hours: 20,
     minutes: 45,
@@ -125,7 +125,7 @@ export class CountdownService {
     return this.isCustomTime;
   }
 
-  formatNegativeNumber(): any {
+  private formatNegativeNumber(): any {
     const sign = this.remainingTime < 0 ? '-' : '';
     const absRemainingTime = Math.abs(this.remainingTime);
 
@@ -158,9 +158,9 @@ export class CountdownService {
 
     if (selectedSpeech.title === 'Cuvinte de încheiere, anunțuri') {
       endTime.setHours(
-        this.LifeAndMinistryLastPart.hours,
-        this.LifeAndMinistryLastPart.minutes,
-        this.LifeAndMinistryLastPart.seconds
+        this.lifeAndMinistryLastPart.hours,
+        this.lifeAndMinistryLastPart.minutes,
+        this.lifeAndMinistryLastPart.seconds
       );
     } else {
       endTime.setHours(

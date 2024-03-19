@@ -1,7 +1,6 @@
 import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CountdownService} from "../../../services/countdown.service";
-import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {Observable, Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../store/app.state";
@@ -14,15 +13,13 @@ import {selectIsAllocatedTimeRunning} from "../../../store/selectors/isAllocated
   styleUrls: ['./watchtower-paragraph.component.scss']
 })
 export class WatchtowerParagraphComponent implements OnInit, OnDestroy {
-  protected readonly faArrowLeft = faArrowLeft;
-  routeParamSubscription!: Subscription;
-  selectedParagraph!: number;
-  currentParagraph!: number;
-  isLoading: boolean = true;
-  opacity: number = 1;
-  intervalId!: any;
-  isTimeRunning$!: Observable<boolean>;
-  isAllocatedTimeRunning$!: Observable<boolean>;
+  private routeParamSubscription!: Subscription;
+  protected selectedParagraph!: number;
+  protected currentParagraph!: number;
+  protected isLoading: boolean = true;
+  private intervalId!: any;
+  protected isTimeRunning$!: Observable<boolean>;
+  protected isAllocatedTimeRunning$!: Observable<boolean>;
 
   constructor(
     private store: Store<AppState>,
@@ -45,9 +42,7 @@ export class WatchtowerParagraphComponent implements OnInit, OnDestroy {
         this.selectedParagraph = +selectedParagraph;
       }
     })
-  }
 
-  ngAfterViewInit(): void {
     this.updateWatchtower();
   }
 
@@ -56,7 +51,7 @@ export class WatchtowerParagraphComponent implements OnInit, OnDestroy {
     this.routeParamSubscription.unsubscribe();
   }
 
-  updateWatchtower() {
+  private updateWatchtower() {
     const customEndTime: any = this.countdownService.getWatchtowerCustomEndTime();
     const endTime: Date = new Date();
 
