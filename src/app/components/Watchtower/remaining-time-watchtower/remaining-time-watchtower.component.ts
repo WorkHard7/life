@@ -27,10 +27,10 @@ export class RemainingTimeWatchtowerComponent {
     this.isAllocatedTimeRunning$ = this.store.select(selectIsAllocatedTimeRunning);
   }
 
-  protected mixColors() {
-    if (this.timersRunOutOfTime()) {
-      return '#f3b8b8';
-    } else return '#F2F5B8';
+  protected mixColors(): Observable<string> {
+    return this.timersRunOutOfTime().pipe(
+      map(isTimeRunningOutOfTime => isTimeRunningOutOfTime ? '#f3b8b8' : '#F2F5B8')
+    );
   }
 
   private timersRunOutOfTime(): Observable<boolean> {

@@ -1,8 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {faArrowLeft, faClock} from "@fortawesome/free-solid-svg-icons";
-import {Router} from "@angular/router";
-import {CountdownService} from "../../../services/countdown.service";
-import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../store/app.state";
 import {Observable} from "rxjs";
@@ -20,12 +17,7 @@ export class CurrentTimeComponent implements OnInit {
   protected readonly faClock: any = faClock;
   protected readonly faArrowLeft = faArrowLeft;
 
-  constructor(
-    private store: Store<AppState>,
-    private router: Router,
-    private countdownService: CountdownService,
-    private countdownAllocatedTimeService: CountdownAllocatedTimeService
-  ) {
+  constructor(private store: Store<AppState>) {
     this.showHeader$ = this.store.select(selectHeader);
   }
 

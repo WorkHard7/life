@@ -1,4 +1,4 @@
-import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {Component, DestroyRef, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CountdownService} from "../../../services/countdown.service";
 import {Observable, Subscription} from "rxjs";
@@ -12,7 +12,7 @@ import {selectIsAllocatedTimeRunning} from "../../../store/selectors/isAllocated
   templateUrl: './watchtower-paragraph.component.html',
   styleUrls: ['./watchtower-paragraph.component.scss']
 })
-export class WatchtowerParagraphComponent implements OnInit, OnDestroy {
+export class WatchtowerParagraphComponent implements OnInit {
   private routeParamSubscription!: Subscription;
   protected selectedParagraph!: number;
   protected currentParagraph!: number;
@@ -22,12 +22,19 @@ export class WatchtowerParagraphComponent implements OnInit, OnDestroy {
   protected isAllocatedTimeRunning$!: Observable<boolean>;
 
   constructor(
+    private destroyRef: DestroyRef,
     private store: Store<AppState>,
     private route: ActivatedRoute,
-    public countdownService: CountdownService
+    protected countdownService: CountdownService
   ) {
     this.isTimeRunning$ = this.store.select(selectIsTimeRunning);
     this.isAllocatedTimeRunning$ = this.store.select(selectIsAllocatedTimeRunning);
+
+    // an alternative to ngOnDestroy
+    this.destroyRef.onDestroy(() => {
+      clearInterval(this.intervalId);
+      this.routeParamSubscription.unsubscribe();
+    })
   }
 
   @HostListener('window:popstate', ['$event'])
@@ -46,11 +53,6 @@ export class WatchtowerParagraphComponent implements OnInit, OnDestroy {
     this.updateWatchtower();
   }
 
-  ngOnDestroy() {
-    clearInterval(this.intervalId);
-    this.routeParamSubscription.unsubscribe();
-  }
-
   private updateWatchtower() {
     const customEndTime: any = this.countdownService.getWatchtowerCustomEndTime();
     const endTime: Date = new Date();
@@ -58,11 +60,9 @@ export class WatchtowerParagraphComponent implements OnInit, OnDestroy {
     endTime.setHours(customEndTime.hours, customEndTime.minutes, customEndTime.seconds);
     this.countdownService.startCountdown(endTime);
 
-    this.isTimeRunning$.subscribe(isTimeRunning => {
-      if (isTimeRunning) {
-        this.calculateCurrentParagraph(endTime);
-      }
-    })
+    if (this.isTimeRunning$) {
+      this.calculateCurrentParagraph(endTime);
+    }
   }
 
   private calculateCurrentParagraph(endTime: Date) {

@@ -23,8 +23,8 @@ export class LifeAndMinistryComponent {
 
   constructor(
     private store: Store<AppState>,
-    public countdownService: CountdownService,
-    public countdownAllocatedTimeService: CountdownAllocatedTimeService
+    private countdownService: CountdownService,
+    private countdownAllocatedTimeService: CountdownAllocatedTimeService
   ) {
     this.showHeader$ = this.store.select(selectHeader);
     this.isTimeRunning$ = this.store.select(selectIsTimeRunning);

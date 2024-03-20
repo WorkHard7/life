@@ -1,7 +1,6 @@
 import {AfterViewChecked, Component, Input, WritableSignal} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
-import {Router} from "@angular/router";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
 import {combineLatest, map, Observable} from "rxjs";
@@ -29,7 +28,6 @@ export class RemainingTimeComponent implements AfterViewChecked {
     private store: Store<AppState>,
     public countdownService: CountdownService,
     public countdownAllocatedTimeService: CountdownAllocatedTimeService,
-    private router: Router,
     public selectedSpeechService: SelectedSpeechService
   ) {
     this.isTimeRunning$ = this.store.select(selectIsTimeRunning);
@@ -59,10 +57,10 @@ export class RemainingTimeComponent implements AfterViewChecked {
     }
   }
 
-  protected mixColors(): string {
-    if (this.timersRunOutOfTime()) {
-      return '#f3b8b8';
-    } else return '#F2F5B8';
+  protected mixColors(): Observable<string> {
+    return this.timersRunOutOfTime().pipe(
+      map(isTimeRunningOutOfTime => isTimeRunningOutOfTime ? '#f3b8b8' : '#F2F5B8')
+    );
   }
 
   private timersRunOutOfTime(): Observable<boolean> {

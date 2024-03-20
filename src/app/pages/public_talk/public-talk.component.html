@@ -1,12 +1,11 @@
 <div>
-
   <ng-container
-    *ngIf="!(isTimeRunning$ | async)"
+    *ngIf="!(isTimeRunning$ | async); else nextBlock"
   >
     <app-start-btn-public-talk/>
   </ng-container>
 
-  <ng-container *ngIf="(isTimeRunning$ | async)">
+  <ng-template #nextBlock>
     <div class="p-3 flex">
       <app-left-controllers-public-talk/>
 
@@ -22,7 +21,5 @@
         <app-remaining-time-public-talk/>
       </main>
     </div>
-  </ng-container>
-
-
+  </ng-template>
 </div>

@@ -1,6 +1,5 @@
 import {Component, HostListener} from '@angular/core';
 import {CountdownService} from "../../services/countdown.service";
-import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../store/app.state";
 import {Observable} from "rxjs";
@@ -16,8 +15,7 @@ export class PublicTalkComponent {
 
   constructor(
     private store: Store<AppState>,
-    public countdownService: CountdownService,
-    private router: Router
+    private countdownService: CountdownService
   ) {
     this.isTimeRunning$ = this.store.select(selectIsTimeRunning);
   }

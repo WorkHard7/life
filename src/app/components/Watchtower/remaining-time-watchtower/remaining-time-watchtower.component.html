@@ -1,10 +1,7 @@
 <div class="main-container">
 
-  <div
-    [ngStyle]="{
-      'color': mixColors()
-    }"
-    class="remaining-time-container"
+  <div [style.color]="mixColors() | async"
+       class="remaining-time-container"
   >
 
     <div class="remaining-time-title">
@@ -15,16 +12,16 @@
     <p
       *ngIf="(isTimeRunning$ | async); else allocatedTimeBlock"
       class="remaining-minutes">
-      <span class="sign">{{countdownService.showNegativeRemainingTime.sign}}</span>
-      <span class="minutes">{{countdownService.showNegativeRemainingTime.minutes}}</span><span
-      style="font-size: 1.3rem">.{{countdownService.showNegativeRemainingTime.seconds}}</span>
+      <span class="sign">{{ countdownService.showNegativeRemainingTime.sign }}</span>
+      <span class="minutes">{{ countdownService.showNegativeRemainingTime.minutes }}</span><span
+      style="font-size: 1.3rem">.{{ countdownService.showNegativeRemainingTime.seconds }}</span>
     </p>
 
     <ng-template #allocatedTimeBlock>
       <p class="remaining-minutes">
-        <span class="sign">{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.sign}}</span>
-        <span class="minutes">{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.minutes}}</span><span
-        style="font-size: 1.3rem">.{{countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.seconds}}</span>
+        <span class="sign">{{ countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.sign }}</span>
+        <span class="minutes">{{ countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.minutes }}</span><span
+        style="font-size: 1.3rem">.{{ countdownAllocatedTimeService.showNegativeAllocatedRemainingTime.seconds }}</span>
       </p>
     </ng-template>
 
