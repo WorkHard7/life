@@ -16,7 +16,7 @@ export class PreachingPartsComponent extends SharedUtilsComponent {
       hours: 19,
       minutes: 47,
       seconds: 0,
-      duration: 15
+      duration: 16
     }
   ]
 
