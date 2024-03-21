@@ -73,4 +73,8 @@ export class RemainingTimeComponent implements AfterViewChecked {
       })
     );
   }
+
+  protected roundUp(duration: number): number {
+    return Math.floor(duration);
+  }
 }

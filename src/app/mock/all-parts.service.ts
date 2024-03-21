@@ -45,7 +45,7 @@ export class AllPartsService {
       hours: 19,
       minutes: 47,
       seconds: 0,
-      duration: 16
+      duration: 15.67
     },
     {
       index: 5,

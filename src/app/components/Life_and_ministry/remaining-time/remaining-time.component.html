@@ -14,13 +14,25 @@
             : '#ffffff'
       }"
     >
-      <div>
+      <div
+        *ngIf="selectedSpeechService.selectedSpeechSig().title !== 'Să fim mai eficienți în predicare';
+        else preachingBlock">
         <p>timp rămas</p>
         <p>
           din
           {{ (selectedSpeechService.selectedSpeechSig().duration) }} min.
         </p>
       </div>
+
+      <ng-template #preachingBlock>
+        <div>
+          <p>timp rămas</p>
+          <p>
+            din
+            {{ roundUp(selectedSpeechService.selectedSpeechSig().duration) }} min.
+          </p>
+        </div>
+      </ng-template>
 
       <div style="margin-top: 1.3rem">
         <span class="sign">{{
