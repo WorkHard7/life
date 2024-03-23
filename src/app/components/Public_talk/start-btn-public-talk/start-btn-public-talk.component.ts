@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {Router} from "@angular/router";
-import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.component";
+import {SharedUtilsComponent} from "../../../shared/components/utils/shared-utils.component";
 
 @Component({
   selector: 'app-start-btn-public-talk',

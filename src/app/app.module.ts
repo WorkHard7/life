@@ -35,7 +35,7 @@ import {RemainingTimePublicTalkComponent} from './components/Public_talk/remaini
 import {LeftControllersComponent} from './components/Life_and_ministry/left-controllers/left-controllers.component';
 import {StartBtnWatchtowerComponent} from './components/Watchtower/start-btn-watchtower/start-btn-watchtower.component';
 import {LeftControllersWatchtowerComponent} from './components/Watchtower/left-controllers-watchtower/left-controllers-watchtower.component';
-import {SharedUtilsComponent} from "./utils/shared-utils/shared-utils.component";
+import {SharedUtilsComponent} from "./shared/components/utils/shared-utils.component";
 
 import {showHeaderReducer} from "./store/reducers/showHeader.reducer";
 import {isTimeRunningReducer} from "./store/reducers/isTimeRunning.reducer";

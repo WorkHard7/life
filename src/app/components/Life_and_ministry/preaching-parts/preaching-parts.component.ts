@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
-import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.component";
+import {SharedUtilsComponent} from "../../../shared/components/utils/shared-utils.component";
 import {AllEvents} from "../../../model/events";
 
 @Component({

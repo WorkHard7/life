@@ -6,7 +6,7 @@ import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
 import {AllEvents} from "../../../model/events";
 import {AllPartsService} from "../../../mock/all-parts.service";
-import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.component";
+import {SharedUtilsComponent} from "../../../shared/components/utils/shared-utils.component";
 import {Subscription} from "rxjs";
 import {AppState} from "../../../store/app.state";
 import {showHeader} from "../../../store/actions/showHeader.actions";

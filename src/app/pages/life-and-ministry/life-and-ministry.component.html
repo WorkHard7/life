@@ -2,7 +2,6 @@
   <main class="flex">
     <app-left-controllers
       *ngIf="!(showHeader$ | async)"
-      class="left-controllers-container"
     />
 
     <div
@@ -11,8 +10,6 @@
       <app-header
         [title]=title
       />
-
-      <app-current-time *ngIf="(showHeader$ | async)"/>
 
       <ng-container
         *ngIf="!(isTimeRunning$ | async) && !(isAllocatedTimeRunning$ | async)"

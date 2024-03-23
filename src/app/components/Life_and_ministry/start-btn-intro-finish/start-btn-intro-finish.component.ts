@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {AllEvents} from "../../../model/events";
 import {Router} from "@angular/router";
-import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.component";
+import {SharedUtilsComponent} from "../../../shared/components/utils/shared-utils.component";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../store/app.state";
 import {hideHeader} from "../../../store/actions/showHeader.actions";

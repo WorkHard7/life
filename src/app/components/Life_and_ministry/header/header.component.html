@@ -13,16 +13,18 @@
         </fa-icon>
       </button>
       <div class="header m-auto">
-        <p>{{header}}</p>
+        <p>{{ header }}</p>
       </div>
     </h2>
   </div>
+
+  <app-current-time/>
 </ng-container>
 
 
 <!--the header for remaining time page-->
 <ng-container *ngIf="!(showHeader$ | async)">
-  <app-current-time />
+  <app-current-time/>
 
   <div class="flex">
     <h2 class="main-title-page">

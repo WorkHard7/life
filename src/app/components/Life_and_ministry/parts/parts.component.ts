@@ -1,7 +1,7 @@
 import {Component, OnInit, WritableSignal} from '@angular/core';
 import {PartsService} from "../../../services/parts.service";
 import {Router} from "@angular/router";
-import {SharedUtilsComponent} from "../../../utils/shared-utils/shared-utils.component";
+import {SharedUtilsComponent} from "../../../shared/components/utils/shared-utils.component";
 
 @Component({
   selector: 'app-parts',
