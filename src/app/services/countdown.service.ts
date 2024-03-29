@@ -5,6 +5,7 @@ import {AllEvents} from "../model/events";
 import {Store} from "@ngrx/store";
 import {AppState} from "../store/app.state";
 import {startTime, stopTime} from "../store/actions/isTimeRunning.actions";
+import {WatchtowerService} from "./watchtower.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,6 @@ import {startTime, stopTime} from "../store/actions/isTimeRunning.actions";
 export class CountdownService {
   remainingTime: number = 0;
   private intervalId!: any;
-  private isCustomTime: boolean = false;
   showNegativeRemainingTime: { sign: string, minutes: string, seconds: string } =
     {
       sign: '',
@@ -20,58 +20,20 @@ export class CountdownService {
       seconds: '00'
     }
 
-  watchtowerCustomEndTime: AllEvents = {
-    index: 1,
-    title: '',
-    hours: 20,
-    minutes: 10,
-    seconds: 0,
-    duration: 0
-  };
-
-  private readonly watchtowerLastPart: AllEvents = {
-    index: 2,
-    title: 'Turnul de veghe',
-    hours: 20,
-    minutes: 15,
-    seconds: 0,
-    duration: 4
-  }
-
-  private readonly lifeAndMinistryLastPart = {
-    title: 'Cântare, rugăciune de încheiere',
-    hours: 20,
-    minutes: 45,
-    seconds: 0
-  }
+  private readonly lifeAndMinistryLastPart =
+    {
+      title: 'Cântare, rugăciune de încheiere',
+      hours: 20,
+      minutes: 45,
+      seconds: 0
+    }
 
   constructor(
     private store: Store<AppState>,
     private selectedSpeechService: SelectedSpeechService,
-    private countdownAllocatedTimeService: CountdownAllocatedTimeService
+    private countdownAllocatedTimeService: CountdownAllocatedTimeService,
+    private watchtowerService: WatchtowerService
   ) {
-    this.initializeCustomEndTime();
-    this.initializeCustomTimeStatus();
-  }
-
-  private initializeCustomEndTime() {
-    const storedWatchtowerEndTime = localStorage.getItem('watchtowerCustomEndTime');
-
-    if (storedWatchtowerEndTime) {
-      this.watchtowerCustomEndTime = JSON.parse(storedWatchtowerEndTime);
-    } else {
-      localStorage.setItem('watchtowerCustomEndTime', JSON.stringify(this.watchtowerCustomEndTime));
-    }
-  }
-
-  private initializeCustomTimeStatus() {
-    const customTimeStatus = localStorage.getItem('isCustomTime');
-
-    if (customTimeStatus) {
-      this.isCustomTime = JSON.parse(customTimeStatus);
-    } else {
-      localStorage.setItem('isCustomTime', JSON.stringify(this.isCustomTime));
-    }
   }
 
   startCountdown(endTime: Date): void {
@@ -88,7 +50,7 @@ export class CountdownService {
       console.log('remainingTime in second', this.remainingTime);
 
       this.showNegativeRemainingTime = this.formatNegativeNumber();
-      this.checkFinalBlockLM();
+      this.checkFinalBlockLifeAndW();
 
       console.log('remaining time Object', this.showNegativeRemainingTime);
       this.remainingTime--;
@@ -107,24 +69,6 @@ export class CountdownService {
     clearInterval(this.intervalId);
   }
 
-  setWatchtowerCustomTimeToLocalStorage(watchtowerEndTime: any) {
-    localStorage.setItem('watchtowerCustomEndTime', JSON.stringify(watchtowerEndTime));
-    this.watchtowerCustomEndTime = watchtowerEndTime;
-  }
-
-  setAsCustomTimeToLocalStorage(isCustomTime: any) {
-    localStorage.setItem('isCustomTime', JSON.stringify(isCustomTime));
-    this.isCustomTime = isCustomTime;
-  }
-
-  getWatchtowerCustomEndTime() {
-    return this.watchtowerCustomEndTime;
-  }
-
-  getCustomTimeStatus() {
-    return this.isCustomTime;
-  }
-
   private formatNegativeNumber(): any {
     const sign = this.remainingTime < 0 ? '-' : '';
     const absRemainingTime = Math.abs(this.remainingTime);
@@ -141,7 +85,7 @@ export class CountdownService {
     };
   }
 
-  private checkFinalBlockLM() {
+  private checkFinalBlockLifeAndW() {
     const selectedSpeechTitle = this.selectedSpeechService.selectedSpeechSig().title;
 
     if (selectedSpeechTitle === 'Cuvinte de încheiere, anunțuri' ||
@@ -163,11 +107,7 @@ export class CountdownService {
         this.lifeAndMinistryLastPart.seconds
       );
     } else {
-      endTime.setHours(
-        this.watchtowerLastPart.hours,
-        this.watchtowerLastPart.minutes,
-        this.watchtowerLastPart.seconds
-      );
+      this.watchtowerService.setTimeWatchtowerLastPart(endTime);
     }
 
     this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endTime);

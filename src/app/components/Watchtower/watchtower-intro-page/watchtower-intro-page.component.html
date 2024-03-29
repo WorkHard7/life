@@ -3,7 +3,7 @@
 
     <section>
       <div class="justify-center">
-        <app-set-custom-time-btn-watchtower />
+        <app-set-custom-time-btn-watchtower/>
       </div>
 
       <div class="popup-box text-center" *ngIf="showPopup">
@@ -23,46 +23,11 @@
 
       <main class="main-container-par">
         <button
-          class="w-full bg-blue-200"
-          [class.selected]="selectedParagraph === 16"
-          (click)="selectParagraph(16)">
-          16
-        </button>
-        <button
-          class="w-full bg-blue-300"
-          [class.selected]="selectedParagraph === 17"
-          (click)="selectParagraph(17)">
-          17
-        </button>
-        <button
-          class="w-full bg-blue-400"
-          [class.selected]="selectedParagraph === 18"
-          (click)="selectParagraph(18)">
-          18
-        </button>
-        <button
-          class="w-full bg-blue-500"
-          [class.selected]="selectedParagraph === 19"
-          (click)="selectParagraph(19)">
-          19
-        </button>
-        <button
-          class="w-full bg-blue-600"
-          [class.selected]="selectedParagraph === 20"
-          (click)="selectParagraph(20)">
-          20
-        </button>
-        <button
-          class="w-full bg-blue-700"
-          [class.selected]="selectedParagraph === 21"
-          (click)="selectParagraph(21)">
-          21
-        </button>
-        <button
-          class="w-full bg-blue-800"
-          [class.selected]="selectedParagraph === 22"
-          (click)="selectParagraph(22)">
-          22
+          *ngFor="let paragraph of possibleParagraphNumbers"
+          class="w-full bg-blue-{{ 200 + (paragraph - 16) * 100 }}"
+          [class.selected]="selectedParagraph === paragraph"
+          (click)="selectParagraph(paragraph)">
+          {{ paragraph }}
         </button>
       </main>
 

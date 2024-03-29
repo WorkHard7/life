@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import {Router} from "@angular/router";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
-import {CountdownService} from "../../../services/countdown.service";
+import {WatchtowerService} from "../../../services/watchtower.service";
 
 @Component({
   selector: 'app-watchtower-intro-page',
@@ -15,16 +15,17 @@ export class WatchtowerIntroPageComponent {
   private doubleClickTimeout: any;
   protected showPopup: boolean = false;
   protected selectedParagraph!: number;
+  protected possibleParagraphNumbers: number[] = [16,17,18,19,20,21,22];
 
   constructor(
     private router: Router,
     private selectedSpeechService: SelectedSpeechService,
-    private countdownService: CountdownService
+    private watchtowerService: WatchtowerService
   ) {
   }
 
   protected startW(paragraph: number) {
-    this.selectedSpeechService.updateSelectedSpeech(this.countdownService.watchtowerCustomEndTime);
+    this.selectedSpeechService.updateSelectedSpeech(this.watchtowerService.watchtowerCustomEndTime);
 
     this.router.navigateByUrl(`/watchtower/${paragraph}`).catch((err) => {
       Swal.fire({

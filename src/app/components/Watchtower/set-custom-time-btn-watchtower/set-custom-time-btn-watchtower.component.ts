@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import Swal from "sweetalert2";
-import {CountdownService} from "../../../services/countdown.service";
+import {WatchtowerService} from "../../../services/watchtower.service";
 
 @Component({
   selector: 'app-set-custom-time-btn-watchtower',
@@ -11,18 +11,18 @@ export class SetCustomTimeBtnWatchtowerComponent implements OnInit {
   protected watchtowerEndTime: any = {};
   protected isCustomTime: boolean = false;
 
-  constructor(private countdownService: CountdownService) {
+  constructor(private watchtowerService: WatchtowerService) {
   }
 
   ngOnInit(): void {
-    this.watchtowerEndTime = this.countdownService.getWatchtowerCustomEndTime();
-    this.isCustomTime = this.countdownService.getCustomTimeStatus();
+    this.watchtowerEndTime = this.watchtowerService.getWatchtowerCustomEndTime();
+    this.isCustomTime = this.watchtowerService.getCustomTimeStatus();
 
     // in case it's undefined
     if (this.watchtowerEndTime === undefined) {
       this.setEveningTime();
 
-      this.countdownService.setWatchtowerCustomTimeToLocalStorage(this.watchtowerEndTime);
+      this.watchtowerService.setWatchtowerCustomTimeToLocalStorage(this.watchtowerEndTime);
     }
   }
 
@@ -94,8 +94,8 @@ export class SetCustomTimeBtnWatchtowerComponent implements OnInit {
   }
 
   private updateLocalStorageKeys() {
-    this.countdownService.setWatchtowerCustomTimeToLocalStorage(this.watchtowerEndTime);
-    this.countdownService.setAsCustomTimeToLocalStorage(this.isCustomTime);
+    this.watchtowerService.setWatchtowerCustomTimeToLocalStorage(this.watchtowerEndTime);
+    this.watchtowerService.setAsCustomTimeToLocalStorage(this.isCustomTime);
   }
 
   private setMorningTime() {

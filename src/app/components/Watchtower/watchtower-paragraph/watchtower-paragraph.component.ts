@@ -6,6 +6,7 @@ import {Store} from "@ngrx/store";
 import {AppState} from "../../../store/app.state";
 import {selectIsTimeRunning} from "../../../store/selectors/isTimeRunning.selector";
 import {selectIsAllocatedTimeRunning} from "../../../store/selectors/isAllocatedTimeRunning.selector";
+import {WatchtowerService} from "../../../services/watchtower.service";
 
 @Component({
   selector: 'app-watchtower-paragraph',
@@ -25,7 +26,8 @@ export class WatchtowerParagraphComponent implements OnInit {
     private destroyRef: DestroyRef,
     private store: Store<AppState>,
     private route: ActivatedRoute,
-    protected countdownService: CountdownService
+    protected countdownService: CountdownService,
+    private watchtowerService: WatchtowerService
   ) {
     this.isTimeRunning$ = this.store.select(selectIsTimeRunning);
     this.isAllocatedTimeRunning$ = this.store.select(selectIsAllocatedTimeRunning);
@@ -54,7 +56,7 @@ export class WatchtowerParagraphComponent implements OnInit {
   }
 
   private updateWatchtower() {
-    const customEndTime: any = this.countdownService.getWatchtowerCustomEndTime();
+    const customEndTime: any = this.watchtowerService.getWatchtowerCustomEndTime();
     const endTime: Date = new Date();
 
     endTime.setHours(customEndTime.hours, customEndTime.minutes, customEndTime.seconds);
