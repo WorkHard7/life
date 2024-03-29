@@ -22,11 +22,22 @@ export class WatchtowerService {
     duration: 4
   }
   private isCustomTime: boolean = false;
-
+  private selectedParagraph: number = 20;
 
   constructor() {
+    this.initializeSelectedParagraph();
     this.initializeWatchtowerCustomEndTime();
     this.initializeCustomTimeStatus();
+  }
+
+  private initializeSelectedParagraph() {
+    const storedSelectedParagraph = localStorage.getItem('selectedParagraph');
+
+    if (storedSelectedParagraph) {
+      this.selectedParagraph = JSON.parse(storedSelectedParagraph);
+    } else {
+      localStorage.setItem('selectedParagraph', JSON.stringify(this.selectedParagraph));
+    }
   }
 
   private initializeWatchtowerCustomEndTime() {
@@ -57,6 +68,11 @@ export class WatchtowerService {
     );
   }
 
+  setSelectedParagraphToLocalStorage(paragraph: number) {
+    localStorage.setItem('selectedParagraph', JSON.stringify(paragraph));
+    this.selectedParagraph = paragraph;
+  }
+
   setWatchtowerCustomTimeToLocalStorage(watchtowerEndTime: any) {
     localStorage.setItem('watchtowerCustomEndTime', JSON.stringify(watchtowerEndTime));
     this.watchtowerCustomEndTime = watchtowerEndTime;
@@ -67,11 +83,15 @@ export class WatchtowerService {
     this.isCustomTime = isCustomTime;
   }
 
-  getWatchtowerCustomEndTime() {
+  getWatchtowerCustomEndTime(): AllEvents {
     return this.watchtowerCustomEndTime;
   }
 
-  getCustomTimeStatus() {
+  getCustomTimeStatus(): boolean {
     return this.isCustomTime;
+  }
+
+  getSelectedParagraph(): number {
+    return this.selectedParagraph;
   }
 }

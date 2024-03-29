@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
@@ -10,18 +10,22 @@ import {WatchtowerService} from "../../../services/watchtower.service";
   templateUrl: './watchtower-intro-page.component.html',
   styleUrls: ['./watchtower-intro-page.component.scss']
 })
-export class WatchtowerIntroPageComponent {
+export class WatchtowerIntroPageComponent implements OnInit {
   protected readonly faArrowLeft = faArrowLeft;
   private doubleClickTimeout: any;
   protected showPopup: boolean = false;
   protected selectedParagraph!: number;
-  protected possibleParagraphNumbers: number[] = [16,17,18,19,20,21,22];
+  protected possibleParagraphNumbers: number[] = [16, 17, 18, 19, 20, 21, 22];
 
   constructor(
     private router: Router,
     private selectedSpeechService: SelectedSpeechService,
     private watchtowerService: WatchtowerService
   ) {
+  }
+
+  ngOnInit(): void {
+    this.selectedParagraph = this.watchtowerService.getSelectedParagraph();
   }
 
   protected startW(paragraph: number) {
@@ -55,6 +59,7 @@ export class WatchtowerIntroPageComponent {
   }
 
   protected selectParagraph(paragraph: number) {
+    this.watchtowerService.setSelectedParagraphToLocalStorage(paragraph);
     this.selectedParagraph = paragraph;
   }
 }
