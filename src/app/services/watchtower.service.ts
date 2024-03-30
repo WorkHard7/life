@@ -13,14 +13,6 @@ export class WatchtowerService {
     seconds: 0,
     duration: 0
   };
-  private readonly watchtowerLastPart: AllEvents = {
-    index: 2,
-    title: 'Turnul de veghe',
-    hours: 20,
-    minutes: 15,
-    seconds: 0,
-    duration: 4
-  }
   private isCustomTime: boolean = false;
   private selectedParagraph: number = 20;
 
@@ -58,14 +50,6 @@ export class WatchtowerService {
     } else {
       localStorage.setItem('isCustomTime', JSON.stringify(this.isCustomTime));
     }
-  }
-
-  setTimeWatchtowerLastPart(endTime: Date) {
-    endTime.setHours(
-      this.watchtowerLastPart.hours,
-      this.watchtowerLastPart.minutes,
-      this.watchtowerLastPart.seconds
-    );
   }
 
   setSelectedParagraphToLocalStorage(paragraph: number) {

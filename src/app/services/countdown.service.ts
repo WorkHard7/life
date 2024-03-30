@@ -106,10 +106,14 @@ export class CountdownService {
         this.lifeAndMinistryLastPart.minutes,
         this.lifeAndMinistryLastPart.seconds
       );
+      this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endTime);
     } else {
-      this.watchtowerService.setTimeWatchtowerLastPart(endTime);
+      const watchtowerCustomEndTime = this.watchtowerService.getWatchtowerCustomEndTime();
+      endTime.setHours(
+        watchtowerCustomEndTime.hours, +watchtowerCustomEndTime.minutes + 5, watchtowerCustomEndTime.seconds
+      );
+      console.log('last part END TIME: ', endTime);
+      this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endTime);
     }
-
-    this.countdownAllocatedTimeService.startCountdownForAllocatedTime(endTime);
   }
 }
