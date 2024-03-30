@@ -1,46 +1,53 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LifeAndMinistryComponent } from './pages/life-and-ministry/life-and-ministry.component';
-import { HomeComponent } from './pages/home/home.component';
-import { WatchtowerParagraphComponent } from './components/Watchtower/watchtower-paragraph/watchtower-paragraph.component';
-import { PageNotFoundComponent } from './components/Page-not-found/page-not-found.component';
-import { PublicTalkComponent } from './pages/public_talk/public-talk.component';
-import { WatchtowerComponent } from './pages/watchtower/watchtower.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {LifeAndMinistryComponent} from './pages/life-and-ministry/life-and-ministry.component';
+import {HomeComponent} from './pages/home/home.component';
+import {
+  WatchtowerParagraphComponent
+} from './components/Watchtower/watchtower-paragraph/watchtower-paragraph.component';
+import {PageNotFoundComponent} from './components/Page-not-found/page-not-found.component';
+import {PublicTalkComponent} from './pages/public_talk/public-talk.component';
+import {WatchtowerComponent} from './pages/watchtower/watchtower.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-    data: { background: true },
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   },
   {
     path: 'life_and_ministry',
-    component: LifeAndMinistryComponent,
+    component: LifeAndMinistryComponent
   },
   {
     path: 'life_and_ministry/:index',
-    component: LifeAndMinistryComponent,
+    component: LifeAndMinistryComponent
   },
   {
     path: 'public_talk',
-    component: PublicTalkComponent,
+    component: PublicTalkComponent
   },
   {
     path: 'watchtower',
-    component: WatchtowerComponent,
+    component: WatchtowerComponent
   },
   {
     path: 'watchtower/:paragraph',
-    component: WatchtowerParagraphComponent,
+    component: WatchtowerParagraphComponent
   },
   {
     path: '**',
-    component: PageNotFoundComponent,
-  },
+    component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

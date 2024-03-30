@@ -40,10 +40,6 @@ export class WatchtowerIntroPageComponent implements OnInit {
     });
   }
 
-  protected goHome() {
-    this.router.navigate(['/']);
-  }
-
   protected onDoubleClick() {
     clearTimeout(this.doubleClickTimeout); // Clear any existing timeout
     this.doubleClickTimeout = setTimeout(() => {

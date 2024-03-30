@@ -46,6 +46,6 @@ export class HeaderComponent implements OnInit {
     this.countdownService.stopCountdown();
     this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
 
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
 }
