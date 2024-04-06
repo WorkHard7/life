@@ -8,11 +8,11 @@ export class SelectedSpeechService {
   selectedSpeechSig: WritableSignal<AllEvents> = signal<AllEvents>(
     {
       index: 0,
-      title: '',
-      hours: 0,
-      minutes: 0,
+      title: 'Turnul de veghe',
+      hours: 20,
+      minutes: 10,
       seconds: 0,
-      duration: 0
+      duration: 60
     });
 
   updateSelectedSpeech(selectedSpeech: AllEvents) {

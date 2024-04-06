@@ -8,7 +8,9 @@ import {WatchtowerService} from "../../../services/watchtower.service";
   styleUrls: ['./set-custom-time.component.scss']
 })
 export class SetCustomTimeComponent implements OnInit {
-  protected watchtowerEndTime: any = {};
+  protected watchtowerEndTime: any = {
+    title: 'Turnul de veghe'
+  };
   protected isCustomTime: boolean = false;
 
   constructor(private watchtowerService: WatchtowerService) {
@@ -100,6 +102,7 @@ export class SetCustomTimeComponent implements OnInit {
 
   private setMorningTime() {
     this.watchtowerEndTime = {
+      title: 'Turnul de veghe',
       hours: '11',
       minutes: '40',
       seconds: 0
@@ -108,6 +111,7 @@ export class SetCustomTimeComponent implements OnInit {
 
   private setEveningTime() {
     this.watchtowerEndTime = {
+      title: 'Turnul de veghe',
       hours: '20',
       minutes: '10',
       seconds: 0

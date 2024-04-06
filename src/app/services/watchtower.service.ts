@@ -7,7 +7,7 @@ import {AllEvents} from "../model/events";
 export class WatchtowerService {
   watchtowerCustomEndTime: AllEvents = {
     index: 1,
-    title: '',
+    title: 'Turnul de veghe',
     hours: 20,
     minutes: 10,
     seconds: 0,
