@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CountdownService} from "../../../services/countdown.service";
 import {CountdownAllocatedTimeService} from "../../../services/countdown-allocated-time.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -7,23 +7,17 @@ import {SelectedSpeechService} from "../../../services/selected-speech.service";
 import {AllEvents} from "../../../model/events";
 import {AllPartsService} from "../../../mock/all-parts.service";
 import {SharedUtilsComponent} from "../../../shared/components/utils/shared-utils.component";
-import {Subscription} from "rxjs";
-import {AppState} from "../../../store/app.state";
-import {showHeader} from "../../../store/actions/showHeader.actions";
-import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'app-left-controllers',
   templateUrl: './left-controllers.component.html',
   styleUrls: ['./left-controllers.component.scss']
 })
-export class LeftControllersComponent extends SharedUtilsComponent implements OnInit, OnDestroy {
+export class LeftControllersComponent extends SharedUtilsComponent implements OnInit {
   protected readonly faArrowLeft = faArrowLeft;
-  routeParamSubscription!: Subscription;
   index: number = 0;
 
   constructor(
-    private store: Store<AppState>,
     private countdownService: CountdownService,
     private countdownAllocatedTimeService: CountdownAllocatedTimeService,
     private router: Router,
@@ -35,15 +29,11 @@ export class LeftControllersComponent extends SharedUtilsComponent implements On
   }
 
   ngOnInit() {
-    this.routeParamSubscription = this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe(params => {
       this.index = Number(params.get('index'));
 
       this.startTimerForSpeech(this.index);
     })
-  }
-
-  ngOnDestroy() {
-    this.routeParamSubscription.unsubscribe();
   }
 
   protected startNextSpeech() {
@@ -128,7 +118,6 @@ export class LeftControllersComponent extends SharedUtilsComponent implements On
   protected returnBack() {
     this.countdownService.stopCountdown();
     this.countdownAllocatedTimeService.stopCountdownForAllocatedTime();
-    this.store.dispatch(showHeader());
 
     this.router.navigate(['/life_and_ministry']);
   }

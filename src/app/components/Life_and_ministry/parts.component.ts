@@ -1,7 +1,7 @@
 import {Component, OnInit, WritableSignal} from '@angular/core';
-import {PartsService} from "../../../services/parts.service";
-import {Router} from "@angular/router";
-import {SharedUtilsComponent} from "../../../shared/components/utils/shared-utils.component";
+import {PartsService} from "../../services/parts.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {SharedUtilsComponent} from "../../shared/components/utils/shared-utils.component";
 
 @Component({
   selector: 'app-parts',
@@ -13,7 +13,8 @@ export class PartsComponent extends SharedUtilsComponent implements OnInit {
 
   constructor(
     private partsService: PartsService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     super();
   }
@@ -24,6 +25,6 @@ export class PartsComponent extends SharedUtilsComponent implements OnInit {
 
   protected navigateToGemsPart(gem: any): void {
     this.fireLoadingAlert();
-    this.router.navigate(['/life_and_ministry', gem.index]);
+    this.router.navigate([gem.index], {relativeTo: this.route});
   }
 }

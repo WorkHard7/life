@@ -1,63 +1,59 @@
-<section class="p-3 h-screen">
+<div class="flex">
+  <app-left-controllers-watchtower/>
 
-  <div class="flex">
-    <app-left-controllers-watchtower/>
+  <main class="main-container">
+    <app-current-time/>
 
-    <main class="main-container">
-      <app-current-time [watchtowerStarted]="true"/>
-
-      <header class="main-header">
-          <p *ngIf="(isTimeRunning$ | async)"
-             class="m-auto text-3xl"
-          >
-            Articol cu {{ selectedParagraph }} paragrafe
-          </p>
-          <p *ngIf="(isAllocatedTimeRunning$ | async)"
-             class="m-auto text-3xl finalPart"
-          >
-            Cântare, rugăciune de încheiere
-          </p>
-      </header>
-
-      <div *ngIf="isLoading" class="spinner">
-        <div>
-          <div class="spinner-circle"></div>
-        </div>
-      </div>
-
-      <!-- will show paragraph until 4 minutes remains -->
-      <div
-        *ngIf="countdownService.remainingTime > 240; else summaryBlock"
-        class="text-center"
+    <header class="main-header">
+      <p *ngIf="(isTimeRunning$ | async)"
+         class="m-auto text-3xl"
       >
-        <div *ngIf="currentParagraph >= 0">
-          <p class="paragraph">{{ currentParagraph }}</p>
-        </div>
+        Articol cu {{ selectedParagraph }} paragrafe
+      </p>
+      <p *ngIf="(isAllocatedTimeRunning$ | async)"
+         class="m-auto text-3xl finalPart"
+      >
+        Cântare, rugăciune de încheiere
+      </p>
+    </header>
 
+    <div *ngIf="isLoading" class="spinner">
+      <div>
+        <div class="spinner-circle"></div>
+      </div>
+    </div>
+
+    <!-- will show paragraph until 4 minutes remains -->
+    <div
+      *ngIf="countdownService.remainingTime > 240; else summaryBlock"
+      class="text-center"
+    >
+      <div *ngIf="currentParagraph >= 0">
+        <p class="paragraph">{{ currentParagraph }}</p>
       </div>
 
-      <!-- this block will show when 4 minutes remained -->
-      <ng-template #summaryBlock>
-        <p
-          [ngStyle]="{
+    </div>
+
+    <!-- this block will show when 4 minutes remained -->
+    <ng-template #summaryBlock>
+      <p
+        [ngStyle]="{
           'opacity': countdownService.remainingTime <= 240 && countdownService.remainingTime >= 0 ? '1' : '0'
           }"
-          class="summary"
-        >
-          Recapitulare
-        </p>
-      </ng-template>
+        class="summary"
+      >
+        Recapitulare
+      </p>
+    </ng-template>
 
-      <!-- block for remaining time -->
-      <div
-        [ngStyle]="{
+    <!-- block for remaining time -->
+    <div
+      [ngStyle]="{
           'opacity': isLoading ? '0' : '1'
         }"
-      >
-        <app-remaining-time-watchtower/>
-      </div>
+    >
+      <app-remaining-time-watchtower/>
+    </div>
 
-    </main>
-  </div>
-
-</section>
+  </main>
+</div>

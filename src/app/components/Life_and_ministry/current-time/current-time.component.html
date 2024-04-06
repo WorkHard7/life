@@ -1,27 +1,11 @@
 <div>
-  <ng-container
-    *ngIf="(showHeader$ | async) && !watchtowerStarted"
-  >
+  <ng-container>
     <div class="main-container-curr-time">
       <h1>
         <fa-icon [icon]="faClock"></fa-icon>
         <span class="hours-minutes">{{ localTime | date : "HH:mm" }}</span>
         <span class="seconds">{{ localTime | date : ".ss" }}</span>
       </h1>
-    </div>
-  </ng-container>
-
-  <ng-container
-    *ngIf="!(showHeader$ | async) || watchtowerStarted"
-  >
-    <div class="mb-4">
-      <div class="main-container-curr-time">
-        <h1>
-          <fa-icon [icon]="faClock"></fa-icon>
-          <span class="hours-minutes">{{ localTime | date : "HH:mm" }}</span>
-          <span class="seconds">{{ localTime | date : ".ss" }}</span>
-        </h1>
-      </div>
     </div>
   </ng-container>
 </div>

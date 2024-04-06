@@ -3,11 +3,11 @@ import Swal from "sweetalert2";
 import {WatchtowerService} from "../../../services/watchtower.service";
 
 @Component({
-  selector: 'app-set-custom-time-btn-watchtower',
-  templateUrl: './set-custom-time-btn-watchtower.component.html',
-  styleUrls: ['./set-custom-time-btn-watchtower.component.scss']
+  selector: 'app-set-custom-time',
+  templateUrl: './set-custom-time.component.html',
+  styleUrls: ['./set-custom-time.component.scss']
 })
-export class SetCustomTimeBtnWatchtowerComponent implements OnInit {
+export class SetCustomTimeComponent implements OnInit {
   protected watchtowerEndTime: any = {};
   protected isCustomTime: boolean = false;
 

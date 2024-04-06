@@ -1,5 +1,5 @@
 <!--the header for life and ministry main page-->
-<ng-container *ngIf="(showHeader$ | async)">
+<ng-container *ngIf="showHeader; else elseBlock">
   <div class="main-container-header flex">
     <h2 class="main-title-page bg-gray-500">
       <button
@@ -18,12 +18,11 @@
     </h2>
   </div>
 
-  <app-current-time/>
 </ng-container>
 
 
 <!--the header for remaining time page-->
-<ng-container *ngIf="!(showHeader$ | async)">
+<ng-template #elseBlock>
   <app-current-time/>
 
   <div class="flex">
@@ -35,7 +34,6 @@
       </div>
     </h2>
   </div>
-
-</ng-container>
+</ng-template>
 
 <ng-content></ng-content>

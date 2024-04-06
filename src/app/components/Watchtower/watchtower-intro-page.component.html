@@ -1,0 +1,50 @@
+<section>
+  <div class="justify-center">
+    <app-set-custom-time/>
+  </div>
+
+  <div class="popup-box text-center" *ngIf="showPopup">
+    Jehovah loves you!
+    <span class="fa fa-heart"></span>
+  </div>
+
+  <div class="set-num-par">
+    <div (dblclick)="onDoubleClick()"
+         (mouseup)="onMouseUp()"
+         class="cursor-pointer ml-4"
+         style="margin: auto"
+    >
+      <p class="select-par">Setați numărul total de paragrafe din articol</p>
+    </div>
+  </div>
+
+  <main class="main-container-par">
+    <button
+      *ngFor="let paragraph of possibleParagraphNumbers"
+      class="w-full bg-blue-{{ 200 + (paragraph - 16) * 100 }}"
+      [class.selected]="selectedParagraph === paragraph"
+      (click)="selectParagraph(paragraph)">
+      {{ paragraph }}
+    </button>
+  </main>
+
+  <div class="text-center">
+    <app-start-btn-watchtower
+      [selectedParagraph]="selectedParagraph"
+      (click)="startW()"
+    />
+  </div>
+
+  <div class="mt-6">
+    <button
+      routerLink="/home"
+      class="icon-circle flex justify-center items-center">
+      <fa-icon
+        [icon]="faArrowLeft"
+        class="arrow-left text-white text-xl"
+        style="stroke-width: 15;stroke: #000;"
+        title="Back">
+      </fa-icon>
+    </button>
+  </div>
+</section>

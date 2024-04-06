@@ -6,7 +6,6 @@ import {CountdownAllocatedTimeService} from "../../../services/countdown-allocat
 import {AllEvents} from "../../../model/events";
 import {SelectedSpeechService} from "../../../services/selected-speech.service";
 import {Observable} from "rxjs";
-import {selectHeader} from "../../../store/selectors/showHeader.selector";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../store/app.state";
 import {selectIsTimeRunning} from "../../../store/selectors/isTimeRunning.selector";
@@ -18,11 +17,11 @@ import {selectIsAllocatedTimeRunning} from "../../../store/selectors/isAllocated
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Input({ required: true, alias: 'title' }) header?: string;
+  @Input({ required: true}) showHeader?: boolean;
   protected readonly faArrowLeft = faArrowLeft;
   public finalPartTitle: string = 'Cântare, rugăciune de încheiere';
+  protected header: string = 'Viața creștină și predicarea';
   selectedSpeechSig!: WritableSignal<AllEvents>;
-  showHeader$!: Observable<boolean>;
   isTimeRunning$!: Observable<boolean>;
   isAllocatedTimeRunning$!: Observable<boolean>;
 
@@ -33,7 +32,6 @@ export class HeaderComponent implements OnInit {
     public countdownAllocatedTimeService: CountdownAllocatedTimeService,
     private selectedSpeechService: SelectedSpeechService
   ) {
-    this.showHeader$ = this.store.select(selectHeader);
     this.isTimeRunning$ = this.store.select(selectIsTimeRunning);
     this.isAllocatedTimeRunning$ = this.store.select(selectIsAllocatedTimeRunning);
   }

@@ -1,9 +1,5 @@
 import {Component, HostListener} from '@angular/core';
 import {CountdownService} from "../../services/countdown.service";
-import {Store} from "@ngrx/store";
-import {AppState} from "../../store/app.state";
-import {Observable} from "rxjs";
-import {selectIsTimeRunning} from "../../store/selectors/isTimeRunning.selector";
 
 @Component({
   selector: 'app-public-talk',
@@ -11,13 +7,8 @@ import {selectIsTimeRunning} from "../../store/selectors/isTimeRunning.selector"
   styleUrls: ['./public-talk.component.scss']
 })
 export class PublicTalkComponent {
-  protected isTimeRunning$!: Observable<boolean>;
 
-  constructor(
-    private store: Store<AppState>,
-    private countdownService: CountdownService
-  ) {
-    this.isTimeRunning$ = this.store.select(selectIsTimeRunning);
+  constructor(private countdownService: CountdownService) {
   }
 
   @HostListener('window:popstate', ['$event'])

@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
-import {SelectedSpeechService} from "../../../services/selected-speech.service";
-import {WatchtowerService} from "../../../services/watchtower.service";
+import {SelectedSpeechService} from "../../services/selected-speech.service";
+import {WatchtowerService} from "../../services/watchtower.service";
 
 @Component({
   selector: 'app-watchtower-intro-page',
@@ -28,10 +28,10 @@ export class WatchtowerIntroPageComponent implements OnInit {
     this.selectedParagraph = this.watchtowerService.getSelectedParagraph();
   }
 
-  protected startW(paragraph: number) {
+  protected startW() {
     this.selectedSpeechService.updateSelectedSpeech(this.watchtowerService.watchtowerCustomEndTime);
 
-    this.router.navigateByUrl(`/watchtower/${paragraph}`).catch((err) => {
+    this.router.navigateByUrl(`/watchtower/${this.selectedParagraph}`).catch((err) => {
       Swal.fire({
         title: 'Error',
         text: `Navigation failed: ${err}`,

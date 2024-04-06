@@ -1,25 +1,7 @@
 <div class="p-3">
-  <main class="flex">
-    <app-left-controllers
-      *ngIf="!(showHeader$ | async)"
-    />
-
-    <div
-      style="flex: 2"
-      [class.main-container]="!(showHeader$ | async)">
-      <app-header
-        [title]=title
-      />
-
-      <ng-container
-        *ngIf="!(isTimeRunning$ | async) && !(isAllocatedTimeRunning$ | async)"
-      >
-        <app-parts/>
-      </ng-container>
-
-      <ng-container *ngIf="(isTimeRunning$ | async) || (isAllocatedTimeRunning$ | async)">
-        <app-remaining-time/>
-      </ng-container>
+  <main>
+    <div>
+      <router-outlet></router-outlet>
     </div>
   </main>
 </div>

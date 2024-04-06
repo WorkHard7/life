@@ -10,36 +10,55 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/Life_and_ministry/header/header.component';
-import {PartsComponent} from './components/Life_and_ministry/parts/parts.component';
+import {PartsComponent} from './components/Life_and_ministry/parts.component';
 import {CurrentTimeComponent} from './components/Life_and_ministry/current-time/current-time.component';
 import {RemainingTimeComponent} from './components/Life_and_ministry/remaining-time/remaining-time.component';
 import {StartBtnComponent} from './components/Life_and_ministry/start-btn/start-btn.component';
 import {HomeComponent} from './pages/home/home.component';
 import {LifeAndMinistryComponent} from './pages/life-and-ministry/life-and-ministry.component';
-import {WatchtowerIntroPageComponent} from './components/Watchtower/watchtower-intro-page/watchtower-intro-page.component';
-import {WatchtowerParagraphComponent} from './components/Watchtower/watchtower-paragraph/watchtower-paragraph.component';
+import {WatchtowerIntroPageComponent} from './components/Watchtower/watchtower-intro-page.component';
+import {
+  WatchtowerParagraphComponent
+} from './components/Watchtower/watchtower-paragraph/watchtower-paragraph.component';
 import {PageNotFoundComponent} from './components/Page-not-found/page-not-found.component';
 import {PreachingPartsComponent} from './components/Life_and_ministry/preaching-parts/preaching-parts.component';
-import {ChristianLifePartsComponent} from './components/Life_and_ministry/christian-life-parts/christian-life-parts.component';
-import {SetCustomTimeBtnWatchtowerComponent} from './components/Watchtower/set-custom-time-btn-watchtower/set-custom-time-btn-watchtower.component';
-import {LeftControllersPublicTalk} from "./components/Public_talk/left-controllers_public_talk/left-controllers-public-talk";
+import {
+  ChristianLifePartsComponent
+} from './components/Life_and_ministry/christian-life-parts/christian-life-parts.component';
+import {SetCustomTimeComponent} from './components/Watchtower/set-custom-time/set-custom-time.component';
+import {
+  LeftControllersPublicTalk
+} from "./components/Public_talk/left-controllers_public_talk/left-controllers-public-talk";
 import {PublicTalkComponent} from "./pages/public_talk/public-talk.component";
-import {StartBtnPublicTalkComponent} from './components/Public_talk/start-btn-public-talk/start-btn-public-talk.component';
+import {
+  StartPublicTalkComponent
+} from './components/Public_talk/start-public-talk/start-public-talk.component';
 import {IntroductionComponent} from './components/Life_and_ministry/introduction/introduction.component';
 import {FinishComponent} from './components/Life_and_ministry/finish/finish.component';
 import {EditBtnComponent} from './components/Life_and_ministry/edit-btn/edit-btn.component';
 import {WatchtowerComponent} from './pages/watchtower/watchtower.component';
-import {RemainingTimeWatchtowerComponent} from './components/Watchtower/remaining-time-watchtower/remaining-time-watchtower.component';
-import {StartBtnIntroFinishComponent} from './components/Life_and_ministry/start-btn-intro-finish/start-btn-intro-finish.component';
-import {RemainingTimePublicTalkComponent} from './components/Public_talk/remaining-time-public-talk/remaining-time-public-talk.component';
+import {
+  RemainingTimeWatchtowerComponent
+} from './components/Watchtower/remaining-time-watchtower/remaining-time-watchtower.component';
+import {
+  StartBtnIntroFinishComponent
+} from './components/Life_and_ministry/start-btn-intro-finish/start-btn-intro-finish.component';
+import {
+  RemainingTimePublicTalkComponent
+} from './components/Public_talk/remaining-time-public-talk/remaining-time-public-talk.component';
 import {LeftControllersComponent} from './components/Life_and_ministry/left-controllers/left-controllers.component';
 import {StartBtnWatchtowerComponent} from './components/Watchtower/start-btn-watchtower/start-btn-watchtower.component';
-import {LeftControllersWatchtowerComponent} from './components/Watchtower/left-controllers-watchtower/left-controllers-watchtower.component';
+import {
+  LeftControllersWatchtowerComponent
+} from './components/Watchtower/left-controllers-watchtower/left-controllers-watchtower.component';
 import {SharedUtilsComponent} from "./shared/components/utils/shared-utils.component";
 
-import {showHeaderReducer} from "./store/reducers/showHeader.reducer";
 import {isTimeRunningReducer} from "./store/reducers/isTimeRunning.reducer";
 import {isAllocatedTimeRunningReducer} from "./store/reducers/isAllocatedTimeRunning.reducer";
+import {
+  RemainingTimeRouteComponent
+} from './components/Life_and_ministry/remaining-time-route/remaining-time-route.component';
+import { PublicTalkWrapperComponent } from './components/Public_talk/public-talk-wrapper/public-talk-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -56,9 +75,9 @@ import {isAllocatedTimeRunningReducer} from "./store/reducers/isAllocatedTimeRun
     PageNotFoundComponent,
     PreachingPartsComponent,
     ChristianLifePartsComponent,
-    SetCustomTimeBtnWatchtowerComponent,
+    SetCustomTimeComponent,
     PublicTalkComponent,
-    StartBtnPublicTalkComponent,
+    StartPublicTalkComponent,
     IntroductionComponent,
     FinishComponent,
     EditBtnComponent,
@@ -71,6 +90,8 @@ import {isAllocatedTimeRunningReducer} from "./store/reducers/isAllocatedTimeRun
     StartBtnWatchtowerComponent,
     LeftControllersWatchtowerComponent,
     SharedUtilsComponent,
+    RemainingTimeRouteComponent,
+    PublicTalkWrapperComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +101,6 @@ import {isAllocatedTimeRunningReducer} from "./store/reducers/isAllocatedTimeRun
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     StoreModule.forRoot({
-      showHeader: showHeaderReducer,
       isTimeRunning: isTimeRunningReducer,
       isAllocatedTimeRunning: isAllocatedTimeRunningReducer
     }),

@@ -1,7 +1,7 @@
 import {Component, DestroyRef, HostListener, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, ParamMap} from "@angular/router";
 import {CountdownService} from "../../../services/countdown.service";
-import {Observable, Subscription} from "rxjs";
+import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../store/app.state";
 import {selectIsTimeRunning} from "../../../store/selectors/isTimeRunning.selector";
@@ -14,7 +14,6 @@ import {WatchtowerService} from "../../../services/watchtower.service";
   styleUrls: ['./watchtower-paragraph.component.scss']
 })
 export class WatchtowerParagraphComponent implements OnInit {
-  private routeParamSubscription!: Subscription;
   protected selectedParagraph!: number;
   protected currentParagraph!: number;
   protected isLoading: boolean = true;
@@ -35,7 +34,6 @@ export class WatchtowerParagraphComponent implements OnInit {
     // an alternative to ngOnDestroy
     this.destroyRef.onDestroy(() => {
       clearInterval(this.intervalId);
-      this.routeParamSubscription.unsubscribe();
     })
   }
 
@@ -45,8 +43,9 @@ export class WatchtowerParagraphComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.routeParamSubscription = this.route.paramMap.subscribe(param => {
-      const selectedParagraph = param.get('paragraph');
+   this.route.paramMap
+     .subscribe((paramMap: ParamMap) => {
+      const selectedParagraph = paramMap.get('paragraph');
       if (selectedParagraph) {
         this.selectedParagraph = +selectedParagraph;
       }

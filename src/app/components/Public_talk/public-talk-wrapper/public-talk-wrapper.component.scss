@@ -1,0 +1,29 @@
+.main-container {
+  flex: 2;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.main-title {
+  color: white;
+  margin: 0 auto;
+  font-size: 1.85rem;
+}
+
+@media screen and (max-width: 500px) {
+  .arrow-left {
+    font-size: 1rem;
+  }
+
+  .main-title {
+    line-height: 2rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .main-title {
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+  }
+}

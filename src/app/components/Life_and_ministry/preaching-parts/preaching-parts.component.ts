@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {SharedUtilsComponent} from "../../../shared/components/utils/shared-utils.component";
 import {AllEvents} from "../../../model/events";
 
@@ -20,12 +20,15 @@ export class PreachingPartsComponent extends SharedUtilsComponent {
     }
   ]
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     super();
   }
 
   protected navigateToPreachingPart(preachingPart: any): void {
     this.fireLoadingAlert();
-    this.router.navigate(['/life_and_ministry', preachingPart.index]);
+    this.router.navigate([preachingPart.index], {relativeTo: this.route});
   }
 }

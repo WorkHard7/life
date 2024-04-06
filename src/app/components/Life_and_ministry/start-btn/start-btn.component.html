@@ -1,5 +1,4 @@
 <button
-  (click)="hideHeader()"
   [disabled]="(isTimeRunning$ | async)"
   [ngClass]="{'opacity-25' : (isTimeRunning$ | async)}"
   type="submit"

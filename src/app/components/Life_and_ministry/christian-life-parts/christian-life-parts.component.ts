@@ -1,6 +1,6 @@
 import {Component, OnInit, WritableSignal} from '@angular/core';
 import {PartsService} from "../../../services/parts.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {SharedUtilsComponent} from "../../../shared/components/utils/shared-utils.component";
 
 @Component({
@@ -13,7 +13,8 @@ export class ChristianLifePartsComponent extends SharedUtilsComponent implements
 
   constructor(
     private partsService: PartsService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     super();
   }
@@ -24,6 +25,6 @@ export class ChristianLifePartsComponent extends SharedUtilsComponent implements
 
   protected navigateToChristianPart(christianPart: any): void {
     this.fireLoadingAlert();
-    this.router.navigate(['/life_and_ministry', christianPart.index]);
+    this.router.navigate([christianPart.index], {relativeTo: this.route});
   }
 }

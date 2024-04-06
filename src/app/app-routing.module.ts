@@ -8,6 +8,13 @@ import {
 import {PageNotFoundComponent} from './components/Page-not-found/page-not-found.component';
 import {PublicTalkComponent} from './pages/public_talk/public-talk.component';
 import {WatchtowerComponent} from './pages/watchtower/watchtower.component';
+import {WatchtowerIntroPageComponent} from "./components/Watchtower/watchtower-intro-page.component";
+import {PartsComponent} from "./components/Life_and_ministry/parts.component";
+import {
+  RemainingTimeRouteComponent
+} from "./components/Life_and_ministry/remaining-time-route/remaining-time-route.component";
+import {StartPublicTalkComponent} from "./components/Public_talk/start-public-talk/start-public-talk.component";
+import {PublicTalkWrapperComponent} from "./components/Public_talk/public-talk-wrapper/public-talk-wrapper.component";
 
 const routes: Routes = [
   {
@@ -21,23 +28,45 @@ const routes: Routes = [
   },
   {
     path: 'life_and_ministry',
-    component: LifeAndMinistryComponent
-  },
-  {
-    path: 'life_and_ministry/:index',
-    component: LifeAndMinistryComponent
+    component: LifeAndMinistryComponent,
+    children: [
+      {
+        path: '',
+        component: PartsComponent
+      },
+      {
+        path: ':index',
+        component: RemainingTimeRouteComponent
+      }
+    ]
   },
   {
     path: 'public_talk',
-    component: PublicTalkComponent
+    component: PublicTalkComponent,
+    children: [
+      {
+        path: '',
+        component: StartPublicTalkComponent
+      },
+      {
+        path: 'start',
+        component: PublicTalkWrapperComponent
+      },
+    ]
   },
   {
     path: 'watchtower',
-    component: WatchtowerComponent
-  },
-  {
-    path: 'watchtower/:paragraph',
-    component: WatchtowerParagraphComponent
+    component: WatchtowerComponent,
+    children: [
+      {
+        path: '',
+        component: WatchtowerIntroPageComponent
+      },
+      {
+        path: ':paragraph',
+        component: WatchtowerParagraphComponent
+      }
+    ]
   },
   {
     path: '**',

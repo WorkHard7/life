@@ -1,10 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {AllEvents} from "../../../model/events";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {SharedUtilsComponent} from "../../../shared/components/utils/shared-utils.component";
-import {Store} from "@ngrx/store";
-import {AppState} from "../../../store/app.state";
-import {hideHeader} from "../../../store/actions/showHeader.actions";
 
 @Component({
   selector: 'app-start-btn-intro-finish',
@@ -16,8 +13,8 @@ export class StartBtnIntroFinishComponent extends SharedUtilsComponent {
   @Input() finishPart?: AllEvents;
 
   constructor(
-    private store: Store<AppState>,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     super();
   }
@@ -29,9 +26,9 @@ export class StartBtnIntroFinishComponent extends SharedUtilsComponent {
 
   private navigateToRouteBasedOnParts() {
     if (this.introPart) {
-      this.router.navigate(['/life_and_ministry', this.introPart.index]);
+      this.router.navigate([this.introPart.index], {relativeTo: this.route});
     } else if (this.finishPart) {
-      this.router.navigate(['/life_and_ministry', this.getFinishIndexFromStorage()]);
+      this.router.navigate([this.getFinishIndexFromStorage()], {relativeTo: this.route});
     }
   }
 
@@ -41,9 +38,5 @@ export class StartBtnIntroFinishComponent extends SharedUtilsComponent {
     if (finishPartFromStorage) {
       return finishPartFromStorage.index;
     } else return undefined;
-  }
-
-  protected hideHeader() {
-    this.store.dispatch(hideHeader());
   }
 }

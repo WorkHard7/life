@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../store/app.state";
-import {hideHeader} from "../../../store/actions/showHeader.actions";
 import {Observable} from "rxjs";
 import {selectIsTimeRunning} from "../../../store/selectors/isTimeRunning.selector";
 
@@ -15,9 +14,5 @@ export class StartBtnComponent {
 
   constructor(private store: Store<AppState>) {
     this.isTimeRunning$ = this.store.select(selectIsTimeRunning);
-  }
-
-  protected hideHeader() {
-    this.store.dispatch(hideHeader());
   }
 }
