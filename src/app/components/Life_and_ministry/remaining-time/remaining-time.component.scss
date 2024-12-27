@@ -16,7 +16,7 @@
     align-items: center;
     border: 1px solid gray;
     border-radius: 1rem;
-    padding: .8rem 2.2rem;
+    padding: 0.8rem 2.2rem;
 
     > div:first-child {
       line-height: 1.6rem;
@@ -29,17 +29,18 @@
 }
 
 .remaining-seconds {
-  font-size: 1.3rem
+  font-size: 1.3rem;
 }
 
 .remaining-time-container {
+  visibility: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  opacity: .9;
+  opacity: 0.9;
   border: 1px solid gray;
   border-radius: 1rem;
-  padding: .8rem 2.2rem;
+  padding: 0.8rem 2.2rem;
 }
 
 .sign {
@@ -53,7 +54,7 @@ p {
 @media screen and (max-width: 450px) {
   .remaining-allocated-time-container,
   .remaining-time-container {
-    padding: .5rem 2rem !important;
+    padding: 0.5rem 2rem !important;
   }
 
   .remaining-time-title p {
@@ -68,13 +69,13 @@ p {
 @media screen and (max-width: 350px) {
   .remaining-allocated-time-container,
   .remaining-time-container {
-    padding: .4rem 1.6rem;
+    padding: 0.4rem 1.6rem;
   }
 }
 
 @media screen and (max-width: 325px) {
   .remaining-allocated-time-container,
   .remaining-time-container {
-    padding: .4rem 1.2rem !important;
+    padding: 0.4rem 1.2rem !important;
   }
 }
