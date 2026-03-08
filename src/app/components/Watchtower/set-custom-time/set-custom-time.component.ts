@@ -112,14 +112,14 @@ export class SetCustomTimeComponent implements OnInit {
   private setEveningTime() {
     this.watchtowerEndTime = {
       title: 'Turnul de veghe',
-      hours: '20',
-      minutes: '10',
+      hours: '19',
+      minutes: '40',
       seconds: 0
     };
   }
 
   protected noMorningNoEveningSelected(): boolean {
     return (this.watchtowerEndTime?.hours != 11 || this.watchtowerEndTime?.minutes != 40)
-      && (this.watchtowerEndTime?.hours != 20 || this.watchtowerEndTime?.minutes != 10);
+      && (this.watchtowerEndTime?.hours != 19 || this.watchtowerEndTime?.minutes != 40);
   }
 }

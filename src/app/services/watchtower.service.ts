@@ -8,8 +8,8 @@ export class WatchtowerService {
   watchtowerCustomEndTime: AllEvents = {
     index: 1,
     title: 'Turnul de veghe',
-    hours: 20,
-    minutes: 10,
+    hours: 19,
+    minutes: 40,
     seconds: 0,
     duration: 0
   };

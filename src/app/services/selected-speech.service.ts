@@ -9,8 +9,8 @@ export class SelectedSpeechService {
     {
       index: 0,
       title: 'Turnul de veghe',
-      hours: 20,
-      minutes: 10,
+      hours: 19,
+      minutes: 40,
       seconds: 0,
       duration: 60
     });
