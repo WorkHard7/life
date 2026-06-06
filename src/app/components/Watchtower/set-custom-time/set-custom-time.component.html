@@ -8,9 +8,9 @@
     <label class="center-labels">
       <input
         (change)="changeToMorningTime()"
-        [checked]="watchtowerEndTime?.hours == '11' && watchtowerEndTime?.minutes == '40'"
-        type="radio" name="endTime" value="11:40" class="large-radio mr-2">
-      11:40
+        [checked]="watchtowerEndTime?.hours == '12' && watchtowerEndTime?.minutes == '10'"
+        type="radio" name="endTime" value="12:10" class="large-radio mr-2">
+      12:10
     </label>
 
     <label *ngIf="isCustomTime && noMorningNoEveningSelected()"

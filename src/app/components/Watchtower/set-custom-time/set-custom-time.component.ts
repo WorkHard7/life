@@ -22,7 +22,7 @@ export class SetCustomTimeComponent implements OnInit {
 
     // in case it's undefined
     if (this.watchtowerEndTime === undefined) {
-      this.setEveningTime();
+      this.setMorningTime();
 
       this.watchtowerService.setWatchtowerCustomTimeToLocalStorage(this.watchtowerEndTime);
     }
@@ -103,8 +103,8 @@ export class SetCustomTimeComponent implements OnInit {
   private setMorningTime() {
     this.watchtowerEndTime = {
       title: 'Turnul de veghe',
-      hours: '11',
-      minutes: '40',
+      hours: '12',
+      minutes: '10',
       seconds: 0
     };
   }
@@ -119,7 +119,7 @@ export class SetCustomTimeComponent implements OnInit {
   }
 
   protected noMorningNoEveningSelected(): boolean {
-    return (this.watchtowerEndTime?.hours != 11 || this.watchtowerEndTime?.minutes != 40)
+    return (this.watchtowerEndTime?.hours != 12 || this.watchtowerEndTime?.minutes != 10)
       && (this.watchtowerEndTime?.hours != 19 || this.watchtowerEndTime?.minutes != 40);
   }
 }
